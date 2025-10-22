@@ -2,23 +2,33 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter/material.dart';
 import 'package:h_r_optimistic_mobile/main.dart' as app;
+import '../test/performance/performance_metrics.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('App Performance Tests', () {
-    testWidgets('Measure app startup time', (tester) async {
+    tearDown(() async {
+      // Log memory usage after each test
+      await PerformanceMetrics.logMemoryMetrics('After Test');
+    });
+    testWidgets('Measure app startup performance', (tester) async {
+      await PerformanceMetrics.logMemoryMetrics('Before Startup');
+      
       final stopwatch = Stopwatch()..start();
       
-      // Initialize app
       app.main();
       await tester.pumpAndSettle();
       
       stopwatch.stop();
-      debugPrint('App startup time: ${stopwatch.elapsedMilliseconds}ms');
+      final startupTime = stopwatch.elapsedMilliseconds;
       
-      // Assert startup time is under 2 seconds
-      expect(stopwatch.elapsedMilliseconds, lessThan(2000));
+      debugPrint('App startup time: ${startupTime}ms');
+      debugPrint('Performance grade: ${PerformanceMetrics.getPerformanceGrade(startupTime)}');
+      
+      await PerformanceMetrics.logMemoryMetrics('After Startup');
+      
+      expect(startupTime, lessThan(2000));
     });
 
     testWidgets('Measure time attendance page load performance', (tester) async {

@@ -4,7 +4,7 @@ import '/index.dart';
 import 'leave_page_widget.dart' show LeavePageWidget;
 import 'package:flutter/material.dart';
 
-class LeavePageModel extends FlutterFlowModel<LeavePageWidget> {
+class LeavePageModel extends BaseViewModel<LeavePageWidget> {
   ///  Local state fields for this page.
 
   int? leaveTypeID = 0;

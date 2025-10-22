@@ -176,10 +176,20 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                         text: FFLocalizations.of(context).getText(
                           'ahy2odf8' /* All */,
                         ),
-                        options: FFButtonOptions(
-                          height: 35.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
+                        style: ElevatedButton.styleFrom(
+      minimumSize: Size.fromHeight(35.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+      backgroundColor: null,
+      textStyle: null,
+      elevation: null,
+      side: const BorderSide(
+        color: Colors.transparent,
+        width: 1.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: null,
+      ),
+    ),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: _model.leaveTypeID == 0

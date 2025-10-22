@@ -676,12 +676,20 @@ class _LeaveRequestEditMainWidgetState
                                                   .getText(
                                                 'w0fx97yt' /* All Day */,
                                               ),
-                                              options: FFButtonOptions(
-                                                width: 178.0,
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
+                                              style: ElevatedButton.styleFrom(
+      minimumSize: Size(178.0, 40.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+      backgroundColor: null,
+      textStyle: null,
+      elevation: null,
+      side: const BorderSide(
+        color: Colors.transparent,
+        width: 1.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: null,
+      ),
+    ),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(
@@ -745,12 +753,20 @@ class _LeaveRequestEditMainWidgetState
                                                   .getText(
                                                 '9vcnxmpf' /* Half Day */,
                                               ),
-                                              options: FFButtonOptions(
-                                                width: 178.0,
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
+                                              style: ElevatedButton.styleFrom(
+      minimumSize: Size(178.0, 40.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+      backgroundColor: null,
+      textStyle: null,
+      elevation: null,
+      side: const BorderSide(
+        color: Colors.transparent,
+        width: 1.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: null,
+      ),
+    ),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(
@@ -2878,11 +2894,20 @@ class _LeaveRequestEditMainWidgetState
                                 text: FFLocalizations.of(context).getText(
                                   'dawo1x92' /* Submit */,
                                 ),
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
+                                style: ElevatedButton.styleFrom(
+      minimumSize: Size(double.infinity, 40.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+      backgroundColor: null,
+      textStyle: null,
+      elevation: null,
+      side: const BorderSide(
+        color: Colors.transparent,
+        width: 1.0,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: null,
+      ),
+    ),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: Color(0xFFF89D27),

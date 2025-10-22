@@ -1,4 +1,27 @@
-# HR Optimistic - Flutter App Architecture
+# HR App Architecture Documentation
+
+## Project Overview
+This project follows Clean Architecture principles with a feature-first organization approach.
+
+## Directory Structure
+```
+lib/
+├── core/               # Core functionality and shared code
+│   ├── api/           # API clients and interceptors
+│   ├── data/          # Data layer implementations
+│   ├── domain/        # Core business logic
+│   ├── presentation/  # Shared UI components
+│   ├── theme/         # App theming
+│   └── utils/         # Utilities and helpers
+│
+├── features/          # Feature modules
+│   ├── announcement/  # Announcement feature
+│   ├── attendance/    # Attendance tracking
+│   ├── auth/         # Authentication
+│   ├── leave/        # Leave management
+│   └── shared/       # Shared feature components
+│
+└── main.dart         # Application entry point
 
 ## Overview
 

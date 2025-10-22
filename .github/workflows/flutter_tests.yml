@@ -1,0 +1,68 @@
+
+name: Flutter Tests
+
+on:
+  push:
+    branches: [ main, developer ]
+  pull_request:
+    branches: [ main, developer ]
+
+jobs:
+  test:
+    name: Run Flutter Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.13.0'
+        channel: 'stable'
+    
+    - name: Install dependencies
+      run: flutter pub get
+      
+    - name: Analyze project source
+      run: flutter analyze
+    
+    - name: Run unit tests
+      run: flutter test test/unit --coverage
+    
+    - name: Run widget tests
+      run: flutter test test/widget
+      
+    - name: Run integration tests
+      run: flutter test integration_test
+    
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      with:
+        file: coverage/lcov.info
+        flags: unittests
+        name: flutter-tests
+        fail_ci_if_error: true
+
+  build:
+    name: Build Android & iOS
+    runs-on: macos-latest
+    needs: test
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.13.0'
+        channel: 'stable'
+    
+    - name: Install dependencies
+      run: flutter pub get
+    
+    - name: Build iOS
+      run: flutter build ios --release --no-codesign
+    
+    - name: Build Android
+      run: flutter build apk --release

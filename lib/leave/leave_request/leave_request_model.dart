@@ -6,7 +6,7 @@ import '/index.dart';
 import 'leave_request_widget.dart' show LeaveRequestWidget;
 import 'package:flutter/material.dart';
 
-class LeaveRequestModel extends FlutterFlowModel<LeaveRequestWidget> {
+class LeaveRequestModel extends BaseViewModel<LeaveRequestWidget> {
   ///  Local state fields for this page.
 
   bool isAllDay = true;

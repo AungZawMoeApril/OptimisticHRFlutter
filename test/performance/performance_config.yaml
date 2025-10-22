@@ -1,0 +1,27 @@
+// Performance test configuration
+concurrency: 1
+timeout: 2m
+tags:
+  performance:
+    timeout: 5m
+    platform: vm
+    skip: false
+
+# Test file patterns
+filename: "*_test.dart"
+
+# Reporting configuration
+coverage: true
+reporter: compact
+
+# Performance thresholds
+performance:
+  startup_time_ms: 2000
+  navigation_time_ms: 300
+  scroll_fps: 60
+  memory_threshold_mb: 100
+
+# Test platforms
+platforms:
+  - vm
+  - chrome

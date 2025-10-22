@@ -1,0 +1,22 @@
+targets:
+  $default:
+    sources:
+      - "lib/**"
+      - "test/**"
+    builders:
+      mockito:
+        generate_for:
+          - test/widget/app_web_view_test.dart
+
+coverage_report:
+  ignore_files:
+    - "**/*.g.dart"  # Generated files
+    - "**/*.freezed.dart"
+    - "**/generated/*.dart"
+    - "lib/generated_plugin_registrant.dart"
+  exclude_lines:
+    - "// coverage:ignore-line"
+    - "// coverage:ignore-start"
+    - "// coverage:ignore-end"
+    - "#docregion"
+    - "#enddocregion"

@@ -5,7 +5,7 @@ import '../../domain/entities/auth.dart';
 import '../providers/auth_provider.dart';
 import '../../../../core/routes/app_router.dart';
 import 'package:hr_app/core/theme/app_theme.dart';
-import '../../../../flutter_flow/flutter_flow_language_selector.dart';
+import '../../../../core/widgets/language_selector.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

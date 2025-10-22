@@ -1,0 +1,108 @@
+name: h_r_optimistic_mobile
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.1+3
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Core Dependencies
+  provider: ^6.1.1  # State management
+  equatable: ^2.0.5  # Value comparisons
+  dartz: ^0.10.1   # Functional programming
+  get_it: ^7.6.4   # Dependency injection
+  intl: ^0.20.2    # Internationalization
+  logger: ^2.0.2   # Logging
+  go_router: ^16.2.4  # Routing
+  freezed_annotation: ^2.4.1  # Code generation
+  json_annotation: ^4.8.1  # JSON serialization
+  riverpod: ^3.0.3  # State management
+
+  # Network & Data
+  dio: ^5.3.2      # HTTP client
+  cached_network_image: ^3.4.1  # Image caching
+  retrofit: ^4.1.0  # Type-safe HTTP client
+  pretty_dio_logger: ^1.3.1  # Network logging
+  internet_connection_checker: ^1.0.0+1  # Network checking
+
+  # Storage
+  hive: ^2.2.3  # NoSQL database
+  hive_flutter: ^1.1.0  # Hive Flutter integration
+  flutter_secure_storage: ^9.0.0  # Secure storage
+  path_provider: ^2.1.4  # File system access
+
+  # UI Components
+  google_fonts: ^6.1.0  # Custom fonts
+  flutter_svg: ^2.0.7  # SVG support
+  font_awesome_flutter: ^10.7.0  # Icons
+  shimmer: ^3.0.0  # Loading effects
+  table_calendar: ^3.0.9  # Calendar widget
+  image_picker: ^1.1.2  # Image selection
+  badges: ^3.1.2  # Badge widgets
+  auto_size_text: ^3.0.0  # Auto-sizing text
+  flutter_native_splash: ^2.3.10  # Splash screen
+  flex_color_scheme: ^7.3.1  # Theme system
+  page_transition: ^2.1.0  # Page transitions
+
+  # Location & Maps
+  geolocator: ^9.0.1
+  geocoding: ^3.0.0
+  google_maps_flutter: ^2.2.5
+
+  # Authentication & Security
+  local_auth: ^2.3.0
+
+  # Utils
+  uuid: ^4.0.0
+  timeago: ^3.7.1
+  url_launcher: ^6.3.1
+  csv: ^6.0.0
+
+# More Dependencies
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  mockito: ^5.4.4
+  test: ^1.24.9
+
+  # Code Generation
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.1.0
+  hive_generator: ^2.0.1
+  freezed: ^2.4.7
+  auto_route_generator: ^7.3.1
+  auto_route: ^7.8.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/videos/
+    - assets/audios/
+    - assets/rive_animations/
+    - assets/pdfs/
+    - assets/jsons/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+  image_path: 'assets/images/app_launcher_icon.png'
+

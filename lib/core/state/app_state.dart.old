@@ -1,0 +1,66 @@
+import 'package:flutter/foundation.dart';
+
+class AppState extends ChangeNotifier {
+  // User Information
+  String? _employeeID;
+  String? _companyID;
+  String? _token;
+
+  String get employeeID => _employeeID ?? '';
+  String get companyID => _companyID ?? '';
+  String get token => _token ?? '';
+
+  void setEmployeeID(String value) {
+    _employeeID = value;
+    notifyListeners();
+  }
+
+  void setCompanyID(String value) {
+    _companyID = value;
+    notifyListeners();
+  }
+
+  void setToken(String value) {
+    _token = value;
+    notifyListeners();
+  }
+
+  // Theme Settings
+  bool _isDarkMode = false;
+
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleDarkMode() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
+  }
+
+  // Language Settings
+  String _currentLocale = 'en';
+
+  String get currentLocale => _currentLocale;
+
+  void setLocale(String locale) {
+    _currentLocale = locale;
+    notifyListeners();
+  }
+
+  // Authentication State
+  bool _isLoggedIn = false;
+
+  bool get isLoggedIn => _isLoggedIn;
+
+  void setLoggedIn(bool value) {
+    _isLoggedIn = value;
+    notifyListeners();
+  }
+
+  // Clear state on logout
+  void clearState() {
+    _employeeID = null;
+    _companyID = null;
+    _token = null;
+    _isLoggedIn = false;
+    notifyListeners();
+  }
+}

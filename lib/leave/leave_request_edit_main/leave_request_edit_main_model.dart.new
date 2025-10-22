@@ -1,0 +1,204 @@
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import 'package:hr_app/backend/api_requests/api_calls.dart';
+import 'package:hr_app/backend/schema/structs/index.dart';
+import 'package:hr_app/core/utils/form_field_controller.dart';
+import 'package:hr_app/core/utils/upload_data.dart';
+
+class LeaveRequestEditMainModel extends ChangeNotifier {
+  // Local state fields
+  bool _isAllDay = true;
+  List<String> _attachmentModel = [];
+  List<BalanceDaysStruct> _remainingDays = [];
+  int? _balance;
+  int? _availableDay = 0;
+  String? _startDate;
+  String? _endDate;
+  String? _startDateHalfDay;
+  String? _startTime;
+  String? _endTime;
+
+  // API response states
+  ApiCallResponse? _apiResultRemainingDays;
+  ApiCallResponse? _apiResultGetCheckinImageURL;
+  ApiCallResponse? _apiResultUpdateLeaveRequest;
+
+  // Form controllers
+  int? _ddlLeaveTypeValue;
+  final FormFieldController<int>? ddlLeaveTypeValueController;
+  DateTime? _datePicked1;
+  DateTime? _datePicked2;
+  DateTime? _datePicked3;
+  DateTime? _datePicked4;
+  DateTime? _datePicked5;
+  
+  final FocusNode txtDescriptionFocusNode;
+  final TextEditingController txtDescriptionTextController;
+  
+  bool _isDataUploading = false;
+  FFUploadedFile _uploadedLocalFile = FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Getters
+  bool get isAllDay => _isAllDay;
+  List<String> get attachmentModel => List.unmodifiable(_attachmentModel);
+  List<BalanceDaysStruct> get remainingDays => List.unmodifiable(_remainingDays);
+  int? get balance => _balance;
+  int? get availableDay => _availableDay;
+  String? get startDate => _startDate;
+  String? get endDate => _endDate; 
+  String? get startDateHalfDay => _startDateHalfDay;
+  String? get startTime => _startTime;
+  String? get endTime => _endTime;
+  int? get ddlLeaveTypeValue => _ddlLeaveTypeValue;
+  DateTime? get datePicked1 => _datePicked1;
+  DateTime? get datePicked2 => _datePicked2;
+  DateTime? get datePicked3 => _datePicked3;
+  DateTime? get datePicked4 => _datePicked4;
+  DateTime? get datePicked5 => _datePicked5;
+  bool get isDataUploading => _isDataUploading;
+  FFUploadedFile get uploadedLocalFile => _uploadedLocalFile;
+  ApiCallResponse? get apiResultRemainingDays => _apiResultRemainingDays;
+  ApiCallResponse? get apiResultGetCheckinImageURL => _apiResultGetCheckinImageURL;
+  ApiCallResponse? get apiResultUpdateLeaveRequest => _apiResultUpdateLeaveRequest;
+
+  LeaveRequestEditMainModel({
+    FormFieldController<int>? ddlLeaveTypeValueController,
+    String? initialDescription,
+  }) : ddlLeaveTypeValueController = ddlLeaveTypeValueController,
+       txtDescriptionFocusNode = FocusNode(),
+       txtDescriptionTextController = TextEditingController(text: initialDescription);
+
+  // Setters with notifications
+  void setIsAllDay(bool value) {
+    _isAllDay = value;
+    notifyListeners();
+  }
+
+  void addAttachment(String item) {
+    _attachmentModel.add(item);
+    notifyListeners(); 
+  }
+
+  void removeAttachment(String item) {
+    _attachmentModel.remove(item);
+    notifyListeners();
+  }
+
+  void removeAttachmentAtIndex(int index) {
+    _attachmentModel.removeAt(index);
+    notifyListeners();
+  }
+
+  void insertAttachmentAtIndex(int index, String item) {
+    _attachmentModel.insert(index, item);
+    notifyListeners();
+  }
+
+  void updateAttachmentAtIndex(int index, String Function(String) updateFn) {
+    _attachmentModel[index] = updateFn(_attachmentModel[index]);
+    notifyListeners();
+  }
+
+  void setRemainingDays(List<BalanceDaysStruct> days) {
+    _remainingDays = days;
+    notifyListeners();
+  }
+
+  void setBalance(int? value) {
+    _balance = value;
+    notifyListeners();
+  }
+
+  void setAvailableDay(int? value) {
+    _availableDay = value;
+    notifyListeners();
+  }
+
+  void setStartDate(String value) {
+    _startDate = value;
+    notifyListeners();
+  }
+
+  void setEndDate(String value) {
+    _endDate = value;
+    notifyListeners();
+  }
+
+  void setStartDateHalfDay(String value) {
+    _startDateHalfDay = value;
+    notifyListeners();
+  }
+
+  void setStartTime(String value) {
+    _startTime = value;
+    notifyListeners();
+  }
+
+  void setEndTime(String value) {
+    _endTime = value;
+    notifyListeners();
+  }
+
+  void setDdlLeaveTypeValue(int value) {
+    _ddlLeaveTypeValue = value;
+    notifyListeners();
+  }
+
+  void setDatePicked1(DateTime value) {
+    _datePicked1 = value;
+    notifyListeners();
+  }
+
+  void setDatePicked2(DateTime value) {
+    _datePicked2 = value;
+    notifyListeners();
+  }
+
+  void setDatePicked3(DateTime value) {
+    _datePicked3 = value;
+    notifyListeners();
+  }
+
+  void setDatePicked4(DateTime value) {
+    _datePicked4 = value;
+    notifyListeners();
+  }
+
+  void setDatePicked5(DateTime value) {
+    _datePicked5 = value;
+    notifyListeners();
+  }
+
+  void setUploadState({
+    required bool isUploading,
+    FFUploadedFile? uploadedFile,
+  }) {
+    _isDataUploading = isUploading;
+    if (uploadedFile != null) {
+      _uploadedLocalFile = uploadedFile;
+    }
+    notifyListeners();
+  }
+
+  void setApiResultRemainingDays(ApiCallResponse? response) {
+    _apiResultRemainingDays = response;
+    notifyListeners();
+  }
+
+  void setApiResultGetCheckinImageURL(ApiCallResponse? response) {
+    _apiResultGetCheckinImageURL = response;
+    notifyListeners();
+  }
+
+  void setApiResultUpdateLeaveRequest(ApiCallResponse? response) {
+    _apiResultUpdateLeaveRequest = response;
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    txtDescriptionFocusNode.dispose();
+    txtDescriptionTextController.dispose();
+    super.dispose();
+  }
+}

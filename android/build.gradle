@@ -1,0 +1,58 @@
+buildscript {
+    ext {
+        kotlin_version = '1.9.0'
+        min_sdk_version = 21
+        compile_sdk_version = 34
+        target_sdk_version = 34
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    // Configure Java version for all projects
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    // Add Kotlin compatibility
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = '17'
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+
+subprojects {
+    project.evaluationDependsOn(':app')
+    
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'androidx.core' &&
+                !details.requested.name.contains('androidx')) {
+                details.useVersion "1.12.0"
+            }
+        }
+    }
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

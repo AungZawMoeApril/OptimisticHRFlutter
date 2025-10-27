@@ -16,6 +16,7 @@
         "equatable",
         "flex_color_scheme",
         "flutter",
+        "flutter_bloc",
         "flutter_localizations",
         "flutter_native_splash",
         "flutter_secure_storage",
@@ -655,6 +656,15 @@
       "dependencies": [
         "collection",
         "meta"
+      ]
+    },
+    {
+      "name": "flutter_bloc",
+      "version": "8.1.6",
+      "dependencies": [
+        "bloc",
+        "flutter",
+        "provider"
       ]
     },
     {
@@ -1892,6 +1902,13 @@
     {
       "name": "state_notifier",
       "version": "1.0.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "bloc",
+      "version": "8.1.4",
       "dependencies": [
         "meta"
       ]

@@ -1,17 +1,13 @@
 import 'dart:convert';
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/card_time_attendance/card_time_attendance_widget.dart';
-import '../core/widgets/app_icon_button.dart';
 import 'package:flutter/material.dart';
-import '../core/utils/app_utils.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:hr_app/core/utils/custom_functions.dart' as functions;
 import '/app_state.dart';
-import 'package:flutter/scheduler.dart';
+import '/time_attandance/time_attendance_list/time_attendance_list_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class TimeAttendanceWidget extends StatefulWidget {
   const TimeAttendanceWidget({super.key});
@@ -26,7 +22,9 @@ class TimeAttendanceWidget extends StatefulWidget {
 class _TimeAttendanceWidgetState extends State<TimeAttendanceWidget> {
   ApiCallResponse? apiResultCalendarList;
   List<dynamic> calendarList = [];
-  List<dynamic> testijson = [];
+  List<dynamic> selectedDateEntries = [];
+  bool isLoading = false;
+  DateTime selectedDate = DateTime.now();
   
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,43 +35,114 @@ class _TimeAttendanceWidgetState extends State<TimeAttendanceWidget> {
   }
 
   Future<void> _loadTimeAttendance() async {
-    apiResultCalendarList = await MainGroup.getTimeAttendanceListMobileCall.call(
-      employeeID: AppState().employeeID,
-      companyID: AppState().companyID,
-      token: AppState().token,
-    );
+    if (isLoading || !mounted) return;
+    
+    setState(() {
+      isLoading = true;
+    });
 
-    if ((apiResultCalendarList?.succeeded ?? true)) {
-      setState(() {
-        AppState().CalendarList = MainGroup.getTimeAttendanceListMobileCall
+    try {
+      final appState = Provider.of<AppState>(context, listen: false);
+      
+      // Validate required parameters
+      if (appState.employeeID <= 0 || appState.companyID <= 0 || appState.token.isEmpty) {
+        throw Exception('Invalid authentication parameters');
+      }
+
+      apiResultCalendarList = await MainGroup.getTimeAttendanceListMobileCall.call(
+        employeeID: appState.employeeID,
+        companyID: appState.companyID,
+        token: appState.token,
+      );
+
+      if (!mounted) return;
+
+      if (apiResultCalendarList?.succeeded ?? false) {
+        final timeAttendanceList = MainGroup.getTimeAttendanceListMobileCall
             .timeAttendanceList(
               (apiResultCalendarList?.jsonBody ?? ''),
-            )!
-            .toList()
-            .cast<dynamic>();
-        calendarList = AppState().CalendarList.toList().cast<dynamic>();
-      });
+            );
+            
+        if (timeAttendanceList != null) {
+          if (!mounted) return;
+          
+          setState(() {
+            appState.calendarList = timeAttendanceList.toList();
+            calendarList = appState.calendarList;
+            
+            // Reset selected date entries if the date matches current selection
+            if (selectedDateEntries.isNotEmpty) {
+              try {
+                final firstEntry = jsonDecode(selectedDateEntries.first);
+                final dateStr = firstEntry['date'] ?? firstEntry['clock_In_Time'];
+                if (dateStr != null) {
+                  final entryDate = DateFormat("yyyy-MM-dd").parse(dateStr);
+                  if (entryDate.isAtSameMomentAs(selectedDate)) {
+                    // Refresh the entries for the selected date
+                    final matchingEntries = timeAttendanceList
+                        .where((entry) {
+                          final entryData = jsonDecode(entry);
+                          final entryDateStr = entryData['date'] ?? entryData['clock_In_Time'];
+                          if (entryDateStr == null) return false;
+                          try {
+                            final date = DateFormat("yyyy-MM-dd").parse(entryDateStr);
+                            return date.isAtSameMomentAs(selectedDate);
+                          } catch (_) {
+                            return false;
+                          }
+                        })
+                        .toList();
+                    selectedDateEntries = matchingEntries;
+                  }
+                }
+              } catch (_) {
+                // If there's any error parsing dates, ignore the refresh
+              }
+            }
+          });
+        }
+      } else {
+        if (!mounted) return;
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Failed to load attendance data. Please try again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: ${e.toString()}'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    final appState = context.watch<AppState>();
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFF6F6F6),
+        backgroundColor: const Color(0xFFF6F6F6),
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.background,
           automaticallyImplyLeading: false,
-          leading: AppIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
+          leading: IconButton(
+            icon: const Icon(
               Icons.date_range,
               color: Color(0xFFF9B052),
               size: 30.0,
@@ -83,22 +152,25 @@ class _TimeAttendanceWidgetState extends State<TimeAttendanceWidget> {
             },
           ),
           title: Text(
-            FFLocalizations.of(context).getText('3g2t5o4h') /* Time Attendance */,
+            'Time Attendance',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontFamily: GoogleFonts.outfit().fontFamily,
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
               child: InkWell(
-                onTap: () => Navigator.of(context).pushNamed(TimeAttendanceListWidget.routeName),
+                onTap: () => Navigator.pushNamed(
+                  context, 
+                  TimeAttendanceListWidget.routePath,
+                ),
                 child: Icon(
                   Icons.article_outlined,
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onBackground,
                   size: 30.0,
                 ),
               ),
@@ -113,69 +185,104 @@ class _TimeAttendanceWidgetState extends State<TimeAttendanceWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                   child: Container(
                     width: double.infinity,
                     height: 400.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xFFFFF2E3),
                     ),
                     child: custom_widgets.CustomCalendarWidget(
                       width: double.infinity,
                       height: 400.0,
-                      calendarList: AppState().CalendarList,
+                      calendarList: appState.calendarList,
                       onSelectedDate: (selectedDateTime) {
                         if (selectedDateTime != null) {
                           setState(() {
-                            testijson = selectedDateTime.toList().cast<dynamic>();
+                            selectedDateEntries = selectedDateTime.toList().cast<dynamic>();
+                            if (selectedDateEntries.isNotEmpty) {
+                              // Parse the first entry to get the date
+                              final firstEntry = jsonDecode(selectedDateEntries.first);
+                              final dateStr = firstEntry['date'] ?? firstEntry['clock_In_Time'];
+                              if (dateStr != null) {
+                                selectedDate = DateFormat("yyyy-MM-dd").parse(dateStr);
+                              }
+                            }
                           });
                         }
+                        return Future.value();
                       },
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  alignment: const AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 15),
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 15, 0, 15),
                     child: Text(
-                      functions.changeTimeEntriesDateFormate(
-                          AppState().selectedDate) ?? '18 Feb 2025',
+                      DateFormat('dd MMM yyyy').format(selectedDate),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontFamily: GoogleFonts.readexPro().fontFamily,
-                            color: Color(0xFFF9B052),
+                            color: const Color(0xFFF9B052),
                             letterSpacing: 0.0,
                           ),
                     ),
                   ),
                 ),
-                Builder(
-                  builder: (context) {
-                    final selectedshow = testijson;
-                    
-                    return RefreshIndicator(
-                      onRefresh: _loadTimeAttendance,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: selectedshow.length,
-                        itemBuilder: (context, index) {
-                          final item = selectedshow[index];
-                          final data = jsonDecode(item);
-                          return CardTimeAttendanceWidget(
-                            key: Key('attendance_$index'),
-                            location: data['clock_In_Location'],
-                            checkIn: data['clock_In_Time'],
-                            checkOut: data['clock_Out_Time'],
-                            checkInAndOuttype: data['remark'],
-                            checkInStatus: data['checkIn_Status'],
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
+                if (isLoading)
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                else
+                  RefreshIndicator(
+                    onRefresh: _loadTimeAttendance,
+                    child: selectedDateEntries.isEmpty
+                      ? const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Text(
+                              'No attendance records for this date',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height - 550, // Adjust based on your layout
+                            minHeight: 100,
+                          ),
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemCount: selectedDateEntries.length,
+                            itemBuilder: (context, index) {
+                              final item = selectedDateEntries[index];
+                              Map<String, dynamic> data;
+                              try {
+                                data = jsonDecode(item);
+                              } catch (e) {
+                                print('Error decoding JSON at index $index: $e');
+                                return const SizedBox.shrink();
+                              }
+                              return CardTimeAttendanceWidget(
+                                key: Key('attendance_$index'),
+                                location: data['clock_In_Location'] ?? '',
+                                checkIn: data['clock_In_Time'] ?? '',
+                                checkOut: data['clock_Out_Time'] ?? '',
+                                checkInAndOuttype: data['remark'] ?? '',
+                                checkInStatus: data['checkIn_Status'] ?? '',
+                              );
+                            },
+                          ),
+                        ),
+                  ),
               ],
             ),
           ),

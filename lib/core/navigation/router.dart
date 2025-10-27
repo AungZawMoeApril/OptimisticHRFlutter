@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../injection_container.dart';
 import '../providers/app_state_provider.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/time_attendance/presentation/pages/time_attendance_page.dart';
-import '../../features/announcement/presentation/pages/announcement_page.dart';
-import '../../features/leave/pages/leave_page.dart';
+import '../../features/announcement/domain/entities/announcement.dart';
+import '../../features/announcement/presentation/bloc/announcement_bloc.dart';
+import '../../announment/announcement/announcement_widget.dart';
+import '../../features/announcement/presentation/pages/announcements_page.dart';
+import '../../features/leave/presentation/pages/leave_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 
@@ -42,7 +48,20 @@ final goRouter = GoRouter(
         GoRoute(
           path: '/announcements',
           name: 'announcements',
-          builder: (context, state) => const AnnouncementPage(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => sl<AnnouncementBloc>(),
+            child: const AnnouncementsPage(),
+          ),
+          routes: [
+            GoRoute(
+              path: 'detail/:id',
+              name: 'announcementDetail',
+              builder: (context, state) {
+                final announcement = state.extra as Announcement;
+                return AnnouncementWidget(announcement: announcement);
+              },
+            ),
+          ],
         ),
 
         // Leave Management

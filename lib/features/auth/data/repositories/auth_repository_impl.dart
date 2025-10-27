@@ -8,10 +8,11 @@ import '../../../../backend/api_requests/api_calls.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final Dio dio;
-  final storage = const FlutterSecureStorage();
+  final FlutterSecureStorage storage;
 
   AuthRepositoryImpl({
     required this.dio,
+    required this.storage,
   });
 
   @override
@@ -24,8 +25,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
       if (result.succeeded && MainGroup.loginCall.status(result.jsonBody) == 0) {
         final credentials = AuthCredentialsModel(
-          companyId: MainGroup.loginCall.companyId(result.jsonBody)!,
-          employeeId: MainGroup.loginCall.employeeId(result.jsonBody)!,
+          companyId: MainGroup.loginCall.companyID(result.jsonBody)!.toString(),
+          employeeId: MainGroup.loginCall.employeeID(result.jsonBody)!.toString(),
           token: MainGroup.loginCall.token(result.jsonBody)!,
           timeZoneOffset: DateTime.now().timeZoneOffset.inHours.toString(),
         );
@@ -80,9 +81,9 @@ class AuthRepositoryImpl implements AuthRepository {
         return Right(AuthStatus());
       }
 
-      final result = await MainGroup.tokenValidationCall.call(token: token);
+      final result = await MainGroup.loginCall.call(token: token);
 
-      if (result.succeeded && MainGroup.tokenValidationCall.status(result.jsonBody) == 0) {
+      if (result.succeeded && MainGroup.loginCall.status(result.jsonBody) == 0) {
         return Right(AuthStatus(
           isAuthenticated: true,
           isPinCodeVerified: pinCode != null,
@@ -98,20 +99,20 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<String, AuthCredentials>> refreshToken(String token) async {
     try {
-      final result = await MainGroup.tokenRefreshCall.call(token: token);
+      final result = await MainGroup.loginCall.call(token: token);
 
-      if (result.succeeded && MainGroup.tokenRefreshCall.status(result.jsonBody) == 0) {
+      if (result.succeeded && MainGroup.loginCall.status(result.jsonBody) == 0) {
         final credentials = AuthCredentialsModel(
-          companyId: MainGroup.tokenRefreshCall.companyId(result.jsonBody)!,
-          employeeId: MainGroup.tokenRefreshCall.employeeId(result.jsonBody)!,
-          token: MainGroup.tokenRefreshCall.newToken(result.jsonBody)!,
+          companyId: MainGroup.loginCall.companyID(result.jsonBody)!.toString(),
+          employeeId: MainGroup.loginCall.employeeID(result.jsonBody)!.toString(),
+          token: MainGroup.loginCall.token(result.jsonBody)!,
           timeZoneOffset: DateTime.now().timeZoneOffset.inHours.toString(),
         );
 
         await saveAuthCredentials(credentials);
         return Right(credentials);
       } else {
-        return Left(MainGroup.tokenRefreshCall.message(result.jsonBody) ?? 'Token refresh failed');
+        return Left(MainGroup.loginCall.message(result.jsonBody) ?? 'Token refresh failed');
       }
     } catch (e) {
       return Left(e.toString());

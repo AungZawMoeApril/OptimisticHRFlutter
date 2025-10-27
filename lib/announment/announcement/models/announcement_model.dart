@@ -1,23 +1,42 @@
 import 'package:h_r_optimistic_mobile/features/announcement/domain/entities/announcement.dart';
 
-class AnnouncementModel extends Announcement {
+class AnnouncementModel implements Announcement {
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String detail;
+  @override
+  final String image;
+  @override
+  final String name;
+  @override
+  final DateTime date;
+  @override
+  final bool isRead;
+  @override
+  DateTime get createdAt => date;
+  @override
+  String get description => detail;
+  @override
+  String get imageUrl => image;
+  @override
+  DateTime get updatedAt => date;
+
+  @override
+  $AnnouncementCopyWith<Announcement> get copyWith => 
+      $AnnouncementCopyWith<Announcement>(this, (object) => object as Announcement);
+
   const AnnouncementModel({
-    required String id,
-    required String title,
-    required String detail,
-    required String image,
-    required String name,
-    required DateTime date,
-    required bool isRead,
-  }) : super(
-          id: id,
-          title: title,
-          detail: detail,
-          image: image,
-          name: name,
-          date: date,
-          isRead: isRead,
-        );
+    required this.id,
+    required this.title,
+    required this.detail,
+    required this.image,
+    required this.name,
+    required this.date,
+    required this.isRead,
+  });
 
   factory AnnouncementModel.fromJson(Map<String, dynamic> json) {
     return AnnouncementModel(
@@ -43,7 +62,7 @@ class AnnouncementModel extends Announcement {
     };
   }
 
-  AnnouncementModel copyWith({
+  AnnouncementModel copyWithCustom({
     String? id,
     String? title,
     String? detail,

@@ -96,8 +96,30 @@ class ScaffoldWithBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _calculateSelectedIndex(context),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Check In'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Check Out'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              context.go('/home');
+              break;
+            case 1:
+              context.go('/home/check-in');
+              break;
+            case 2:
+              context.go('/home/check-out');
+              break;
+            case 3:
+              context.go('/profile');
+              break;
+          }
+        },
       ),
     );
   }

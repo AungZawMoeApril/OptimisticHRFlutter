@@ -1,12 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import 'card_time_attendance_widget.dart' show CardTimeAttendanceWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class CardTimeAttendanceModel
-    extends FlutterFlowModel<CardTimeAttendanceWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class CardTimeAttendanceState with _$CardTimeAttendanceState {
+  const factory CardTimeAttendanceState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _CardTimeAttendanceState;
+
+  factory CardTimeAttendanceState.fromJson(Map<String, dynamic> json) =>
+      _$CardTimeAttendanceStateFromJson(json);
 }

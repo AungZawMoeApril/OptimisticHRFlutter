@@ -1,12 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import 'delete_leave_request_widget.dart' show DeleteLeaveRequestWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class DeleteLeaveRequestModel
-    extends FlutterFlowModel<DeleteLeaveRequestWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class DeleteLeaveRequestState with _$DeleteLeaveRequestState {
+  const factory DeleteLeaveRequestState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _DeleteLeaveRequestState;
+
+  factory DeleteLeaveRequestState.fromJson(Map<String, dynamic> json) =>
+      _$DeleteLeaveRequestStateFromJson(json);
 }

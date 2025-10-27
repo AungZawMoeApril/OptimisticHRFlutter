@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-import 'package:hr_optimistic/core/theme/app_theme.dart';
-import 'package:hr_optimistic/core/theme/theme_migration_helper.dart';
 import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
 import 'package:hr_optimistic/core/widgets/app_widgets.dart';
 import 'package:hr_optimistic/backend/api_requests/api_calls.dart';
@@ -81,7 +78,9 @@ class _OvertimeRequestMainWidgetState extends State<OvertimeRequestMainWidget> {
           },
         ),
         title: Text(
-          AppLocalizations.of(context)!.overtimeRequest,
+          FFLocalizations.of(context).getText(
+            'vzg6s6c4' /* Overtime Request */,
+          ),
           style: Theme.of(context).textTheme.$1?.copyWith(
                 font: GoogleFonts.outfit(
                   fontWeight:

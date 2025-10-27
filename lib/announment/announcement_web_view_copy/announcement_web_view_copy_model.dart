@@ -1,14 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'announcement_web_view_copy_widget.dart'
-    show AnnouncementWebViewCopyWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class AnnouncementWebViewCopyModel
-    extends FlutterFlowModel<AnnouncementWebViewCopyWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class AnnouncementWebViewCopyState with _$AnnouncementWebViewCopyState {
+  const factory AnnouncementWebViewCopyState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _AnnouncementWebViewCopyState;
+
+  factory AnnouncementWebViewCopyState.fromJson(Map<String, dynamic> json) =>
+      _$AnnouncementWebViewCopyStateFromJson(json);
 }

@@ -1,5 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
+import '../core/utils/app_utils.dart';
 import '/index.dart';
 import 'change_password_widget.dart' show ChangePasswordWidget;
 import 'package:flutter/material.dart';

@@ -1,30 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'my_approval_pending_reject_widget.dart'
-    show MyApprovalPendingRejectWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class MyApprovalPendingRejectModel
-    extends FlutterFlowModel<MyApprovalPendingRejectWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (UpdateStatusMyApproval)] action in Button widget.
-  ApiCallResponse? apiResultRejectPendingApproval;
-  // Stores action output result for [Backend Call - API (GetOTandTimeOff)] action in Button widget.
-  ApiCallResponse? apiResultGetOTandTimeOff;
-  // Stores action output result for [Backend Call - API (AddNotificationInfoMob)] action in Button widget.
-  ApiCallResponse? addNotificationInfoMobAPIresult;
+@freezed
+class MyApprovalPendingRejectState with _$MyApprovalPendingRejectState {
+  const factory MyApprovalPendingRejectState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _MyApprovalPendingRejectState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  factory MyApprovalPendingRejectState.fromJson(Map<String, dynamic> json) =>
+      _$MyApprovalPendingRejectStateFromJson(json);
 }

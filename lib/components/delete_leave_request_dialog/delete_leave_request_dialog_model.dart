@@ -1,19 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'delete_leave_request_dialog_widget.dart'
-    show DeleteLeaveRequestDialogWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class DeleteLeaveRequestDialogModel
-    extends FlutterFlowModel<DeleteLeaveRequestDialogWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // Stores action output result for [Backend Call - API (DeleteTimeOff)] action in Button widget.
-  ApiCallResponse? apiResultbxb;
+@freezed
+class DeleteLeaveRequestDialogState with _$DeleteLeaveRequestDialogState {
+  const factory DeleteLeaveRequestDialogState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _DeleteLeaveRequestDialogState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {}
+  factory DeleteLeaveRequestDialogState.fromJson(Map<String, dynamic> json) =>
+      _$DeleteLeaveRequestDialogStateFromJson(json);
 }

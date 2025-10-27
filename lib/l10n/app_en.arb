@@ -1,0 +1,63 @@
+{
+  "@@locale": "en",
+  "startDate": "Start Date",
+  "@startDate": {
+    "description": "Label for start date field"
+  },
+  "startTime": "Start Time",
+  "@startTime": {
+    "description": "Label for start time field"
+  },
+  "endTime": "End Time",
+  "@endTime": {
+    "description": "Label for end time field"
+  },
+  "otHours": "OT Hours",
+  "@otHours": {
+    "description": "Label for overtime hours"
+  },
+  "otType": "OT Type",
+  "@otType": {
+    "description": "Label for overtime type"
+  },
+  "description": "Description *",
+  "@description": {
+    "description": "Label for description field"
+  },
+  "attachment": "Attachment",
+  "@attachment": {
+    "description": "Label for attachment section"
+  },
+  "attachFile": "Attach File",
+  "@attachFile": {
+    "description": "Button text for attaching files"
+  },
+  "pleaseSelect": "Please select...",
+  "@pleaseSelect": {
+    "description": "Hint text for dropdowns"
+  },
+  "submit": "Submit",
+  "@submit": {
+    "description": "Submit button text"
+  },
+  "ot1": "OT1",
+  "@ot1": {
+    "description": "Overtime type 1"
+  },
+  "ot2": "OT2",
+  "@ot2": {
+    "description": "Overtime type 2"
+  },
+  "ot3": "OT3",
+  "@ot3": {
+    "description": "Overtime type 3"
+  },
+  "ot4": "OT4",
+  "@ot4": {
+    "description": "Overtime type 4"
+  },
+  "overtimeRequest": "Overtime Request",
+  "@overtimeRequest": {
+    "description": "Title for overtime request page"
+  }
+}

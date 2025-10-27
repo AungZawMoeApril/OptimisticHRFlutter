@@ -3,8 +3,9 @@ import 'package:path/path.dart' as path;
 
 void main() async {
   final filesToClean = [
-    'lib/leave/leave_request/leave_request_widget.dart',
-    'lib/my_info/profile/profile_widget.dart',
+    'c:\\Users\\rain\\Desktop\\flutter\\OptimisticHRFlutter\\lib\\leave\\leave_request\\leave_request_widget.dart',
+    'c:\\Users\\rain\\Desktop\\flutter\\OptimisticHRFlutter\\lib\\my_info\\profile\\profile_widget.dart',
+    'c:\\Users\\rain\\Desktop\\flutter\\OptimisticHRFlutter\\lib\\leave\\leave_request_edit_main\\leave_request_edit_main_widget.dart',
   ];
 
   for (var filePath in filesToClean) {

@@ -1,13 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'announcement_web_view_widget.dart' show AnnouncementWebViewWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class AnnouncementWebViewModel
-    extends FlutterFlowModel<AnnouncementWebViewWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class AnnouncementWebViewState with _$AnnouncementWebViewState {
+  const factory AnnouncementWebViewState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _AnnouncementWebViewState;
+
+  factory AnnouncementWebViewState.fromJson(Map<String, dynamic> json) =>
+      _$AnnouncementWebViewStateFromJson(json);
 }

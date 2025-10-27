@@ -10,7 +10,6 @@ export '/time_attandance/time_attendance/time_attendance_widget.dart'
 export '/my_info/profile/profile_widget.dart' show ProfileWidget;
 export '/my_info/change_password/change_password_widget.dart'
     show ChangePasswordWidget;
-export '/pages/pin_code/pin_code/pin_code_widget.dart' show PinCodeWidget;
 export '/leave/leave_page/leave_page_widget.dart' show LeavePageWidget;
 export '/leave/leave_request/leave_request_widget.dart' show LeaveRequestWidget;
 export '/pages/my_approval/my_approval_widget.dart' show MyApprovalWidget;

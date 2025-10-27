@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:hr_app/app_state.dart';
-import 'package:hr_app/core/theme/theme_extensions.dart';
 import 'package:hr_app/leave/leave_request/leave_request_widget.dart';
 
 class MockAppState extends Mock implements AppState {

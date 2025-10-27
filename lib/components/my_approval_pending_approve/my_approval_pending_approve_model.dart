@@ -1,23 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'my_approval_pending_approve_widget.dart'
-    show MyApprovalPendingApproveWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class MyApprovalPendingApproveModel
-    extends FlutterFlowModel<MyApprovalPendingApproveWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // Stores action output result for [Backend Call - API (UpdateStatusMyApproval)] action in Button widget.
-  ApiCallResponse? apiResultUpdateStatus;
-  // Stores action output result for [Backend Call - API (GetOTandTimeOffMobile)] action in Button widget.
-  ApiCallResponse? apiResultGetOTandTimeOff;
-  // Stores action output result for [Backend Call - API (AddNotificationInfoMob)] action in Button widget.
-  ApiCallResponse? addNotificationInfoMobAPI;
+@freezed
+class MyApprovalPendingApproveState with _$MyApprovalPendingApproveState {
+  const factory MyApprovalPendingApproveState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _MyApprovalPendingApproveState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {}
+  factory MyApprovalPendingApproveState.fromJson(Map<String, dynamic> json) =>
+      _$MyApprovalPendingApproveStateFromJson(json);
 }

@@ -66,6 +66,7 @@ dependencies:
   timeago: ^3.7.1
   url_launcher: ^6.3.1
   csv: ^6.0.0
+  shared_preferences: ^2.5.3
 
 # More Dependencies
 

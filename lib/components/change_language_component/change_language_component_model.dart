@@ -1,13 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import 'change_language_component_widget.dart'
-    show ChangeLanguageComponentWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class ChangeLanguageComponentModel
-    extends FlutterFlowModel<ChangeLanguageComponentWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class ChangeLanguageComponentState with _$ChangeLanguageComponentState {
+  const factory ChangeLanguageComponentState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _ChangeLanguageComponentState;
+
+  factory ChangeLanguageComponentState.fromJson(Map<String, dynamic> json) =>
+      _$ChangeLanguageComponentStateFromJson(json);
 }

@@ -1,13 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import 'overtime_attachment_models_widget.dart'
-    show OvertimeAttachmentModelsWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class OvertimeAttachmentModelsModel
-    extends FlutterFlowModel<OvertimeAttachmentModelsWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class OvertimeAttachmentModelsState with _$OvertimeAttachmentModelsState {
+  const factory OvertimeAttachmentModelsState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _OvertimeAttachmentModelsState;
+
+  factory OvertimeAttachmentModelsState.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeAttachmentModelsStateFromJson(json);
 }

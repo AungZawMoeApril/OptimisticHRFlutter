@@ -1,26 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'approval_reject_figma_design_widget.dart'
-    show ApprovalRejectFigmaDesignWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class ApprovalRejectFigmaDesignModel
-    extends FlutterFlowModel<ApprovalRejectFigmaDesignWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (UpdateStatusMyApproval)] action in Button widget.
-  ApiCallResponse? apiResultw10;
+@freezed
+class ApprovalRejectFigmaDesignState with _$ApprovalRejectFigmaDesignState {
+  const factory ApprovalRejectFigmaDesignState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _ApprovalRejectFigmaDesignState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  factory ApprovalRejectFigmaDesignState.fromJson(Map<String, dynamic> json) =>
+      _$ApprovalRejectFigmaDesignStateFromJson(json);
 }

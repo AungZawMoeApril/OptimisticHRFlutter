@@ -1,18 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'delete_o_t_request_dialog_widget.dart' show DeleteOTRequestDialogWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class DeleteOTRequestDialogModel
-    extends FlutterFlowModel<DeleteOTRequestDialogWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // Stores action output result for [Backend Call - API (DeleteOTRequests)] action in Button widget.
-  ApiCallResponse? apiResultDeleteOT;
+@freezed
+class DeleteOTRequestDialogState with _$DeleteOTRequestDialogState {
+  const factory DeleteOTRequestDialogState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _DeleteOTRequestDialogState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {}
+  factory DeleteOTRequestDialogState.fromJson(Map<String, dynamic> json) =>
+      _$DeleteOTRequestDialogStateFromJson(json);
 }

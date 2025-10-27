@@ -1,28 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import 'my_approval_history_cancel_widget.dart'
-    show MyApprovalHistoryCancelWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class MyApprovalHistoryCancelModel
-    extends FlutterFlowModel<MyApprovalHistoryCancelWidget> {
-  ///  State fields for stateful widgets in this component.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (UpdateStatusMyApproval)] action in Button widget.
-  ApiCallResponse? apiResultUpdateStatusMyApproval;
-  // Stores action output result for [Backend Call - API (GetOTandTimeOffMobile)] action in Button widget.
-  ApiCallResponse? apiResultGetOTandTimeOff;
+@freezed
+class MyApprovalHistoryCancelState with _$MyApprovalHistoryCancelState {
+  const factory MyApprovalHistoryCancelState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _MyApprovalHistoryCancelState;
 
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-  }
+  factory MyApprovalHistoryCancelState.fromJson(Map<String, dynamic> json) =>
+      _$MyApprovalHistoryCancelStateFromJson(json);
 }

@@ -1,43 +1,18 @@
-import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'leave_page_widget.dart' show LeavePageWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class LeavePageModel extends FlutterFlowModel<LeavePageWidget> {
-  ///  Local state fields for this page.
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  int? leaveTypeID = 0;
+@freezed
+class LeavePageState with _$LeavePageState {
+  const factory LeavePageState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _LeavePageState;
 
-  List<dynamic> allLeaveListView = [];
-  void addToAllLeaveListView(dynamic item) => allLeaveListView.add(item);
-  void removeFromAllLeaveListView(dynamic item) =>
-      allLeaveListView.remove(item);
-  void removeAtIndexFromAllLeaveListView(int index) =>
-      allLeaveListView.removeAt(index);
-  void insertAtIndexInAllLeaveListView(int index, dynamic item) =>
-      allLeaveListView.insert(index, item);
-  void updateAllLeaveListViewAtIndex(int index, Function(dynamic) updateFn) =>
-      allLeaveListView[index] = updateFn(allLeaveListView[index]);
-
-  String? leavedayCount;
-
-  ///  State fields for stateful widgets in this page.
-
-  // Stores action output result for [Backend Call - API (GetTimeOffRequestByCompanyIdPagination)] action in LeavePage widget.
-  ApiCallResponse? apiResutleaveList;
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
-
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {
-    tabBarController?.dispose();
-  }
+  factory LeavePageState.fromJson(Map<String, dynamic> json) =>
+      _$LeavePageStateFromJson(json);
 }

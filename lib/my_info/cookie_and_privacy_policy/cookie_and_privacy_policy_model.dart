@@ -1,14 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'cookie_and_privacy_policy_widget.dart'
-    show CookieAndPrivacyPolicyWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class CookieAndPrivacyPolicyModel
-    extends FlutterFlowModel<CookieAndPrivacyPolicyWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class CookieAndPrivacyPolicyState with _$CookieAndPrivacyPolicyState {
+  const factory CookieAndPrivacyPolicyState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _CookieAndPrivacyPolicyState;
+
+  factory CookieAndPrivacyPolicyState.fromJson(Map<String, dynamic> json) =>
+      _$CookieAndPrivacyPolicyStateFromJson(json);
 }

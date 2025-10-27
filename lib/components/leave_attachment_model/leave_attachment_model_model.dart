@@ -1,12 +1,18 @@
-import '../core/utils/app_utils.dart';;
-import 'leave_attachment_model_widget.dart' show LeaveAttachmentModelWidget;
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class LeaveAttachmentModelModel
-    extends FlutterFlowModel<LeaveAttachmentModelWidget> {
-  @override
-  void initState(BuildContext context) {}
+part '${filename.replaceAll('.dart', '.freezed.dart')}';
+part '${filename.replaceAll('.dart', '.g.dart')}';
 
-  @override
-  void dispose() {}
+@freezed
+class LeaveAttachmentModelState with _$LeaveAttachmentModelState {
+  const factory LeaveAttachmentModelState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isProcessing,
+    String? error,
+    // TODO: Add your state properties here
+  }) = _LeaveAttachmentModelState;
+
+  factory LeaveAttachmentModelState.fromJson(Map<String, dynamic> json) =>
+      _$LeaveAttachmentModelStateFromJson(json);
 }

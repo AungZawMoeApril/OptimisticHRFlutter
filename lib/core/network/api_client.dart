@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import '../auth/interceptors/auth_interceptor.dart';
-import '../../features/auth/domain/repositories/auth_repository.dart' as auth;
+import '../../features/auth/domain/repositories/i_auth_repository.dart' as auth;
 import '../errors/exceptions.dart';
 import '../constants/api_constants.dart';
 

@@ -4,9 +4,17 @@ import 'package:h_r_optimistic_mobile/features/announcement/presentation/bloc/an
 import 'package:h_r_optimistic_mobile/features/announcement/presentation/bloc/announcement_event.dart';
 import 'package:h_r_optimistic_mobile/features/announcement/presentation/bloc/announcement_state.dart';
 import 'package:h_r_optimistic_mobile/features/home/presentation/widgets/announcement_list.dart';
+import '../widgets/search_announcements_dialog.dart';
 
 class AnnouncementsPage extends StatelessWidget {
   const AnnouncementsPage({super.key});
+
+  void _showSearchDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => SearchAnnouncementsDialog(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +30,22 @@ class AnnouncementsPage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Announcements'),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  state is AnnouncementsLoaded && state.searchQuery.isNotEmpty
+                      ? Icons.close
+                      : Icons.search,
+                ),
+                onPressed: () {
+                  if (state is AnnouncementsLoaded && state.searchQuery.isNotEmpty) {
+                    context.read<AnnouncementBloc>().add(ClearSearch());
+                  } else {
+                    _showSearchDialog(context);
+                  }
+                },
+              ),
+            ],
           ),
           body: _buildBody(context, state),
         );
@@ -42,7 +66,7 @@ class AnnouncementsPage extends StatelessWidget {
 
     if (state is AnnouncementsLoaded) {
       return AnnouncementList(
-        announcements: state.announcements,
+        announcements: state.displayAnnouncements,
         isLoading: false,
         onRefresh: () {
           context.read<AnnouncementBloc>().add(RefreshAnnouncements());

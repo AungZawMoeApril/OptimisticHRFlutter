@@ -21,3 +21,14 @@ class MarkAnnouncementAsRead extends AnnouncementEvent {
 }
 
 class ClearAnnouncementError extends AnnouncementEvent {}
+
+class SearchAnnouncements extends AnnouncementEvent {
+  final String query;
+
+  const SearchAnnouncements(this.query);
+
+  @override
+  List<Object?> get props => [query];
+}
+
+class ClearSearch extends AnnouncementEvent {}

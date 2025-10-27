@@ -23,11 +23,32 @@ class AnnouncementError extends AnnouncementState {
 
 class AnnouncementsLoaded extends AnnouncementState {
   final List<Announcement> announcements;
+  final List<Announcement> filteredAnnouncements;
+  final String searchQuery;
 
-  const AnnouncementsLoaded(this.announcements);
+  const AnnouncementsLoaded(
+    this.announcements, {
+    this.filteredAnnouncements = const [],
+    this.searchQuery = '',
+  });
 
   @override
-  List<Object?> get props => [announcements];
+  List<Object?> get props => [announcements, filteredAnnouncements, searchQuery];
+
+  AnnouncementsLoaded copyWith({
+    List<Announcement>? announcements,
+    List<Announcement>? filteredAnnouncements,
+    String? searchQuery,
+  }) {
+    return AnnouncementsLoaded(
+      announcements ?? this.announcements,
+      filteredAnnouncements: filteredAnnouncements ?? this.filteredAnnouncements,
+      searchQuery: searchQuery ?? this.searchQuery,
+    );
+  }
+
+  List<Announcement> get displayAnnouncements =>
+      searchQuery.isEmpty ? announcements : filteredAnnouncements;
 }
 
 class AnnouncementRead extends AnnouncementState {

@@ -13,6 +13,42 @@ class AnnouncementBloc extends Bloc<AnnouncementEvent, AnnouncementState> {
     on<RefreshAnnouncements>(_onRefreshAnnouncements);
     on<MarkAnnouncementAsRead>(_onMarkAnnouncementAsRead);
     on<ClearAnnouncementError>(_onClearError);
+    on<SearchAnnouncements>(_onSearchAnnouncements);
+    on<ClearSearch>(_onClearSearch);
+  }
+
+  void _onSearchAnnouncements(
+    SearchAnnouncements event,
+    Emitter<AnnouncementState> emit,
+  ) {
+    if (state is AnnouncementsLoaded) {
+      final currentState = state as AnnouncementsLoaded;
+      final query = event.query.toLowerCase();
+      
+      final filteredAnnouncements = currentState.announcements
+          .where((announcement) =>
+              announcement.title.toLowerCase().contains(query) ||
+              announcement.description.toLowerCase().contains(query))
+          .toList();
+      
+      emit(currentState.copyWith(
+        filteredAnnouncements: filteredAnnouncements,
+        searchQuery: query,
+      ));
+    }
+  }
+
+  void _onClearSearch(
+    ClearSearch event,
+    Emitter<AnnouncementState> emit,
+  ) {
+    if (state is AnnouncementsLoaded) {
+      final currentState = state as AnnouncementsLoaded;
+      emit(currentState.copyWith(
+        filteredAnnouncements: const [],
+        searchQuery: '',
+      ));
+    }
   }
 
   Future<void> _onLoadAnnouncements(

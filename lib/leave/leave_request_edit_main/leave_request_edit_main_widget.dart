@@ -273,13 +273,11 @@ class _LeaveRequestEditMainWidgetState
                                         width: 150.0,
                                         height: 85.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Theme.of(context).colorScheme.surface,
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                            color: Theme.of(context).colorScheme.surface,
                                             width: 1.0,
                                           ),
                                         ),
@@ -301,32 +299,24 @@ class _LeaveRequestEditMainWidgetState
                                                     r'''$.timeoff_TypeEN''',
                                                   ).toString(),
                                                   maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
                                                               FontWeight.w300,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
+                                                            Theme.of(context).textTheme.bodyLarge?.color,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w300,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -373,34 +363,22 @@ class _LeaveRequestEditMainWidgetState
                                                           ).toString(),
                                                           textAlign:
                                                               TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
+                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
+                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                 fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
@@ -471,32 +449,24 @@ class _LeaveRequestEditMainWidgetState
                                             'ew18f7w2' /* Leave Type */,
                                           ),
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
+                                                    Theme.of(context).textTheme.bodyMedium?.color,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -529,9 +499,7 @@ class _LeaveRequestEditMainWidgetState
                                                     valueColor:
                                                         AlwaysStoppedAnimation<
                                                             Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .themeColor,
+                                                      Theme.of(context).colorScheme.primary,
                                                     ),
                                                   ),
                                                 ),
@@ -688,43 +656,27 @@ class _LeaveRequestEditMainWidgetState
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color: _model.isAllDay
                                                     ? Color(0xFFF89D27)
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
+                                                    : Theme.of(context).colorScheme.surface,
+                                                textStyle: Theme.of(context).textTheme.titleSmall!
                                                     .override(
                                                       font:
                                                           GoogleFonts.readexPro(
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                            Theme.of(context).textTheme.titleSmall!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                            Theme.of(context).textTheme.titleSmall!
                                                                 .fontStyle,
                                                       ),
                                                       color: _model.isAllDay
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                          ? Theme.of(context).colorScheme.surface
+                                                          : Theme.of(context).textTheme.bodyMedium?.color,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
+                                                          Theme.of(context).textTheme.titleSmall!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
+                                                          Theme.of(context).textTheme.titleSmall!
                                                               .fontStyle,
                                                     ),
                                                 elevation: 3.0,
@@ -757,43 +709,27 @@ class _LeaveRequestEditMainWidgetState
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color: !_model.isAllDay
                                                     ? Color(0xFFF89D27)
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
+                                                    : Theme.of(context).colorScheme.surface,
+                                                textStyle: Theme.of(context).textTheme.titleSmall!
                                                     .override(
                                                       font:
                                                           GoogleFonts.readexPro(
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                            Theme.of(context).textTheme.titleSmall!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                            Theme.of(context).textTheme.titleSmall!
                                                                 .fontStyle,
                                                       ),
                                                       color: !_model.isAllDay
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                          ? Theme.of(context).colorScheme.surface
+                                                          : Theme.of(context).textTheme.bodyMedium?.color,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
+                                                          Theme.of(context).textTheme.titleSmall!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
+                                                          Theme.of(context).textTheme.titleSmall!
                                                               .fontStyle,
                                                     ),
                                                 elevation: 3.0,
@@ -841,36 +777,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'ggbpdn54' /* Start Date */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -884,14 +808,10 @@ class _LeaveRequestEditMainWidgetState
                                                   width: 160.0,
                                                   height: 50.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   child: InkWell(
@@ -919,24 +839,17 @@ class _LeaveRequestEditMainWidgetState
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             headerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             headerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
+                                                                Theme.of(context).textTheme.headlineLarge!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
+                                                                        fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                             .fontStyle,
                                                                       ),
                                                                       fontSize:
@@ -946,31 +859,19 @@ class _LeaveRequestEditMainWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineLarge
+                                                                      fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                           .fontStyle,
                                                                     ),
                                                             pickerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                Theme.of(context).colorScheme.surface,
                                                             pickerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                Theme.of(context).textTheme.bodyLarge?.color,
                                                             selectedDateTimeBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             selectedDateTimeForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             actionButtonForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             iconSize: 24.0,
                                                           );
                                                         },
@@ -1045,30 +946,20 @@ class _LeaveRequestEditMainWidgetState
                                                                     ).toString()),
                                                               '2025-06-02',
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1084,9 +975,7 @@ class _LeaveRequestEditMainWidgetState
                                                           child: Icon(
                                                             Icons
                                                                 .calendar_month,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -1121,36 +1010,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'lwjihn42' /* End Date */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -1164,14 +1041,10 @@ class _LeaveRequestEditMainWidgetState
                                                   width: 160.0,
                                                   height: 50.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   child: InkWell(
@@ -1199,24 +1072,17 @@ class _LeaveRequestEditMainWidgetState
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             headerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             headerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
+                                                                Theme.of(context).textTheme.headlineLarge!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
+                                                                        fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                             .fontStyle,
                                                                       ),
                                                                       fontSize:
@@ -1226,31 +1092,19 @@ class _LeaveRequestEditMainWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineLarge
+                                                                      fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                           .fontStyle,
                                                                     ),
                                                             pickerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                Theme.of(context).colorScheme.surface,
                                                             pickerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                Theme.of(context).textTheme.bodyLarge?.color,
                                                             selectedDateTimeBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             selectedDateTimeForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             actionButtonForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             iconSize: 24.0,
                                                           );
                                                         },
@@ -1325,30 +1179,20 @@ class _LeaveRequestEditMainWidgetState
                                                                     ).toString()),
                                                               '2025-06-02',
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1364,9 +1208,7 @@ class _LeaveRequestEditMainWidgetState
                                                           child: Icon(
                                                             Icons
                                                                 .calendar_month,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -1411,36 +1253,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'ujzv637n' /* Date */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -1454,14 +1284,10 @@ class _LeaveRequestEditMainWidgetState
                                                   width: 160.0,
                                                   height: 50.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   child: InkWell(
@@ -1489,24 +1315,17 @@ class _LeaveRequestEditMainWidgetState
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             headerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             headerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
+                                                                Theme.of(context).textTheme.headlineLarge!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
+                                                                        fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                             .fontStyle,
                                                                       ),
                                                                       fontSize:
@@ -1516,31 +1335,19 @@ class _LeaveRequestEditMainWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineLarge
+                                                                      fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                           .fontStyle,
                                                                     ),
                                                             pickerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                Theme.of(context).colorScheme.surface,
                                                             pickerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                Theme.of(context).textTheme.bodyLarge?.color,
                                                             selectedDateTimeBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             selectedDateTimeForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             actionButtonForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             iconSize: 24.0,
                                                           );
                                                         },
@@ -1615,30 +1422,20 @@ class _LeaveRequestEditMainWidgetState
                                                                     ).toString()),
                                                               '2025-06-02',
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1654,9 +1451,7 @@ class _LeaveRequestEditMainWidgetState
                                                           child: Icon(
                                                             Icons
                                                                 .calendar_month,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -1701,36 +1496,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'si4k3rew' /* Start Time */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -1744,14 +1527,10 @@ class _LeaveRequestEditMainWidgetState
                                                   width: 160.0,
                                                   height: 50.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   child: InkWell(
@@ -1776,24 +1555,17 @@ class _LeaveRequestEditMainWidgetState
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             headerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             headerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
+                                                                Theme.of(context).textTheme.headlineLarge!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
+                                                                        fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                             .fontStyle,
                                                                       ),
                                                                       fontSize:
@@ -1803,31 +1575,19 @@ class _LeaveRequestEditMainWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineLarge
+                                                                      fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                           .fontStyle,
                                                                     ),
                                                             pickerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                Theme.of(context).colorScheme.surface,
                                                             pickerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                Theme.of(context).textTheme.bodyLarge?.color,
                                                             selectedDateTimeBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             selectedDateTimeForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             actionButtonForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             iconSize: 24.0,
                                                           );
                                                         },
@@ -1914,30 +1674,20 @@ class _LeaveRequestEditMainWidgetState
                                                                         ).toString()),
                                                               '08:00',
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1952,9 +1702,7 @@ class _LeaveRequestEditMainWidgetState
                                                                       0.0),
                                                           child: Icon(
                                                             Icons.alarm,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -1989,36 +1737,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'rquosfeq' /* End Time */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -2032,14 +1768,10 @@ class _LeaveRequestEditMainWidgetState
                                                   width: 160.0,
                                                   height: 50.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                     border: Border.all(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   child: InkWell(
@@ -2064,24 +1796,17 @@ class _LeaveRequestEditMainWidgetState
                                                             context,
                                                             child!,
                                                             headerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             headerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             headerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLarge
+                                                                Theme.of(context).textTheme.headlineLarge!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineLarge
+                                                                        fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                             .fontStyle,
                                                                       ),
                                                                       fontSize:
@@ -2091,31 +1816,19 @@ class _LeaveRequestEditMainWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineLarge
+                                                                      fontStyle: Theme.of(context).textTheme.headlineLarge!
                                                                           .fontStyle,
                                                                     ),
                                                             pickerBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                Theme.of(context).colorScheme.surface,
                                                             pickerForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                Theme.of(context).textTheme.bodyLarge?.color,
                                                             selectedDateTimeBackgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             selectedDateTimeForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
+                                                                Theme.of(context).colorScheme.outline,
                                                             actionButtonForegroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .themeColor,
+                                                                Theme.of(context).colorScheme.primary,
                                                             iconSize: 24.0,
                                                           );
                                                         },
@@ -2202,30 +1915,20 @@ class _LeaveRequestEditMainWidgetState
                                                                         ).toString()),
                                                               '17:00',
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -2240,9 +1943,7 @@ class _LeaveRequestEditMainWidgetState
                                                                       0.0),
                                                           child: Icon(
                                                             Icons.alarm,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -2272,29 +1973,23 @@ class _LeaveRequestEditMainWidgetState
                                         '2ruuruex' /* Description * */,
                                       ),
                                       textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -2310,56 +2005,45 @@ class _LeaveRequestEditMainWidgetState
                                     autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                      labelStyle: Theme.of(context).textTheme.labelMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                Theme.of(context).textTheme.labelMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                Theme.of(context).textTheme.labelMedium!
                                                     .fontStyle,
                                           ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                      hintStyle: Theme.of(context).textTheme.labelMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                Theme.of(context).textTheme.labelMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                Theme.of(context).textTheme.labelMedium!
                                                     .fontStyle,
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
+                                          color: Theme.of(context).colorScheme.surface,
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -2367,8 +2051,7 @@ class _LeaveRequestEditMainWidgetState
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                          color: Theme.of(context).colorScheme.primary,
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -2376,8 +2059,7 @@ class _LeaveRequestEditMainWidgetState
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
+                                          color: Theme.of(context).colorScheme.error,
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -2385,35 +2067,29 @@ class _LeaveRequestEditMainWidgetState
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
+                                          color: Theme.of(context).colorScheme.error,
                                           width: 2.0,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                     validator: _model
@@ -2437,29 +2113,23 @@ class _LeaveRequestEditMainWidgetState
                                         'n3yevnhi' /* Attachment */,
                                       ),
                                       textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -2484,8 +2154,7 @@ class _LeaveRequestEditMainWidgetState
                                             height: 60.0,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                  Theme.of(context).colorScheme.surface,
                                               borderRadius:
                                                   BorderRadius.circular(0.0),
                                               border: Border.all(
@@ -2601,36 +2270,24 @@ class _LeaveRequestEditMainWidgetState
                                                         .getText(
                                                       'f51wp2yr' /* Attach File */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -2646,8 +2303,7 @@ class _LeaveRequestEditMainWidgetState
                                     width: double.infinity,
                                     height: 80.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: Builder(
                                       builder: (context) {
@@ -2673,9 +2329,7 @@ class _LeaveRequestEditMainWidgetState
                                                 width: 80.0,
                                                 height: 80.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Column(
                                                   mainAxisSize:
@@ -2886,26 +2540,21 @@ class _LeaveRequestEditMainWidgetState
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: Color(0xFFF89D27),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  textStyle: Theme.of(context).textTheme.titleSmall!
                                       .override(
                                         font: GoogleFonts.readexPro(
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
+                                              Theme.of(context).textTheme.titleSmall!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
+                                              Theme.of(context).textTheme.titleSmall!
                                                   .fontStyle,
                                         ),
                                         color: Colors.white,
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                        fontWeight: Theme.of(context).textTheme.titleSmall!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                        fontStyle: Theme.of(context).textTheme.titleSmall!
                                             .fontStyle,
                                       ),
                                   elevation: 3.0,
@@ -2914,11 +2563,9 @@ class _LeaveRequestEditMainWidgetState
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
-                                  disabledColor: FlutterFlowTheme.of(context)
-                                      .secondaryText,
+                                  disabledColor: Theme.of(context).textTheme.bodyMedium?.color,
                                   disabledTextColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      Theme.of(context).colorScheme.surface,
                                 ),
                               ),
                             ),

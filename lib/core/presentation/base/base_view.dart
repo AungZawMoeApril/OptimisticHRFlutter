@@ -26,7 +26,7 @@ abstract class BaseViewModel extends ChangeNotifier {
 }
 
 /// A base widget class to replace FlutterFlow widgets
-abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
+class BaseView<T extends BaseViewModel> extends StatelessWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
   final T Function() viewModelBuilder;
   final void Function(T)? onModelReady;

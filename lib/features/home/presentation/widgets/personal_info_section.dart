@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';;
 import '../core/utils/app_utils.dart';;
 import '../../domain/entities/personal_info.dart';
 import '../providers/home_provider.dart';
+import '/core/theme/app_colors.dart';
 
 class PersonalInfoSection extends StatelessWidget {
   const PersonalInfoSection({super.key});
@@ -58,7 +59,7 @@ class PersonalInfoSection extends StatelessWidget {
                   personalInfo.departmentName,
                   style: Theme.of(context).textTheme.$1?.copyWith(
                     font: GoogleFonts.readexPro(),
-                    color: FlutterFlowTheme.of(context).greyTitle,
+                    color: AppColors.greyTitle,
                     fontSize: 12.0,
                     letterSpacing: 0.0,
                   ),

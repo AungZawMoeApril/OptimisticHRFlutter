@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:h_r_optimistic_mobile/core/presentation/base/base_view.dart';
 import 'package:h_r_optimistic_mobile/features/time_attendance/domain/entities/attendance_record.dart';
 import 'package:h_r_optimistic_mobile/features/time_attendance/domain/repositories/time_attendance_repository.dart';
@@ -15,6 +14,10 @@ class TimeAttendanceViewModel extends BaseViewModel {
 
   Position? _currentPosition;
   Position? get currentPosition => _currentPosition;
+  set currentPosition(Position? position) {
+    _currentPosition = position;
+    notifyListeners();
+  }
 
   XFile? _checkInImage;
   XFile? get checkInImage => _checkInImage;

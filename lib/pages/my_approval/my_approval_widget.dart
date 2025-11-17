@@ -73,15 +73,15 @@ class _MyApprovalWidgetState extends State<MyApprovalWidget> with SingleTickerPr
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         automaticallyImplyLeading: true,
         title: Text(
           'My Approvals',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontFamily: GoogleFonts.outfit().fontFamily,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 22.0,
               ),
         ),

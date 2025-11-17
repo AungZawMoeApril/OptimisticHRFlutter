@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:dartz/dartz.dart';
 import 'package:h_r_optimistic_mobile/features/time_attendance/presentation/pages/time_attendance_page.dart';
 import 'package:h_r_optimistic_mobile/features/time_attendance/presentation/viewmodels/time_attendance_viewmodel.dart';
 import 'package:h_r_optimistic_mobile/features/time_attendance/domain/entities/attendance_record.dart';
+import 'package:h_r_optimistic_mobile/core/error/failures.dart';
 import '../viewmodels/time_attendance_viewmodel_test.mocks.dart';
 
 void main() {
   late MockTimeAttendanceRepository mockRepository;
   late TimeAttendanceViewModel viewModel;
+  
+  // Test data constants
+  const testUserId = 'test_user_123';
+  const testLocation = 'Test Office';
+  const testLatitude = 13.7563;
+  const testLongitude = 100.5018;
 
   setUp(() {
     mockRepository = MockTimeAttendanceRepository();
@@ -54,8 +62,8 @@ void main() {
     testWidgets('should show check-in button when no attendance record exists',
         (WidgetTester tester) async {
       // Arrange
-      when(mockRepository.getTodayAttendance(any))
-          .thenAnswer((_) async => const Right(null));
+      when(mockRepository.getTodayAttendance(testUserId))
+          .thenAnswer((_) async => Left(ServerFailure()));
 
       // Act
       await tester.pumpWidget(createTestWidget());
@@ -71,14 +79,14 @@ void main() {
       // Arrange
       final testAttendance = AttendanceRecord(
         id: '1',
-        userId: 'test_user',
+        userId: testUserId,
         date: DateTime.now(),
         checkIn: DateTime.now(),
         status: 'PRESENT',
         createdAt: DateTime.now(),
       );
 
-      when(mockRepository.getTodayAttendance(any))
+      when(mockRepository.getTodayAttendance(testUserId))
           .thenAnswer((_) async => Right(testAttendance));
 
       // Act
@@ -92,16 +100,16 @@ void main() {
 
     testWidgets('should handle check-in button tap', (WidgetTester tester) async {
       // Arrange
-      when(mockRepository.getTodayAttendance(any))
-          .thenAnswer((_) async => const Right(null));
+      when(mockRepository.getTodayAttendance(testUserId))
+          .thenAnswer((_) async => Left(ServerFailure()));
       when(mockRepository.checkIn(
-        userId: any,
-        location: any,
-        latitude: any,
-        longitude: any,
+        userId: testUserId,
+        location: testLocation,
+        latitude: testLatitude,
+        longitude: testLongitude,
       )).thenAnswer((_) async => Right(AttendanceRecord(
             id: '1',
-            userId: 'test_user',
+            userId: testUserId,
             date: DateTime.now(),
             checkIn: DateTime.now(),
             status: 'PRESENT',
@@ -117,18 +125,18 @@ void main() {
 
       // Assert
       verify(mockRepository.checkIn(
-        userId: any,
-        location: any,
-        latitude: any,
-        longitude: any,
+        userId: testUserId,
+        location: testLocation,
+        latitude: testLatitude,
+        longitude: testLongitude,
       )).called(1);
     });
 
     testWidgets('should refresh data on pull to refresh',
         (WidgetTester tester) async {
       // Arrange
-      when(mockRepository.getTodayAttendance(any))
-          .thenAnswer((_) async => const Right(null));
+      when(mockRepository.getTodayAttendance(testUserId))
+          .thenAnswer((_) async => Left(ServerFailure()));
 
       // Act
       await tester.pumpWidget(createTestWidget());
@@ -138,14 +146,14 @@ void main() {
       await tester.pumpAndSettle();
 
       // Assert
-      verify(mockRepository.getTodayAttendance(any)).called(2); // Initial + refresh
+      verify(mockRepository.getTodayAttendance(testUserId)).called(2); // Initial + refresh
     });
 
     testWidgets('should show no record message when no attendance exists',
         (WidgetTester tester) async {
       // Arrange
-      when(mockRepository.getTodayAttendance(any))
-          .thenAnswer((_) async => const Right(null));
+      when(mockRepository.getTodayAttendance(testUserId))
+          .thenAnswer((_) async => Left(ServerFailure()));
 
       // Act
       await tester.pumpWidget(createTestWidget());
@@ -161,14 +169,14 @@ void main() {
       final now = DateTime.now();
       final testAttendance = AttendanceRecord(
         id: '1',
-        userId: 'test_user',
+        userId: testUserId,
         date: now,
         checkIn: now,
         status: 'PRESENT',
         createdAt: now,
       );
 
-      when(mockRepository.getTodayAttendance(any))
+      when(mockRepository.getTodayAttendance(testUserId))
           .thenAnswer((_) async => Right(testAttendance));
 
       // Act

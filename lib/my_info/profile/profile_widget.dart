@@ -16,6 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'profile_model.dart';
+import '/core/theme/app_colors.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
@@ -193,19 +194,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                     labelStyle:
                         Theme.of(context).textTheme.$1?.copyWith(
                               font: GoogleFonts.readexPro(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleMedium
+                                fontWeight: Theme.of(context).textTheme.titleMedium!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
+                                fontStyle: Theme.of(context).textTheme.titleMedium!
                                     .fontStyle,
                               ),
                               letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .titleMedium
+                              fontWeight: Theme.of(context).textTheme.titleMedium!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .titleMedium
+                              fontStyle: Theme.of(context).textTheme.titleMedium!
                                   .fontStyle,
                             ),
                     unselectedLabelStyle: TextStyle(),
@@ -242,8 +239,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: MediaQuery.sizeOf(context).height * 1.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                color: Theme.of(context).colorScheme.background,
                               ),
                               child: SingleChildScrollView(
                                 primary: false,
@@ -267,8 +263,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               height: 160.0,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                                 borderRadius:
                                                     BorderRadius.circular(14.0),
                                               ),
@@ -296,105 +291,73 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         'profile name',
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
+                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
                                                   ),
                                                   Text(
                                                     AppState().positionName,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .greyTitle,
+                                                          color: AppColors.greyTitle,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
                                                   Text(
                                                     'ID: ${AppState().employeeID.toString()}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .greyTitle,
+                                                          color: AppColors.greyTitle,
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -527,9 +490,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 width: 30.0,
                                                 height: 30.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           50.0),
@@ -565,8 +526,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 1.0,
                                         height: 450.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Theme.of(context).colorScheme.surface,
                                           borderRadius:
                                               BorderRadius.circular(14.0),
                                         ),
@@ -584,9 +544,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   width: double.infinity,
                                                   height: 100.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                   ),
                                                   child: Column(
                                                     mainAxisSize:
@@ -617,58 +575,44 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getText(
                                                                     'rq0b82sz' /* Department */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .greyTitle,
+                                                                        color: AppColors.greyTitle,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
                                                                 Text(
                                                                   AppState()
                                                                       .departmentName,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
+                                                                        color: Theme.of(context).textTheme.bodyLarge?.color,
                                                                         fontSize:
                                                                             16.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -706,28 +650,21 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getText(
                                                                     'h8i7tmmd' /* Employment Date */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .greyTitle,
+                                                                        color: AppColors.greyTitle,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -739,28 +676,22 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                             .hiredDate),
                                                                     'Employment Date',
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                         fontSize:
                                                                             16.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -786,28 +717,21 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getText(
                                                                     'bgtt14tw' /* Year of Employment */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .greyTitle,
+                                                                        color: AppColors.greyTitle,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -819,28 +743,22 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                             .hiredDate),
                                                                     'Year of Employment',
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                         fontSize:
                                                                             16.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -878,26 +796,20 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getText(
                                                                     't8nm5rmy' /* Mobile Phone */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -920,9 +832,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                         InputDecoration(
                                                                       isDense:
                                                                           true,
-                                                                      labelStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
+                                                                      labelStyle: Theme.of(context).textTheme.labelMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -941,9 +851,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                               .getText(
                                                                         '19t69i3w' /* TextField */,
                                                                       ),
-                                                                      hintStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
+                                                                      hintStyle: Theme.of(context).textTheme.labelMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1006,9 +914,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                             BorderRadius.circular(8.0),
                                                                       ),
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1021,16 +927,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                               16.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                     cursorColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryText,
+                                                                        Theme.of(context).textTheme.bodyLarge?.color,
                                                                     validator: _model
                                                                         .textController1Validator
                                                                         .asValidator(
@@ -1065,26 +968,20 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getText(
                                                                     'dtv4fb1j' /* Email */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -1107,9 +1004,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                         InputDecoration(
                                                                       isDense:
                                                                           true,
-                                                                      labelStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
+                                                                      labelStyle: Theme.of(context).textTheme.labelMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1128,9 +1023,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                               .getText(
                                                                         'llkeoq52' /* TextField */,
                                                                       ),
-                                                                      hintStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
+                                                                      hintStyle: Theme.of(context).textTheme.labelMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1193,9 +1086,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                             BorderRadius.circular(8.0),
                                                                       ),
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1208,16 +1099,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                               16.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                     cursorColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .primaryText,
+                                                                        Theme.of(context).textTheme.bodyLarge?.color,
                                                                     validator: _model
                                                                         .textController2Validator
                                                                         .asValidator(
@@ -1341,39 +1229,25 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .themeColor,
+                                                    color: Theme.of(context).colorScheme.primary,
                                                     textStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
+                                                        Theme.of(context).textTheme.titleSmall!
                                                             .override(
                                                               font: GoogleFonts
                                                                   .readexPro(
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                                                     .fontStyle,
                                                               ),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
+                                                              color: Theme.of(context).colorScheme.primary,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontWeight,
                                                               fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontStyle,
                                                             ),
                                                     elevation: 0.0,
@@ -1440,27 +1314,22 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     },
                                     width: 200.0,
                                     height: 40.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    textStyle: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                     hintText:
@@ -1469,12 +1338,10 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                     icon: Icon(
                                       Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       size: 24.0,
                                     ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    fillColor: Theme.of(context).colorScheme.surface,
                                     elevation: 2.0,
                                     borderColor: Colors.transparent,
                                     borderWidth: 0.0,
@@ -1546,31 +1413,21 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           functions.paySlipDateFormatFunction1(
                                                               paySlipDataItem
                                                                   .periodEndDate),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
+                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
@@ -1578,34 +1435,22 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           functions.paySlipDateFormatFunction2(
                                                               paySlipDataItem
                                                                   .periodEndDate),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
+                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                color: Theme.of(context).colorScheme.surface,
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),

@@ -18,6 +18,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'overtime_detail_check_out_model.dart';
+import '/core/theme/app_colors.dart';
 export 'overtime_detail_check_out_model.dart';
 
 class OvertimeDetailCheckOutWidget extends StatefulWidget {
@@ -97,8 +98,7 @@ class _OvertimeDetailCheckOutWidgetState
               ),
               style: Theme.of(context).textTheme.$1?.copyWith(
                     font: GoogleFonts.outfit(
-                      fontWeight: FlutterFlowTheme.of(context)
-                          .headlineMedium
+                      fontWeight: Theme.of(context).textTheme.headlineMedium!
                           .fontWeight,
                       fontStyle:
                           context.headlineMedium.fontStyle,
@@ -135,8 +135,7 @@ class _OvertimeDetailCheckOutWidgetState
                             width: double.infinity,
                             height: 700.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              color: Theme.of(context).colorScheme.surface,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(13.0),
                                 bottomRight: Radius.circular(13.0),
@@ -175,32 +174,22 @@ class _OvertimeDetailCheckOutWidgetState
                                                         'hlp1dzmv' /* Overtime */,
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 color: Color(
                                                                     0xFFF89D27),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
@@ -254,33 +243,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                           color:
                                                               Color(0xFFDAE3F3),
                                                           textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
+                                                              Theme.of(context).textTheme.titleSmall!
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
+                                                                      fontWeight: Theme.of(context).textTheme.titleSmall!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
+                                                                      fontStyle: Theme.of(context).textTheme.titleSmall!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
+                                                                    color: Theme.of(context).colorScheme.surfaceTint,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
+                                                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
+                                                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                                                         .fontStyle,
                                                                   ),
                                                           elevation: 3.0,
@@ -316,38 +293,26 @@ class _OvertimeDetailCheckOutWidgetState
                                                       .getText(
                                                     'cwyxpu4p' /* Amount */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                            Theme.of(context).textTheme.bodyMedium?.color,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -365,37 +330,25 @@ class _OvertimeDetailCheckOutWidgetState
                                                           ?.oTHours,
                                                       '12 Hr',
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           fontSize: 10.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -418,36 +371,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       'ken3oq4g' /* From  */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -468,36 +409,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                               ?.startDate),
                                                       'start date',
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -512,33 +441,23 @@ class _OvertimeDetailCheckOutWidgetState
                                                       .getText(
                                                     '3i5ppqhs' /*  - */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -554,37 +473,25 @@ class _OvertimeDetailCheckOutWidgetState
                                                             ?.endDate),
                                                     'endDate',
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                            Theme.of(context).textTheme.bodyMedium?.color,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -606,34 +513,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       'oixv1cpo' /* Note :  */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
                                                           fontSize: 10.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -645,37 +542,25 @@ class _OvertimeDetailCheckOutWidgetState
                                                       ?.purposeOT,
                                                   'Note',
                                                 ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
+                                                style: Theme.of(context).textTheme.bodyMedium!
                                                     .override(
                                                       font:
                                                           GoogleFonts.readexPro(
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                          Theme.of(context).textTheme.bodyMedium?.color,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                               ),
@@ -697,37 +582,25 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       'mliana43' /* 0 */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .themeColor,
+                                                          color: Theme.of(context).colorScheme.primary,
                                                           fontSize: 10.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -748,19 +621,13 @@ class _OvertimeDetailCheckOutWidgetState
                                                         '25q8lghu' /* attachement */,
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 color: Color(
@@ -768,13 +635,9 @@ class _OvertimeDetailCheckOutWidgetState
                                                                 fontSize: 10.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
@@ -798,36 +661,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       '6tzg4zb1' /* Request date :  */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -846,37 +697,25 @@ class _OvertimeDetailCheckOutWidgetState
                                                                 ?.oTRequestedDate),
                                                     '11 /03/2025',
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                            Theme.of(context).textTheme.bodyMedium?.color,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -884,8 +723,7 @@ class _OvertimeDetailCheckOutWidgetState
                                             ],
                                           ),
                                           Divider(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                            color: Theme.of(context).colorScheme.surface,
                                           ),
                                           Align(
                                             alignment:
@@ -904,36 +742,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       '7hc7dhnp' /* Approved by : */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -949,33 +775,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                         'Mr.Hr',
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
+                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
@@ -1001,36 +815,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                         .getText(
                                                       'dcbuuub6' /* Status : */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -1046,32 +848,22 @@ class _OvertimeDetailCheckOutWidgetState
                                                         'status',
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 color: Color(
                                                                     0xFFFF6A72),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
@@ -1090,9 +882,7 @@ class _OvertimeDetailCheckOutWidgetState
                                               child: Container(
                                                 height: 22.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bkCheckin,
+                                                  color: AppColors.bkCheckin,
                                                 ),
                                                 alignment: AlignmentDirectional(
                                                     -1.0, -1.0),
@@ -1114,33 +904,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                           'fj86yoga' /* Check in */,
                                                         ),
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                       ),
@@ -1151,33 +929,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                           's8hk0xov' /* Check out */,
                                                         ),
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                       ),
@@ -1216,30 +982,20 @@ class _OvertimeDetailCheckOutWidgetState
                                                           '-',
                                                         ),
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                       ),
@@ -1250,9 +1006,7 @@ class _OvertimeDetailCheckOutWidgetState
                                                     child: VerticalDivider(
                                                       thickness: 2.0,
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                          Theme.of(context).colorScheme.surface,
                                                     ),
                                                   ),
                                                   InkWell(
@@ -1374,31 +1128,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                                             0.0),
                                                                 color: Color(
                                                                     0xFFF9B052),
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                textStyle: Theme.of(context).textTheme.titleSmall!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .readexPro(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
+                                                                        fontWeight: Theme.of(context).textTheme.titleSmall!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
+                                                                        fontStyle: Theme.of(context).textTheme.titleSmall!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
+                                                                      color: Theme.of(context).colorScheme.surface,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
+                                                                      fontWeight: Theme.of(context).textTheme.titleSmall!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
+                                                                      fontStyle: Theme.of(context).textTheme.titleSmall!
                                                                           .fontStyle,
                                                                     ),
                                                                 borderRadius:
@@ -1416,30 +1160,20 @@ class _OvertimeDetailCheckOutWidgetState
                                                                     .of(context)
                                                                 .languageCode,
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
+                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
@@ -1464,33 +1198,23 @@ class _OvertimeDetailCheckOutWidgetState
                                                       .getText(
                                                     '9xaca69j' /* Total : */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -1529,33 +1253,23 @@ class _OvertimeDetailCheckOutWidgetState
                                                         : '00 hr 00 min',
                                                     '00 hr 00 min',
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -1581,36 +1295,24 @@ class _OvertimeDetailCheckOutWidgetState
                                                       '8910tm5j' /* Attachment */,
                                                     ),
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -1641,9 +1343,7 @@ class _OvertimeDetailCheckOutWidgetState
                                                           height: 60.0,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
+                                                            color: Theme.of(context).colorScheme.surface,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -1773,28 +1473,21 @@ class _OvertimeDetailCheckOutWidgetState
                                                                       .getText(
                                                                     'wlrhechb' /* Attach File */,
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
+                                                                        color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -1810,9 +1503,7 @@ class _OvertimeDetailCheckOutWidgetState
                                                   width: double.infinity,
                                                   height: 80.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                                    color: Theme.of(context).colorScheme.surface,
                                                   ),
                                                   child: Builder(
                                                     builder: (context) {
@@ -1850,9 +1541,7 @@ class _OvertimeDetailCheckOutWidgetState
                                                               height: 80.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                color: Theme.of(context).colorScheme.surface,
                                                               ),
                                                               child: Column(
                                                                 mainAxisSize:
@@ -2044,31 +1733,23 @@ class _OvertimeDetailCheckOutWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: Color(0xFFF9B052),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
+                                          textStyle: Theme.of(context).textTheme.titleSmall!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .fontStyle,
                                                 ),
                                                 color: Colors.white,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontStyle,
                                               ),
                                           elevation: 3.0,
@@ -2079,11 +1760,9 @@ class _OvertimeDetailCheckOutWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           disabledColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
+                                              Theme.of(context).textTheme.bodyMedium?.color,
                                           disabledTextColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
+                                              Theme.of(context).colorScheme.surface,
                                         ),
                                       ),
                                     ),

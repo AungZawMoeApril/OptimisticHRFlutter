@@ -47,5 +47,5 @@ class AppConstants {
   static const String serverError = 'Server error occurred';
   static const String unknownError = 'An unexpected error occurred';
   
-  private AppConstants._();
+  AppConstants._();
 }

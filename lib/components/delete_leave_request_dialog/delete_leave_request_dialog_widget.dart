@@ -98,20 +98,16 @@ class _DeleteLeaveRequestDialogWidgetState
                       style:
                           Theme.of(context).textTheme.$1?.copyWith(
                                 font: GoogleFonts.outfit(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .headlineSmall
+                                  fontWeight: Theme.of(context).textTheme.headlineSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .headlineSmall
+                                  fontStyle: Theme.of(context).textTheme.headlineSmall!
                                       .fontStyle,
                                 ),
                                 fontSize: 20.0,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineSmall
+                                fontWeight: Theme.of(context).textTheme.headlineSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineSmall
+                                fontStyle: Theme.of(context).textTheme.headlineSmall!
                                     .fontStyle,
                               ),
                     ),
@@ -128,19 +124,15 @@ class _DeleteLeaveRequestDialogWidgetState
                       ),
                       style: Theme.of(context).textTheme.$1?.copyWith(
                             font: GoogleFonts.readexPro(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontWeight: Theme.of(context).textTheme.bodyMedium!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontStyle: Theme.of(context).textTheme.bodyMedium!
                                   .fontStyle,
                             ),
                             letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                            fontWeight: Theme.of(context).textTheme.bodyMedium!
                                 .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                            fontStyle: Theme.of(context).textTheme.bodyMedium!
                                 .fontStyle,
                           ),
                     ),
@@ -173,31 +165,25 @@ class _DeleteLeaveRequestDialogWidgetState
                               0.0, 0.0, 0.0, 0.0),
                           color:
                               Theme.of(context).colorScheme.secondaryBackground,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
+                          textStyle: Theme.of(context).textTheme.titleSmall!
                               .override(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                                 color:
                                     Theme.of(context).colorScheme.secondaryText,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                     .fontStyle,
                               ),
                           elevation: 3.0,
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: Theme.of(context).colorScheme.surface,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
@@ -280,20 +266,16 @@ class _DeleteLeaveRequestDialogWidgetState
                           textStyle:
                               Theme.of(context).textTheme.$1?.copyWith(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontWeight: Theme.of(context).textTheme.titleSmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontStyle: Theme.of(context).textTheme.titleSmall!
                                           .fontStyle,
                                     ),
                                     color: Colors.white,
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                           elevation: 3.0,

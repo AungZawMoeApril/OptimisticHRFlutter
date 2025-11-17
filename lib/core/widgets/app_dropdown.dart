@@ -1,4 +1,3 @@
-import '../core/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 
 class AppDropdown<T> extends StatelessWidget {

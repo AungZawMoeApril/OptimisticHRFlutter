@@ -96,36 +96,28 @@ class _MyApprovalHistoryCancelWidgetState
                   isDense: true,
                   labelStyle: Theme.of(context).textTheme.$1?.copyWith(
                         font: GoogleFonts.readexPro(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .labelMedium
+                          fontWeight: Theme.of(context).textTheme.labelMedium!
                               .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .labelMedium
+                          fontStyle: Theme.of(context).textTheme.labelMedium!
                               .fontStyle,
                         ),
                         letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                        fontWeight: Theme.of(context).textTheme.labelMedium?.fontWeight,
+                        fontStyle: Theme.of(context).textTheme.labelMedium?.fontStyle,
                       ),
                   hintText: FFLocalizations.of(context).getText(
                     'oj3dujjj' /* Please fll in the reason for c... */,
                   ),
                   hintStyle: Theme.of(context).textTheme.$1?.copyWith(
                         font: GoogleFonts.readexPro(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .labelMedium
+                          fontWeight: Theme.of(context).textTheme.labelMedium!
                               .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .labelMedium
+                          fontStyle: Theme.of(context).textTheme.labelMedium!
                               .fontStyle,
                         ),
                         letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                        fontWeight: Theme.of(context).textTheme.labelMedium?.fontWeight,
+                        fontStyle: Theme.of(context).textTheme.labelMedium?.fontStyle,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -201,24 +193,19 @@ class _MyApprovalHistoryCancelWidgetState
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: Theme.of(context).colorScheme.secondaryBackground,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
+                      textStyle: Theme.of(context).textTheme.titleSmall!
                           .override(
                             font: GoogleFonts.readexPro(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .titleSmall
+                              fontWeight: Theme.of(context).textTheme.titleSmall!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
+                              fontStyle: Theme.of(context).textTheme.titleSmall!
                                   .fontStyle,
                             ),
                             color: Theme.of(context).colorScheme.secondaryText,
                             letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            fontWeight: Theme.of(context).textTheme.titleSmall!
                                 .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            fontStyle: Theme.of(context).textTheme.titleSmall!
                                 .fontStyle,
                           ),
                       elevation: 0.0,
@@ -380,20 +367,16 @@ class _MyApprovalHistoryCancelWidgetState
                       textStyle:
                           Theme.of(context).textTheme.$1?.copyWith(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                                 color: Colors.white,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                     .fontStyle,
                               ),
                       elevation: 0.0,

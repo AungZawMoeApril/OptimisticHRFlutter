@@ -144,27 +144,22 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       FFLocalizations.of(context).getText(
                                         'rzjm0nsq' /* Current Password */,
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -189,38 +184,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             'vdbe5arp' /* Current password */,
                                           ),
                                           alignLabelWithHint: false,
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
+                                          hintStyle: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                  Theme.of(context).colorScheme.surface,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -229,8 +215,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .themeColor,
+                                                  Theme.of(context).colorScheme.primary,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -268,35 +253,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                   : Icons
                                                       .visibility_off_outlined,
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                  Theme.of(context).textTheme.bodyMedium?.color,
                                               size: 20.0,
                                             ),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                         validator: _model
@@ -321,27 +300,22 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       FFLocalizations.of(context).getText(
                                         'xkpp5mbr' /* New Password */,
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -362,38 +336,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         decoration: InputDecoration(
                                           isDense: true,
                                           alignLabelWithHint: false,
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
+                                          hintStyle: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                  Theme.of(context).colorScheme.surface,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -402,8 +367,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .themeColor,
+                                                  Theme.of(context).colorScheme.primary,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -441,35 +405,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                   : Icons
                                                       .visibility_off_outlined,
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                  Theme.of(context).textTheme.bodyMedium?.color,
                                               size: 20.0,
                                             ),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                         validator: _model
@@ -494,27 +452,22 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       FFLocalizations.of(context).getText(
                                         '87sd7rdc' /* Confirm Password */,
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -535,38 +488,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         decoration: InputDecoration(
                                           isDense: true,
                                           alignLabelWithHint: false,
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
+                                          hintStyle: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                  Theme.of(context).colorScheme.surface,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -575,8 +519,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .themeColor,
+                                                  Theme.of(context).colorScheme.primary,
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -614,35 +557,29 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                   : Icons
                                                       .visibility_off_outlined,
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                  Theme.of(context).textTheme.bodyMedium?.color,
                                               size: 20.0,
                                             ),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                         validator: _model
@@ -833,20 +770,16 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       textStyle:
                           Theme.of(context).textTheme.$1?.copyWith(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                                 color: Theme.of(context).colorScheme.primary,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                     .fontStyle,
                               ),
                       elevation: 0.0,

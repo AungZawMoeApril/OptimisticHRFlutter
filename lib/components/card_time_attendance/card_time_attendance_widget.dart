@@ -106,8 +106,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.location_pin,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                     size: 24.0,
                                   ),
                                 ),
@@ -117,29 +116,23 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                       widget.location?.toString(),
                                       'location',
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -163,32 +156,24 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                               return '';
                                             }
                                           }(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .themeColor,
+                                                    Theme.of(context).colorScheme.primary,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -224,8 +209,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                               height: 20.0,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                               ),
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -233,37 +217,25 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                   'ucn8wgpx' /* Check In */,
                                                 ),
                                                 textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
+                                                style: Theme.of(context).textTheme.bodyMedium!
                                                     .override(
                                                       font:
                                                           GoogleFonts.readexPro(
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                          Theme.of(context).textTheme.bodyMedium?.color,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                               ),
@@ -273,8 +245,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                               height: 20.0,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -286,37 +257,25 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                     'rp5t7apa' /* Check Out */,
                                                   ),
                                                   textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                            Theme.of(context).textTheme.bodyMedium?.color,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -330,9 +289,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                 width: 100.0,
                                                 height: 20.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
@@ -344,36 +301,24 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                       '3nha1ajr' /* Status */,
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
+                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -412,8 +357,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                             height: 20.0,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                  Theme.of(context).colorScheme.surface,
                                             ),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
@@ -428,21 +372,15 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                   '    -',
                                                 ),
                                                 textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
+                                                style: Theme.of(context).textTheme.bodyMedium!
                                                     .override(
                                                       font:
                                                           GoogleFonts.readexPro(
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                       color: () {
@@ -465,14 +403,10 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                       }(),
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                               ),
@@ -483,8 +417,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                             height: 20.0,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                  Theme.of(context).colorScheme.surface,
                                             ),
                                             child: Text(
                                               valueOrDefault<String>(
@@ -495,20 +428,14 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                 '-',
                                               ),
                                               textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
+                                              style: Theme.of(context).textTheme.bodyMedium!
                                                   .override(
                                                     font: GoogleFonts.readexPro(
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                                     color: () {
@@ -531,14 +458,10 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                     }(),
                                                     letterSpacing: 0.0,
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontWeight,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
                                             ),
@@ -552,8 +475,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                               height: 20.0,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                               ),
                                               child: AppButton(
                                                 onPressed: () {
@@ -595,21 +517,15 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                     }
                                                   }(),
                                                   textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .override(
                                                             font: GoogleFonts
                                                                 .readexPro(
                                                               fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontWeight,
                                                               fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontStyle,
                                                             ),
                                                             color: () {
@@ -617,9 +533,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                                   widget
                                                                       .checkInAndOuttype
                                                                       ?.toString()) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground;
+                                                                return Theme.of(context).colorScheme.surface;
                                                               } else if ('Late' ==
                                                                   widget
                                                                       .checkInAndOuttype
@@ -630,9 +544,7 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                                   widget
                                                                       .checkInAndOuttype
                                                                       ?.toString()) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground;
+                                                                return Theme.of(context).colorScheme.surface;
                                                               } else {
                                                                 return Color(
                                                                     0xFF0FA7D8);
@@ -641,14 +553,10 @@ class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {
                                                             fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                Theme.of(context).textTheme.titleSmall!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                Theme.of(context).textTheme.titleSmall!
                                                                     .fontStyle,
                                                           ),
                                                   elevation: 3.0,

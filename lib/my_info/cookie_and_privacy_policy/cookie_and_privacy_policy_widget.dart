@@ -7,6 +7,7 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'cookie_and_privacy_policy_model.dart';
+import '/core/theme/app_colors.dart';
 export 'cookie_and_privacy_policy_model.dart';
 
 class CookieAndPrivacyPolicyWidget extends StatefulWidget {
@@ -126,8 +127,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 height: 50.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Theme.of(context).colorScheme.surface,
                                 ),
                                 child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
@@ -136,24 +136,20 @@ class _CookieAndPrivacyPolicyWidgetState
                                       'kzwujqcr' /* Personal Information Protectio... */,
                                     ),
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight: FontWeight.w500,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .blackFontColor,
+                                          color: AppColors.blackFontColor,
                                           fontSize: 16.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -167,8 +163,7 @@ class _CookieAndPrivacyPolicyWidgetState
                               Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Theme.of(context).colorScheme.surface,
                                 ),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -180,25 +175,21 @@ class _CookieAndPrivacyPolicyWidgetState
                                         FFLocalizations.of(context).getText(
                                           'cylyr9ca' /* Cookies And Privacy Policy  */,
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .blackFontColor,
+                                                  AppColors.blackFontColor,
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -211,27 +202,22 @@ class _CookieAndPrivacyPolicyWidgetState
                                           'fm3dl0rm' /* When we make Optimistic availa... */,
                                         ),
                                         textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -245,8 +231,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -258,26 +243,21 @@ class _CookieAndPrivacyPolicyWidgetState
                                           FFLocalizations.of(context).getText(
                                             '64wel5pe' /* Personal Information Protectio... */,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .blackFontColor,
+                                                    AppColors.blackFontColor,
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -293,28 +273,21 @@ class _CookieAndPrivacyPolicyWidgetState
                                             FFLocalizations.of(context).getText(
                                               '3etxif41' /* Fusion Solution Company Limite... */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.readexPro(
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -332,31 +305,22 @@ class _CookieAndPrivacyPolicyWidgetState
                                               'kadmxb7f' /* Fusion Solution Co., Ltd. plac... */,
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.readexPro(
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontWeight,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -383,17 +347,13 @@ class _CookieAndPrivacyPolicyWidgetState
                                                   .getText(
                                                 'bgf7ogc9' /* https://www.optimistic-app.com */,
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
+                                              style: Theme.of(context).textTheme.bodyMedium!
                                                   .override(
                                                     font: GoogleFonts.readexPro(
                                                       fontWeight:
                                                           FontWeight.normal,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                                     color: Color(0xFF152FC1),
@@ -402,9 +362,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                     decoration: TextDecoration
                                                         .underline,
@@ -418,27 +376,22 @@ class _CookieAndPrivacyPolicyWidgetState
                                           'llq0zv51' /* or the website owned or operat... */,
                                         ),
                                         textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -452,8 +405,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -465,26 +417,21 @@ class _CookieAndPrivacyPolicyWidgetState
                                           FFLocalizations.of(context).getText(
                                             'c19j9ymc' /* Cookie Policy  */,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .blackFontColor,
+                                                    AppColors.blackFontColor,
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -501,31 +448,22 @@ class _CookieAndPrivacyPolicyWidgetState
                                               'bbg6lyn0' /* In this policy, the term "cook... */,
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.readexPro(
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontWeight,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -552,33 +490,23 @@ class _CookieAndPrivacyPolicyWidgetState
                                                   .getText(
                                                 'ebyaog9b' /* https://optimisticprd.azureweb... */,
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
+                                              style: Theme.of(context).textTheme.bodyMedium!
                                                   .override(
                                                     font: GoogleFonts.readexPro(
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
                                                     color: Color(0xFF162DBA),
                                                     letterSpacing: 0.0,
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontWeight,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                     decoration: TextDecoration
                                                         .underline,
@@ -595,29 +523,22 @@ class _CookieAndPrivacyPolicyWidgetState
                                             'm16kbt4a' /* This is typically used to spec... */,
                                           ),
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),

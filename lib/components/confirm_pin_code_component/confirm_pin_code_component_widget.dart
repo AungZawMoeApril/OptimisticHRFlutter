@@ -126,17 +126,14 @@ class _ConfirmPinCodeComponentWidgetState
                     color: Theme.of(context).colorScheme.secondaryBackground,
                     textStyle: Theme.of(context).textTheme.$1?.copyWith(
                           font: GoogleFonts.readexPro(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            fontWeight: Theme.of(context).textTheme.titleSmall!
                                 .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            fontStyle: Theme.of(context).textTheme.titleSmall!
                                 .fontStyle,
                           ),
                           color: Theme.of(context).colorScheme.primary,
                           letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleSmall
+                          fontWeight: Theme.of(context).textTheme.titleSmall!
                               .fontWeight,
                           fontStyle:
                               Theme.of(context).textTheme.titleSmall.fontStyle,

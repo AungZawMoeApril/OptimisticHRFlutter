@@ -110,24 +110,19 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                           FFLocalizations.of(context).getText(
                             '3gxfwfqs' /* Back */,
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
+                          style: Theme.of(context).textTheme.displaySmall!
                               .override(
                                 font: GoogleFonts.outfit(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .displaySmall
+                                  fontWeight: Theme.of(context).textTheme.displaySmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displaySmall
+                                  fontStyle: Theme.of(context).textTheme.displaySmall!
                                       .fontStyle,
                                 ),
                                 fontSize: 16.0,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .displaySmall
+                                fontWeight: Theme.of(context).textTheme.displaySmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .displaySmall
+                                fontStyle: Theme.of(context).textTheme.displaySmall!
                                     .fontStyle,
                               ),
                         ),
@@ -163,18 +158,15 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                   ),
                   style: Theme.of(context).textTheme.$1?.copyWith(
                         font: GoogleFonts.outfit(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .displaySmall
+                          fontWeight: Theme.of(context).textTheme.displaySmall!
                               .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .displaySmall
+                          fontStyle: Theme.of(context).textTheme.displaySmall!
                               .fontStyle,
                         ),
                         color: Theme.of(context).colorScheme.primaryText,
                         fontSize: 32.0,
                         letterSpacing: 0.0,
-                        fontWeight: FlutterFlowTheme.of(context)
-                            .displaySmall
+                        fontWeight: Theme.of(context).textTheme.displaySmall!
                             .fontWeight,
                         fontStyle:
                             context.textTheme.displaySmall.fontStyle,
@@ -225,45 +217,35 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                               focusNode: _model.companyCodeFocusNode,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .bodySmall
+                                labelStyle: Theme.of(context).textTheme.bodySmall!
                                     .override(
                                       font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodySmall
+                                        fontWeight: Theme.of(context).textTheme.bodySmall!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
+                                        fontStyle: Theme.of(context).textTheme.bodySmall!
                                             .fontStyle,
                                       ),
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
                                     ),
                                 hintText: FFLocalizations.of(context).getText(
                                   'lxcti3f6' /* Company Code */,
                                 ),
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodySmall
+                                hintStyle: Theme.of(context).textTheme.bodySmall!
                                     .override(
                                       font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodySmall
+                                        fontWeight: Theme.of(context).textTheme.bodySmall!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
+                                        fontStyle: Theme.of(context).textTheme.bodySmall!
                                             .fontStyle,
                                       ),
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
                                     ),
                                 enabledBorder: InputBorder.none,
@@ -273,24 +255,19 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 16.0, 20.0, 16.0),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              style: Theme.of(context).textTheme.bodyMedium!
                                   .override(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
                                     color: Color(0xFF0F1113),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
                                   ),
                               validator: _model
@@ -319,45 +296,35 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                             focusNode: _model.usernameFocusNode,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodySmall
+                              labelStyle: Theme.of(context).textTheme.bodySmall!
                                   .override(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodySmall
+                                    fontWeight: Theme.of(context).textTheme.bodySmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodySmall
+                                    fontStyle: Theme.of(context).textTheme.bodySmall!
                                         .fontStyle,
                                   ),
                               hintText: FFLocalizations.of(context).getText(
                                 'dhpy0rl2' /* Username */,
                               ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .bodySmall
+                              hintStyle: Theme.of(context).textTheme.bodySmall!
                                   .override(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                      fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodySmall
+                                    fontWeight: Theme.of(context).textTheme.bodySmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodySmall
+                                    fontStyle: Theme.of(context).textTheme.bodySmall!
                                         .fontStyle,
                                   ),
                               enabledBorder: InputBorder.none,
@@ -367,24 +334,19 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 18.0, 20.0, 16.0),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                            style: Theme.of(context).textTheme.bodyMedium!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
                                   ),
                                   color: Color(0xFF0F1113),
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                       .fontStyle,
                                 ),
                             textAlign: TextAlign.start,
@@ -503,24 +465,19 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF89D1F),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            textStyle: Theme.of(context).textTheme.titleSmall!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   color: Theme.of(context).colorScheme.primary,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                             elevation: 0.0,
@@ -558,21 +515,18 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFFFF2E3),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            textStyle: Theme.of(context).textTheme.titleSmall!
                                 .override(
                                   font: GoogleFonts.readexPro(
                                     fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   color: Color(0xFF0FA7D8),
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                   decoration: TextDecoration.underline,
                                 ),

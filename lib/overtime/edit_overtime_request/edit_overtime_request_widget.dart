@@ -180,27 +180,21 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                   FFLocalizations.of(context).getText(
                                     '6hxpprk7' /* Start Date */,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                  style: Theme.of(context).textTheme.bodyMedium!
                                       .override(
                                         font: GoogleFonts.readexPro(
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                        color: Theme.of(context).textTheme.bodyMedium?.color,
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
                                       ),
                                 ),
@@ -213,8 +207,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                 width: 340.0,
                                 height: 45.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Theme.of(context).colorScheme.surface,
                                   border: Border.all(
                                     color: Color(0xFFCECED8),
                                   ),
@@ -238,39 +231,30 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           headerBackgroundColor:
                                               Color(0xFFF9B052),
                                           headerForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          headerTextStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .headlineLarge
+                                              Theme.of(context).colorScheme.surface,
+                                          headerTextStyle: Theme.of(context).textTheme.headlineLarge!
                                               .override(
                                                 font: GoogleFonts.outfit(
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
+                                                      Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
                                                 ),
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
+                                                    Theme.of(context).textTheme.headlineLarge!
                                                         .fontStyle,
                                               ),
                                           pickerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
+                                              Theme.of(context).colorScheme.surface,
                                           pickerForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
+                                              Theme.of(context).textTheme.bodyLarge?.color,
                                           selectedDateTimeBackgroundColor:
                                               Color(0xFFF9B052),
                                           selectedDateTimeForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
+                                              Theme.of(context).colorScheme.surface,
                                           actionButtonForegroundColor:
                                               Color(0xFFF9B052),
                                           iconSize: 24.0,
@@ -332,32 +316,24 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                   ).toString()),
                                             'start date',
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
+                                                    Theme.of(context).textTheme.bodyMedium?.color,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -367,8 +343,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                             0.0, 0.0, 15.0, 0.0),
                                         child: Icon(
                                           Icons.calendar_month,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           size: 24.0,
                                         ),
                                       ),
@@ -400,29 +375,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       '5j0n3zb1' /* Start Time */,
                                     ),
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -447,44 +416,34 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           context,
                                           child!,
                                           headerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
+                                              Theme.of(context).colorScheme.primary,
                                           headerForegroundColor:
                                               Theme.of(context).colorScheme.outline,
-                                          headerTextStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .headlineLarge
+                                          headerTextStyle: Theme.of(context).textTheme.headlineLarge!
                                               .override(
                                                 font: GoogleFonts.outfit(
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
+                                                      Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
                                                 ),
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
+                                                    Theme.of(context).textTheme.headlineLarge!
                                                         .fontStyle,
                                               ),
                                           pickerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
+                                              Theme.of(context).colorScheme.surface,
                                           pickerForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
+                                              Theme.of(context).textTheme.bodyLarge?.color,
                                           selectedDateTimeBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           selectedDateTimeForegroundColor:
                                               Theme.of(context).colorScheme.outline,
                                           actionButtonForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           iconSize: 24.0,
                                         );
                                       },
@@ -517,8 +476,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     width: 160.0,
                                     height: 45.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                       border: Border.all(
                                         color: Color(0xFFCECED8),
                                       ),
@@ -545,36 +503,28 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                   ).toString(),
                                             'start time',
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         )),
                                         Icon(
                                           Icons.access_time,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           size: 24.0,
                                         ),
                                       ],
@@ -601,29 +551,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     FFLocalizations.of(context).getText(
                                       '8907rs3h' /* End Time */,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -648,44 +592,34 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           context,
                                           child!,
                                           headerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
+                                              Theme.of(context).colorScheme.primary,
                                           headerForegroundColor:
                                               Theme.of(context).colorScheme.outline,
-                                          headerTextStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .headlineLarge
+                                          headerTextStyle: Theme.of(context).textTheme.headlineLarge!
                                               .override(
                                                 font: GoogleFonts.outfit(
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
+                                                      Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
                                                 ),
                                                 fontSize: 32.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
+                                                    Theme.of(context).textTheme.headlineLarge!
                                                         .fontStyle,
                                               ),
                                           pickerBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
+                                              Theme.of(context).colorScheme.surface,
                                           pickerForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
+                                              Theme.of(context).textTheme.bodyLarge?.color,
                                           selectedDateTimeBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           selectedDateTimeForegroundColor:
                                               Theme.of(context).colorScheme.outline,
                                           actionButtonForegroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           iconSize: 24.0,
                                         );
                                       },
@@ -718,8 +652,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     width: 160.0,
                                     height: 45.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                       border: Border.all(
                                         color: Color(0xFFCECED8),
                                       ),
@@ -746,36 +679,28 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                   ).toString(),
                                             'end time ',
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.readexPro(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         )),
                                         Icon(
                                           Icons.access_time,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           size: 24.0,
                                         ),
                                       ],
@@ -807,29 +732,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       'nptb1hes' /* OT Hours */,
                                     ),
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -880,27 +799,22 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                 ).toString(),
                                           '00 hr 00 min',
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -932,29 +846,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       'ivmw4ppd' /* OT Type */,
                                     ),
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -984,25 +892,20 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       () => _model.dropDownValue = val),
                                   width: 340.0,
                                   height: 56.0,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                  textStyle: Theme.of(context).textTheme.bodyMedium!
                                       .override(
                                         font: GoogleFonts.readexPro(
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
                                       ),
                                   hintText: FFLocalizations.of(context).getText(
@@ -1010,12 +913,10 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                   ),
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                     size: 24.0,
                                   ),
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  fillColor: Theme.of(context).colorScheme.surface,
                                   elevation: 2.0,
                                   borderColor:
                                       Theme.of(context).colorScheme.surface,
@@ -1053,29 +954,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       'zriki7yq' /* Description * */,
                                     ),
                                     textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          color: Theme.of(context).textTheme.bodyMedium?.color,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -1094,56 +989,45 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                        labelStyle: Theme.of(context).textTheme.labelMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                    Theme.of(context).textTheme.labelMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                    Theme.of(context).textTheme.labelMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontStyle,
                                             ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                        hintStyle: Theme.of(context).textTheme.labelMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                    Theme.of(context).textTheme.labelMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
+                                                    Theme.of(context).textTheme.labelMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                  Theme.of(context).textTheme.labelMedium!
                                                       .fontStyle,
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                            color: Theme.of(context).colorScheme.surface,
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -1151,8 +1035,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                            color: Theme.of(context).colorScheme.primary,
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -1160,8 +1043,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
+                                            color: Theme.of(context).colorScheme.error,
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -1169,40 +1051,32 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
+                                            color: Theme.of(context).colorScheme.error,
                                             width: 2.0,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(4.0),
                                         ),
                                         filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        fillColor: Theme.of(context).colorScheme.surface,
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                       textAlign: TextAlign.start,
@@ -1232,25 +1106,19 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                 FFLocalizations.of(context).getText(
                                   'pl920q6f' /* Attachment */,
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                style: Theme.of(context).textTheme.bodyMedium!
                                     .override(
                                       font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
                               ),
@@ -1348,8 +1216,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                 : 100.0,
                                         height: 60.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Theme.of(context).colorScheme.surface,
                                           borderRadius:
                                               BorderRadius.circular(0.0),
                                           border: Border.all(
@@ -1379,35 +1246,23 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                   .getText(
                                                 '81crmldl' /* Attach File */,
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
+                                              style: Theme.of(context).textTheme.bodyMedium!
                                                   .override(
                                                     font: GoogleFonts.readexPro(
                                                       fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .fontStyle,
                                                     ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
+                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                                     letterSpacing: 0.0,
                                                     fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontWeight,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
                                             ),
@@ -1451,8 +1306,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                   width: 80.0,
                                   height: 80.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1641,24 +1495,19 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF9B052),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            textStyle: Theme.of(context).textTheme.titleSmall!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   color: Colors.white,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                             elevation: 3.0,

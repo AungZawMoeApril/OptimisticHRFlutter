@@ -143,8 +143,7 @@ class AttendanceCardV2 extends StatelessWidget {
                                   attendance.clockInTime == '-'
                                       ? 'Check In'
                                       : 'Check Out',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  style: Theme.of(context).textTheme.titleSmall!
                                       .copyWith(color: Colors.white),
                                 ),
                               ],
@@ -192,8 +191,7 @@ class AttendanceCardV2 extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               time,
-              style: FlutterFlowTheme.of(context)
-                  .titleMedium
+              style: Theme.of(context).textTheme.titleMedium!
                   .copyWith(color: color),
             ),
           ],

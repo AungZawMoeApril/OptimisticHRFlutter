@@ -17,6 +17,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'leave_page_model.dart';
+import '/core/theme/app_colors.dart';
 export 'leave_page_model.dart';
 
 class LeavePageWidget extends StatefulWidget {
@@ -184,30 +185,23 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                               0.0, 0.0, 0.0, 0.0),
                           color: _model.leaveTypeID == 0
                               ? Color(0xFFF89D27)
-                              : FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
+                              : Theme.of(context).colorScheme.surface,
+                          textStyle: Theme.of(context).textTheme.titleSmall!
                               .override(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                                 color: _model.leaveTypeID == 0
-                                    ? FlutterFlowTheme.of(context)
-                                        .secondaryBackground
+                                    ? Theme.of(context).colorScheme.surface
                                     : Theme.of(context).colorScheme.primaryText,
                                 fontSize: 14.0,
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                     .fontStyle,
                               ),
                           elevation: 3.0,
@@ -314,14 +308,12 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                         r'''$.timeOff_ID''',
                                                       )
                                                   ? Color(0xFFF9B052)
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                  : Theme.of(context).colorScheme.surface,
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               border: Border.all(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                                 width: 1.0,
                                               ),
                                             ),
@@ -345,32 +337,24 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                       ).toString(),
                                                       maxLines: 2,
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w300,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                color: Theme.of(context).textTheme.bodyLarge?.color,
                                                                 fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                     ),
@@ -421,35 +405,23 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                               textAlign:
                                                                   TextAlign
                                                                       .start,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
+                                                              style: Theme.of(context).textTheme.bodyMedium!
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
+                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                     fontSize:
                                                                         12.0,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -486,19 +458,15 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                         labelStyle:
                             Theme.of(context).textTheme.$1?.copyWith(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                         unselectedLabelStyle: TextStyle(),
@@ -508,7 +476,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                             Theme.of(context).colorScheme.primary,
                         backgroundColor: Color(0xFFF9B052),
                         unselectedBackgroundColor:
-                            FlutterFlowTheme.of(context).greyTitle,
+                            AppColors.greyTitle,
                         borderColor: Theme.of(context).colorScheme.primary,
                         unselectedBorderColor:
                             Theme.of(context).colorScheme.secondaryBackground,
@@ -558,27 +526,22 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                     FFLocalizations.of(context).getText(
                                       'tkxntmcu' /* No Data Available */,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -615,8 +578,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
                                                         Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .themeColor,
+                                                  Theme.of(context).colorScheme.primary,
                                                 ),
                                               ),
                                             ),
@@ -674,9 +636,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                             height: 220.0,
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
+                                                              color: Theme.of(context).colorScheme.surface,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .only(
@@ -820,8 +780,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               .getText(
                                                                             'm89ulbz6' /* Amount */,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -865,8 +824,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               ).toString()),
                                                                           'leaveAmount',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -904,8 +862,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               .getText(
                                                                             'ljcb9h46' /* From  */,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -939,8 +896,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           )),
                                                                           'start date',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -965,8 +921,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             .getText(
                                                                           '4mpgd3tg' /*  - */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -996,8 +951,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           ).toString()),
                                                                           'end date',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1034,8 +988,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               .getText(
                                                                             'ywbamyv2' /* Note :  */,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1059,9 +1012,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         )?.toString(),
                                                                         'leaveNote',
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1232,8 +1183,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               .getText(
                                                                             '4auid072' /* Request date :  */,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1265,8 +1215,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           ).toString()),
                                                                           'Request date',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1438,8 +1387,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                             child: CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .themeColor,
+                                                Theme.of(context).colorScheme.primary,
                                               ),
                                             ),
                                           ),
@@ -1502,9 +1450,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                         height: 220.0,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
+                                                          color: Theme.of(context).colorScheme.surface,
                                                           borderRadius:
                                                               BorderRadius.only(
                                                             bottomLeft:
@@ -1554,8 +1500,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           )?.toString(),
                                                                           'leave Type',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1650,9 +1595,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .getText(
                                                                         'y06o4her' /* Amount */,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1702,9 +1645,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           ).toString()),
                                                                       'leave amount',
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1719,11 +1660,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               10.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -1754,9 +1693,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .getText(
                                                                         'i8hs16h9' /* From  */,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1793,9 +1730,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                       ).toString()),
                                                                       'start date',
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1808,11 +1743,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               Theme.of(context).colorScheme.secondaryText,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -1830,9 +1763,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         .getText(
                                                                       '2zfl2kam' /*  - */,
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1845,11 +1776,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               Theme.of(context).colorScheme.secondaryText,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -1872,9 +1801,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                       ).toString()),
                                                                       'end date',
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -1887,11 +1814,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               Theme.of(context).colorScheme.secondaryText,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -1922,9 +1847,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .getText(
                                                                         '9qsxmgnq' /* Note :  */,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1954,30 +1877,23 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                     )?.toString(),
                                                                     'Note',
                                                                   ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
+                                                                        color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                         fontSize:
                                                                             10.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -2150,9 +2066,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .getText(
                                                                         '8j7l3fdo' /* Request date :  */,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2160,7 +2074,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               fontStyle: context.textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).overtimetextcolor,
+                                                                                AppColors.overtimetextcolor,
                                                                             fontSize:
                                                                                 12.0,
                                                                             letterSpacing:
@@ -2191,9 +2105,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                       ).toString()),
                                                                       'request date',
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -2203,16 +2115,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                 context.textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).overtimetextcolor,
+                                                                              AppColors.overtimetextcolor,
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -2220,9 +2130,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                               ],
                                                             ),
                                                             Divider(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
+                                                              color: Theme.of(context).colorScheme.surface,
                                                             ),
                                                             Align(
                                                               alignment:
@@ -2389,25 +2297,20 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                   FFLocalizations.of(context).getText(
                                     'q1oxvbj1' /* No Data Available */,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                  style: Theme.of(context).textTheme.bodyMedium!
                                       .override(
                                         font: GoogleFonts.readexPro(
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
                                       ),
                                 ),
@@ -2443,8 +2346,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
                                                         Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .themeColor,
+                                                  Theme.of(context).colorScheme.primary,
                                                 ),
                                               ),
                                             ),
@@ -2521,9 +2423,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                           height: 220.0,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
+                                                            color: Theme.of(context).colorScheme.surface,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .only(
@@ -2576,8 +2476,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             )?.toString(),
                                                                             'LeaveName',
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -2676,8 +2575,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             .getText(
                                                                           'v8dvycp8' /* Amount */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -2721,9 +2619,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             ).toString()),
                                                                         'leaveAmount',
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2768,8 +2664,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             .getText(
                                                                           '96f7xk34' /* From  */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -2803,9 +2698,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         )),
                                                                         'start date',
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2836,9 +2729,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .getText(
                                                                         '04eqg811' /*  - */,
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2873,9 +2764,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         ).toString()),
                                                                         'end date',
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2918,8 +2807,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             .getText(
                                                                           'z2sb05v7' /* Note :  */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -2943,9 +2831,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                       )?.toString(),
                                                                       'leaveNote',
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -2960,11 +2846,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               12.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -3133,8 +3017,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             .getText(
                                                                           'aoltyjqv' /* Request date :  */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -3166,9 +3049,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         ).toString()),
                                                                         'Request date',
                                                                       ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      style: Theme.of(context).textTheme.bodyMedium!
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -3226,8 +3107,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             ).toString()),
                                                                             'Supervisor',
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -3253,8 +3133,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               .getText(
                                                                             'jkr24xck' /* by : */,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -3284,8 +3163,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             )?.toString(),
                                                                             'ApproverName',
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,

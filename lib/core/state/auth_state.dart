@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import 'base_state.dart';
 import '../storage/secure_storage.dart';

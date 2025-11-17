@@ -90,15 +90,13 @@ class _ChangeLanguageComponentWidgetState
                         style: Theme.of(context).textTheme.$1?.copyWith(
                               font: GoogleFonts.readexPro(
                                 fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                     .fontStyle,
                               ),
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontStyle: Theme.of(context).textTheme.bodyMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -146,15 +144,13 @@ class _ChangeLanguageComponentWidgetState
                         style: Theme.of(context).textTheme.$1?.copyWith(
                               font: GoogleFonts.readexPro(
                                 fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                     .fontStyle,
                               ),
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontStyle: Theme.of(context).textTheme.bodyMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -202,15 +198,13 @@ class _ChangeLanguageComponentWidgetState
                         style: Theme.of(context).textTheme.$1?.copyWith(
                               font: GoogleFonts.readexPro(
                                 fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                     .fontStyle,
                               ),
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontStyle: Theme.of(context).textTheme.bodyMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -258,15 +252,13 @@ class _ChangeLanguageComponentWidgetState
                         style: Theme.of(context).textTheme.$1?.copyWith(
                               font: GoogleFonts.readexPro(
                                 fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                     .fontStyle,
                               ),
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              fontStyle: Theme.of(context).textTheme.bodyMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -317,14 +309,12 @@ class _ChangeLanguageComponentWidgetState
                               Theme.of(context).textTheme.$1?.copyWith(
                                     font: GoogleFonts.readexPro(
                                       fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
                                   ),
                         ),

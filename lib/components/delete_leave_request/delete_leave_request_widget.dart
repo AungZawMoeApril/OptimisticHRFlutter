@@ -87,24 +87,19 @@ class _DeleteLeaveRequestWidgetState extends State<DeleteLeaveRequestWidget> {
                           'nw6drliz' /* Confirm to Cancel Request */,
                         ),
                         textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
+                        style: Theme.of(context).textTheme.headlineMedium!
                             .override(
                               font: GoogleFonts.outfit(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineMedium
+                                fontWeight: Theme.of(context).textTheme.headlineMedium!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineMedium
+                                fontStyle: Theme.of(context).textTheme.headlineMedium!
                                     .fontStyle,
                               ),
                               fontSize: 19.0,
                               letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .headlineMedium
+                              fontWeight: Theme.of(context).textTheme.headlineMedium!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .headlineMedium
+                              fontStyle: Theme.of(context).textTheme.headlineMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -118,24 +113,19 @@ class _DeleteLeaveRequestWidgetState extends State<DeleteLeaveRequestWidget> {
                               'elqdnce9' /* Do you want to cancel this req... */,
                             ),
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
+                            style: Theme.of(context).textTheme.labelMedium!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                    fontWeight: Theme.of(context).textTheme.labelMedium!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                    fontStyle: Theme.of(context).textTheme.labelMedium!
                                         .fontStyle,
                                   ),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontWeight: Theme.of(context).textTheme.labelMedium!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontStyle: Theme.of(context).textTheme.labelMedium!
                                       .fontStyle,
                                 ),
                           ),
@@ -168,25 +158,19 @@ class _DeleteLeaveRequestWidgetState extends State<DeleteLeaveRequestWidget> {
                                   20.0, 0.0, 20.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyLarge
+                              color: Theme.of(context).colorScheme.surface,
+                              textStyle: Theme.of(context).textTheme.bodyLarge!
                                   .override(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                      fontWeight: Theme.of(context).textTheme.bodyLarge!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                      fontStyle: Theme.of(context).textTheme.bodyLarge!
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                    fontWeight: Theme.of(context).textTheme.bodyLarge!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyLarge
+                                    fontStyle: Theme.of(context).textTheme.bodyLarge!
                                         .fontStyle,
                                   ),
                               elevation: 0.0,
@@ -208,23 +192,18 @@ class _DeleteLeaveRequestWidgetState extends State<DeleteLeaveRequestWidget> {
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFFF3838),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
+                            textStyle: Theme.of(context).textTheme.titleSmall!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                             elevation: 0.0,

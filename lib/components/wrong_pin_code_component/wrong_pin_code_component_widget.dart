@@ -119,8 +119,7 @@ class _WrongPinCodeComponentWidgetState
                   color: Theme.of(context).colorScheme.secondaryBackground,
                   textStyle: Theme.of(context).textTheme.$1?.copyWith(
                         font: GoogleFonts.readexPro(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleSmall
+                          fontWeight: Theme.of(context).textTheme.titleSmall!
                               .fontWeight,
                           fontStyle:
                               Theme.of(context).textTheme.titleSmall.fontStyle,

@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'my_info_model.dart';
+import '/core/theme/app_colors.dart';
 export 'my_info_model.dart';
 
 class MyInfoWidget extends StatefulWidget {
@@ -138,8 +139,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                 width: 350.0,
                                 height: 100.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Theme.of(context).colorScheme.surface,
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -181,28 +181,21 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                               'my info name',
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.kanit(
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -213,25 +206,20 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                           child: Text(
                                             AppState().positionName,
                                             textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.readexPro(
                                                     fontWeight:
                                                         FontWeight.normal,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
                                                   color: Color(0xFF4D4F5C),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -264,8 +252,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   },
                                   child: Icon(
                                     Icons.arrow_forward_ios_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                     size: 20.0,
                                   ),
                                 ),
@@ -300,22 +287,18 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                 FFLocalizations.of(context).getText(
                                   '7tbyg3tt' /* Setting */,
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                style: Theme.of(context).textTheme.bodyMedium!
                                     .override(
                                       font: GoogleFonts.kanit(
                                         fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .blackFontColor,
+                                      color: AppColors.blackFontColor,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
                               ),
@@ -328,8 +311,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   width: MediaQuery.sizeOf(context).width * 0.5,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -351,25 +333,20 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                           FFLocalizations.of(context).getText(
                                             '8w18i9oc' /* Notification */,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.kanit(
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .blackFontColor,
+                                                    AppColors.blackFontColor,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -413,8 +390,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   width: MediaQuery.sizeOf(context).width * 0.5,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -440,26 +416,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                             FFLocalizations.of(context).getText(
                                               'twzjasx8' /* Language */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -516,36 +485,26 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                           iconPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
+                                          color: Theme.of(context).colorScheme.surface,
+                                          textStyle: Theme.of(context).textTheme.titleSmall!
                                               .override(
                                                 font: GoogleFonts.kanit(
                                                   fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .fontWeight,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
+                                                    Theme.of(context).textTheme.bodyMedium?.color,
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontStyle,
                                               ),
                                           elevation: 0.0,
@@ -585,8 +544,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -609,26 +567,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                             FFLocalizations.of(context).getText(
                                               '965rqefa' /* Change Pincode */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -647,8 +598,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       size: 20.0,
                                     ),
                                   ),
@@ -679,8 +629,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -703,26 +652,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                             FFLocalizations.of(context).getText(
                                               '3cklnagw' /* Change Password */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -744,8 +686,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       size: 20.0,
                                     ),
                                   ),
@@ -778,21 +719,17 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               FFLocalizations.of(context).getText(
                                 'haobzufu' /* About Application */,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              style: Theme.of(context).textTheme.bodyMedium!
                                   .override(
                                     font: GoogleFonts.kanit(
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .blackFontColor,
+                                    color: AppColors.blackFontColor,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
                                   ),
                             ),
@@ -815,8 +752,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -839,26 +775,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                             FFLocalizations.of(context).getText(
                                               '5btw1cez' /* Privacy Policy */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -881,8 +810,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       size: 20.0,
                                     ),
                                   ),
@@ -902,8 +830,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   width: MediaQuery.sizeOf(context).width * 0.5,
                                   height: 50.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -925,25 +852,20 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                           FFLocalizations.of(context).getText(
                                             'gclmvwj7' /* Version */,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .override(
                                                 font: GoogleFonts.kanit(
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .blackFontColor,
+                                                    AppColors.blackFontColor,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                         ),
@@ -958,27 +880,22 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     FFLocalizations.of(context).getText(
                                       'puduuegb' /* 1.0.5 */,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    style: Theme.of(context).textTheme.bodyMedium!
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
+                                              Theme.of(context).textTheme.bodyMedium!
                                                   .fontStyle,
                                         ),
                                   ),
@@ -1011,21 +928,17 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               FFLocalizations.of(context).getText(
                                 'ozo0k2kl' /* Account */,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                              style: Theme.of(context).textTheme.bodyMedium!
                                   .override(
                                     font: GoogleFonts.kanit(
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
                                     ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .blackFontColor,
+                                    color: AppColors.blackFontColor,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
                                   ),
                             ),
@@ -1084,8 +997,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1108,26 +1020,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                             FFLocalizations.of(context).getText(
                                               'bk2xkq4f' /* Sign Out */,
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .override(
                                                   font: GoogleFonts.readexPro(
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
+                                                        Theme.of(context).textTheme.bodyMedium!
                                                             .fontStyle,
                                                   ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .blackFontColor,
+                                                  color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
                                                   fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
+                                                      Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
                                                 ),
                                           ),
@@ -1137,8 +1042,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                     size: 20.0,
                                   ),
                                 ],
@@ -1168,8 +1072,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               width: 300.0,
                               height: 120.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),

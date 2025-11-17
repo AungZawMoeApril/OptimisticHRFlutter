@@ -23,6 +23,7 @@ class AppState with ChangeNotifier {
   int _companyID = 0;
   int _employeeID = 0;
   int _userID = 0;
+  int _reportID = 0;
   bool _approve = false;
   
   // User profile state
@@ -86,6 +87,7 @@ class AppState with ChangeNotifier {
     _companyID = int.tryParse(await secureStorage.read(key: 'app_company_id') ?? '0') ?? 0;
     _employeeID = int.tryParse(await secureStorage.read(key: 'app_employee_id') ?? '0') ?? 0;
     _userID = int.tryParse(await secureStorage.read(key: 'app_user_id') ?? '0') ?? 0;
+    _reportID = int.tryParse(await secureStorage.read(key: 'app_report_id') ?? '0') ?? 0;
     _approve = (await secureStorage.read(key: 'app_approve') ?? 'false') == 'true';
   }
 
@@ -105,6 +107,7 @@ class AppState with ChangeNotifier {
   int get companyID => _companyID;
   int get employeeID => _employeeID;
   int get userID => _userID;
+  int get reportID => _reportID;
   bool get approve => _approve;
 
   String get firstName => _firstName;
@@ -121,6 +124,44 @@ class AppState with ChangeNotifier {
       await secureStorage.write(key: 'app_token', value: value);
       notifyListeners();
     }
+  }
+
+  // reportID setter and delete method
+  set reportID(int value) {
+    _reportID = value;
+    secureStorage.write(key: 'app_report_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteReportID() {
+    _reportID = 0;
+    secureStorage.delete(key: 'app_report_id');
+    notifyListeners();
+  }
+
+  // Other ID setters for compatibility
+  set companyID(int value) {
+    _companyID = value;
+    secureStorage.write(key: 'app_company_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteCompanyID() {
+    _companyID = 0;
+    secureStorage.delete(key: 'app_company_id');
+    notifyListeners();
+  }
+
+  set employeeID(int value) {
+    _employeeID = value;
+    secureStorage.write(key: 'app_employee_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteEmployeeID() {
+    _employeeID = 0;
+    secureStorage.delete(key: 'app_employee_id');
+    notifyListeners();
   }
 
   Future<void> updateProfile({
@@ -181,6 +222,7 @@ class AppState with ChangeNotifier {
     _companyID = 0;
     _employeeID = 0;
     _userID = 0;
+    _reportID = 0;
     _approve = false;
 
     _firstName = '';

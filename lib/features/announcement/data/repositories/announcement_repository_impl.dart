@@ -29,7 +29,8 @@ class AnnouncementRepositoryImpl implements AnnouncementRepository {
         final entities = models.map((model) => model.toEntity()).toList();
         return Right(entities);
       } catch (e) {
-        return Left(ServerFailure(e.toString()));
+        // Log error: e.toString()
+        return Left(ServerFailure());
       }
     } else {
       try {
@@ -65,7 +66,8 @@ class AnnouncementRepositoryImpl implements AnnouncementRepository {
 
       return const Right(null);
     } catch (e) {
-      return Left(CacheFailure(e.toString()));
+      // Log error: e.toString()
+      return Left(CacheFailure());
     }
   }
 

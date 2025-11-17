@@ -26,7 +26,7 @@ class AnnouncementModel implements Announcement {
 
   @override
   $AnnouncementCopyWith<Announcement> get copyWith => 
-      $AnnouncementCopyWith<Announcement>(this, (object) => object as Announcement);
+      $AnnouncementCopyWith<Announcement>(this, (object) => object);
 
   const AnnouncementModel({
     required this.id,

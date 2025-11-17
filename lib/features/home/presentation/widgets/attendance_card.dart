@@ -125,8 +125,7 @@ class AttendanceCard extends StatelessWidget {
                     ? const CircularProgressIndicator()
                     : Text(
                         attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
-                        style: FlutterFlowTheme.of(context)
-                            .titleSmall
+                        style: Theme.of(context).textTheme.titleSmall!
                             .copyWith(color: Colors.white),
                       ),
                 ),

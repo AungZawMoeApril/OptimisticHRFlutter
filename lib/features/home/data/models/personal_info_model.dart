@@ -1,5 +1,4 @@
 import '../../domain/entities/personal_info.dart';
-import '/backend/api_requests/api_calls.dart';
 import 'package:hr_app/core/utils/app_utils.dart';
 
 class PersonalInfoModel extends PersonalInfo {

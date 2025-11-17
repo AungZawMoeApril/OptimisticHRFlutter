@@ -86,7 +86,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
         shape: BoxShape.circle,
         color: filled
             ? Theme.of(context).colorScheme.primary
-            : Theme.of(context).colorScheme.surfaceVariant,
+            : Theme.of(context).colorScheme.surfaceContainerHighest,
       ),
     );
   }
@@ -101,7 +101,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
             onPressed: isLoading ? null : () => _handlePinInput(number),
             style: TextButton.styleFrom(
               shape: const CircleBorder(),
-              backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+              backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
             ),
             child: Text(
               number,
@@ -117,15 +117,15 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         automaticallyImplyLeading: true,
         title: Text(
           'Enter PIN',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontFamily: GoogleFonts.outfit().fontFamily,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 22.0,
               ),
         ),
@@ -197,7 +197,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                               style: TextButton.styleFrom(
                                 shape: const CircleBorder(),
                                 backgroundColor:
-                                    Theme.of(context).colorScheme.surfaceVariant,
+                                    Theme.of(context).colorScheme.surfaceContainerHighest,
                               ),
                               child: const Icon(Icons.backspace),
                             ),

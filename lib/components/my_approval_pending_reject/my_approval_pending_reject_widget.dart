@@ -102,20 +102,16 @@ class _MyApprovalPendingRejectWidgetState
                     ),
                     style: Theme.of(context).textTheme.$1?.copyWith(
                           font: GoogleFonts.outfit(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .headlineSmall
+                            fontWeight: Theme.of(context).textTheme.headlineSmall!
                                 .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .headlineSmall
+                            fontStyle: Theme.of(context).textTheme.headlineSmall!
                                 .fontStyle,
                           ),
                           fontSize: 17.0,
                           letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .headlineSmall
+                          fontWeight: Theme.of(context).textTheme.headlineSmall!
                               .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .headlineSmall
+                          fontStyle: Theme.of(context).textTheme.headlineSmall!
                               .fontStyle,
                         ),
                   ),
@@ -140,19 +136,15 @@ class _MyApprovalPendingRejectWidgetState
                       labelStyle:
                           Theme.of(context).textTheme.$1?.copyWith(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontWeight: Theme.of(context).textTheme.labelMedium!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontStyle: Theme.of(context).textTheme.labelMedium!
                                       .fontStyle,
                                 ),
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                fontWeight: Theme.of(context).textTheme.labelMedium!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                fontStyle: Theme.of(context).textTheme.labelMedium!
                                     .fontStyle,
                               ),
                       hintText: FFLocalizations.of(context).getText(
@@ -161,19 +153,15 @@ class _MyApprovalPendingRejectWidgetState
                       hintStyle:
                           Theme.of(context).textTheme.$1?.copyWith(
                                 font: GoogleFonts.readexPro(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontWeight: Theme.of(context).textTheme.labelMedium!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontStyle: Theme.of(context).textTheme.labelMedium!
                                       .fontStyle,
                                 ),
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                fontWeight: Theme.of(context).textTheme.labelMedium!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                fontStyle: Theme.of(context).textTheme.labelMedium!
                                     .fontStyle,
                               ),
                       enabledBorder: OutlineInputBorder(
@@ -210,16 +198,13 @@ class _MyApprovalPendingRejectWidgetState
                     ),
                     style: Theme.of(context).textTheme.$1?.copyWith(
                           font: GoogleFonts.readexPro(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                            fontWeight: Theme.of(context).textTheme.bodyMedium!
                                 .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                            fontStyle: Theme.of(context).textTheme.bodyMedium!
                                 .fontStyle,
                           ),
                           letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
+                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                               .fontWeight,
                           fontStyle:
                               context.textTheme.bodyMedium.fontStyle,
@@ -257,24 +242,19 @@ class _MyApprovalPendingRejectWidgetState
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: Theme.of(context).colorScheme.secondaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
+                        textStyle: Theme.of(context).textTheme.titleSmall!
                             .override(
                               font: GoogleFonts.readexPro(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontWeight: Theme.of(context).textTheme.titleSmall!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
+                                fontStyle: Theme.of(context).textTheme.titleSmall!
                                     .fontStyle,
                               ),
                               color: Theme.of(context).colorScheme.secondaryText,
                               letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .titleSmall
+                              fontWeight: Theme.of(context).textTheme.titleSmall!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
+                              fontStyle: Theme.of(context).textTheme.titleSmall!
                                   .fontStyle,
                             ),
                         elevation: 3.0,
@@ -432,20 +412,16 @@ class _MyApprovalPendingRejectWidgetState
                         textStyle:
                             Theme.of(context).textTheme.$1?.copyWith(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                                   color: Colors.white,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
+                                  fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
                                 ),
                         elevation: 3.0,

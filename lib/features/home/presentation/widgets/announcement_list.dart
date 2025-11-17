@@ -126,13 +126,13 @@ class AnnouncementList extends StatelessWidget {
                                   height: 80,
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) => Container(
-                                    color: theme.colorScheme.surfaceVariant,
+                                    color: theme.colorScheme.surfaceContainerHighest,
                                     child: const Center(
                                       child: CircularProgressIndicator(),
                                     ),
                                   ),
                                   errorWidget: (context, url, error) => Container(
-                                    color: theme.colorScheme.surfaceVariant,
+                                    color: theme.colorScheme.surfaceContainerHighest,
                                     child: Icon(
                                       Icons.error_outline,
                                       color: theme.colorScheme.error,

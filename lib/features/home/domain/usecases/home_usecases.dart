@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/errors/failures.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../entities/personal_info.dart';
 import '../entities/announcement.dart';

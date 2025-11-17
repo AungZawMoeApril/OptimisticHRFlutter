@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h_r_optimistic_mobile/core/presentation/base/base_view.dart';
-import '../entities/overtime_request.dart';
-import '../repositories/overtime_repository.dart';
+import '../../domain/entities/overtime_entities.dart';
+import '../../domain/repositories/overtime_repository.dart';
 
 class OvertimeViewModel extends BaseViewModel {
   final OvertimeRepository _repository;
@@ -22,20 +22,14 @@ class OvertimeViewModel extends BaseViewModel {
 
   Future<void> loadOvertimeRequests(String userId) async {
     setBusy(true);
-    final result = await _repository.getOvertimeRequests(
-      userId: userId,
-      startDate: _selectedStartDate,
-      endDate: _selectedEndDate,
-      status: _selectedStatus,
-    );
-
-    result.fold(
-      (failure) => setError(failure.message),
-      (requests) {
-        _overtimeRequests = requests;
-        notifyListeners();
-      },
-    );
+    try {
+      final requests = await _repository.getOvertimeRequests(userId);
+      // TODO: Apply client-side filtering for startDate, endDate, status
+      _overtimeRequests = requests;
+      notifyListeners();
+    } catch (e) {
+      setError('Failed to load overtime requests');
+    }
     setBusy(false);
   }
 

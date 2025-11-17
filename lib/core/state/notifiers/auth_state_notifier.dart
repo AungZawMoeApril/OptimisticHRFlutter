@@ -1,5 +1,4 @@
 import 'base_state_notifier.dart';
-import '../../storage/storage_manager.dart' as storage_manager;
 
 class AuthStateNotifier extends BaseStateNotifier {
   String? _token;

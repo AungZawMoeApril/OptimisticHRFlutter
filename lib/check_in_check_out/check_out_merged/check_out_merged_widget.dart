@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'check_out_merged_model.dart';
+import '/core/theme/app_colors.dart';
 export 'check_out_merged_model.dart';
 
 class CheckOutMergedWidget extends StatefulWidget {
@@ -249,18 +250,15 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                 ),
                 style: Theme.of(context).textTheme.$1?.copyWith(
                       font: GoogleFonts.outfit(
-                        fontWeight: FlutterFlowTheme.of(context)
-                            .headlineMedium
+                        fontWeight: Theme.of(context).textTheme.headlineMedium!
                             .fontWeight,
-                        fontStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
+                        fontStyle: Theme.of(context).textTheme.headlineMedium!
                             .fontStyle,
                       ),
                       color: Theme.of(context).colorScheme.primaryText,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
-                      fontWeight: FlutterFlowTheme.of(context)
-                          .headlineMedium
+                      fontWeight: Theme.of(context).textTheme.headlineMedium!
                           .fontWeight,
                       fontStyle:
                           context.headlineMedium.fontStyle,
@@ -295,8 +293,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                 height:
                                     MediaQuery.sizeOf(context).height * 0.272,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Theme.of(context).colorScheme.surface,
                                 ),
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
@@ -360,8 +357,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                   height:
                                       MediaQuery.sizeOf(context).height * 0.65,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -394,30 +390,20 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                         '13hqplrb' /* Work Location */,
                                                       ),
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                                 lineHeight: 1.0,
                                                               ),
@@ -436,30 +422,20 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                       textAlign:
                                                           TextAlign.justify,
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                                 lineHeight: 2.0,
                                                               ),
@@ -476,8 +452,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                         thickness: 1.0,
                                         indent: 10.0,
                                         endIndent: 10.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .themeColor,
+                                        color: Theme.of(context).colorScheme.primary,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -501,9 +476,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                     Icon(
                                                       Icons.location_on,
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .themeColor,
+                                                          Theme.of(context).colorScheme.primary,
                                                       size: 24.0,
                                                     ),
                                                     Text(
@@ -515,30 +488,20 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                           TextAlign.start,
                                                       maxLines: 3,
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                                          Theme.of(context).textTheme.bodyMedium!
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                                 lineHeight: 3.0,
                                                               ),
@@ -561,8 +524,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                               height: 370.0,
                                               decoration: BoxDecoration(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                    Theme.of(context).colorScheme.surface,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -597,35 +559,23 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                   .getText(
                                                                 '2zw9z0p9' /* Check In   : */,
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
+                                                              style: Theme.of(context).textTheme.bodyMedium!
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .themeColor,
+                                                                    color: Theme.of(context).colorScheme.primary,
                                                                     fontSize:
                                                                         14.0,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -641,30 +591,20 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                             child: Text(
                                                               AppState()
                                                                   .clockInTime,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
+                                                              style: Theme.of(context).textTheme.bodyMedium!
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -728,9 +668,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                   Icon(
                                                                     Icons
                                                                         .location_on,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .themeColor,
+                                                                    color: Theme.of(context).colorScheme.primary,
                                                                     size: 24.0,
                                                                   ),
                                                                   Text(
@@ -744,9 +682,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                         TextAlign
                                                                             .start,
                                                                     maxLines: 3,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -757,11 +693,9 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                           ),
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
+                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                               .fontStyle,
                                                                           lineHeight:
                                                                               3.0,
@@ -880,9 +814,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                   height: 60.0,
                                                                   decoration:
                                                                       BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
+                                                                    color: Theme.of(context).colorScheme.surface,
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             0.0),
@@ -907,8 +839,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                       Icon(
                                                                         Icons
                                                                             .camera_alt,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
+                                                                        color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                         size:
                                                                             24.0,
                                                                       ),
@@ -917,8 +848,7 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                             .getText(
                                                                           'f9afhcmq' /* Take a photo* */,
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -995,13 +925,9 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                       height: 100.0,
                                                       decoration: BoxDecoration(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bkCheckin,
+                                                            AppColors.bkCheckin,
                                                         border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
+                                                          color: Theme.of(context).colorScheme.surface,
                                                           width: 0.0,
                                                         ),
                                                       ),
@@ -1028,30 +954,20 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                         context)
                                                                     .languageCode,
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
+                                                              style: Theme.of(context).textTheme.bodyMedium!
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1064,32 +980,22 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                                                                       .of(context)
                                                                   .languageCode,
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
+                                                            style: Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   fontSize:
                                                                       50.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1427,20 +1333,16 @@ class _CheckOutMergedWidgetState extends State<CheckOutMergedWidget> {
                           textStyle:
                               Theme.of(context).textTheme.$1?.copyWith(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontWeight: Theme.of(context).textTheme.titleSmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontStyle: Theme.of(context).textTheme.titleSmall!
                                           .fontStyle,
                                     ),
                                     color: Colors.white,
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                           elevation: 3.0,

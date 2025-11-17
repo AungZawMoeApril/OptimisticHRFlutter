@@ -37,3 +37,81 @@ String formatTimeOfDay(TimeOfDay timeOfDay) {
       now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
   return DateFormat('HH:mm').format(dt);
 }
+
+// Leave management functions
+double leaveBalanceDayFunction(dynamic leaveData, [dynamic leaveType]) {
+  try {
+    if (leaveData == null) return 0.0;
+    
+    // If leaveData is a list, find the item matching the leaveType
+    if (leaveData is List) {
+      if (leaveType == null) return 0.0;
+      final leaveTypeStr = leaveType.toString();
+      final item = leaveData.firstWhere(
+        (element) => element is Map && 
+            (element['leaveTypeId']?.toString() == leaveTypeStr ||
+             element['timeOffID']?.toString() == leaveTypeStr ||
+             element['id']?.toString() == leaveTypeStr),
+        orElse: () => null,
+      );
+      if (item != null && item is Map) {
+        return (item['balanceDays'] as num?)?.toDouble() ?? 0.0;
+      }
+      return 0.0;
+    }
+    
+    // If leaveData is a map, just return the balance
+    if (leaveData is Map) {
+      return (leaveData['balanceDays'] as num?)?.toDouble() ?? 0.0;
+    }
+    return 0.0;
+  } catch (e) {
+    return 0.0;
+  }
+}
+
+double leaveAvailableDayFunction(dynamic leaveData, [dynamic leaveType]) {
+  try {
+    if (leaveData == null) return 0.0;
+    
+    // If leaveData is a list, find the item matching the leaveType
+    if (leaveData is List) {
+      if (leaveType == null) return 0.0;
+      final leaveTypeStr = leaveType.toString();
+      final item = leaveData.firstWhere(
+        (element) => element is Map && 
+            (element['leaveTypeId']?.toString() == leaveTypeStr ||
+             element['timeOffID']?.toString() == leaveTypeStr ||
+             element['id']?.toString() == leaveTypeStr),
+        orElse: () => null,
+      );
+      if (item != null && item is Map) {
+        return (item['availableDays'] as num?)?.toDouble() ?? 0.0;
+      }
+      return 0.0;
+    }
+    
+    // If leaveData is a map, just return the available days
+    if (leaveData is Map) {
+      return (leaveData['availableDays'] as num?)?.toDouble() ?? 0.0;
+    }
+    return 0.0;
+  } catch (e) {
+    return 0.0;
+  }
+}
+
+List<String> leaveAttachmentKHAMethod(List<dynamic>? uploadedFileUrls) {
+  if (uploadedFileUrls == null || uploadedFileUrls.isEmpty) {
+    return [];
+  }
+  return uploadedFileUrls
+      .map((e) => e.toString())
+      .where((url) => url.isNotEmpty)
+      .toList();
+}
+
+String changeDateFormatYearMonthDay(DateTime? date) {
+  if (date == null) return '';
+  return DateFormat('yyyy-MM-dd').format(date);
+}

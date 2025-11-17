@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'check_in_model.dart';
+import '/core/theme/app_colors.dart';
 export 'check_in_model.dart';
 
 class CheckInWidget extends StatefulWidget {
@@ -123,8 +124,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
               ),
               style: Theme.of(context).textTheme.$1?.copyWith(
                     font: GoogleFonts.outfit(
-                      fontWeight: FlutterFlowTheme.of(context)
-                          .headlineMedium
+                      fontWeight: Theme.of(context).textTheme.headlineMedium!
                           .fontWeight,
                       fontStyle:
                           context.headlineMedium.fontStyle,
@@ -164,8 +164,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: MediaQuery.sizeOf(context).height * 0.272,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                               child: Container(
                                 width: double.infinity,
@@ -189,8 +188,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: MediaQuery.sizeOf(context).height * 0.548,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -214,8 +212,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                             ),
                                           ),
                                           unselectedWidgetColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
+                                              Theme.of(context).textTheme.bodyMedium?.color,
                                         ),
                                         child: Checkbox(
                                           value: _model.forgotCheckInValue ??=
@@ -225,19 +222,15 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                 _model.forgotCheckInValue =
                                                     newValue!);
                                           },
-                                          side: (FlutterFlowTheme.of(context)
-                                                      .secondaryText !=
+                                          side: (Theme.of(context).textTheme.bodyMedium?.color !=
                                                   null)
                                               ? BorderSide(
                                                   width: 2,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
+                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
                                                 )
                                               : null,
                                           activeColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           checkColor:
                                               Theme.of(context).colorScheme.outline,
                                         ),
@@ -246,27 +239,22 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                         FFLocalizations.of(context).getText(
                                           '986f8ws7' /* Forgot Check-in */,
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -284,8 +272,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                             ),
                                           ),
                                           unselectedWidgetColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
+                                              Theme.of(context).textTheme.bodyMedium?.color,
                                         ),
                                         child: Checkbox(
                                           value: _model.offSiteValue ??= false,
@@ -293,19 +280,15 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                             safeSetState(() => _model
                                                 .offSiteValue = newValue!);
                                           },
-                                          side: (FlutterFlowTheme.of(context)
-                                                      .secondaryText !=
+                                          side: (Theme.of(context).textTheme.bodyMedium?.color !=
                                                   null)
                                               ? BorderSide(
                                                   width: 2,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
+                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
                                                 )
                                               : null,
                                           activeColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .themeColor,
+                                              Theme.of(context).colorScheme.primary,
                                           checkColor:
                                               Theme.of(context).colorScheme.outline,
                                         ),
@@ -314,27 +297,22 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                         FFLocalizations.of(context).getText(
                                           'dlnhkwc2' /* Off-site */,
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                    Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
                                               ),
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
                                       ),
@@ -345,8 +323,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                     thickness: 1.0,
                                     indent: 10.0,
                                     endIndent: 10.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -368,33 +345,23 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                       .getText(
                                                     'x77a9f0f' /* Work Location */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                         lineHeight: 1.0,
                                                       ),
@@ -403,9 +370,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                   width: 15.0,
                                                   height: 15.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .timeCheckin,
+                                                    color: AppColors.timeCheckin,
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
@@ -413,9 +378,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                   width: 15.0,
                                                   height: 15.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
+                                                    color: Theme.of(context).colorScheme.error,
                                                     shape: BoxShape.circle,
                                                   ),
                                                 ),
@@ -424,38 +387,26 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                       .getText(
                                                     'w4zh97xc' /* You are not within the specifi... */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
+                                                            Theme.of(context).colorScheme.error,
                                                         fontSize: 10.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -482,9 +433,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         valueColor:
                                                             AlwaysStoppedAnimation<
                                                                 Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .themeColor,
+                                                          Theme.of(context).colorScheme.primary,
                                                         ),
                                                       ),
                                                     ),
@@ -510,30 +459,20 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         textAlign:
                                                             TextAlign.justify,
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                   lineHeight:
                                                                       2.0,
@@ -554,8 +493,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                     thickness: 1.0,
                                     indent: 10.0,
                                     endIndent: 10.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -579,9 +517,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                 children: [
                                                   Icon(
                                                     Icons.location_on,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .themeColor,
+                                                    color: Theme.of(context).colorScheme.primary,
                                                     size: 24.0,
                                                   ),
                                                   Text(
@@ -592,33 +528,23 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                     ),
                                                     textAlign: TextAlign.start,
                                                     maxLines: 3,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                           lineHeight: 3.0,
                                                         ),
@@ -636,8 +562,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                     thickness: 1.0,
                                     indent: 10.0,
                                     endIndent: 10.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -648,8 +573,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                 1.0,
                                         height: 250.0,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Theme.of(context).colorScheme.surface,
                                         ),
                                         child: Padding(
                                           padding:
@@ -666,33 +590,23 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                       .getText(
                                                     'hwfwyach' /* Details */,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -710,71 +624,49 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
+                                                        Theme.of(context).textTheme.labelMedium!
                                                             .override(
                                                               font: GoogleFonts
                                                                   .readexPro(
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
+                                                                fontWeight: Theme.of(context).textTheme.labelMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
+                                                                fontStyle: Theme.of(context).textTheme.labelMedium!
                                                                     .fontStyle,
                                                               ),
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
+                                                                  Theme.of(context).textTheme.labelMedium!
                                                                       .fontWeight,
                                                               fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
+                                                                  Theme.of(context).textTheme.labelMedium!
                                                                       .fontStyle,
                                                             ),
                                                     alignLabelWithHint: false,
                                                     hintStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
+                                                        Theme.of(context).textTheme.labelMedium!
                                                             .override(
                                                               font: GoogleFonts
                                                                   .readexPro(
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
+                                                                fontWeight: Theme.of(context).textTheme.labelMedium!
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
+                                                                fontStyle: Theme.of(context).textTheme.labelMedium!
                                                                     .fontStyle,
                                                               ),
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
+                                                                  Theme.of(context).textTheme.labelMedium!
                                                                       .fontWeight,
                                                               fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
+                                                                  Theme.of(context).textTheme.labelMedium!
                                                                       .fontStyle,
                                                             ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
+                                                            Theme.of(context).colorScheme.surface,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -785,9 +677,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                            Theme.of(context).colorScheme.primary,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -798,9 +688,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
+                                                            Theme.of(context).colorScheme.error,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -811,9 +699,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
+                                                            Theme.of(context).colorScheme.error,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -821,33 +707,23 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                               8.0),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                   validator: _model
@@ -878,9 +754,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                         height: 60.0,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
+                                                          color: Theme.of(context).colorScheme.surface,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -973,9 +847,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                               Icon(
                                                                 Icons
                                                                     .camera_alt,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
+                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
                                                                 size: 24.0,
                                                               ),
                                                               Text(
@@ -984,28 +856,20 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                                     .getText(
                                                                   'yix9tc27' /* Take a photo* */,
                                                                 ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                style: Theme.of(context).textTheme.bodyMedium!
                                                                     .override(
                                                                       font: GoogleFonts
                                                                           .readexPro(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
+                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
+                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -1053,13 +917,9 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                   width: double.infinity,
                                                   height: 100.0,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bkCheckin,
+                                                    color: AppColors.bkCheckin,
                                                     border: Border.all(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                       width: 0.0,
                                                     ),
                                                   ),
@@ -1080,30 +940,20 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                                   .languageCode,
                                                         ),
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                       ),
@@ -1117,32 +967,22 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                                   .languageCode,
                                                         ),
                                                         style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
+                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                                   fontSize:
                                                                       50.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
+                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                       ),
@@ -1161,8 +1001,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                     thickness: 1.0,
                                     indent: 0.0,
                                     endIndent: 0.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: Theme.of(context).textTheme.bodyMedium?.color,
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional(0.0, 1.0),
@@ -1370,38 +1209,26 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .themeColor,
+                                                  color: Theme.of(context).colorScheme.primary,
                                                   textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
+                                                      Theme.of(context).textTheme.titleSmall!
                                                           .override(
                                                             font: GoogleFonts
                                                                 .readexPro(
                                                               fontWeight:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontWeight,
                                                               fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
+                                                                  Theme.of(context).textTheme.titleSmall!
                                                                       .fontStyle,
                                                             ),
                                                             color: Colors.white,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                Theme.of(context).textTheme.titleSmall!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
+                                                                Theme.of(context).textTheme.titleSmall!
                                                                     .fontStyle,
                                                           ),
                                                   elevation: 3.0,
@@ -1413,9 +1240,7 @@ class _CheckInWidgetState extends State<CheckInWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   disabledColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
+                                                      Theme.of(context).colorScheme.surface,
                                                 ),
                                               ),
                                             ),

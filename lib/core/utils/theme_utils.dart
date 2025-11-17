@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class StateUtils {
   static void safeSetState(State state, VoidCallback fn) {
     if (state.mounted) {
+      // ignore: invalid_use_of_protected_member
       state.setState(fn);
     }
   }
@@ -56,7 +57,7 @@ dynamic getJsonField(
   }
 }
 
-ThemeData wrapInMaterialDatePickerTheme(BuildContext context, Widget child,
+Widget wrapInMaterialDatePickerTheme(BuildContext context, Widget child,
     {required Color headerBackgroundColor,
     required Color headerForegroundColor,
     required TextStyle headerTextStyle,
@@ -84,7 +85,7 @@ ThemeData wrapInMaterialDatePickerTheme(BuildContext context, Widget child,
   );
 }
 
-ThemeData wrapInMaterialTimePickerTheme(BuildContext context, Widget child,
+Widget wrapInMaterialTimePickerTheme(BuildContext context, Widget child,
     {required Color headerBackgroundColor,
     required Color headerForegroundColor,
     required TextStyle headerTextStyle,

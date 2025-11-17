@@ -88,24 +88,19 @@ class _DeleteOvertimeRequestWidgetState
                           'il8i236t' /* Confirm to Cancel Request */,
                         ),
                         textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
+                        style: Theme.of(context).textTheme.headlineMedium!
                             .override(
                               font: GoogleFonts.outfit(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineMedium
+                                fontWeight: Theme.of(context).textTheme.headlineMedium!
                                     .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineMedium
+                                fontStyle: Theme.of(context).textTheme.headlineMedium!
                                     .fontStyle,
                               ),
                               fontSize: 19.0,
                               letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .headlineMedium
+                              fontWeight: Theme.of(context).textTheme.headlineMedium!
                                   .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .headlineMedium
+                              fontStyle: Theme.of(context).textTheme.headlineMedium!
                                   .fontStyle,
                             ),
                       ),
@@ -119,24 +114,19 @@ class _DeleteOvertimeRequestWidgetState
                               'fkposcmg' /* Do you want to cancel this req... */,
                             ),
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
+                            style: Theme.of(context).textTheme.labelMedium!
                                 .override(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                    fontWeight: Theme.of(context).textTheme.labelMedium!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                    fontStyle: Theme.of(context).textTheme.labelMedium!
                                         .fontStyle,
                                   ),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontWeight: Theme.of(context).textTheme.labelMedium!
                                       .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                  fontStyle: Theme.of(context).textTheme.labelMedium!
                                       .fontStyle,
                                 ),
                           ),
@@ -167,24 +157,19 @@ class _DeleteOvertimeRequestWidgetState
                                 20.0, 0.0, 20.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: Theme.of(context).colorScheme.surface,
                             textStyle:
                                 Theme.of(context).textTheme.$1?.copyWith(
                                       font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                        fontWeight: Theme.of(context).textTheme.bodyLarge!
                                             .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                        fontStyle: Theme.of(context).textTheme.bodyLarge!
                                             .fontStyle,
                                       ),
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                      fontWeight: Theme.of(context).textTheme.bodyLarge!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                      fontStyle: Theme.of(context).textTheme.bodyLarge!
                                           .fontStyle,
                                     ),
                             elevation: 0.0,
@@ -209,19 +194,15 @@ class _DeleteOvertimeRequestWidgetState
                           textStyle:
                               Theme.of(context).textTheme.$1?.copyWith(
                                     font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontWeight: Theme.of(context).textTheme.titleSmall!
                                           .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                      fontStyle: Theme.of(context).textTheme.titleSmall!
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                    fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),
                           elevation: 0.0,

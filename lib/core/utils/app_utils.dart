@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// FlutterFlow model base class
+abstract class FlutterFlowModel<T extends Widget> {
+  void initState(BuildContext context) {}
+  void dispose() {}
+}
+
+// Helper function to create FlutterFlow models
+T createModel<T extends FlutterFlowModel>(BuildContext context, T Function() builder) {
+  final model = builder();
+  model.initState(context);
+  return model;
+}
+
 class AppUtils {
   static void safeSetState(VoidCallback fn) {
     // Only call setState if the widget is mounted
@@ -35,6 +48,12 @@ class AppUtils {
       return 'now';
     }
   }
+}
+
+// Helper function for providing default values
+T valueOrDefault<T>(T? value, T defaultValue) {
+  return value ?? defaultValue;
+}
 
   static void showSnackBar(
     BuildContext context,

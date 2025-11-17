@@ -142,8 +142,7 @@ class _LeaveAttachmentModelWidgetState
                                     width: double.infinity,
                                     height: 150.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
                                     child: InkWell(
                                       splashColor: Colors.transparent,

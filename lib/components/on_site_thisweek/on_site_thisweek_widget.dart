@@ -134,8 +134,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                         5.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.location_pin,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      color: Theme.of(context).textTheme.bodyMedium?.color,
                                       size: 24.0,
                                     ),
                                   ),
@@ -145,29 +144,23 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                         widget.location?.toString(),
                                         'location',
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .override(
                                             font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                  Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: Theme.of(context).textTheme.bodyMedium?.color,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                Theme.of(context).textTheme.bodyMedium!
                                                     .fontStyle,
                                           ),
                                     ),
@@ -179,8 +172,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                       width: 20.0,
                                       height: 20.0,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        color: Theme.of(context).colorScheme.surface,
                                       ),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -193,8 +185,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                         },
                                         child: Icon(
                                           Icons.keyboard_arrow_down_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                          color: Theme.of(context).textTheme.bodyLarge?.color,
                                           size: 24.0,
                                         ),
                                       ),
@@ -228,9 +219,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                 width: 80.0,
                                                 height: 20.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
@@ -242,21 +231,15 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                       '7ne1gt6a' /* Check In */,
                                                     ),
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
                                                           color: () {
@@ -279,14 +262,10 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                           }(),
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -296,9 +275,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                 width: 100.0,
                                                 height: 20.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Text(
                                                   FFLocalizations.of(context)
@@ -306,21 +283,15 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                     'oekofsks' /* Check Out */,
                                                   ),
                                                   textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color: () {
@@ -343,14 +314,10 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                         }(),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -389,9 +356,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                 width: 80.0,
                                                 height: 20.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
@@ -406,21 +371,15 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                       '    -',
                                                     ),
                                                     textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    style: Theme.of(context).textTheme.bodyMedium!
                                                         .override(
                                                           font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontWeight,
                                                             fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
+                                                                Theme.of(context).textTheme.bodyMedium!
                                                                     .fontStyle,
                                                           ),
                                                           color: () {
@@ -443,14 +402,10 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                           }(),
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -460,9 +415,7 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                 width: 100.0,
                                                 height: 20.0,
                                                 decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
+                                                  color: Theme.of(context).colorScheme.surface,
                                                 ),
                                                 child: Text(
                                                   valueOrDefault<String>(
@@ -473,21 +426,15 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                     '-',
                                                   ),
                                                   textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
+                                                  style: Theme.of(context).textTheme.bodyMedium!
                                                       .override(
                                                         font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
+                                                              Theme.of(context).textTheme.bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                         color: () {
@@ -510,14 +457,10 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                                         }(),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
+                                                            Theme.of(context).textTheme.bodyMedium!
                                                                 .fontStyle,
                                                       ),
                                                 ),
@@ -570,30 +513,24 @@ class _OnSiteThisweekWidgetState extends State<OnSiteThisweekWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .themeColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
+                                        color: Theme.of(context).colorScheme.primary,
+                                        textStyle: Theme.of(context).textTheme.titleSmall!
                                             .override(
                                               font: GoogleFonts.readexPro(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
+                                                    Theme.of(context).textTheme.titleSmall!
                                                         .fontStyle,
                                               ),
                                               color: Colors.white,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
+                                                  Theme.of(context).textTheme.titleSmall!
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
+                                                  Theme.of(context).textTheme.titleSmall!
                                                       .fontStyle,
                                             ),
                                         elevation: 0.0,

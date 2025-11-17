@@ -55,7 +55,7 @@ class _ContactStaffPageState extends State<ContactStaffPage> {
         canPop: false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.surface,
             automaticallyImplyLeading: false,
@@ -124,7 +124,7 @@ class _ContactStaffPageState extends State<ContactStaffPage> {
                   child: contactStaffProvider.isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : contactStaffProvider.error != null
-                          ? Center(child: Text(contactStaffProvider.error!))
+                          ? Center(child: Text(contactStaffProvider.error))
                           : ListView.builder(
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,

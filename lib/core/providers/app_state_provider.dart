@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import '../storage/boxes.dart';
 import '../storage/storage_service.dart';
-import '../storage/storage_migration.dart';
 
 class AppStateProvider extends ChangeNotifier {
   final IStorageService _storage;
   
-  AppStateProvider(this._storage);
+  AppStateProvider(this._storage) {
+    _loadPersistedState();
+  }
 
   // Theme
   ThemeMode _themeMode = ThemeMode.system;
@@ -42,7 +43,7 @@ class AppStateProvider extends ChangeNotifier {
   bool get isPinVerified => _isPinVerified;
 
   Future<void> setPinCode(String pin) async {
-    await _storage.write('pinCode', pin);
+    await _storage.setValue<String>(Boxes.settings, 'pinCode', pin);
     _pinCode = pin;
     notifyListeners();
   }
@@ -65,80 +66,55 @@ class AppStateProvider extends ChangeNotifier {
   double? _clockInLongitude;
   double? get clockInLongitude => _clockInLongitude;
 
-  AppStateProvider() {
-    _loadPersistedState();
-  }
-
   Future<void> _loadPersistedState() async {
     // Load theme
-    final savedTheme = _storage.read('themeMode');
+    final savedTheme = await _storage.getValue<String>(Boxes.settings, 'themeMode');
     if (savedTheme != null) {
       _themeMode = ThemeMode.values.firstWhere(
         (e) => e.toString() == savedTheme,
-      );
-    }
-
-    // Load PIN code
-    _pinCode = await _storage.read('pinCode');
         orElse: () => ThemeMode.system,
       );
     }
 
+    // Load PIN code
+    _pinCode = await _storage.getValue<String>(Boxes.settings, 'pinCode');
+
     // Load locale
-    final savedLocale = _storage.read('locale');
+    final savedLocale = await _storage.getValue<String>(Boxes.settings, 'locale');
     if (savedLocale != null) {
       _locale = Locale(savedLocale);
     }
 
     // Load auth state
-    _token = _storage.read('token');
-    _userId = _storage.read('userId');
-    _companyId = _storage.read('companyId');
-    _employeeId = _storage.read('employeeId');
+    _token = await _storage.getValue<String>(Boxes.auth, 'token');
+    _userId = await _storage.getValue<String>(Boxes.auth, 'userId');
+    _companyId = await _storage.getValue<String>(Boxes.auth, 'companyId');
+    _employeeId = await _storage.getValue<String>(Boxes.auth, 'employeeId');
 
     // Load location state
-    _clockInTime = _storage.read('clockInTime');
-    _clockInLocation = _storage.read('clockInLocation');
-    _clockInLatitude = _storage.read('clockInLatitude');
-    _clockInLongitude = _storage.read('clockInLongitude');
+    _clockInTime = await _storage.getValue<String>(Boxes.timeTracking, 'clockInTime');
+    _clockInLocation = await _storage.getValue<String>(Boxes.timeTracking, 'clockInLocation');
+    _clockInLatitude = await _storage.getValue<double>(Boxes.timeTracking, 'clockInLatitude');
+    _clockInLongitude = await _storage.getValue<double>(Boxes.timeTracking, 'clockInLongitude');
 
     notifyListeners();
   }
 
   // Theme Methods
-  void setThemeMode(ThemeMode mode) {
+  Future<void> setThemeMode(ThemeMode mode) async {
     _themeMode = mode;
-    _storage.write('themeMode', mode.toString());
+    await _storage.setValue<String>(Boxes.settings, 'themeMode', mode.toString());
     notifyListeners();
   }
 
   // Locale Methods
-  void setLocale(String languageCode) {
+  Future<void> setLocale(String languageCode) async {
     _locale = Locale(languageCode);
-    _storage.write('locale', languageCode);
+    await _storage.setValue<String>(Boxes.settings, 'locale', languageCode);
     notifyListeners();
   }
 
   // Auth Methods
-  void setAuthState({
-    required String token,
-    required String userId,
-    required String companyId,
-    required String employeeId,
-  }) {
-    _token = token;
-    _userId = userId;
-    _companyId = companyId;
-    _employeeId = employeeId;
-
-    _storage.write('token', token);
-    _storage.write('userId', userId);
-    _storage.write('companyId', companyId);
-    _storage.write('employeeId', employeeId);
-
-    notifyListeners();
-  }
-
   Future<void> setAuthState({
     required String token,
     required String userId,
@@ -150,58 +126,58 @@ class AppStateProvider extends ChangeNotifier {
     _companyId = companyId;
     _employeeId = employeeId;
 
-    await _storage.write('token', token);
-    await _storage.write('userId', userId);
-    await _storage.write('companyId', companyId);
-    await _storage.write('employeeId', employeeId);
+    await _storage.setValue<String>(Boxes.auth, 'token', token);
+    await _storage.setValue<String>(Boxes.auth, 'userId', userId);
+    await _storage.setValue<String>(Boxes.auth, 'companyId', companyId);
+    await _storage.setValue<String>(Boxes.auth, 'employeeId', employeeId);
 
     notifyListeners();
   }
 
-  void clearAuthState() {
+  Future<void> clearAuthState() async {
     _token = null;
     _userId = null;
     _companyId = null;
     _employeeId = null;
 
-    _storage.remove('token');
-    _storage.remove('userId');
-    _storage.remove('companyId');
-    _storage.remove('employeeId');
+    await _storage.removeValue(Boxes.auth, 'token');
+    await _storage.removeValue(Boxes.auth, 'userId');
+    await _storage.removeValue(Boxes.auth, 'companyId');
+    await _storage.removeValue(Boxes.auth, 'employeeId');
 
     notifyListeners();
   }
 
   // Location Methods
-  void setCheckInInfo({
+  Future<void> setCheckInInfo({
     required String time,
     required String location,
     required double latitude,
     required double longitude,
-  }) {
+  }) async {
     _clockInTime = time;
     _clockInLocation = location;
     _clockInLatitude = latitude;
     _clockInLongitude = longitude;
 
-    _storage.write('clockInTime', time);
-    _storage.write('clockInLocation', location);
-    _storage.write('clockInLatitude', latitude);
-    _storage.write('clockInLongitude', longitude);
+    await _storage.setValue<String>(Boxes.timeTracking, 'clockInTime', time);
+    await _storage.setValue<String>(Boxes.timeTracking, 'clockInLocation', location);
+    await _storage.setValue<double>(Boxes.timeTracking, 'clockInLatitude', latitude);
+    await _storage.setValue<double>(Boxes.timeTracking, 'clockInLongitude', longitude);
 
     notifyListeners();
   }
 
-  void clearCheckInInfo() {
+  Future<void> clearCheckInInfo() async {
     _clockInTime = null;
     _clockInLocation = null;
     _clockInLatitude = null;
     _clockInLongitude = null;
 
-    _storage.remove('clockInTime');
-    _storage.remove('clockInLocation');
-    _storage.remove('clockInLatitude');
-    _storage.remove('clockInLongitude');
+    await _storage.removeValue(Boxes.timeTracking, 'clockInTime');
+    await _storage.removeValue(Boxes.timeTracking, 'clockInLocation');
+    await _storage.removeValue(Boxes.timeTracking, 'clockInLatitude');
+    await _storage.removeValue(Boxes.timeTracking, 'clockInLongitude');
 
     notifyListeners();
   }

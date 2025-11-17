@@ -1,9 +1,17 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
+import 'package:flutter/material.dart';
+import '../../../core/theme/app_theme_extension.dart';
+import '../../../core/utils/app_utils.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/app_icon_button.dart';
+import '../../../core/widgets/app_button/app_button_type.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '../../../core/localizations/app_localizations.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '../../../core/theme/app_theme.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -112,36 +120,23 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                 child: Padding(
                   padding:
                       EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
-                  child: AppButton(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
+                  child: FFButtonWidget(
                     text: FFLocalizations.of(context).getText(
                       'n8lrwjmq' /* Add Checkin On-Site */,
                     ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
                     options: FFButtonOptions(
                       width: 368.0,
                       height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: Color(0xFFF9B052),
-                      textStyle:
-                          Theme.of(context).textTheme.$1?.copyWith(
-                                font: GoogleFonts.readexPro(
-                                  fontWeight: Theme.of(context).textTheme.titleSmall!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleSmall!
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                                fontWeight: Theme.of(context).textTheme.titleSmall!
-                                    .fontWeight,
-                                fontStyle: Theme.of(context).textTheme.titleSmall!
-                                    .fontStyle,
-                              ),
+                      textStyle: FlutterFlowTheme.of(context).titleMedium.copyWith(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                      ),
                       elevation: 3.0,
                       borderSide: BorderSide(
                         color: Colors.transparent,
@@ -178,12 +173,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                       style: Theme.of(context).textTheme.$1?.copyWith(
                             font: GoogleFonts.readexPro(
                               fontWeight: FontWeight.w800,
-                              fontStyle: Theme.of(context).textTheme.bodyMedium!
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .fontStyle,
                             ),
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w800,
-                            fontStyle: Theme.of(context).textTheme.bodyMedium!
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
                                 .fontStyle,
                           ),
                     ),
@@ -200,15 +197,19 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                         labelStyle:
                             Theme.of(context).textTheme.$1?.copyWith(
                                   font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.titleMedium!
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleMedium
                                         .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.titleMedium!
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.titleMedium!
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleMedium
                                       .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleMedium!
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
                                       .fontStyle,
                                 ),
                         unselectedLabelStyle: TextStyle(),
@@ -261,23 +262,28 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                     FFLocalizations.of(context).getText(
                                       'vgm4j254' /* Mon, 12 Jan 2024 */,
                                     ),
-                                    style: Theme.of(context).textTheme.bodyMedium!
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
                                         .override(
                                           font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                Theme.of(context).textTheme.bodyMedium!
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
                                                     .fontWeight,
                                             fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
                                                     .fontStyle,
                                           ),
                                           color: Color(0xFFF9B052),
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              Theme.of(context).textTheme.bodyMedium!
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
                                                   .fontWeight,
                                           fontStyle:
-                                              Theme.of(context).textTheme.bodyMedium!
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
                                                   .fontStyle,
                                         ),
                                   ),
@@ -297,7 +303,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                         width: double.infinity,
                                         height: 290.0,
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).colorScheme.surface,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                           borderRadius:
                                               BorderRadius.circular(4.0),
                                         ),
@@ -320,7 +327,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                       width: 5.0,
                                                       height: 300.0,
                                                       decoration: BoxDecoration(
-                                                        color: Theme.of(context).colorScheme.surface,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(0.0),
@@ -370,7 +379,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                   child: Icon(
                                                                     Icons
                                                                         .location_pin,
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
                                                                     size: 24.0,
                                                                   ),
                                                                 ),
@@ -380,21 +391,28 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       .getText(
                                                                     '5ji4llg8' /* Fusion (HQ) */,
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -403,7 +421,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                   height: 5.0,
                                                                   decoration:
                                                                       BoxDecoration(
-                                                                    color: Theme.of(context).colorScheme.surface,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
                                                                   ),
                                                                 ),
                                                                 if (AppState()
@@ -434,7 +454,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         FaIcon(
                                                                       FontAwesomeIcons
                                                                           .angleUp,
-                                                                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
                                                                       size:
                                                                           17.0,
                                                                     ),
@@ -467,7 +489,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         FaIcon(
                                                                       FontAwesomeIcons
                                                                           .angleDown,
-                                                                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
                                                                       size:
                                                                           17.0,
                                                                     ),
@@ -872,7 +896,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           .getText(
                                                                         'ii5wyml2' /* Note :  */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -896,7 +922,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         .getText(
                                                                       'bng4w6g4' /* Meeting Project */,
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -909,9 +937,11 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               Theme.of(context).colorScheme.secondaryText,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -947,7 +977,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           .getText(
                                                                         'ttkmoih2' /* Photo : */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -1013,7 +1045,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                         width: double.infinity,
                                         height: 130.0,
                                         decoration: BoxDecoration(
-                                          color: Theme.of(context).colorScheme.surface,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                           borderRadius:
                                               BorderRadius.circular(4.0),
                                         ),
@@ -1034,7 +1067,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                       width: 5.0,
                                                       height: 130.0,
                                                       decoration: BoxDecoration(
-                                                        color: Theme.of(context).colorScheme.surface,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(0.0),
@@ -1072,7 +1107,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               child: Icon(
                                                                 Icons
                                                                     .location_pin,
-                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 size: 24.0,
                                                               ),
                                                             ),
@@ -1082,21 +1119,33 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                   .getText(
                                                                 'fh2r9mq4' /* Fusion (HQ) */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1105,13 +1154,17 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               height: 5.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: Theme.of(context).colorScheme.surface,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
                                                               ),
                                                             ),
                                                             FaIcon(
                                                               FontAwesomeIcons
                                                                   .angleDown,
-                                                              color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
                                                               size: 17.0,
                                                             ),
                                                           ],
@@ -1280,7 +1333,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               .getText(
                                                                             'yr4258zz' /* 09:00 */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1309,7 +1363,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                             .getText(
                                                                           'wl2lfhb6' /* - */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1340,75 +1395,26 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                         child: AppButton(
                                                           onPressed: () async {
                                                             Navigator.of(context).pushNamed(
-                                                              CheckOutWidget
-                                                                  .routeName,
+                                                              CheckOutWidget.routeName,
                                                               queryParameters: {
-                                                                'timeType':
-                                                                    serializeParam(
-                                                                  AppState()
-                                                                      .timeType,
-                                                                  ParamType
-                                                                      .String,
+                                                                'timeType': serializeParam(
+                                                                  AppState().timeType,
+                                                                  ParamType.String,
                                                                 ),
                                                               }.withoutNulls,
                                                             );
                                                           },
-                                                          text: FFLocalizations
-                                                                  .of(context)
-                                                              .getText(
-                                                            'h7awqgh1' /* Check -Out */,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 30.0,
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        0.0,
-                                                                        24.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: Color(
-                                                                0xFFF9B052),
-                                                            textStyle:
-                                                                Theme.of(context).textTheme.titleSmall!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.titleSmall!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.titleSmall!
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.titleSmall!
-                                                                          .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.titleSmall!
-                                                                          .fontStyle,
-                                                                    ),
-                                                            elevation: 3.0,
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                          text: context.l10n.getText('h7awqgh1'),
+                                                          buttonType: AppButtonType.primary,
+                                                          backgroundColor: const Color(0xFFF9B052),
+                                                          height: 30.0,
+                                                          padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                                                          elevation: 3.0,
+                                                          borderRadius: 8.0,
+                                                          textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                                            color: Colors.white,
+                                                            fontSize: 14.0,
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ),
@@ -1440,7 +1446,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                     width: double.infinity,
                                     height: 130.0,
                                     decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.surface,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                     child: Column(
@@ -1461,7 +1468,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                   width: 5.0,
                                                   height: 300.0,
                                                   decoration: BoxDecoration(
-                                                    color: Theme.of(context).colorScheme.surface,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             0.0),
@@ -1505,7 +1514,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               child: Icon(
                                                                 Icons
                                                                     .location_pin,
-                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 size: 24.0,
                                                               ),
                                                             ),
@@ -1515,21 +1526,33 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                   .getText(
                                                                 'nw7z00r7' /* Fusion (HQ) */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1538,13 +1561,17 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               height: 5.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: Theme.of(context).colorScheme.surface,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
                                                               ),
                                                             ),
                                                             FaIcon(
                                                               FontAwesomeIcons
                                                                   .angleDown,
-                                                              color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
                                                               size: 17.0,
                                                             ),
                                                           ],
@@ -1712,7 +1739,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               .getText(
                                                                             'by9suuao' /* 09:00 */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1741,7 +1769,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                             .getText(
                                                                           'nmm2ttc0' /* 14:00 */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
                                                                                 fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1782,7 +1811,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                     width: double.infinity,
                                     height: 130.0,
                                     decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.surface,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                     child: Column(
@@ -1801,7 +1831,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                   width: 5.0,
                                                   height: 130.0,
                                                   decoration: BoxDecoration(
-                                                    color: Theme.of(context).colorScheme.surface,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             0.0),
@@ -1835,7 +1867,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       0.0),
                                                           child: Icon(
                                                             Icons.location_pin,
-                                                            color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
                                                             size: 24.0,
                                                           ),
                                                         ),
@@ -1845,21 +1879,33 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               .getText(
                                                             'waqx4rud' /* Fusion (HQ) */,
                                                           ),
-                                                          style: Theme.of(context).textTheme.bodyMedium!
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
                                                               .override(
                                                                 font: GoogleFonts
                                                                     .readexPro(
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
                                                                       .fontStyle,
                                                                 ),
-                                                                color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
                                                                     .fontWeight,
-                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
                                                                     .fontStyle,
                                                               ),
                                                         ),
@@ -1868,13 +1914,17 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                           height: 5.0,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Theme.of(context).colorScheme.surface,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
                                                           ),
                                                         ),
                                                         FaIcon(
                                                           FontAwesomeIcons
                                                               .angleDown,
-                                                          color: Theme.of(context).textTheme.bodyMedium?.color,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
                                                           size: 17.0,
                                                         ),
                                                       ],
@@ -1940,7 +1990,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               .getText(
                                                                             '5vez4rjn' /* Check In */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -1976,7 +2027,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               .getText(
                                                                             'tcej4aar' /* Check Out */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
                                                                                   fontWeight: context.textTheme.bodyMedium.fontWeight,
@@ -2048,7 +2100,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           .getText(
                                                                         '5adcpl68' /* 09:00 */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
@@ -2072,7 +2126,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                     height: 5.0,
                                                                     decoration:
                                                                         BoxDecoration(
-                                                                      color: Theme.of(context).colorScheme.surface,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
                                                                     ),
                                                                   ),
                                                                   Text(
@@ -2081,7 +2137,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         .getText(
                                                                       's1qc6k8d' /* - */,
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
                                                                         .override(
                                                                           font:
                                                                               GoogleFonts.readexPro(
@@ -2094,9 +2152,11 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               Theme.of(context).colorScheme.primaryText,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
                                                                               .fontStyle,
                                                                         ),
                                                                   ),
@@ -2143,13 +2203,19 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                         color:
                                                             Color(0xFFF9B052),
                                                         textStyle:
-                                                            Theme.of(context).textTheme.titleSmall!
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.titleSmall!
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.titleSmall!
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
                                                                         .fontStyle,
                                                                   ),
                                                                   color: Colors
@@ -2158,9 +2224,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       14.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.titleSmall!
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.titleSmall!
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
                                                                       .fontStyle,
                                                                 ),
                                                         elevation: 3.0,

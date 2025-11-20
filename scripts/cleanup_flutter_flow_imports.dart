@@ -1,7 +1,7 @@
 import 'dart:io';
 
 void main() async {
-  final dir = Directory('c:\\Users\\rain\\Desktop\\flutter\\OptimisticHRFlutter\\lib');
+  final dir = Directory('lib');
   await processDirectory(dir);
 }
 

@@ -1,99 +1,179 @@
-import 'package:h_r_optimistic_mobile/core/widgets/app_widgets.dart';
-import 'package:h_r_optimistic_mobile/backend/api_requests/api_calls.dart';
-import 'package:h_r_optimistic_mobile/core/widgets/app_icon_button.dart';
 import 'package:flutter/material.dart';
-import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
-import 'package:h_r_optimistic_mobile/core/widgets/app_button.dart';
-import 'package:h_r_optimistic_mobile/core/utils/form_field_controller.dart';
-import 'package:h_r_optimistic_mobile/core/utils/upload_data.dart';
-import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
-import 'package:h_r_optimistic_mobile/app_state.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:h_r_optimistic_mobile/core/theme/flutter_flow_theme.dart';
-import 'package:h_r_optimistic_mobile/core/widgets/flutter_flow_drop_down.dart';
-import 'dart:typed_data';
-import 'package:h_r_optimistic_mobile/core/utils/theme_utils.dart';
-import 'package:h_r_optimistic_mobile/core/theme/theme_extensions.dart';
-import 'package:h_r_optimistic_mobile/core/utils/localization_utils.dart';
-import 'package:h_r_optimistic_mobile/leave/leave_page/leave_page_widget.dart';
-import 'leave_request_model.dart';
-export 'leave_request_model.dart';
+import 'package:intl/intl.dart';
+import 'dart:convert';
+import 'package:file_picker/file_picker.dart';
 
-// Extension to help with migrating from FlutterFlow
-extension FFStateUtils on State {
-  void safeSetState(VoidCallback fn) {
-    if (mounted) {
-      setState(fn);
-    }
-  }
-}
+import '../core/widgets/app_button.dart';
+import '../core/utils/app_utils.dart';
+import '../core/services/api_service.dart';
+import '../core/models/leave_balance.dart';
+import '../core/providers/app_state.dart';
+import '../core/theme/app_theme.dart';
+import '../core/models/uploaded_file.dart';
+import '../pages/leave_page.dart';
+import 'leave_request_edit_main_model.dart';
 
-class FFUploadedFile {
-  final String name;
-  final String path;
-  final Uint8List bytes;
+import '../l10n/app_localizations.dart';
 
-  FFUploadedFile({
-    required this.name,
-    required this.path,
-    required this.bytes,
+class LeaveRequestEditMainWidget extends StatefulWidget {
+  const LeaveRequestEditMainWidget({
+    super.key,
+    required this.editLeaveRequest,
   });
-}
 
-// Theme extensions
-extension CustomTheme on ThemeData {
-  Color get themeColor => colorScheme.primary;
-  Color get info => colorScheme.background;
-  TextStyle get headlineMedium => textTheme.headlineMedium ?? const TextStyle();
-  TextStyle get bodyMedium => textTheme.bodyMedium ?? const TextStyle();
-  Color get alternate => colorScheme.surfaceVariant;
-}
+  final LeaveRequest editLeaveRequest;
 
-class LeaveRequestWidget extends StatefulWidget {
-  const LeaveRequestWidget({super.key});
-
-  static String routeName = 'LeaveRequest';
-  static String routePath = '/leaveRequest';
+  static const String routeName = 'LeaveRequestEditMain';
+  static const String routePath = '/leaveRequestEditMain';
 
   @override
-  State<LeaveRequestWidget> createState() => _LeaveRequestWidgetState();
+  State<LeaveRequestEditMainWidget> createState() => _LeaveRequestEditMainWidgetState();
 }
 
-class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
-  late LeaveRequestModel _model;
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+class _LeaveRequestEditMainWidgetState extends State<LeaveRequestEditMainWidget> {
+  late final TextEditingController _descriptionController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LeaveRequestModel());
+    _descriptionController = TextEditingController(text: widget.editLeaveRequest.message);
+    
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final leaveEditState = context.read<LeaveEditState>();
+      leaveEditState.selectedLeaveTypeId = widget.editLeaveRequest.timeOffId;
+      leaveEditState.isAllDay = widget.editLeaveRequest.wholeDay;
+      leaveEditState.startDate = DateTime.parse(widget.editLeaveRequest.startDate);
+      leaveEditState.endDate = DateTime.parse(widget.editLeaveRequest.endDate);
+      if (widget.editLeaveRequest.startTime != null) {
+        final startParts = widget.editLeaveRequest.startTime!.split(':');
+        leaveEditState.startTime = TimeOfDay(
+          hour: int.parse(startParts[0]),
+          minute: int.parse(startParts[1]),
+        );
+      }
+      if (widget.editLeaveRequest.endTime != null) {
+        final endParts = widget.editLeaveRequest.endTime!.split(':');
+        leaveEditState.endTime = TimeOfDay(
+          hour: int.parse(endParts[0]),
+          minute: int.parse(endParts[1]),
+        );
+      }
+      leaveEditState.attachments = widget.editLeaveRequest.attachments;
+    });
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Leave Request'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                ),
+              ),
+              // Add more form fields as needed
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultRemainingDays =
-          await MainGroup.getLeaveWithRemainingDaysCall.call(
-        companyIDMain: AppState().companyID,
-        employeeIDMain: AppState().employeeID,
-        token: AppState().token,
-      );
+      await Future.wait([
+        Future(() async {
+          _model.apiResultRemainingDays =
+              await MainGroup.getLeaveWithRemainingDaysCall.call(
+            companyIDMain: AppState().companyID,
+            employeeIDMain: AppState().employeeID,
+            token: AppState().token,
+          );
 
-      if ((_model.apiResultRemainingDays?.succeeded ?? true)) {
-        _model.balance = functions.leaveBalanceDayFunction(
-            getJsonField(
-              (_model.apiResultRemainingDays?.jsonBody ?? ''),
-              r'''$.data''',
-              true,
-            ),
-            _model.ddlLeaveTypeValue);
-        safeSetState(() {});
-      }
+          if ((_model.apiResultRemainingDays?.succeeded ?? true)) {
+            _model.balance = functions.leaveBalanceDayFunction(
+                getJsonField(
+                  (_model.apiResultRemainingDays?.jsonBody ?? ''),
+                  r'''$.data''',
+                  true,
+                ),
+                _model.ddlLeaveTypeValue);
+            _model.availableDay = functions.leaveAvailableDayFunction(
+                MainGroup.getLeaveWithRemainingDaysCall
+                    .leaveTypeList(
+                      (_model.apiResultRemainingDays?.jsonBody ?? ''),
+                    )
+                    ?.toList(),
+                getJsonField(
+                  widget.editLeaveRequest,
+                  r'''$.timeoff_ID''',
+                ));
+            safeSetState(() {});
+          }
+        }),
+        Future(() async {
+          _model.startDate =
+              functions.changeLeaveRequestedDateFormat(getJsonField(
+            widget.editLeaveRequest,
+            r'''$.start_Date''',
+          ).toString().toString());
+          _model.endDate =
+              functions.changeLeaveRequestedDateFormat(getJsonField(
+            widget.editLeaveRequest,
+            r'''$.end_Date''',
+          ).toString().toString());
+          _model.startDateHalfDay =
+              functions.changeLeaveRequestedDateFormat(getJsonField(
+            widget.editLeaveRequest,
+            r'''$.start_Date''',
+          ).toString().toString());
+          _model.startTime = getJsonField(
+            widget.editLeaveRequest,
+            r'''$.start_Time''',
+          ).toString().toString();
+          _model.endTime = getJsonField(
+            widget.editLeaveRequest,
+            r'''$.end_Time''',
+          ).toString().toString();
+          _model.attachmentModel = (getJsonField(
+            widget.editLeaveRequest,
+            r'''$.attachmentList[:].attachment''',
+            true,
+          ) as List)
+              .map<String>((s) => s.toString())
+              .toList()
+              .toList()
+              .cast<String>();
+          safeSetState(() {});
+        }),
+      ]);
     });
 
-    _model.txtDescriptionTextController ??= TextEditingController();
+    _model.txtDescriptionTextController ??= TextEditingController(
+        text: getJsonField(
+      widget.editLeaveRequest,
+      r'''$.message''',
+    ).toString().toString());
     _model.txtDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -108,39 +188,30 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
-
+    final leaveState = context.watch<LeaveEditState>();
+    final appState = context.watch<AppState>();
+    
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFF6F6F6),
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.secondaryBackground,
-          automaticallyImplyLeading: false,
-          leading: AppIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: FaIcon(
-              FontAwesomeIcons.angleLeft,
-              color: Theme.of(context).colorScheme.secondaryText,
-              size: 30.0,
-            ),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          elevation: 2,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
             onPressed: () async {
               Navigator.of(context).pushNamed(LeavePageWidget.routeName);
             },
           ),
           title: Text(
-            'Leave Request',
+            'Edit Leave Request',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontFamily: GoogleFonts.outfit().fontFamily,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                 ),
@@ -162,13 +233,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                       width: double.infinity,
                       height: 110.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFFF6F6F6),
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
                       ),
-                      child: FutureBuilder<ApiCallResponse>(
-                        future: MainGroup.getLeaveWithRemainingDaysCall.call(
-                          companyIDMain: AppState().companyID,
-                          employeeIDMain: AppState().employeeID,
-                          token: AppState().token,
+                      child: FutureBuilder<LeaveBalanceResponse>(
+                        future: ApiService.getLeaveBalance(
+                          companyId: context.read<AppState>().companyId,
+                          employeeId: context.read<AppState>().employeeId,
+                          token: context.read<AppState>().token,
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -250,7 +321,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: GoogleFonts
+                                                        font: GoogleFonts
                                                             .readexPro(
                                                           fontWeight:
                                                               FontWeight.w300,
@@ -259,7 +330,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       context)
                                                                   .bodyMedium
                                                                   .fontStyle,
-                                                        ).fontFamily,
+                                                        ),
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -322,7 +393,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: GoogleFonts
+                                                                font: GoogleFonts
                                                                     .readexPro(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
@@ -413,16 +484,16 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                             10.0, 10.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
-                                            'f5y7lcia' /* Leave Type */,
+                                            'ew18f7w2' /* Leave Type */,
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: GoogleFonts.readexPro(
+                                                font: GoogleFonts.readexPro(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
-                                                              context).fontFamily
+                                                              context)
                                                           .bodyMedium
                                                           .fontWeight,
                                                   fontStyle:
@@ -485,33 +556,44 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                             final ddlLeaveTypeGetLeaveWithRemainingDaysResponse =
                                                 snapshot.data!;
 
-                                            return FlutterFlowDropDown<int>(
-                                              controller: _model
-                                                      .ddlLeaveTypeValueController ??=
-                                                  FormFieldController<int>(
-                                                _model.ddlLeaveTypeValue ??=
-                                                    MainGroup
-                                                        .getLeaveWithRemainingDaysCall
-                                                        .timeOffIDList(
-                                                          ddlLeaveTypeGetLeaveWithRemainingDaysResponse
-                                                              .jsonBody,
-                                                        )
-                                                        ?.firstOrNull,
-                                              ),
-                                              options: List<int>.from(MainGroup
+                                            return DropdownButtonFormField<int>(
+                                              value: _model.ddlLeaveTypeValue,
+                                              items: List<int>.from(MainGroup
                                                   .getLeaveWithRemainingDaysCall
                                                   .timeOffIDList(
                                                 ddlLeaveTypeGetLeaveWithRemainingDaysResponse
                                                     .jsonBody,
-                                              )!),
-                                              optionLabels: MainGroup
-                                                  .getLeaveWithRemainingDaysCall
-                                                  .leaveMenuList(
-                                                ddlLeaveTypeGetLeaveWithRemainingDaysResponse
-                                                    .jsonBody,
-                                              )!,
+                                              )!).map((int value) {
+                                                final index = MainGroup
+                                                    .getLeaveWithRemainingDaysCall
+                                                    .timeOffIDList(
+                                                  ddlLeaveTypeGetLeaveWithRemainingDaysResponse
+                                                      .jsonBody,
+                                                )!
+                                                    .indexOf(value);
+                                                return DropdownMenuItem<int>(
+                                                  value: value,
+                                                  child: Text(
+                                                    MainGroup
+                                                        .getLeaveWithRemainingDaysCall
+                                                        .leaveMenuList(
+                                                          ddlLeaveTypeGetLeaveWithRemainingDaysResponse
+                                                              .jsonBody,
+                                                        )![index],
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium
+                                                        ?.copyWith(
+                                                          color: Theme.of(context)
+                                                              .colorScheme
+                                                              .onSurface,
+                                                        ),
+                                                  ),
+                                                );
+                                              }).toList(),
                                               onChanged: (val) async {
-                                                safeSetState(() => _model
+                                                if (val == null) return;
+                                                setState(() => _model
                                                     .ddlLeaveTypeValue = val);
                                                 _model.balance = functions
                                                     .leaveBalanceDayFunction(
@@ -521,8 +603,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           r'''$.data''',
                                                           true,
                                                         ),
-                                                        _model
-                                                            .ddlLeaveTypeValue);
+                                                        _model.ddlLeaveTypeValue);
                                                 _model.availableDay = functions
                                                     .leaveAvailableDayFunction(
                                                         getJsonField(
@@ -531,73 +612,58 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           r'''$.data''',
                                                           true,
                                                         ),
-                                                        _model
-                                                            .ddlLeaveTypeValue);
-                                                safeSetState(() {});
+                                                        _model.ddlLeaveTypeValue);
                                               },
-                                              height: 50.0,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context).fontFamily
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 8),
+                                                hintText: getJsonField(
+                                                  widget.editLeaveRequest,
+                                                  r'''$.timeoff_Name''',
+                                                ).toString(),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .outline,
+                                                    width: 2,
                                                   ),
-                                              hintText: MainGroup
-                                                  .getLeaveWithRemainingDaysCall
-                                                  .leaveMenuList(
-                                                    ddlLeaveTypeGetLeaveWithRemainingDaysResponse
-                                                        .jsonBody,
-                                                  )
-                                                  ?.firstOrNull,
-                                              icon: Icon(
-                                                Icons
-                                                    .keyboard_arrow_down_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .outline,
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                                filled: true,
+                                                fillColor: Theme.of(context)
+                                                    .colorScheme
+                                                    .surface,
                                               ),
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              elevation: 2.0,
-                                              borderColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              borderWidth: 2.0,
-                                              borderRadius: 8.0,
-                                              margin: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 4.0),
-                                              hidesUnderline: true,
-                                              isOverButton: true,
-                                              isSearchable: false,
-                                              isMultiSelect: false,
+                                              icon: Icon(
+                                                Icons.keyboard_arrow_down_rounded,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onSurface,
+                                              ),
                                             );
                                           },
                                         ),
@@ -624,7 +690,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
-                                                's9zdsrri' /* All Day */,
+                                                'w0fx97yt' /* All Day */,
                                               ),
                                               options: FFButtonOptions(
                                                 width: 178.0,
@@ -645,7 +711,8 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: GoogleFonts.readexPro(
+                                                      font:
+                                                          GoogleFonts.readexPro(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -692,7 +759,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
-                                                '0urwlczd' /* Half Day */,
+                                                '9vcnxmpf' /* Half Day */,
                                               ),
                                               options: FFButtonOptions(
                                                 width: 178.0,
@@ -713,7 +780,8 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: GoogleFonts.readexPro(
+                                                      font:
+                                                          GoogleFonts.readexPro(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -787,13 +855,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '3u4k7g74' /* Start Date */,
+                                                      'ggbpdn54' /* Start Date */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -856,9 +924,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         firstDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         lastDate:
                                                             DateTime(2050),
                                                         builder:
@@ -879,7 +947,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                         context)
                                                                     .headlineLarge
                                                                     .override(
-                                                                      fontFamily: GoogleFonts
+                                                                      font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
@@ -942,9 +1010,19 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked1 =
-                                                              DateTime.now();
+                                                              getCurrentTimestamp;
                                                         });
                                                       }
+                                                      _model.startDate =
+                                                          dateTimeFormat(
+                                                        "yyyy-MM-dd",
+                                                        _model.datePicked1,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      safeSetState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -962,19 +1040,32 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       10.0,
                                                                       0.0),
                                                           child: Text(
-                                                            functions.dateTimeFormat(
-                                                              "dd/MM/yyyy",
-                                                              _model
-                                                                  .datePicked1,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.datePicked1 !=
+                                                                      null
+                                                                  ? dateTimeFormat(
+                                                                      "yyyy-MM-dd",
+                                                                      _model
+                                                                          .datePicked1,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
+                                                                  : functions
+                                                                      .changeLeaveRequestedDateFormat(
+                                                                          getJsonField(
+                                                                      widget
+                                                                          .editLeaveRequest,
+                                                                      r'''$.start_Date''',
+                                                                    ).toString()),
+                                                              '2025-06-02',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: GoogleFonts
+                                                                  font: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
@@ -1044,13 +1135,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'n4miztfj' /* End Date */,
+                                                      'lwjihn42' /* End Date */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -1113,9 +1204,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         firstDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         lastDate:
                                                             DateTime(2050),
                                                         builder:
@@ -1136,7 +1227,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                         context)
                                                                     .headlineLarge
                                                                     .override(
-                                                                      fontFamily: GoogleFonts
+                                                                      font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
@@ -1199,9 +1290,19 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked2 =
-                                                              DateTime.now();
+                                                              getCurrentTimestamp;
                                                         });
                                                       }
+                                                      _model.endDate =
+                                                          dateTimeFormat(
+                                                        "yyyy-MM-dd",
+                                                        _model.datePicked2,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      safeSetState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -1219,19 +1320,32 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       10.0,
                                                                       0.0),
                                                           child: Text(
-                                                            functions.dateTimeFormat(
-                                                              "dd/MM/yyyy",
-                                                              _model
-                                                                  .datePicked2,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.datePicked2 !=
+                                                                      null
+                                                                  ? dateTimeFormat(
+                                                                      "yyyy-MM-dd",
+                                                                      _model
+                                                                          .datePicked2,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
+                                                                  : functions
+                                                                      .changeLeaveRequestedDateFormat(
+                                                                          getJsonField(
+                                                                      widget
+                                                                          .editLeaveRequest,
+                                                                      r'''$.end_Date''',
+                                                                    ).toString()),
+                                                              '2025-06-02',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: GoogleFonts
+                                                                  font: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
@@ -1311,13 +1425,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '0jgzklal' /* Date */,
+                                                      'ujzv637n' /* Date */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -1380,9 +1494,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         firstDate:
-                                                            DateTime.now(),
+                                                            getCurrentTimestamp,
                                                         lastDate:
                                                             DateTime(2050),
                                                         builder:
@@ -1403,7 +1517,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                         context)
                                                                     .headlineLarge
                                                                     .override(
-                                                                      fontFamily: GoogleFonts
+                                                                      font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
@@ -1466,9 +1580,19 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked3 =
-                                                              DateTime.now();
+                                                              getCurrentTimestamp;
                                                         });
                                                       }
+                                                      _model.startDateHalfDay =
+                                                          dateTimeFormat(
+                                                        "yyyy-MM-dd",
+                                                        _model.datePicked3,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      safeSetState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -1486,19 +1610,32 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       10.0,
                                                                       0.0),
                                                           child: Text(
-                                                            functions.dateTimeFormat(
-                                                              "dd/MM/yyyy",
-                                                              _model
-                                                                  .datePicked3,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.datePicked3 !=
+                                                                      null
+                                                                  ? dateTimeFormat(
+                                                                      "yyyy-MM-dd",
+                                                                      _model
+                                                                          .datePicked3,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
+                                                                  : functions
+                                                                      .changeLeaveRequestedDateFormat(
+                                                                          getJsonField(
+                                                                      widget
+                                                                          .editLeaveRequest,
+                                                                      r'''$.request_On''',
+                                                                    ).toString()),
+                                                              '2025-06-02',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: GoogleFonts
+                                                                  font: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
@@ -1578,13 +1715,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'jlwbpksg' /* Start Time */,
+                                                      'si4k3rew' /* Start Time */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -1648,7 +1785,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         context: context,
                                                         initialTime: TimeOfDay
                                                             .fromDateTime(
-                                                                DateTime.now()),
+                                                                getCurrentTimestamp),
                                                         builder:
                                                             (context, child) {
                                                           return wrapInMaterialTimePickerTheme(
@@ -1667,7 +1804,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                         context)
                                                                     .headlineLarge
                                                                     .override(
-                                                                      fontFamily: GoogleFonts
+                                                                      font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
@@ -1716,11 +1853,11 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         safeSetState(() {
                                                           _model.datePicked4 =
                                                               DateTime(
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .year,
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .month,
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .day,
                                                             _datePicked4Time
                                                                 .hour,
@@ -1733,9 +1870,19 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked4 =
-                                                              DateTime.now();
+                                                              getCurrentTimestamp;
                                                         });
                                                       }
+                                                      _model.startTime =
+                                                          dateTimeFormat(
+                                                        "Hm",
+                                                        _model.datePicked4,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      safeSetState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -1753,19 +1900,41 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       10.0,
                                                                       0.0),
                                                           child: Text(
-                                                            functions.dateTimeFormat(
-                                                              "Hm",
-                                                              _model
-                                                                  .datePicked4,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.datePicked4 !=
+                                                                      null
+                                                                  ? dateTimeFormat(
+                                                                      "Hm",
+                                                                      _model
+                                                                          .datePicked4,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
+                                                                  : ('null' ==
+                                                                          getJsonField(
+                                                                            widget.editLeaveRequest,
+                                                                            r'''$.start_Time''',
+                                                                          ).toString()
+                                                                      ? dateTimeFormat(
+                                                                          "Hm",
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )
+                                                                      : getJsonField(
+                                                                          widget
+                                                                              .editLeaveRequest,
+                                                                          r'''$.start_Time''',
+                                                                        ).toString()),
+                                                              '08:00',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: GoogleFonts
+                                                                  font: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
@@ -1834,13 +2003,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'qlg0a3xc' /* End Time */,
+                                                      'rquosfeq' /* End Time */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -1904,7 +2073,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         context: context,
                                                         initialTime: TimeOfDay
                                                             .fromDateTime(
-                                                                DateTime.now()),
+                                                                getCurrentTimestamp),
                                                         builder:
                                                             (context, child) {
                                                           return wrapInMaterialTimePickerTheme(
@@ -1923,7 +2092,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                         context)
                                                                     .headlineLarge
                                                                     .override(
-                                                                      fontFamily: GoogleFonts
+                                                                      font: GoogleFonts
                                                                           .outfit(
                                                                         fontWeight:
                                                                             FontWeight.w600,
@@ -1972,11 +2141,11 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                         safeSetState(() {
                                                           _model.datePicked5 =
                                                               DateTime(
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .year,
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .month,
-                                                            DateTime.now()
+                                                            getCurrentTimestamp
                                                                 .day,
                                                             _datePicked5Time
                                                                 .hour,
@@ -1989,9 +2158,19 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked5 =
-                                                              DateTime.now();
+                                                              getCurrentTimestamp;
                                                         });
                                                       }
+                                                      _model.endTime =
+                                                          dateTimeFormat(
+                                                        "Hm",
+                                                        _model.datePicked5,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      safeSetState(() {});
                                                     },
                                                     child: Row(
                                                       mainAxisSize:
@@ -2009,19 +2188,41 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                       10.0,
                                                                       0.0),
                                                           child: Text(
-                                                            functions.dateTimeFormat(
-                                                              "Hm",
-                                                              _model
-                                                                  .datePicked5,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.datePicked5 !=
+                                                                      null
+                                                                  ? dateTimeFormat(
+                                                                      "Hm",
+                                                                      _model
+                                                                          .datePicked5,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )
+                                                                  : ('null' ==
+                                                                          getJsonField(
+                                                                            widget.editLeaveRequest,
+                                                                            r'''$.end_Time''',
+                                                                          ).toString()
+                                                                      ? dateTimeFormat(
+                                                                          "Hm",
+                                                                          getCurrentTimestamp,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )
+                                                                      : getJsonField(
+                                                                          widget
+                                                                              .editLeaveRequest,
+                                                                          r'''$.end_Time''',
+                                                                        ).toString()),
+                                                              '17:00',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: GoogleFonts
+                                                                  font: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
@@ -2084,15 +2285,15 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                         10.0, 10.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        '1dw24gzv' /* Description * */,
+                                        '2ruuruex' /* Description * */,
                                       ),
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: GoogleFonts.readexPro(
+                                            font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context).fontFamily
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .fontWeight,
                                               fontStyle:
@@ -2128,9 +2329,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: GoogleFonts.readexPro(
+                                            font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context).fontFamily
+                                                  FlutterFlowTheme.of(context)
                                                       .labelMedium
                                                       .fontWeight,
                                               fontStyle:
@@ -2151,9 +2352,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily: GoogleFonts.readexPro(
+                                            font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context).fontFamily
+                                                  FlutterFlowTheme.of(context)
                                                       .labelMedium
                                                       .fontWeight,
                                               fontStyle:
@@ -2211,9 +2412,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: GoogleFonts.readexPro(
+                                          font: GoogleFonts.readexPro(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context).fontFamily
+                                                FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .fontWeight,
                                             fontStyle:
@@ -2249,15 +2450,15 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                     alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'bxcirdpe' /* Attachment */,
+                                        'n3yevnhi' /* Attachment */,
                                       ),
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: GoogleFonts.readexPro(
+                                            font: GoogleFonts.readexPro(
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context).fontFamily
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .fontWeight,
                                               fontStyle:
@@ -2293,7 +2494,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                           ),
                                           child: Container(
                                             width: _model
-                                                    .isDataUploading_uploadDataleave
+                                                    .isDataUploading_uploadDataleaveRequest
                                                 ? double.infinity
                                                 : 100.0,
                                             height: 60.0,
@@ -2325,7 +2526,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                             m.storagePath,
                                                             context))) {
                                                   safeSetState(() => _model
-                                                          .isDataUploading_uploadDataleave =
+                                                          .isDataUploading_uploadDataleaveRequest =
                                                       true);
                                                   var selectedUploadedFiles =
                                                       <FFUploadedFile>[];
@@ -2353,14 +2554,14 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                                 ))
                                                             .toList();
                                                   } finally {
-                                                    _model.isDataUploading_uploadDataleave =
+                                                    _model.isDataUploading_uploadDataleaveRequest =
                                                         false;
                                                   }
                                                   if (selectedUploadedFiles
                                                           .length ==
                                                       selectedMedia.length) {
                                                     safeSetState(() {
-                                                      _model.uploadedLocalFile_uploadDataleave =
+                                                      _model.uploadedLocalFile_uploadDataleaveRequest =
                                                           selectedUploadedFiles
                                                               .first;
                                                     });
@@ -2370,14 +2571,14 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   }
                                                 }
 
-                                                if ((_model.uploadedLocalFile_uploadDataleave
+                                                if ((_model.uploadedLocalFile_uploadDataleaveRequest
                                                             .bytes?.isNotEmpty ??
                                                         false)) {
                                                   _model.apiResultGetCheckinImageURL =
                                                       await GetCheckInImageURLCall
                                                           .call(
                                                     file: _model
-                                                        .uploadedLocalFile_uploadDataleave,
+                                                        .uploadedLocalFile_uploadDataleaveRequest,
                                                   );
 
                                                   _model.addToAttachmentModel(
@@ -2414,13 +2615,13 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'thq0k1ad' /* Attach File */,
+                                                      'f51wp2yr' /* Attach File */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: GoogleFonts
+                                                          font: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
@@ -2578,240 +2779,120 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                 onPressed: (_model.availableDay == 0)
                                     ? null
                                     : () async {
-                                        if (_model.isAllDay) {
-                                          _model.apiResultAddTimeOffRequestForEMPWholeDay =
-                                              await MainGroup
-                                                  .addTimeOffRequestForEMPWholeDayCall
-                                                  .call(
-                                            approverID: AppState().reportID,
-                                            balance: _model.balance?.toString(),
-                                            startDate: valueOrDefault<String>(
-                                              functions
-                                                  .changeDateFormatYearMonthDay(
-                                                      _model.datePicked1!),
-                                              'start date',
-                                            ),
-                                            endDate: functions
-                                                .changeDateFormatYearMonthDay(
-                                                    _model.datePicked2!),
-                                            message: _model
-                                                .txtDescriptionTextController
-                                                .text,
-                                            saveDraft: false,
-                                            timeoffID: _model.ddlLeaveTypeValue,
-                                            wholeDay: true,
-                                            workflowType: 'TimeOff',
-                                            companyIDMain:
-                                                AppState().companyID,
-                                            employeeIDMain:
-                                                AppState().employeeID,
-                                            attachmentsJson: functions
-                                                .leaveAttachmentKHAMethod(_model
-                                                    .attachmentModel
-                                                    .toList())
-                                                .map((e) => e.toMap())
-                                                .toList(),
-                                            token: AppState().token,
+                                        _model.apiResultUpdateLeaveRequest =
+                                            await MainGroup
+                                                .updateLeaveRequestCall
+                                                .call(
+                                          timeOffRequestID: getJsonField(
+                                            widget.editLeaveRequest,
+                                            r'''$.time_off_RequestID''',
+                                          ),
+                                          timeoffID:
+                                              _model.ddlLeaveTypeValue != null
+                                                  ? _model.ddlLeaveTypeValue
+                                                  : getJsonField(
+                                                      widget.editLeaveRequest,
+                                                      r'''$.timeoff_ID''',
+                                                    ),
+                                          wholeDay: _model.isAllDay == true
+                                              ? true
+                                              : false,
+                                          startDate: _model.startDate,
+                                          endDate: _model.endDate,
+                                          oTRequestedDate: dateTimeFormat(
+                                            "yyyy-MM-dd",
+                                            getCurrentTimestamp,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          startTime: _model.startTime,
+                                          endTime: _model.endTime,
+                                          message: _model.txtDescriptionTextController
+                                                          .text !=
+                                                      ''
+                                              ? _model
+                                                  .txtDescriptionTextController
+                                                  .text
+                                              : getJsonField(
+                                                  widget.editLeaveRequest,
+                                                  r'''$.message''',
+                                                ).toString(),
+                                          balance: getJsonField(
+                                            widget.editLeaveRequest,
+                                            r'''$.balance''',
+                                          ).toString(),
+                                          saveDraft: false,
+                                          companyID: AppState().companyID,
+                                          attachmentsJson: functions
+                                              .leaveAttachmentKHAMethod(_model
+                                                  .attachmentModel
+                                                  .toList())
+                                              .map((e) => e.toMap())
+                                              .toList(),
+                                          token: AppState().token,
+                                        );
+
+                                        if ('0' ==
+                                            getJsonField(
+                                              (_model.apiResultUpdateLeaveRequest
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.status''',
+                                            ).toString()) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: Text('ALert'),
+                                                  content: Text(getJsonField(
+                                                    (_model.apiResultUpdateLeaveRequest
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.message''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
                                           );
 
-                                          if ((_model.apiResultAddTimeOffRequestForEMPWholeDay
-                                                      ?.statusCode ??
-                                                  200) ==
-                                              200) {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Alert'),
-                                                    content: Text(
-                                                        'Leave Requested Successfully !!'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                            _model.getworkFlowOfOTRequestAPI =
-                                                await MainGroup
-                                                    .getworkFlowOfOTRequestCall
-                                                    .call(
-                                              employeeID:
-                                                  AppState().employeeID,
-                                              companyID: AppState().companyID,
-                                              token: AppState().token,
-                                            );
-
-                                            if ((_model
-                                                    .getworkFlowOfOTRequestAPI
-                                                    ?.succeeded ??
-                                                true)) {
-                                              _model.wfID = MainGroup
-                                                  .getworkFlowOfOTRequestCall
-                                                  .wFID(
-                                                (_model.getworkFlowOfOTRequestAPI
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              );
-                                              _model.senderID = MainGroup
-                                                  .getworkFlowOfOTRequestCall
-                                                  .senderID(
-                                                (_model.getworkFlowOfOTRequestAPI
-                                                        ?.jsonBody ??
-                                                    ''),
-                                              );
-                                              safeSetState(() {});
-                                              _model.addNotificationInfoMobResult =
-                                                  await MainGroup
-                                                      .addNotificationInfoMobCall
-                                                      .call(
-                                                wFID: _model.wfID,
-                                                senderID: _model.senderID,
-                                                recipientID: 0,
-                                                seen: false,
-                                                description: 'requested for OT',
-                                                delicated: false,
-                                                token: AppState().token,
-                                              );
-                                            }
-                                          } else {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text(
-                                                        'Leave Requested Failed !!'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          }
+                                          Navigator.of(context).pushNamed(
+                                              LeavePageWidget.routeName);
                                         } else {
-                                          _model.apiResultAddTimeOffRequestForEMPHalfDay =
-                                              await MainGroup
-                                                  .addTimeOffRequestForEMPHalfDayCall
-                                                  .call(
-                                            approverID: AppState().reportID,
-                                            balance: _model.balance?.toString(),
-                                            requestedDate: functions
-                                                .changeDateFormatYearMonthDay(
-                                                    _model.datePicked3!),
-                                            startTime: functions.dateTimeFormat(
-                                              "Hm",
-                                              _model.datePicked4,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ),
-                                            endTime: functions.dateTimeFormat(
-                                              "Hm",
-                                              _model.datePicked5,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ),
-                                            message: _model
-                                                .txtDescriptionTextController
-                                                .text,
-                                            saveDraft: false,
-                                            timeoffID: _model.ddlLeaveTypeValue,
-                                            wholeDay: _model.isAllDay,
-                                            workflowType: 'timeOff',
-                                            startDate: functions.dateTimeFormat(
-                                              "yyyy-MM-dd",
-                                              _model.datePicked3,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ),
-                                            endDate: functions.dateTimeFormat(
-                                              "yyyy-MM-dd",
-                                              _model.datePicked3,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ),
-                                            companyIDMain:
-                                                AppState().companyID,
-                                            employeeIDMain:
-                                                AppState().employeeID,
-                                            attachmentsJson: functions
-                                                .leaveAttachmentKHAMethod(_model
-                                                    .attachmentModel
-                                                    .toList())
-                                                .map((e) => e.toMap())
-                                                .toList(),
-                                            token: AppState().token,
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text(
+                                                      'Leave Request Fail !'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
                                           );
-
-                                          if ((_model.apiResultAddTimeOffRequestForEMPHalfDay
-                                                      ?.statusCode ??
-                                                  200) ==
-                                              200) {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text(
-                                                        'Leave Requested Successfully !!'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          } else {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text(
-                                                        'Leave Requested Failed !!'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          }
                                         }
-
-                                        Navigator.of(context).pushNamed(
-                                            LeavePageWidget.routeName);
 
                                         safeSetState(() {});
                                       },
                                 text: FFLocalizations.of(context).getText(
-                                  'r8gigoij' /* Submit */,
+                                  'dawo1x92' /* Submit */,
                                 ),
                                 options: FFButtonOptions(
                                   width: double.infinity,
@@ -2824,9 +2905,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: GoogleFonts.readexPro(
+                                        font: GoogleFonts.readexPro(
                                           fontWeight:
-                                              FlutterFlowTheme.of(context).fontFamily
+                                              FlutterFlowTheme.of(context)
                                                   .titleSmall
                                                   .fontWeight,
                                           fontStyle:

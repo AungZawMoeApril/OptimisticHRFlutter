@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import '../auth/interceptors/auth_interceptor.dart';
-import '../../features/auth/domain/repositories/i_auth_repository.dart' as auth;
+import '../auth/repositories/auth_repository.dart';
 import '../errors/exceptions.dart';
 import '../constants/api_constants.dart';
 
 class ApiClient {
   late final Dio _dio;
-  late auth.AuthRepository _authRepository;
+  late IAuthRepository _authRepository;
 
   Dio get dio => _dio;
 
@@ -26,7 +26,7 @@ class ApiClient {
     );
   }
 
-  void setAuthRepository(auth.AuthRepository authRepository) {
+  void setAuthRepository(IAuthRepository authRepository) {
     _authRepository = authRepository;
     _dio.interceptors.insert(0, AuthInterceptor(_authRepository, _dio));
   }

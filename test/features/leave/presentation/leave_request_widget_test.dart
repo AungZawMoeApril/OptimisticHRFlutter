@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:hr_app/app_state.dart';
-import 'package:hr_app/leave/leave_request/leave_request_widget.dart';
+import 'package:h_r_optimistic_mobile/app_state.dart';
+import 'package:h_r_optimistic_mobile/leave/leave_request/leave_request_widget.dart';
 
 class MockAppState extends Mock implements AppState {
   @override
-  String get companyID => '1';
+  int get companyID => 1;
   
   @override
-  String get employeeID => '1';
+  int get employeeID => 1;
   
   @override
   String get token => 'test_token';
@@ -36,7 +36,6 @@ void main() {
             colorScheme: ColorScheme.light(
               primary: Color(0xFFF89D27),
               secondary: Color(0xFF58585A),
-              background: Colors.white,
               surface: Colors.white,
               onSurface: Color(0xFF58585A),
               onSurfaceVariant: Color(0xFF58585A),
@@ -83,7 +82,6 @@ void main() {
             colorScheme: ColorScheme.light(
               primary: Color(0xFFF89D27),
               secondary: Color(0xFF58585A),
-              background: Colors.white,
               surface: Colors.white,
               onSurface: Color(0xFF58585A),
               onSurfaceVariant: Color(0xFF58585A),

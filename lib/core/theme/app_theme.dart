@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
-import '/core/theme/app_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -92,7 +91,7 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         error: AppColors.error,
-        background: AppColors.backgroundDark,
+        surface: AppColors.backgroundDark,
       ),
       appBarTheme: lightTheme.appBarTheme.copyWith(
         backgroundColor: AppColors.backgroundDark,

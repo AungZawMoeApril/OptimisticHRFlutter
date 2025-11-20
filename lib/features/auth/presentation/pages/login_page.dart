@@ -206,8 +206,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
                     decoration: InputDecoration(
-                      labelText: l10n.password,
-                      prefixIcon: const Icon(Icons.lock),
+                      labelText = l10n.password,
+                      prefixIcon = const Icon(Icons.lock),
                     ),
                     obscureText: true,
                     validator: (value) {
@@ -217,24 +217,24 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height = 8),
 
                   // Forgot password link
                   Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
+                    alignment = Alignment.centerRight,
+                    child = TextButton(
                       onPressed: () {
                         // TODO: Implement forgot password
                       },
                       child: Text(l10n.forgotPassword),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height = 24),
 
                   // Login button
                   ElevatedButton(
-                    onPressed: _isLoading ? null : _handleLogin,
-                    child: _isLoading
+                    onPressed = _isLoading ? null : _handleLogin,
+                    child = _isLoading
                         ? const SizedBox(
                             height: 20,
                             width: 20,

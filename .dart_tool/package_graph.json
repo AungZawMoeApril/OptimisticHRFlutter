@@ -16,7 +16,6 @@
         "equatable",
         "flex_color_scheme",
         "flutter",
-        "flutter_bloc",
         "flutter_localizations",
         "flutter_native_splash",
         "flutter_secure_storage",
@@ -43,7 +42,6 @@
         "provider",
         "retrofit",
         "riverpod",
-        "shared_preferences",
         "shimmer",
         "table_calendar",
         "timeago",
@@ -308,19 +306,6 @@
         "test_api",
         "vector_math",
         "vm_service"
-      ]
-    },
-    {
-      "name": "shared_preferences",
-      "version": "2.5.3",
-      "dependencies": [
-        "flutter",
-        "shared_preferences_android",
-        "shared_preferences_foundation",
-        "shared_preferences_linux",
-        "shared_preferences_platform_interface",
-        "shared_preferences_web",
-        "shared_preferences_windows"
       ]
     },
     {
@@ -670,15 +655,6 @@
       "dependencies": [
         "collection",
         "meta"
-      ]
-    },
-    {
-      "name": "flutter_bloc",
-      "version": "8.1.6",
-      "dependencies": [
-        "bloc",
-        "flutter",
-        "provider"
       ]
     },
     {
@@ -1392,64 +1368,6 @@
       ]
     },
     {
-      "name": "shared_preferences_windows",
-      "version": "2.4.1",
-      "dependencies": [
-        "file",
-        "flutter",
-        "path",
-        "path_provider_platform_interface",
-        "path_provider_windows",
-        "shared_preferences_platform_interface"
-      ]
-    },
-    {
-      "name": "shared_preferences_web",
-      "version": "2.4.3",
-      "dependencies": [
-        "flutter",
-        "flutter_web_plugins",
-        "shared_preferences_platform_interface",
-        "web"
-      ]
-    },
-    {
-      "name": "shared_preferences_platform_interface",
-      "version": "2.4.1",
-      "dependencies": [
-        "flutter",
-        "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "shared_preferences_linux",
-      "version": "2.4.1",
-      "dependencies": [
-        "file",
-        "flutter",
-        "path",
-        "path_provider_linux",
-        "path_provider_platform_interface",
-        "shared_preferences_platform_interface"
-      ]
-    },
-    {
-      "name": "shared_preferences_foundation",
-      "version": "2.5.4",
-      "dependencies": [
-        "flutter",
-        "shared_preferences_platform_interface"
-      ]
-    },
-    {
-      "name": "shared_preferences_android",
-      "version": "2.4.13",
-      "dependencies": [
-        "flutter",
-        "shared_preferences_platform_interface"
-      ]
-    },
-    {
       "name": "url_launcher_windows",
       "version": "3.1.4",
       "dependencies": [
@@ -1974,13 +1892,6 @@
     {
       "name": "state_notifier",
       "version": "1.0.0",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "bloc",
-      "version": "8.1.4",
       "dependencies": [
         "meta"
       ]

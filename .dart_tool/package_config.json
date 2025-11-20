@@ -68,12 +68,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "bloc",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/bloc-8.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.2",
       "packageUri": "lib/",
@@ -312,12 +306,6 @@
       "rootUri": "file:///C:/flutter_windows_3.22.1-stable/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.7"
-    },
-    {
-      "name": "flutter_bloc",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-8.1.6",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "flutter_cache_manager",
@@ -978,48 +966,6 @@
       "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/sanitize_html-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.5.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.5"
-    },
-    {
-      "name": "shared_preferences_android",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.4.13",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "shared_preferences_foundation",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_foundation-2.5.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "shared_preferences_linux",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_linux-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
-    },
-    {
-      "name": "shared_preferences_web",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.4.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "shared_preferences_windows",
-      "rootUri": "file:///C:/Users/rain/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
     },
     {
       "name": "shelf",

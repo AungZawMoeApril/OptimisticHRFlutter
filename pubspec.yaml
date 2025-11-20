@@ -16,7 +16,6 @@ dependencies:
 
   # Core Dependencies
   provider: ^6.1.1  # State management
-  flutter_bloc: ^8.1.4  # BLoC pattern
   equatable: ^2.0.5  # Value comparisons
   dartz: ^0.10.1   # Functional programming
   get_it: ^7.6.4   # Dependency injection
@@ -66,7 +65,6 @@ dependencies:
   timeago: ^3.7.1
   url_launcher: ^6.3.1
   csv: ^6.0.0
-  shared_preferences: ^2.5.3
 
 # More Dependencies
 
@@ -90,6 +88,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/fonts/

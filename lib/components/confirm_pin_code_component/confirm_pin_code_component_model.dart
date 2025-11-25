@@ -1,18 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-part '${filename.replaceAll('.dart', '.freezed.dart')}';
-part '${filename.replaceAll('.dart', '.g.dart')}';
-
-@freezed
-class ConfirmPinCodeComponentState with _$ConfirmPinCodeComponentState {
-  const factory ConfirmPinCodeComponentState({
-    @Default(false) bool isLoading,
-    @Default(false) bool isProcessing,
-    String? error,
-    // TODO: Add your state properties here
-  }) = _ConfirmPinCodeComponentState;
-
-  factory ConfirmPinCodeComponentState.fromJson(Map<String, dynamic> json) =>
-      _$ConfirmPinCodeComponentStateFromJson(json);
+/// Stub model for ConfirmPinCodeComponent
+class ConfirmPinCodeComponentModel {
+  void initState(BuildContext context) {}
+  void dispose() {}
 }

@@ -1,18 +1,35 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/core/utils/app_utils.dart';
+import 'leave_page_widget.dart' show LeavePageWidget;
+import 'package:flutter/material.dart';
 
-part '${filename.replaceAll('.dart', '.freezed.dart')}';
-part '${filename.replaceAll('.dart', '.g.dart')}';
+class LeavePageModel extends FlutterFlowModel<LeavePageWidget> {
+  ///  State fields for stateful widgets in this page.
 
-@freezed
-class LeavePageState with _$LeavePageState {
-  const factory LeavePageState({
-    @Default(false) bool isLoading,
-    @Default(false) bool isProcessing,
-    String? error,
-    // TODO: Add your state properties here
-  }) = _LeavePageState;
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
 
-  factory LeavePageState.fromJson(Map<String, dynamic> json) =>
-      _$LeavePageStateFromJson(json);
+  // Stores action output result for [Backend Call - API (getTimeOffRequestByCompanyIdPagination)] action in LeavePage widget.
+  ApiCallResponse? apiResutleaveList;
+  
+  // State field(s) for leave list
+  List<dynamic> allLeaveListView = [];
+  List<dynamic> todayLeaveList = [];
+  List<dynamic> historyLeaveList = [];
+  
+  // State field(s) for leave type filter
+  dynamic leaveTypeID = '';
+  String? leavedayCount;
+
+  @override
+  void initState(BuildContext context) {
+    // Initialize any required state
+  }
+
+  @override
+  void dispose() {
+    tabBarController?.dispose();
+  }
 }

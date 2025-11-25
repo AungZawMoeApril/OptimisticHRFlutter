@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
 
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 export 'package:collection/collection.dart' show ListEquality;
 export 'package:flutter/material.dart' show Color, Colors;
-export 'package:from_css_color/from_css_color.dart';
 
 typedef StructBuilder<T> = T Function(Map<String, dynamic> data);
 
@@ -62,13 +60,27 @@ List<T>? getStructList<T>(
             .toList();
 
 Color? getSchemaColor(dynamic value) => value is String
-    ? fromCssColor(value)
+    ? _parseColor(value)
     : value is Color
         ? value
         : null;
 
-List<Color>? getColorsList(dynamic value) =>
-    value is! List ? null : value.map(getSchemaColor).withoutNulls;
+// Parse color from hex or css color string
+Color? _parseColor(String value) {
+  // Try parsing as hex color first
+  if (value.startsWith('#')) {
+    return Color(int.parse(value.substring(1), radix: 16) + 0xFF000000);
+  }
+  // Default color if parsing fails
+  return Colors.grey;
+}
 
+List<Color>? getColorsList(dynamic value) =>
+    value is! List ? null : value.map(getSchemaColor).whereType<Color>().toList();
+
+List<T>? getStructDataList<T>(dynamic value) =>
+    value is! List ? null : value.map((e) => castToType<T>(e)).whereType<T>().toList();
+
+// Helper for getting data lists from JSON
 List<T>? getDataList<T>(dynamic value) =>
-    value is! List ? null : value.map((e) => castToType<T>(e)!).toList();
+    value is! List ? null : value.cast<T>();

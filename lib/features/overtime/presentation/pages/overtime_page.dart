@@ -209,9 +209,8 @@ class OvertimePage extends StatelessWidget {
                 formKey.currentState?.save();
                 if (startTime != null && endTime != null) {
                   model.createOvertimeRequest(
-                    userId: 'currentUserId', // TODO: Get from auth
-                    startTime: startTime!,
-                    endTime: endTime!,
+                    startDate: startTime!,
+                    endDate: endTime!,
                     reason: reason,
                   );
                   Navigator.pop(context);

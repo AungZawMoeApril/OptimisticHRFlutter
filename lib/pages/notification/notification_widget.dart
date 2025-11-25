@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '/app_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NotificationWidget extends StatefulWidget {
@@ -106,7 +104,6 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                       padding: const EdgeInsets.all(16),
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
-                        final notification = notifications[index];
                         // TODO: Implement notification item widget
                         return Card(
                           child: ListTile(

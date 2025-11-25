@@ -6,7 +6,7 @@ import '../core/widgets/app_icon_button.dart';;
 import 'package:flutter/material.dart';;
 import '../core/utils/app_utils.dart';;
 import '../core/widgets/app_button.dart';;
-import 'package:hr_app/core/utils/custom_functions.dart' as functions;
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

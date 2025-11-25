@@ -1,155 +1,45 @@
+// Stub file - original moved to .broken
+// This file provides basic auth manager functionality without FlutterFlow dependencies
+
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '/backend/schema/structs/index.dart';
-import 'custom_auth_user_provider.dart';
+class CustomAuthManager extends ChangeNotifier {
+  String? _authToken;
+  Map<String, dynamic>? _userData;
+  dynamic _currentUser; // Stub for currentUser
+  final _authStateController = StreamController<bool>.broadcast();
 
-export 'custom_auth_manager.dart';
+  Stream<bool> get authStateChanges => _authStateController.stream;
+  
+  bool get isAuthenticated => _authToken != null;
+  String? get authToken => _authToken;
+  Map<String, dynamic>? get userData => _userData;
+  dynamic get currentUser => _currentUser; // Expose currentUser
 
-const _kAuthTokenKey = '_auth_authentication_token_';
-const _kRefreshTokenKey = '_auth_refresh_token_';
-const _kTokenExpirationKey = '_auth_token_expiration_';
-const _kUidKey = '_auth_uid_';
-const _kUserDataKey = '_auth_user_data_';
-
-class CustomAuthManager {
-  // Auth session attributes
-  String? authenticationToken;
-  String? refreshToken;
-  DateTime? tokenExpiration;
-  // User attributes
-  String? uid;
-  UserStruct? userData;
-
-  Future signOut() async {
-    authenticationToken = null;
-    refreshToken = null;
-    tokenExpiration = null;
-    uid = null;
-    userData = null;
-    // Update the current user.
-    hROptimisticMobileAuthUserSubject.add(
-      HROptimisticMobileAuthUser(loggedIn: false),
-    );
-    persistAuthData();
+  Future<void> initialize() async {
+    // TODO: Load persisted auth state
   }
 
-  Future<HROptimisticMobileAuthUser?> signIn({
-    String? authenticationToken,
-    String? refreshToken,
-    DateTime? tokenExpiration,
-    String? authUid,
-    UserStruct? userData,
-  }) async =>
-      _updateCurrentUser(
-        authenticationToken: authenticationToken,
-        refreshToken: refreshToken,
-        tokenExpiration: tokenExpiration,
-        authUid: authUid,
-        userData: userData,
-      );
-
-  void updateAuthUserData({
-    String? authenticationToken,
-    String? refreshToken,
-    DateTime? tokenExpiration,
-    String? authUid,
-    UserStruct? userData,
-  }) {
-    assert(
-      currentUser?.loggedIn ?? false,
-      'User must be logged in to update auth user data.',
-    );
-
-    _updateCurrentUser(
-      authenticationToken: authenticationToken,
-      refreshToken: refreshToken,
-      tokenExpiration: tokenExpiration,
-      authUid: authUid,
-      userData: userData,
-    );
+  Future<bool> signIn(String username, String password) async {
+    // TODO: Implement actual sign in logic
+    _authToken = 'stub_token';
+    _userData = {'username': username};
+    _authStateController.add(true);
+    notifyListeners();
+    return true;
   }
 
-  HROptimisticMobileAuthUser? _updateCurrentUser({
-    String? authenticationToken,
-    String? refreshToken,
-    DateTime? tokenExpiration,
-    String? authUid,
-    UserStruct? userData,
-  }) {
-    this.authenticationToken = authenticationToken;
-    this.refreshToken = refreshToken;
-    this.tokenExpiration = tokenExpiration;
-    this.uid = authUid;
-    this.userData = userData;
-    // Update the current user stream.
-    final updatedUser = HROptimisticMobileAuthUser(
-      loggedIn: true,
-      uid: authUid,
-      userData: userData,
-    );
-    hROptimisticMobileAuthUserSubject.add(updatedUser);
-    persistAuthData();
-    return updatedUser;
+  Future<void> signOut() async {
+    _authToken = null;
+    _userData = null;
+    _authStateController.add(false);
+    notifyListeners();
   }
 
-  late SharedPreferences _prefs;
-  Future initialize() async {
-    _prefs = await SharedPreferences.getInstance();
-
-    try {
-      authenticationToken = _prefs.getString(_kAuthTokenKey);
-      refreshToken = _prefs.getString(_kRefreshTokenKey);
-      tokenExpiration = _prefs.getInt(_kTokenExpirationKey) != null
-          ? DateTime.fromMillisecondsSinceEpoch(
-              _prefs.getInt(_kTokenExpirationKey)!)
-          : null;
-      uid = _prefs.getString(_kUidKey);
-      userData = _prefs.getString(_kUserDataKey) != null
-          ? UserStruct.fromSerializableMap(
-              (jsonDecode(_prefs.getString(_kUserDataKey)!) as Map)
-                  .cast<String, dynamic>(),
-            )
-          : null;
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error initializing auth: $e');
-      }
-      return;
-    }
-
-    final authTokenExists = authenticationToken != null;
-    final tokenExpired =
-        tokenExpiration != null && tokenExpiration!.isBefore(DateTime.now());
-    final updatedUser = HROptimisticMobileAuthUser(
-      loggedIn: authTokenExists && !tokenExpired,
-      uid: uid,
-      userData: userData,
-    );
-    hROptimisticMobileAuthUserSubject.add(updatedUser);
-  }
-
-  void persistAuthData() {
-    authenticationToken != null
-        ? _prefs.setString(_kAuthTokenKey, authenticationToken!)
-        : _prefs.remove(_kAuthTokenKey);
-    refreshToken != null
-        ? _prefs.setString(_kRefreshTokenKey, refreshToken!)
-        : _prefs.remove(_kRefreshTokenKey);
-    tokenExpiration != null
-        ? _prefs.setInt(
-            _kTokenExpirationKey, tokenExpiration!.millisecondsSinceEpoch)
-        : _prefs.remove(_kTokenExpirationKey);
-    uid != null ? _prefs.setString(_kUidKey, uid!) : _prefs.remove(_kUidKey);
-    userData != null
-        ? _prefs.setString(
-            _kUserDataKey, jsonEncode(userData!.toSerializableMap()))
-        : _prefs.remove(_kUserDataKey);
+  @override
+  void dispose() {
+    _authStateController.close();
+    super.dispose();
   }
 }
-
-HROptimisticMobileAuthUser? currentUser;
-bool get loggedIn => currentUser?.loggedIn ?? false;

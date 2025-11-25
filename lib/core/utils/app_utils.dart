@@ -14,6 +14,16 @@ T createModel<T extends FlutterFlowModel>(BuildContext context, T Function() bui
   return model;
 }
 
+// Extension to add safeSetState to State
+extension StateExtensions on State {
+  void safeSetState(VoidCallback fn) {
+    if (mounted) {
+      // ignore: invalid_use_of_protected_member
+      setState(fn);
+    }
+  }
+}
+
 class AppUtils {
   static void safeSetState(VoidCallback fn) {
     // Only call setState if the widget is mounted
@@ -48,12 +58,6 @@ class AppUtils {
       return 'now';
     }
   }
-}
-
-// Helper function for providing default values
-T valueOrDefault<T>(T? value, T defaultValue) {
-  return value ?? defaultValue;
-}
 
   static void showSnackBar(
     BuildContext context,
@@ -78,4 +82,9 @@ T valueOrDefault<T>(T? value, T defaultValue) {
       return date;
     }
   }
+}
+
+// Helper function for providing default values
+T valueOrDefault<T>(T? value, T defaultValue) {
+  return value ?? defaultValue;
 }

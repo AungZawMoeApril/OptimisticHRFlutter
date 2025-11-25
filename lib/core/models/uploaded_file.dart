@@ -100,3 +100,6 @@ class UploadedFile {
           contentType: data['contentType'] as String?,
         );
 }
+
+// FlutterFlow compatibility alias
+typedef FFUploadedFile = UploadedFile;

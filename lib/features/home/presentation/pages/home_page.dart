@@ -6,7 +6,7 @@ import '../widgets/personal_info_card.dart';
 import '../widgets/attendance_card_v2.dart';
 import '../widgets/announcement_list.dart';
 import '../../../../core/widgets/custom_icon_button.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

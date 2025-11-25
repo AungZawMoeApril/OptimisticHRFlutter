@@ -3,15 +3,14 @@
 import 'dart:convert';
 import 'dart:core';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:mime_type/mime_type.dart';
+import 'package:mime/mime.dart';
 
-import 'package:hr_app/core/models/uploaded_file.dart';
+import '/core/models/uploaded_file.dart';
 
 import 'get_streamed_response.dart';
 
@@ -365,7 +364,7 @@ class ApiManager {
         files.add(
           http.MultipartFile.fromBytes(
             e.key,
-            uploadedFile.bytes ?? Uint8List.fromList([]),
+            uploadedFile.bytes,
             filename: uploadedFile.name,
             contentType: _getMediaType(uploadedFile.name),
           ),
@@ -384,7 +383,8 @@ class ApiManager {
   }
 
   static MediaType? _getMediaType(String? filename) {
-    final contentType = mime(filename);
+    if (filename == null) return null;
+    final contentType = lookupMimeType(filename);
     if (contentType == null) {
       return null;
     }

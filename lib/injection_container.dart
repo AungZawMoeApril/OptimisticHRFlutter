@@ -3,32 +3,16 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:http/http.dart' as http;
 
+import 'core/network/network_info.dart';
 import 'features/auth/presentation/providers/auth_provider.dart';
 import 'features/auth/presentation/providers/pin_code_provider.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
-
-import 'features/home/data/repositories/home_repository_impl.dart';
-import 'features/home/domain/repositories/home_repository.dart';
-import 'features/home/presentation/providers/home_provider.dart';
-import 'features/auth/data/repositories/auth_repository_impl.dart';
-import 'features/auth/domain/repositories/auth_repository.dart';
-import 'features/auth/presentation/providers/auth_provider.dart';
-
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:http/http.dart' as http;
-
-import 'core/network/network_info.dart';
-import 'core/utils/input_converter.dart';
-import 'features/auth/data/datasources/auth_local_data_source.dart';
-import 'features/auth/data/datasources/auth_remote_data_source.dart';
-import 'features/auth/data/repositories/auth_repository_impl.dart';
-import 'features/auth/domain/repositories/auth_repository.dart';
-import 'features/auth/domain/usecases/login.dart';
-import 'features/auth/presentation/providers/auth_provider.dart';
+// import 'features/home/data/repositories/home_repository_impl.dart';
+// import 'features/home/domain/repositories/home_repository.dart';
+// import 'features/home/presentation/providers/home_provider.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -36,44 +20,42 @@ Future<void> init() async {
   //! Features
   // Auth
   // Provider
-  sl.registerFactory(
-    () => AuthProvider(
-      login: sl(),
-    ),
-  );
+  // sl.registerFactory(
+  //   () => AuthProvider(
+  //     login: sl(),
+  //   ),
+  // );
 
   // Use cases
-  sl.registerLazySingleton(() => Login(sl()));
+  // sl.registerLazySingleton(() => Login(sl())); // TODO: Create Login usecase
 
   // Repository
-  sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(
-      remoteDataSource: sl(),
-      localDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
+  // sl.registerLazySingleton<AuthRepository>(
+  //   () => AuthRepositoryImpl(
+  //     dio: sl(),
+  //   ),
+  // );
 
-  // Data sources
-  sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(client: sl()),
-  );
-  sl.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSourceImpl(sharedPreferences: sl()),
-  );
+  // Data sources - TODO: Create these files
+  // sl.registerLazySingleton<AuthRemoteDataSource>(
+  //   () => AuthRemoteDataSourceImpl(client: sl()),
+  // );
+  // sl.registerLazySingleton<AuthLocalDataSource>(
+  //   () => AuthLocalDataSourceImpl(sharedPreferences: sl()),
+  // );
 
   //! Core
-  sl.registerLazySingleton(() => InputConverter());
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  // sl.registerLazySingleton(() => InputConverter()); // TODO: Create file
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
 
   //! External
-  final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => sharedPreferences);
+  // final sharedPreferences = await SharedPreferences.getInstance(); // TODO: Add dependency
+  // sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }
 
-Future<void> init() async {
+Future<void> initDependencies() async {
   // Features - Auth
   sl.registerFactory(
     () => AuthProvider(sl()),
@@ -89,28 +71,27 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
       dio: sl(),
-      secureStorage: sl(),
     ),
   );
 
   // Features - Home
-  sl.registerFactory(
-    () => HomeProvider(sl()),
-  );
+  // sl.registerFactory(
+  //   () => HomeProvider(sl(), context),
+  // ); // TODO: Fix context dependency
 
-  sl.registerLazySingleton<HomeRepository>(
-    () => HomeRepositoryImpl(
-      remoteDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
+  // sl.registerLazySingleton<HomeRepository>(
+  //   () => HomeRepositoryImpl(
+  //     remoteDataSource: sl(),
+  //     networkInfo: sl(),
+  //   ),
+  // ); // TODO: Implement when datasource is ready
 
-  sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(
-      client: sl(),
-      secureStorage: sl(),
-    ),
-  );
+  // sl.registerLazySingleton<HomeRemoteDataSource>(
+  //   () => HomeRemoteDataSourceImpl(
+  //     client: sl(),
+  //     secureStorage: sl(),
+  //   ),
+  // ); // TODO: Implement HomeRemoteDataSourceImpl
 
   // External Dependencies
   sl.registerLazySingleton(() => Dio());

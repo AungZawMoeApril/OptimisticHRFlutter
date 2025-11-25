@@ -1,21 +1,22 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme_extension.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/delete_leave_request_dialog/delete_leave_request_dialog_widget.dart';
 import '/components/leave_attachment_model/leave_attachment_model_widget.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
+import 'package:h_r_optimistic_mobile/core/widgets/app_icon_button.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/flutterflow_button_tab_bar.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/web_view_aware.dart';
+
+import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/app_button.dart';
 import '/backend/schema/structs/index.dart';
-import 'package:hr_app/core/utils/custom_functions.dart' as functions;
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
 import '/index.dart';
+import '/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'leave_page_model.dart';
 import '/core/theme/app_colors.dart';
 export 'leave_page_model.dart';
@@ -47,14 +48,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
           await MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
         monthNum: 13,
         yearNum: functions.leaveforYearCustomFunction(),
-        employeeID: AppState().employeeID,
-        companyID: AppState().companyID,
-        requesterID: AppState().reportID,
+        employeeID: context.read<AppState>().employeeID,
+        companyID: context.read<AppState>().companyID,
+        requesterID: context.read<AppState>().reportID,
         leaveTypeID: _model.leaveTypeID,
         status: 'All',
         perpage: 1000,
         page: 1,
-        token: AppState().token,
+        token: context.read<AppState>().token,
       );
 
       if ((_model.apiResutleaveList?.succeeded ?? true)) {
@@ -118,20 +119,20 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
             FFLocalizations.of(context).getText(
               'o10rjd0l' /* Leave */,
             ),
-            style: Theme.of(context).textTheme.$1?.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   font: GoogleFonts.outfit(
                     fontWeight:
-                        context.headlineMedium.fontWeight,
+                        context.headlineMedium?.fontWeight,
                     fontStyle:
-                        context.headlineMedium.fontStyle,
+                        context.headlineMedium?.fontStyle,
                   ),
                   color: Theme.of(context).colorScheme.secondaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight:
-                      context.headlineMedium.fontWeight,
+                      context.headlineMedium?.fontWeight,
                   fontStyle:
-                      context.headlineMedium.fontStyle,
+                      context.headlineMedium?.fontStyle,
                 ),
           ),
           actions: [
@@ -224,9 +225,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                         ),
                         child: FutureBuilder<ApiCallResponse>(
                           future: MainGroup.getLeaveWithRemainingDaysCall.call(
-                            companyIDMain: AppState().companyID,
-                            employeeIDMain: AppState().employeeID,
-                            token: AppState().token,
+                            companyIDMain: context.read<AppState>().companyID,
+                            employeeIDMain: context.read<AppState>().employeeID,
+                            token: context.read<AppState>().token,
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -454,9 +455,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                     Align(
                       alignment: Alignment(0.0, 0),
                       child: FlutterFlowButtonTabBar(
-                        useToggleButtonStyle: false,
                         labelStyle:
-                            Theme.of(context).textTheme.$1?.copyWith(
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   font: GoogleFonts.readexPro(
                                     fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
@@ -503,7 +503,6 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                             ),
                           ),
                         ],
-                        controller: _model.tabBarController,
                         onTap: (i) async {
                           [() async {}, () async {}, () async {}][i]();
                         },
@@ -511,7 +510,6 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                     ),
                     Expanded(
                       child: TabBarView(
-                        controller: _model.tabBarController,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
                           Column(
@@ -558,14 +556,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                         monthNum: 13,
                                         yearNum: functions
                                             .leaveforYearCustomFunction(),
-                                        employeeID: AppState().employeeID,
-                                        companyID: AppState().companyID,
-                                        requesterID: AppState().reportID,
+                                        employeeID: context.read<AppState>().employeeID,
+                                        companyID: context.read<AppState>().companyID,
+                                        requesterID: context.read<AppState>().reportID,
                                         leaveTypeID: _model.leaveTypeID,
                                         status: 'All',
                                         perpage: 300,
                                         page: 1,
-                                        token: AppState().token,
+                                        token: context.read<AppState>().token,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -687,15 +685,15 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               )?.toString(),
                                                                               'LeaveName',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Color(0xFFF9B052),
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -737,18 +735,18 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                   ).toString()),
                                                                                   'status',
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                       font: GoogleFonts.readexPro(
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                        fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                       ),
                                                                                       color: functions.leaveStatusTextColor(getJsonField(
                                                                                         yearforLeaveItem,
                                                                                         r'''$.status''',
                                                                                       ).toString()),
                                                                                       letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -783,14 +781,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -827,14 +825,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -865,13 +863,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -899,13 +897,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -924,13 +922,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -954,13 +952,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -991,14 +989,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -1016,8 +1014,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
@@ -1026,9 +1024,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ],
@@ -1118,16 +1116,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                       .toList()),
                                                                                   '0',
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                       font: GoogleFonts.readexPro(
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                        fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                       ),
                                                                                       color: Color(0xFFF9B052),
                                                                                       fontSize: 12.0,
                                                                                       letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -1142,16 +1140,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                 FFLocalizations.of(context).getText(
                                                                                   'pk0gkjsa' /* attachement */,
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                       font: GoogleFonts.readexPro(
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                        fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                       ),
                                                                                       color: Color(0xFFF9B052),
                                                                                       fontSize: 12.0,
                                                                                       letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -1186,14 +1184,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -1218,14 +1216,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1267,16 +1265,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               ).toString()),
                                                                               'Supervisor',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Theme.of(context).colorScheme.secondaryText,
                                                                                   fontSize: 12.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1291,16 +1289,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             FFLocalizations.of(context).getText(
                                                                               'x059z4y4' /* by : */,
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Theme.of(context).colorScheme.secondaryText,
                                                                                   fontSize: 12.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1319,16 +1317,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               )?.toString(),
                                                                               'ApproverName',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Theme.of(context).colorScheme.secondaryText,
                                                                                   fontSize: 12.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1368,14 +1366,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                       monthNum: 13,
                                       yearNum: functions
                                           .leaveforYearCustomFunction(),
-                                      employeeID: AppState().employeeID,
-                                      companyID: AppState().companyID,
-                                      requesterID: AppState().reportID,
+                                      employeeID: context.read<AppState>().employeeID,
+                                      companyID: context.read<AppState>().companyID,
+                                      requesterID: context.read<AppState>().reportID,
                                       leaveTypeID: _model.leaveTypeID,
                                       status: 'All',
                                       perpage: 1000,
                                       page: 1,
-                                      token: AppState().token,
+                                      token: context.read<AppState>().token,
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -1503,13 +1501,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Color(0xFFF9B052),
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1553,15 +1551,15 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               ).toString()),
                                                                               'status',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Color(0xFF21A8D6),
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1599,8 +1597,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
@@ -1609,9 +1607,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -1650,9 +1648,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               Theme.of(context).colorScheme.secondaryText,
@@ -1697,17 +1695,17 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -1735,9 +1733,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               Theme.of(context).colorScheme.secondaryText,
@@ -1768,9 +1766,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               Theme.of(context).colorScheme.secondaryText,
@@ -1806,9 +1804,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               Theme.of(context).colorScheme.secondaryText,
@@ -1851,8 +1849,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
@@ -1861,9 +1859,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -1993,16 +1991,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                   .toList()),
                                                                               '0',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Color(0xFFF9B052),
                                                                                   fontSize: 10.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -2023,16 +2021,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             FFLocalizations.of(context).getText(
                                                                               '2atwuidd' /* attachement */,
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                   font: GoogleFonts.readexPro(
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                                   color: Color(0xFFF9B052),
                                                                                   fontSize: 10.0,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -2070,8 +2068,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 AppColors.overtimetextcolor,
@@ -2080,9 +2078,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2110,9 +2108,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               AppColors.overtimetextcolor,
@@ -2326,14 +2324,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                         monthNum: 13,
                                         yearNum: functions
                                             .leaveforYearCustomFunction(),
-                                        employeeID: AppState().employeeID,
-                                        companyID: AppState().companyID,
-                                        requesterID: AppState().reportID,
+                                        employeeID: context.read<AppState>().employeeID,
+                                        companyID: context.read<AppState>().companyID,
+                                        requesterID: context.read<AppState>().reportID,
                                         leaveTypeID: _model.leaveTypeID,
                                         status: 'All',
                                         perpage: 1000000,
                                         page: 1,
-                                        token: AppState().token,
+                                        token: context.read<AppState>().token,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -2479,13 +2477,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Color(0xFFF9B052),
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -2531,18 +2529,18 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                 ).toString()),
                                                                                 'status',
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                     font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                                     color: functions.leaveStatusTextColor(getJsonField(
                                                                                       leaveHistoryItem,
                                                                                       r'''$.status''',
                                                                                     ).toString()),
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -2578,14 +2576,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2623,8 +2621,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
@@ -2633,9 +2631,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2667,13 +2665,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2702,17 +2700,17 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2733,17 +2731,17 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2768,17 +2766,17 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2810,14 +2808,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2836,9 +2834,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           font:
                                                                               GoogleFonts.readexPro(
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                           color:
                                                                               Theme.of(context).colorScheme.secondaryText,
@@ -2945,16 +2943,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                                     .toList()),
                                                                                 '0',
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                     font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                                     color: Color(0xFFF9B052),
                                                                                     fontSize: 12.0,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -2975,16 +2973,16 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               FFLocalizations.of(context).getText(
                                                                                 '2kiboccb' /* attachement */,
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.$1?.copyWith(
+                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                                                     font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                     ),
                                                                                     color: Color(0xFFF9B052),
                                                                                     fontSize: 12.0,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -3020,14 +3018,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         style: Theme.of(context).textTheme.bodyMedium!
                                                                             .override(
                                                                               font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                               color: Theme.of(context).colorScheme.secondaryText,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -3053,8 +3051,8 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           .override(
                                                                             font:
                                                                                 GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Theme.of(context).colorScheme.secondaryText,
@@ -3063,9 +3061,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                context.textTheme.bodyMedium?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                context.textTheme.bodyMedium?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -3110,14 +3108,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -3136,14 +3134,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -3166,14 +3164,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           style: Theme.of(context).textTheme.bodyMedium!
                                                                               .override(
                                                                                 font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                                 ),
                                                                                 color: Theme.of(context).colorScheme.secondaryText,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
+                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -3211,3 +3209,5 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
     );
   }
 }
+
+

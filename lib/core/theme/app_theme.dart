@@ -2,6 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
+/// Custom theme extensions for ColorScheme
+extension AppColorScheme on ColorScheme {
+  Color get primaryText => onSurface;
+  Color get secondaryText => onSurface.withOpacity(0.6);
+  Color get primaryBackground => surface;
+  Color get secondaryBackground => surfaceContainerHighest;
+  Color get accent1 => primary;
+  Color get accent2 => secondary;
+  Color get accent3 => tertiary;
+  Color get accent4 => surfaceContainerHigh;
+  Color get success => const Color(0xFF4CAF50);
+  Color get warning => const Color(0xFFFF9800);
+  Color get info => const Color(0xFF2196F3);
+}
+
+/// BuildContext extension for easy theme access
+extension ThemeExtension on BuildContext {
+  TextTheme get textTheme => Theme.of(this).textTheme;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+}
+
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(

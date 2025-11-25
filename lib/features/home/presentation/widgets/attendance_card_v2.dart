@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme.dart';
 import '../providers/home_provider.dart';
 
 class AttendanceCardV2 extends StatelessWidget {
@@ -41,7 +41,7 @@ class AttendanceCardV2 extends StatelessWidget {
                   children: [
                     Text(
                       "Today's Attendance",
-                      style: Theme.of(context).textTheme.titleMedium.copyWith(
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -68,7 +68,7 @@ class AttendanceCardV2 extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         'Shift: ${attendance.shiftStartTime} - ${attendance.shiftEndTime}',
-                        style: context.textTheme.bodySmall.copyWith(
+                        style: context.textTheme.bodySmall?.copyWith(
                               color: Theme.of(context).colorScheme.secondaryText,
                             ),
                       ),

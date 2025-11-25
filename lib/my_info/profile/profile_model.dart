@@ -1,7 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '../core/utils/app_utils.dart';;
-import 'package:hr_app/core/utils/form_field_controller.dart';
+import 'package:h_r_optimistic_mobile/core/utils/form_field_controller.dart';
 import '/index.dart';
 import 'profile_widget.dart' show ProfileWidget;
 import 'package:flutter/material.dart';

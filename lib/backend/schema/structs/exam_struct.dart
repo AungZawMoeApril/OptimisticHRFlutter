@@ -2,7 +2,7 @@
 
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class ExamStruct extends BaseStruct {
   ExamStruct({

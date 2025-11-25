@@ -17,7 +17,6 @@ const themeMapping = {
   'Colors.orange': 'Colors.orange',
   'Theme.of(context).colorScheme.error': 'Theme.of(context).colorScheme.error',
   'Theme.of(context).colorScheme.outline': 'Theme.of(context).colorScheme.outline',
-  'Theme.of(context).colorScheme.primary': 'Theme.of(context).colorScheme.primary',
 
   // Text Styles
   'Theme.of(context).textTheme.displayLarge': 'Theme.of(context).textTheme.displayLarge',

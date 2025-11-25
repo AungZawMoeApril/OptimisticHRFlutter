@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import '../../../../core/error/failures.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../../domain/entities/personal_info.dart';
 import '../../domain/entities/announcement.dart';
+import '../../domain/entities/attendance_status.dart';
 import '../datasources/home_remote_data_source.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -38,10 +40,11 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, Map<String, String>>> getAttendanceStatus(
+  Future<Either<Failure, AttendanceStatus>> getAttendanceStatus(
     String companyId,
     String employeeId,
     String token,
+    String todayDate,
   ) async {
     if (await networkInfo.isConnected) {
       try {
@@ -49,6 +52,7 @@ class HomeRepositoryImpl implements HomeRepository {
           companyId,
           employeeId,
           token,
+          todayDate,
         );
         return Right(status);
       } on ServerException {
@@ -95,6 +99,32 @@ class HomeRepositoryImpl implements HomeRepository {
           token,
         );
         return Right(announcements);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> updateAttendanceStatus(
+    String companyId,
+    String employeeId,
+    String token,
+    String timeType,
+    bool isCheckIn,
+  ) async {
+    if (await networkInfo.isConnected) {
+      try {
+        await remoteDataSource.updateAttendanceStatus(
+          companyId,
+          employeeId,
+          token,
+          timeType,
+          isCheckIn,
+        );
+        return const Right(true);
       } on ServerException {
         return Left(ServerFailure());
       }

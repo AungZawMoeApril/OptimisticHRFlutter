@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class OvertimeDetailsStruct extends BaseStruct {
   OvertimeDetailsStruct({
@@ -180,11 +180,7 @@ class OvertimeDetailsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        overtImeDescription: deserializeParam<String>(
-          data['overtImeDescription'],
-          ParamType.String,
-          true,
-        ),
+        overtImeDescription: getDataList<String>(data['overtImeDescription']),
         cancelFlag: deserializeParam(
           data['cancelFlag'],
           ParamType.bool,

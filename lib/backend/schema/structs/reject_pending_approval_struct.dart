@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class RejectPendingApprovalStruct extends BaseStruct {
   RejectPendingApprovalStruct({
@@ -301,11 +301,7 @@ class RejectPendingApprovalStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
-        reqAttachmentlist: deserializeParam<String>(
-          data['req_Attachmentlist'],
-          ParamType.String,
-          true,
-        ),
+        reqAttachmentlist: getDataList<String>(data['req_Attachmentlist']),
         approverOrder: deserializeParam(
           data['approverOrder'],
           ParamType.int,

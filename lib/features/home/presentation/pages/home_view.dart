@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-;
+import '../../../../core/theme/app_theme.dart';
 import '../providers/home_provider.dart';
 import '../widgets/personal_info_section.dart';
 

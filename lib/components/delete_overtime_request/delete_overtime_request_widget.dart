@@ -1,12 +1,9 @@
-import '../core/widgets/app_widgets.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'delete_overtime_request_model.dart';
+
 export 'delete_overtime_request_model.dart';
 
+/// Stub widget for DeleteOvertimeRequest
 class DeleteOvertimeRequestWidget extends StatefulWidget {
   const DeleteOvertimeRequestWidget({super.key});
 
@@ -20,206 +17,20 @@ class _DeleteOvertimeRequestWidgetState
   late DeleteOvertimeRequestModel _model;
 
   @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DeleteOvertimeRequestModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    _model = DeleteOvertimeRequestModel();
+    _model.initState(context);
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
+    _model.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
-        child: Container(
-          width: 300.0,
-          height: 150.0,
-          constraints: BoxConstraints(
-            maxWidth: 530.0,
-          ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondaryBackground,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 3.0,
-                color: Color(0x33000000),
-                offset: Offset(
-                  0.0,
-                  1.0,
-                ),
-              )
-            ],
-            borderRadius: BorderRadius.circular(24.0),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primaryBackground,
-              width: 1.0,
-            ),
-          ),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        FFLocalizations.of(context).getText(
-                          'il8i236t' /* Confirm to Cancel Request */,
-                        ),
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.headlineMedium!
-                            .override(
-                              font: GoogleFonts.outfit(
-                                fontWeight: Theme.of(context).textTheme.headlineMedium!
-                                    .fontWeight,
-                                fontStyle: Theme.of(context).textTheme.headlineMedium!
-                                    .fontStyle,
-                              ),
-                              fontSize: 19.0,
-                              letterSpacing: 0.0,
-                              fontWeight: Theme.of(context).textTheme.headlineMedium!
-                                  .fontWeight,
-                              fontStyle: Theme.of(context).textTheme.headlineMedium!
-                                  .fontStyle,
-                            ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 12.0, 0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'fkposcmg' /* Do you want to cancel this req... */,
-                            ),
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.labelMedium!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.labelMedium!
-                                        .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.labelMedium!
-                                        .fontStyle,
-                                  ),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.labelMedium!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.labelMedium!
-                                      .fontStyle,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                        child: AppButton(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            '3sg0x70t' /* Cancel */,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: Theme.of(context).colorScheme.surface,
-                            textStyle:
-                                Theme.of(context).textTheme.$1?.copyWith(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: Theme.of(context).textTheme.bodyLarge!
-                                            .fontWeight,
-                                        fontStyle: Theme.of(context).textTheme.bodyLarge!
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: Theme.of(context).textTheme.bodyLarge!
-                                          .fontWeight,
-                                      fontStyle: Theme.of(context).textTheme.bodyLarge!
-                                          .fontStyle,
-                                    ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                        ),
-                      ),
-                      AppButton(
-                        onPressed: () async {
-                          Navigator.pop(context, true);
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'aim5hmt2' /* Delete */,
-                        ),
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 20.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFFFF3838),
-                          textStyle:
-                              Theme.of(context).textTheme.$1?.copyWith(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: Theme.of(context).textTheme.titleSmall!
-                                          .fontWeight,
-                                      fontStyle: Theme.of(context).textTheme.titleSmall!
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: Theme.of(context).textTheme.titleSmall!
-                                        .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.titleSmall!
-                                        .fontStyle,
-                                  ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.circular(14.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return const Placeholder();
   }
 }

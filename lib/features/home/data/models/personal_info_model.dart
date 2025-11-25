@@ -1,5 +1,4 @@
 import '../../domain/entities/personal_info.dart';
-import 'package:hr_app/core/utils/app_utils.dart';
 
 class PersonalInfoModel extends PersonalInfo {
   PersonalInfoModel({
@@ -9,6 +8,11 @@ class PersonalInfoModel extends PersonalInfo {
     required String mobile,
     required String hiredDate,
     required String nickname,
+    String employeeImage = '',
+    String employeeName = '',
+    String department = '',
+    String position = '',
+    int totalLeaveRemain = 0,
   }) : super(
           prefix: prefix,
           email: email,
@@ -16,6 +20,11 @@ class PersonalInfoModel extends PersonalInfo {
           mobile: mobile,
           hiredDate: hiredDate,
           nickname: nickname,
+          employeeImage: employeeImage,
+          employeeName: employeeName,
+          department: department,
+          position: position,
+          totalLeaveRemain: totalLeaveRemain,
         );
 
   factory PersonalInfoModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +36,11 @@ class PersonalInfoModel extends PersonalInfo {
       mobile: data['mobile'] ?? '',
       hiredDate: data['hiredDate'] ?? '',
       nickname: data['nickname'] ?? '',
+      employeeImage: data['employeeImage'] ?? '',
+      employeeName: data['employeeName'] ?? '',
+      department: data['department'] ?? '',
+      position: data['position'] ?? '',
+      totalLeaveRemain: data['totalLeaveRemain'] ?? 0,
     );
   }
 
@@ -39,6 +53,11 @@ class PersonalInfoModel extends PersonalInfo {
         'mobile': mobile,
         'hiredDate': hiredDate,
         'nickname': nickname,
+        'employeeImage': employeeImage,
+        'employeeName': employeeName,
+        'department': department,
+        'position': position,
+        'totalLeaveRemain': totalLeaveRemain,
       }]
     };
   }

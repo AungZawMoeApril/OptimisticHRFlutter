@@ -17,23 +17,23 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<String, AuthCredentials>> login(String username, String password) async {
     try {
-      final result = await MainGroup.loginCall.call(
+      final result = await LoginCall.call(
         username: username,
         password: password,
       );
 
-      if (result.succeeded && MainGroup.loginCall.status(result.jsonBody) == 0) {
+      if (result.succeeded && LoginCall.status(result.jsonBody) == 0) {
         final credentials = AuthCredentialsModel(
-          companyId: MainGroup.loginCall.companyId(result.jsonBody)!,
-          employeeId: MainGroup.loginCall.employeeId(result.jsonBody)!,
-          token: MainGroup.loginCall.token(result.jsonBody)!,
+          companyId: LoginCall.companyId(result.jsonBody)!.toString(),
+          employeeId: LoginCall.employeeId(result.jsonBody)!.toString(),
+          token: LoginCall.token(result.jsonBody)!,
           timeZoneOffset: DateTime.now().timeZoneOffset.inHours.toString(),
         );
 
         await saveAuthCredentials(credentials);
         return Right(credentials);
       } else {
-        return Left(MainGroup.loginCall.message(result.jsonBody) ?? 'Login failed');
+        return Left(LoginCall.message(result.jsonBody) ?? 'Login failed');
       }
     } catch (e) {
       return Left(e.toString());
@@ -55,6 +55,16 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       await storage.write(key: 'pin_code', value: pinCode);
       return const Right(true);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, void>> resetPinCode() async {
+    try {
+      await storage.delete(key: 'pin_code');
+      return const Right(null);
     } catch (e) {
       return Left(e.toString());
     }
@@ -129,6 +139,5 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Left(e.toString());
     }
-  }
   }
 }

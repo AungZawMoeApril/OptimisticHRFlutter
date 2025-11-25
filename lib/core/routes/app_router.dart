@@ -9,6 +9,7 @@ import '../../features/auth/presentation/screens/pin_code_setup_screen.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/check_in/presentation/pages/check_in_page.dart';
 import '../../features/check_out/presentation/pages/check_out_page.dart';
+import '../widgets/bottom_nav_bar.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();

@@ -17,4 +17,16 @@ class Announcement with _$Announcement {
 
   factory Announcement.fromJson(Map<String, dynamic> json) =>
       _$AnnouncementFromJson(json);
+  
+  factory Announcement.fromMap(Map<String, dynamic> map) {
+    return Announcement(
+      id: map['id']?.toString() ?? '',
+      title: map['title']?.toString() ?? '',
+      description: map['description']?.toString() ?? '',
+      createdAt: DateTime.tryParse(map['createdAt']?.toString() ?? '') ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(map['updatedAt']?.toString() ?? '') ?? DateTime.now(),
+      imageUrl: map['imageUrl']?.toString(),
+      isRead: map['isRead'] == true,
+    );
+  }
 }

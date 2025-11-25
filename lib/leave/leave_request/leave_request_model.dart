@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import '/core/utils/app_utils.dart';
 import '/core/utils/form_field_controller.dart';
 import '/backend/api_requests/api_calls.dart';
-import 'leave_request_widget.dart' show LeaveRequestWidget, FFUploadedFile;
+import 'leave_request_widget.dart' show LeaveRequestWidget;
+
+// FlutterFlow uploaded file class
+class FFUploadedFile {
+  final String? name;
+  final List<int>? bytes;
+  final int? height;
+  final int? width;
+  final String? blurHash;
+
+  FFUploadedFile({
+    this.name,
+    this.bytes,
+    this.height,
+    this.width,
+    this.blurHash,
+  });
+}
 
 class LeaveRequestModel extends FlutterFlowModel<LeaveRequestWidget> {
   /// State fields for API calls

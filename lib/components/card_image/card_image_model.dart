@@ -1,11 +1,7 @@
-import '../core/utils/app_utils.dart';;
-import 'card_image_widget.dart' show CardImageWidget;
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
-  @override
+/// Stub model for CardImage
+class CardImageModel {
   void initState(BuildContext context) {}
-
-  @override
   void dispose() {}
 }

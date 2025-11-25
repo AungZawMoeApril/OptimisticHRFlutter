@@ -33,8 +33,9 @@ Future<void> initializeDependencies() async {
     () => AuthRepositoryImpl(dio: apiClient.dio),
   );
 
-  // Update API client with auth repository
-  apiClient.setAuthRepository(sl<auth.AuthRepository>());
+  // TODO: Update API client with auth repository
+  // Type mismatch: AuthRepository (domain) vs IAuthRepository (core)
+  // apiClient.setAuthRepository(sl<auth.AuthRepository>());
 
   // Data sources
   sl.registerLazySingleton(() => ProfileLocalDataSource());

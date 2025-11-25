@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class LeaveDataResultStruct extends BaseStruct {
   LeaveDataResultStruct({
@@ -172,11 +172,7 @@ class LeaveDataResultStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        leaveAttachmentList: deserializeParam<String>(
-          data['leaveAttachmentList'],
-          ParamType.String,
-          true,
-        ),
+        leaveAttachmentList: getDataList<String>(data['leaveAttachmentList']),
         startDate: deserializeParam(
           data['startDate'],
           ParamType.String,

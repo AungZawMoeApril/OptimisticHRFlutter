@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import '../../../../core/utils/easy_debounce.dart';
 
-import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/custom_icon_button.dart';
-import '../../../../backend/api_requests/api_calls.dart';
 import '../providers/contact_staff_provider.dart';
 import '../widgets/contact_staff_list_item.dart';
 

@@ -16,12 +16,35 @@ class AnnouncementModelAdapter extends TypeAdapter<AnnouncementModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return AnnouncementModel();
+    return AnnouncementModel(
+      id: fields[0] as String,
+      title: fields[1] as String,
+      detail: fields[2] as String,
+      image: fields[3] as String,
+      name: fields[4] as String,
+      date: fields[5] as DateTime,
+      isRead: fields[6] as bool,
+    );
   }
 
   @override
   void write(BinaryWriter writer, AnnouncementModel obj) {
-    writer.writeByte(0);
+    writer
+      ..writeByte(7)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.title)
+      ..writeByte(2)
+      ..write(obj.detail)
+      ..writeByte(3)
+      ..write(obj.image)
+      ..writeByte(4)
+      ..write(obj.name)
+      ..writeByte(5)
+      ..write(obj.date)
+      ..writeByte(6)
+      ..write(obj.isRead);
   }
 
   @override

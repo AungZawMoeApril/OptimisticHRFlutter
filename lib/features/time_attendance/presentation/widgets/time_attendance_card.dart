@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/time_attendance_record.dart';
-import '/core/theme/app_colors.dart';
 
 class TimeAttendanceCard extends StatelessWidget {
   final TimeAttendanceRecord record;

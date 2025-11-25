@@ -115,3 +115,190 @@ String changeDateFormatYearMonthDay(DateTime? date) {
   if (date == null) return '';
   return DateFormat('yyyy-MM-dd').format(date);
 }
+
+// Get current year for leave requests
+int leaveforYearCustomFunction() {
+  return DateTime.now().year;
+}
+
+// Calculate days left for leave
+String getDaysLeftFunction(dynamic leaveData, [dynamic leaveType]) {
+  try {
+    final balance = leaveBalanceDayFunction(leaveData, leaveType);
+    return balance.toStringAsFixed(1);
+  } catch (e) {
+    return '0.0';
+  }
+}
+
+// Get current timestamp
+DateTime getCurrentTimestamp() {
+  return DateTime.now();
+}
+
+// Leave status color functions
+Color leaveStatusBackgroundColor(String? status) {
+  if (status == null) return Colors.grey.shade200;
+  
+  switch (status.toLowerCase()) {
+    case 'approved':
+      return Colors.green.shade100;
+    case 'pending':
+      return Colors.orange.shade100;
+    case 'rejected':
+    case 'cancelled':
+      return Colors.red.shade100;
+    default:
+      return Colors.grey.shade200;
+  }
+}
+
+Color leaveStatusTextColor(String? status) {
+  if (status == null) return Colors.grey.shade700;
+  
+  switch (status.toLowerCase()) {
+    case 'approved':
+      return Colors.green.shade700;
+    case 'pending':
+      return Colors.orange.shade700;
+    case 'rejected':
+    case 'cancelled':
+      return Colors.red.shade700;
+    default:
+      return Colors.grey.shade700;
+  }
+}
+
+// Change leave status text
+String changeLeaveStatusPendingFunction(String? status) {
+  if (status == null) return 'Unknown';
+  
+  switch (status.toLowerCase()) {
+    case 'approved':
+      return 'Approved';
+    case 'pending':
+      return 'Pending';
+    case 'rejected':
+      return 'Rejected';
+    case 'cancelled':
+      return 'Cancelled';
+    default:
+      return status;
+  }
+}
+
+// Calculate leave day amount
+String leaveDayAmountFunction(String startDate, String endDate, String startTime, String endTime) {
+  try {
+    if (startDate.isEmpty || endDate.isEmpty) return '0.0 Days';
+    
+    DateTime? start;
+    DateTime? end;
+    
+    try {
+      start = DateTime.parse(startDate);
+      end = DateTime.parse(endDate);
+    } catch (e) {
+      try {
+        start = DateFormat('dd/MM/yyyy').parse(startDate);
+        end = DateFormat('dd/MM/yyyy').parse(endDate);
+      } catch (e2) {
+        return '0.0 Days';
+      }
+    }
+    
+    // Calculate full days difference
+    int daysDiff = end.difference(start).inDays + 1;
+    
+    // Handle half-day cases with start/end times
+    if (startTime.isNotEmpty && endTime.isNotEmpty) {
+      if (startTime == '12:00:00' || endTime == '12:00:00') {
+        return '${(daysDiff - 0.5).toStringAsFixed(1)} Days';
+      }
+    }
+    
+    return '$daysDiff.0 Days';
+  } catch (e) {
+    return '0.0 Days';
+  }
+}
+
+// Change date format
+String changeDateFormat(String dateStr) {
+  try {
+    if (dateStr.isEmpty) return '';
+    
+    // Try parsing common date formats
+    DateTime? date;
+    try {
+      date = DateTime.parse(dateStr);
+    } catch (e) {
+      // Try other formats
+      try {
+        date = DateFormat('dd/MM/yyyy').parse(dateStr);
+      } catch (e2) {
+        return dateStr;
+      }
+    }
+    
+    return DateFormat('MMM dd, yyyy').format(date);
+  } catch (e) {
+    return dateStr;
+  }
+}
+
+// Change requested date format
+String changeRequestedDateFormat(String dateStr) {
+  try {
+    if (dateStr.isEmpty) return '';
+    
+    DateTime? date;
+    try {
+      date = DateTime.parse(dateStr);
+    } catch (e) {
+      try {
+        date = DateFormat('yyyy-MM-dd').parse(dateStr);
+      } catch (e2) {
+        return dateStr;
+      }
+    }
+    
+    return DateFormat('dd MMM yyyy').format(date);
+  } catch (e) {
+    return dateStr;
+  }
+}
+
+// Change leave status rejected function
+String changeLeaveStatusRejectedFunction(String status) {
+  if (status.toLowerCase() == 'rejected' || status.toLowerCase() == 'reject') {
+    return 'Rejected';
+  } else if (status.toLowerCase() == 'approved' || status.toLowerCase() == 'approve') {
+    return 'Approved';
+  } else if (status.toLowerCase() == 'pending') {
+    return 'Pending';
+  } else if (status.toLowerCase() == 'cancelled' || status.toLowerCase() == 'cancel') {
+    return 'Cancelled';
+  }
+  return status;
+}
+
+// Attachment count function - accepts up to 3 parameters for FlutterFlow compatibility
+int attachmentCountFunction(dynamic attachmentData, [dynamic unused1, dynamic unused2]) {
+  try {
+    if (attachmentData == null) return 0;
+    
+    if (attachmentData is List) {
+      return attachmentData.length;
+    } else if (attachmentData is Map) {
+      final attachments = attachmentData['attachments'] ?? attachmentData['files'] ?? [];
+      if (attachments is List) {
+        return attachments.length;
+      }
+    }
+    
+    return 0;
+  } catch (e) {
+    return 0;
+  }
+}

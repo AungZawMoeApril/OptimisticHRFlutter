@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class ReqStaffOTRequestStruct extends BaseStruct {
   ReqStaffOTRequestStruct({
@@ -400,11 +400,7 @@ class ReqStaffOTRequestStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        attachments: deserializeParam<String>(
-          data['attachments'],
-          ParamType.String,
-          true,
-        ),
+        attachments: getDataList<String>(data['attachments']),
       );
 
   @override

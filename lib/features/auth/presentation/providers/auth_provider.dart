@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import '../../../domain/entities/auth.dart';
-import '../../../domain/repositories/auth_repository.dart';
+import 'package:h_r_optimistic_mobile/features/auth/domain/entities/auth.dart';
+import 'package:h_r_optimistic_mobile/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthProvider extends ChangeNotifier {
   final AuthRepository _repository;
@@ -130,23 +130,6 @@ class AuthProvider extends ChangeNotifier {
     } finally {
       _isLoading = false;
       notifyListeners();
-    }
-  }
-      
-      _storage.write('authToken', response.token);
-      _storage.write('userId', response.userId);
-      _storage.write('companyId', response.companyId);
-      _storage.write('employeeId', response.employeeId);
-      
-      _status = AuthStatus.authenticated;
-      _error = null;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _status = AuthStatus.error;
-      _error = e.toString();
-      notifyListeners();
-      return false;
     }
   }
 }

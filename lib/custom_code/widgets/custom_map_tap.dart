@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';;
 import '../core/utils/app_utils.dart';;
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
-import 'package:hr_app/core/utils/custom_functions.dart'; // Imports custom functions
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gmap;
-import 'package:hr_app/core/models/lat_lng.dart'; // FlutterFlow's LatLng
+import 'package:h_r_optimistic_mobile/core/models/lat_lng.dart'; // FlutterFlow's LatLng
 import 'package:geolocator/geolocator.dart'; // Geolocator
 
 class CustomMapTap extends StatefulWidget {

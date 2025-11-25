@@ -1,7 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
 import '/backend/schema/structs/index.dart';
-import 'custom_auth_manager.dart';
 
 class HROptimisticMobileAuthUser {
   HROptimisticMobileAuthUser({
@@ -14,6 +13,9 @@ class HROptimisticMobileAuthUser {
   String? uid;
   UserStruct? userData;
 }
+
+/// Current authenticated user
+HROptimisticMobileAuthUser? currentUser;
 
 /// Generates a stream of the authenticated user.
 BehaviorSubject<HROptimisticMobileAuthUser> hROptimisticMobileAuthUserSubject =

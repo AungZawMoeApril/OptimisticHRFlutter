@@ -5,6 +5,7 @@ abstract class AuthRepository {
   Future<Either<String, AuthCredentials>> login(String username, String password);
   Future<Either<String, bool>> verifyPinCode(String pinCode);
   Future<Either<String, bool>> createPinCode(String pinCode);
+  Future<Either<String, void>> resetPinCode();
   Future<Either<String, void>> logout();
   Future<Either<String, AuthStatus>> checkAuthStatus();
   Future<Either<String, AuthCredentials>> refreshToken(String token);

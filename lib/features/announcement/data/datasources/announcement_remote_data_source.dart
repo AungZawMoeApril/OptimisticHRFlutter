@@ -32,10 +32,10 @@ class AnnouncementRemoteDataSourceImpl implements AnnouncementRemoteDataSource {
         token: token,
       );
 
-      final titles = MainGroup.getCustomerWebCall.announcementTitle(result.jsonBody) ?? [];
-      final details = MainGroup.getCustomerWebCall.announcementDetail(result.jsonBody) ?? [];
-      final images = MainGroup.getCustomerWebCall.announcementImage(result.jsonBody) ?? [];
-      final dates = MainGroup.getCustomerWebCall.announcementCreatedDate(result.jsonBody) ?? [];
+      final titles = MainGroup.getCustomerWebCall.announcementTitle(result.jsonBody);
+      final details = MainGroup.getCustomerWebCall.announcementDetail(result.jsonBody);
+      final images = MainGroup.getCustomerWebCall.announcementImage(result.jsonBody);
+      final dates = MainGroup.getCustomerWebCall.announcementCreatedDate(result.jsonBody);
       
       if (titles.isEmpty) {
         throw Exception('Failed to load announcements');

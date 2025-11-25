@@ -4,11 +4,9 @@ import 'package:provider/provider.dart';
 import '../providers/app_state_provider.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
-import '../../features/time_attendance/presentation/pages/time_attendance_page.dart';
-import '../../features/announcement/presentation/pages/announcement_page.dart';
-import '../../features/leave/pages/leave_page.dart';
-import '../../features/profile/presentation/pages/profile_page.dart';
-import '../../features/settings/presentation/pages/settings_page.dart';
+import '../../features/announcement/presentation/pages/announcements_page.dart';
+import '../../leave/leave_page/leave_page_widget.dart';
+import '../../my_info/profile/profile_widget.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -30,40 +28,26 @@ final goRouter = GoRouter(
           name: 'home',
           builder: (context, state) => const HomePage(),
         ),
-        
-        // Time Attendance
-        GoRoute(
-          path: '/timeAttendance',
-          name: 'timeAttendance',
-          builder: (context, state) => const TimeAttendancePage(),
-        ),
 
         // Announcements
         GoRoute(
           path: '/announcements',
           name: 'announcements',
-          builder: (context, state) => const AnnouncementPage(),
+          builder: (context, state) => const AnnouncementsPage(),
         ),
 
         // Leave Management
         GoRoute(
           path: '/leave',
           name: 'leave',
-          builder: (context, state) => const LeavePage(),
+          builder: (context, state) => const LeavePageWidget(),
         ),
 
         // Profile
         GoRoute(
           path: '/profile',
           name: 'profile',
-          builder: (context, state) => const ProfilePage(),
-        ),
-
-        // Settings
-        GoRoute(
-          path: '/settings',
-          name: 'settings',
-          builder: (context, state) => const SettingsPage(),
+          builder: (context, state) => const ProfileWidget(),
         ),
 
         // Authentication
@@ -86,8 +70,8 @@ final goRouter = GoRouter(
   // Route guards
   redirect: (BuildContext context, GoRouterState state) {
     // Check if user is authenticated
-    final state = context.read<AppStateProvider>();
-    final bool isAuthenticated = state.isAuthenticated;
+    final appState = context.read<AppStateProvider>();
+    final bool isAuthenticated = appState.isAuthenticated;
     final bool isGoingToLogin = state.matchedLocation == '/login';
 
     if (!isAuthenticated && !isGoingToLogin) {
@@ -104,17 +88,17 @@ final goRouter = GoRouter(
 
 // Extension methods for easy navigation
 extension GoRouterExtensions on BuildContext {
-  void goNamed(String name, {Map<String, dynamic>? params}) {
+  void goNamed(String name, {Map<String, String>? params}) {
     GoRouter.of(this).goNamed(
       name,
-      pathParameters: params,
+      pathParameters: params ?? {},
     );
   }
 
-  void pushNamed(String name, {Map<String, dynamic>? params}) {
+  void pushNamed(String name, {Map<String, String>? params}) {
     GoRouter.of(this).pushNamed(
       name,
-      pathParameters: params,
+      pathParameters: params ?? {},
     );
   }
 

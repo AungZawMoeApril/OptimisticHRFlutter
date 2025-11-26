@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:h_r_optimistic_mobile/app_state.dart';
 import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
-import 'package:h_r_optimistic_mobile/core/utils/localization_utils.dart' hide FFLocalizations;
 import 'package:h_r_optimistic_mobile/core/widgets/app_button.dart';
 import 'package:h_r_optimistic_mobile/core/widgets/app_icon_button.dart';
 import 'package:h_r_optimistic_mobile/core/theme/app_theme_extension.dart';

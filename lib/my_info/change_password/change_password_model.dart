@@ -1,10 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';
+import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
 import '/index.dart';
 import 'change_password_widget.dart' show ChangePasswordWidget;
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
+class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for CurrentPasswordField widget.

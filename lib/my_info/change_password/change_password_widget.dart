@@ -1,16 +1,16 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import '../../core/theme/app_theme_extension.dart';
+import '../../core/widgets/app_widgets.dart';
 import '/backend/api_requests/api_calls.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
+import '../../core/widgets/app_icon_button.dart';
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
+import '../../core/widgets/app_button.dart';
 import '/index.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import '../../core/utils/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
+import '../../core/widgets/web_view_aware.dart';
 import 'change_password_model.dart';
 export 'change_password_model.dart';
 
@@ -55,7 +55,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    // context.watch<AppState>();
 
     return GestureDetector(
       onTap: () {
@@ -87,20 +87,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
             FFLocalizations.of(context).getText(
               'hhi9oa99' /* Change Password */,
             ),
-            style: Theme.of(context).textTheme.$1?.copyWith(
-                  font: GoogleFonts.outfit(
-                    fontWeight:
-                        context.headlineMedium.fontWeight,
-                    fontStyle:
-                        context.headlineMedium.fontStyle,
-                  ),
+            style: GoogleFonts.outfit(
+                  textStyle: Theme.of(context).textTheme.headlineMedium,
                   color: Theme.of(context).colorScheme.primaryText,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight:
-                      context.headlineMedium.fontWeight,
+                      context.headlineMedium?.fontWeight,
                   fontStyle:
-                      context.headlineMedium.fontStyle,
+                      context.headlineMedium?.fontStyle,
                 ),
           ),
           actions: [],
@@ -280,7 +275,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             ),
                                         validator: _model
                                             .currentPasswordFieldTextControllerValidator
-                                            .asValidator(context),
+                                            ?.asValidator(context),
                                       ),
                                     ),
                                   ],
@@ -432,7 +427,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             ),
                                         validator: _model
                                             .newPasswordFieldTextControllerValidator
-                                            .asValidator(context),
+                                            ?.asValidator(context),
                                       ),
                                     ),
                                   ],
@@ -584,7 +579,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             ),
                                         validator: _model
                                             .confirmNewPasswordFieldTextControllerValidator
-                                            .asValidator(context),
+                                            ?.asValidator(context),
                                       ),
                                     ),
                                   ],
@@ -592,50 +587,50 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 20.0)),
+                        ].map((widget) => Padding(padding: EdgeInsets.only(bottom: 20.0), child: widget)).toList(),
                       ),
                     ),
                   ),
                   AppButton(
                     onPressed: (((_model.currentPasswordFieldTextController
-                                                .text ==
+                                                ?.text ==
                                             '') ||
                                     (_model.newPasswordFieldTextController
-                                                .text ==
+                                                ?.text ==
                                             '') ||
                                     (_model.confirmNewPasswordFieldTextController
-                                                .text ==
+                                                ?.text ==
                                             '') ||
                                     (_model.currentPasswordFieldTextController
-                                            .text !=
-                                        AppState().password)) ||
-                                (_model.currentPasswordFieldTextController.text ==
+                                            ?.text !=
+                                        FFAppState().password)) ||
+                                (_model.currentPasswordFieldTextController?.text ==
                                     _model
-                                        .newPasswordFieldTextController.text) ||
-                                (_model.newPasswordFieldTextController.text !=
+                                        .newPasswordFieldTextController?.text) ||
+                                (_model.newPasswordFieldTextController?.text !=
                                     _model.confirmNewPasswordFieldTextController
-                                        .text)
+                                        ?.text)
                             ? true
                             : false)
                         ? null
                         : () async {
                             if (_model
-                                    .currentPasswordFieldTextController.text ==
-                                AppState().password) {
+                                    .currentPasswordFieldTextController?.text ==
+                                FFAppState().password) {
                               if (_model.currentPasswordFieldTextController
-                                      .text !=
-                                  _model.newPasswordFieldTextController.text) {
+                                      ?.text !=
+                                  _model.newPasswordFieldTextController?.text) {
                                 if (_model
-                                        .newPasswordFieldTextController.text ==
+                                        .newPasswordFieldTextController?.text ==
                                     _model.confirmNewPasswordFieldTextController
-                                        .text) {
+                                        ?.text) {
                                   _model.apiResultChangePassword =
                                       await MainGroup.changePasswordCall.call(
-                                    oldPassword: AppState().password,
+                                    oldPassword: FFAppState().password,
                                     newPassword: _model
-                                        .newPasswordFieldTextController.text,
-                                    userID: AppState().userID,
-                                    token: AppState().token,
+                                        .newPasswordFieldTextController?.text,
+                                    userID: FFAppState().userID,
+                                    token: FFAppState().token,
                                   );
 
                                   if ((_model
@@ -768,7 +763,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: Theme.of(context).colorScheme.primary,
                       textStyle:
-                          Theme.of(context).textTheme.$1?.copyWith(
+                          Theme.of(context).textTheme.titleSmall?.copyWith(
                                 font: GoogleFonts.readexPro(
                                   fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
@@ -804,3 +799,4 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     );
   }
 }
+

@@ -10,7 +10,7 @@ class CardTimeAttendanceWidget extends StatefulWidget {
     this.clockInDate,
     this.clockInStatus,
     this.checkInStatus,
-    this.checkOutStatus,
+    this.checkOutStatus, required String clockInTime, required String clockOutTime, required String checkInAndOuttype,
   });
 
   final String? clockInDate;

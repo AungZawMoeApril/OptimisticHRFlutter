@@ -52,7 +52,7 @@ dynamic serializeParam(
   
   if (isList) {
     if (value is! List) return null;
-    return (value as List).map((item) => serializeParam(item, paramType)).toList();
+    return value.map((item) => serializeParam(item, paramType)).toList();
   }
   
   switch (paramType) {

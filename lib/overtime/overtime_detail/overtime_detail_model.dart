@@ -1,12 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '../core/utils/app_utils.dart';;
+import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
 import '/index.dart';
 import 'overtime_detail_widget.dart' show OvertimeDetailWidget;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
+class OvertimeDetailModel extends BaseViewModel {
   ///  Local state fields for this page.
 
   OTCheckInReqStruct? otCheckInReq;

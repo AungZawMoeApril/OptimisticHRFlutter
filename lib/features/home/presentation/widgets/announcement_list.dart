@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:h_r_optimistic_mobile/features/announcement/domain/entities/announcement.dart';
+import 'package:h_r_optimistic_mobile/features/home/domain/entities/announcement.dart';
 
 class AnnouncementList extends StatelessWidget {
   final List<Announcement> announcements;
@@ -150,9 +150,7 @@ class AnnouncementList extends StatelessWidget {
                                     style: GoogleFonts.outfit(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
-                                      color: !announcement.isRead
-                                          ? theme.colorScheme.primary
-                                          : theme.colorScheme.onSurface,
+                                      color: theme.colorScheme.onSurface,
                                     ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -169,7 +167,7 @@ class AnnouncementList extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    DateFormat('MMM d, yyyy').format(announcement.createdAt),
+                                    DateFormat('MMM d, yyyy').format(announcement.date),
                                     style: GoogleFonts.outfit(
                                       fontSize: 12,
                                       color: theme.colorScheme.onSurfaceVariant,

@@ -91,10 +91,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   void _handleLogin() {
     if (_formKey.currentState!.validate()) {
-      final username = _usernameController.text;
-      final password = _passwordController.text;
-
-      // TODO: Implement actual login logic
+      // TODO: Implement actual login logic using _usernameController.text and _passwordController.text
       // For now, just set dummy auth state
       final appState = context.read<AppStateProvider>();
       (appState as dynamic).setAuthState(

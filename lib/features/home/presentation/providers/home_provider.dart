@@ -5,22 +5,18 @@ import 'package:provider/provider.dart';
 import '../../domain/entities/personal_info.dart';
 import '../../domain/entities/announcement.dart';
 import '../../domain/entities/attendance_status.dart';
-import '../../domain/repositories/home_repository.dart';
 import '../../../../core/routes/app_router.dart';
 import '../../../../backend/api_requests/api_calls.dart' as api;
 import '../../../../core/utilities/functions.dart' as functions;
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/notifiers/auth_state_notifier.dart';
-import '../../../../core/state/notifiers/profile_state_notifier.dart';
 
 class HomeProvider extends ChangeNotifier {
-  final HomeRepository _repository;
   final BuildContext context;
 
-  HomeProvider(this._repository, this.context);
+  HomeProvider(this.context);
 
   AuthStateNotifier get _auth => context.read<AppState>().auth;
-  ProfileStateNotifier get _profile => context.read<AppState>().profile;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

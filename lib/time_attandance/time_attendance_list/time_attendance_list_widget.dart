@@ -241,11 +241,10 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
         ),
         CardTimeAttendanceWidget(
           key: Key('Key_${index}_of_$total'),
-          location: item.clockInLocation,
-          checkIn: item.clockInTime,
-          checkOut: item.clockOutTime,
+          clockInTime: item.clockInTime,
+          clockOutTime: item.clockOutTime,
           checkInAndOuttype: item.remark,
-          checkInStatus: int.tryParse(item.checkInStatus) ?? 0,
+          checkInStatus: (int.tryParse(item.checkInStatus) ?? 0) != 0,
         ),
       ],
     );

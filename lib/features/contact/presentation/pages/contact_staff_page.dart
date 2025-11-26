@@ -119,7 +119,7 @@ class _ContactStaffPageState extends State<ContactStaffPage> {
                 Expanded(
                   child: contactStaffProvider.isLoading
                       ? const Center(child: CircularProgressIndicator())
-                      : contactStaffProvider.error != null
+                      : contactStaffProvider.error.isNotEmpty
                           ? Center(child: Text(contactStaffProvider.error))
                           : ListView.builder(
                               padding: EdgeInsets.zero,

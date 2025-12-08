@@ -46,9 +46,8 @@ class AnnouncementRepositoryImpl implements AnnouncementRepository {
   Future<Either<Failure, void>> markAnnouncementAsRead(String announcementId) async {
     try {
       // Update local cache
-      final announcement = _announcementsBox.values
-          .firstWhere((a) => a.id == announcementId);
-      
+      final announcement = _announcementsBox.values.firstWhere((a) => a.id == announcementId);
+
       await _announcementsBox.put(
         announcementId,
         announcement.copyWith(isRead: true),

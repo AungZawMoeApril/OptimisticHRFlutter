@@ -1,11 +1,10 @@
-
 import 'base_state.dart';
 import '../storage/secure_storage.dart';
 
 /// Authentication state model
 class AuthState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   String _token = '';
   int _companyID = 0;
   int _employeeID = 0;
@@ -67,7 +66,7 @@ class AuthState extends BaseState {
     _employeeID = 0;
     _userID = 0;
     _approve = false;
-    
+
     notifyListeners();
   }
 }

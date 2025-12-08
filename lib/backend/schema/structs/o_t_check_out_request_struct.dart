@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-
 import 'index.dart';
 import '/core/utils/flutter_flow_util.dart';
 
@@ -51,8 +50,7 @@ class OTCheckOutRequestStruct extends BaseStruct {
 
   bool hasAttachments() => _attachments != null;
 
-  static OTCheckOutRequestStruct fromMap(Map<String, dynamic> data) =>
-      OTCheckOutRequestStruct(
+  static OTCheckOutRequestStruct fromMap(Map<String, dynamic> data) => OTCheckOutRequestStruct(
         clockID: castToType<int>(data['clock_ID']),
         clockOutTime: data['clock_Out_Time'] as String?,
         userID: castToType<int>(data['user_ID']),
@@ -62,9 +60,8 @@ class OTCheckOutRequestStruct extends BaseStruct {
         ),
       );
 
-  static OTCheckOutRequestStruct? maybeFromMap(dynamic data) => data is Map
-      ? OTCheckOutRequestStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static OTCheckOutRequestStruct? maybeFromMap(dynamic data) =>
+      data is Map ? OTCheckOutRequestStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'clock_ID': _clockID,
@@ -94,8 +91,7 @@ class OTCheckOutRequestStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static OTCheckOutRequestStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static OTCheckOutRequestStruct fromSerializableMap(Map<String, dynamic> data) =>
       OTCheckOutRequestStruct(
         clockID: deserializeParam(
           data['clock_ID'],
@@ -134,8 +130,7 @@ class OTCheckOutRequestStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([clockID, clockOutTime, userID, attachments]);
+  int get hashCode => const ListEquality().hash([clockID, clockOutTime, userID, attachments]);
 }
 
 OTCheckOutRequestStruct createOTCheckOutRequestStruct({

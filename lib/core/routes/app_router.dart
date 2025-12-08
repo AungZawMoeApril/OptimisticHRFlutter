@@ -19,7 +19,6 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/login',
     debugLogDiagnostics: true,
-    
     routes: [
       GoRoute(
         path: '/login',
@@ -36,7 +35,6 @@ class AppRouter {
         name: 'pinCodeSetup',
         builder: (context, state) => const PinCodeSetupScreen(),
       ),
-      
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -63,12 +61,11 @@ class AppRouter {
         ],
       ),
     ],
-    
     redirect: (context, state) {
       final appState = context.read<AppState>();
       final isLoggedIn = appState.token.isNotEmpty;
-      final isAuth = state.matchedLocation.startsWith('/login') ||
-          state.matchedLocation.startsWith('/home');
+      final isAuth =
+          state.matchedLocation.startsWith('/login') || state.matchedLocation.startsWith('/home');
 
       // Not logged in, redirect to login
       if (!isLoggedIn && !isAuth) {

@@ -76,7 +76,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
             fillColor: Theme.of(context).colorScheme.primary,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: Theme.of(context).colorScheme.primaryText,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 30.0,
             ),
             onPressed: () async {
@@ -89,7 +89,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
             ),
             style: GoogleFonts.outfit(
                   textStyle: Theme.of(context).textTheme.headlineMedium,
-                  color: Theme.of(context).colorScheme.primaryText,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight:
@@ -140,15 +140,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         'rzjm0nsq' /* Current Password */,
                                       ),
                                       style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
+                                          .copyWith(
+                                            fontFamily: GoogleFonts.readexPro(
                                               fontWeight:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
-                                            ),
+                                            ).fontFamily,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
@@ -180,15 +180,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           ),
                                           alignLabelWithHint: false,
                                           hintStyle: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
                                                   fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
-                                                ),
+                                                ).fontFamily,
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
@@ -254,15 +254,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           ),
                                         ),
                                         style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
                                                 fontWeight:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
-                                              ),
+                                              ).fontFamily,
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
@@ -296,15 +296,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         'xkpp5mbr' /* New Password */,
                                       ),
                                       style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
+                                          .copyWith(
+                                            fontFamily: GoogleFonts.readexPro(
                                               fontWeight:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
-                                            ),
+                                            ).fontFamily,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
@@ -332,15 +332,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           isDense: true,
                                           alignLabelWithHint: false,
                                           hintStyle: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
                                                   fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
-                                                ),
+                                                ).fontFamily,
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
@@ -406,15 +406,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           ),
                                         ),
                                         style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
                                                 fontWeight:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
-                                              ),
+                                              ).fontFamily,
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
@@ -448,15 +448,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         '87sd7rdc' /* Confirm Password */,
                                       ),
                                       style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
+                                          .copyWith(
+                                            fontFamily: GoogleFonts.readexPro(
                                               fontWeight:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontStyle,
-                                            ),
+                                            ).fontFamily,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
@@ -484,15 +484,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           isDense: true,
                                           alignLabelWithHint: false,
                                           hintStyle: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
                                                   fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontStyle,
-                                                ),
+                                                ).fontFamily,
                                                 color: Color(0xFF0F1113),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
@@ -558,15 +558,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           ),
                                         ),
                                         style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
                                                 fontWeight:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontStyle,
-                                              ),
+                                              ).fontFamily,
                                               color: Color(0xFF0F1113),
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
@@ -603,7 +603,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             '') ||
                                     (_model.currentPasswordFieldTextController
                                             ?.text !=
-                                        FFAppState().password)) ||
+                                        AppState().password)) ||
                                 (_model.currentPasswordFieldTextController?.text ==
                                     _model
                                         .newPasswordFieldTextController?.text) ||
@@ -616,7 +616,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         : () async {
                             if (_model
                                     .currentPasswordFieldTextController?.text ==
-                                FFAppState().password) {
+                                AppState().password) {
                               if (_model.currentPasswordFieldTextController
                                       ?.text !=
                                   _model.newPasswordFieldTextController?.text) {
@@ -626,11 +626,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         ?.text) {
                                   _model.apiResultChangePassword =
                                       await MainGroup.changePasswordCall.call(
-                                    oldPassword: FFAppState().password,
+                                    oldPassword: AppState().password,
                                     newPassword: _model
                                         .newPasswordFieldTextController?.text,
-                                    userID: FFAppState().userID,
-                                    token: FFAppState().token,
+                                    userID: AppState().userID,
+                                    token: AppState().token,
                                   );
 
                                   if ((_model
@@ -764,12 +764,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       color: Theme.of(context).colorScheme.primary,
                       textStyle:
                           Theme.of(context).textTheme.titleSmall?.copyWith(
-                                font: GoogleFonts.readexPro(
+                                fontFamily: GoogleFonts.readexPro(
                                   fontWeight: Theme.of(context).textTheme.titleSmall!
                                       .fontWeight,
                                   fontStyle: Theme.of(context).textTheme.titleSmall!
                                       .fontStyle,
-                                ),
+                                ).fontFamily,
                                 color: Theme.of(context).colorScheme.primary,
                                 letterSpacing: 0.0,
                                 fontWeight: Theme.of(context).textTheme.titleSmall!
@@ -783,7 +783,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
-                      disabledColor: Theme.of(context).colorScheme.secondaryText,
+                      disabledColor: Theme.of(context).colorScheme.onSurfaceVariant,
                       disabledTextColor:
                           Theme.of(context).colorScheme.secondaryBackground,
                     ),

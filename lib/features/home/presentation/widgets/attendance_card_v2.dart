@@ -68,8 +68,8 @@ class AttendanceCardV2 extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         'Shift: ${attendance.shiftStartTime} - ${attendance.shiftEndTime}',
-                        style: context.textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.secondaryText,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                             ),
                       ),
                     ],
@@ -109,9 +109,7 @@ class AttendanceCardV2 extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: provider.isCheckingInOut 
-                          ? null 
-                          : () => provider.checkInOrOut(),
+                      onPressed: provider.isCheckingInOut ? null : () => provider.checkInOrOut(),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -132,18 +130,16 @@ class AttendanceCardV2 extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  attendance.clockInTime == '-'
-                                      ? Icons.login
-                                      : Icons.logout,
+                                  attendance.clockInTime == '-' ? Icons.login : Icons.logout,
                                   color: Colors.white,
                                   size: 20,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  attendance.clockInTime == '-'
-                                      ? 'Check In'
-                                      : 'Check Out',
-                                  style: Theme.of(context).textTheme.titleSmall!
+                                  attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
                                       .copyWith(color: Colors.white),
                                 ),
                               ],
@@ -165,7 +161,7 @@ class AttendanceCardV2 extends StatelessWidget {
     required bool isCheckIn,
   }) {
     final color = time == '-'
-        ? Theme.of(context).colorScheme.secondaryText
+        ? Theme.of(context).colorScheme.onSurfaceVariant
         : isCheckIn
             ? Colors.green
             : Colors.red;
@@ -174,7 +170,7 @@ class AttendanceCardV2 extends StatelessWidget {
       children: [
         Text(
           label,
-          style: context.textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 8),
         Row(
@@ -191,8 +187,7 @@ class AttendanceCardV2 extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               time,
-              style: Theme.of(context).textTheme.titleMedium!
-                  .copyWith(color: color),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
             ),
           ],
         ),

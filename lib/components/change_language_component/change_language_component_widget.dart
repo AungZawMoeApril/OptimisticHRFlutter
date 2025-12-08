@@ -8,12 +8,10 @@ class ChangeLanguageComponentWidget extends StatefulWidget {
   const ChangeLanguageComponentWidget({super.key});
 
   @override
-  State<ChangeLanguageComponentWidget> createState() =>
-      _ChangeLanguageComponentWidgetState();
+  State<ChangeLanguageComponentWidget> createState() => _ChangeLanguageComponentWidgetState();
 }
 
-class _ChangeLanguageComponentWidgetState
-    extends State<ChangeLanguageComponentWidget> {
+class _ChangeLanguageComponentWidgetState extends State<ChangeLanguageComponentWidget> {
   late ChangeLanguageComponentModel _model;
 
   @override

@@ -28,9 +28,8 @@ class CheckInRecordModel extends CheckInRecord {
       id: json['id'] as String,
       employeeId: json['employeeId'] as String,
       checkInTime: DateTime.parse(json['checkInTime'] as String),
-      checkOutTime: json['checkOutTime'] != null
-          ? DateTime.parse(json['checkOutTime'] as String)
-          : null,
+      checkOutTime:
+          json['checkOutTime'] != null ? DateTime.parse(json['checkOutTime'] as String) : null,
       location: json['location'] as String,
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),

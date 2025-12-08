@@ -13,20 +13,26 @@ extension ThemeExtension on ThemeData {
   Color get info => colorScheme.surface;
   Color get alternate => colorScheme.surfaceContainerHighest;
 
-  TextStyle get headlineMedium => textTheme.headlineMedium?.copyWith(
+  TextStyle get headlineMedium =>
+      textTheme.headlineMedium?.copyWith(
         fontFamily: GoogleFonts.outfit().fontFamily,
         fontWeight: FontWeight.w500,
-      ) ?? const TextStyle();
+      ) ??
+      const TextStyle();
 
-  TextStyle get bodyMedium => textTheme.bodyMedium?.copyWith(
+  TextStyle get bodyMedium =>
+      textTheme.bodyMedium?.copyWith(
         fontFamily: GoogleFonts.readexPro().fontFamily,
         fontWeight: FontWeight.w400,
-      ) ?? const TextStyle();
+      ) ??
+      const TextStyle();
 
-  TextStyle get titleSmall => textTheme.titleSmall?.copyWith(
+  TextStyle get titleSmall =>
+      textTheme.titleSmall?.copyWith(
         fontFamily: GoogleFonts.readexPro().fontFamily,
         fontWeight: FontWeight.w500,
-      ) ?? const TextStyle();
+      ) ??
+      const TextStyle();
 }
 
 extension CustomTextStyle on TextStyle {

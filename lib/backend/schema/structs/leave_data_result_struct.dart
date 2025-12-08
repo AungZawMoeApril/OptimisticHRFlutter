@@ -86,8 +86,7 @@ class LeaveDataResultStruct extends BaseStruct {
 
   bool hasLeaveTypeID() => _leaveTypeID != null;
 
-  static LeaveDataResultStruct fromMap(Map<String, dynamic> data) =>
-      LeaveDataResultStruct(
+  static LeaveDataResultStruct fromMap(Map<String, dynamic> data) => LeaveDataResultStruct(
         leaveType: data['leaveType'] as String?,
         note: data['Note'] as String?,
         status: data['status'] as String?,
@@ -98,9 +97,8 @@ class LeaveDataResultStruct extends BaseStruct {
         leaveTypeID: castToType<int>(data['leaveTypeID']),
       );
 
-  static LeaveDataResultStruct? maybeFromMap(dynamic data) => data is Map
-      ? LeaveDataResultStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static LeaveDataResultStruct? maybeFromMap(dynamic data) =>
+      data is Map ? LeaveDataResultStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'leaveType': _leaveType,

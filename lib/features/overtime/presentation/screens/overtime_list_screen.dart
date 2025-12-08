@@ -191,9 +191,9 @@ class _OvertimeListScreenState extends State<OvertimeListScreen>
 
     if (confirmed == true) {
       await context.read<OvertimeProvider>().updateRequest(
-        requestId: request.id,
-        status: OvertimeStatus.approved,
-      );
+            requestId: request.id,
+            status: OvertimeStatus.approved,
+          );
     }
   }
 
@@ -232,10 +232,10 @@ class _OvertimeListScreenState extends State<OvertimeListScreen>
 
     if (note != null) {
       await context.read<OvertimeProvider>().updateRequest(
-        requestId: request.id,
-        status: OvertimeStatus.rejected,
-        approverNote: note,
-      );
+            requestId: request.id,
+            status: OvertimeStatus.rejected,
+            approverNote: note,
+          );
     }
   }
 

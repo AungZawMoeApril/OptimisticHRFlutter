@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions

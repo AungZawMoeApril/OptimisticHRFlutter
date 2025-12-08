@@ -18,7 +18,8 @@ class ApiCallResponse {
     this.bodyList,
   });
 
-  bool get succeeded => statusCode != null && statusCode! >= 200 && statusCode! < 300;
+  bool get succeeded =>
+      statusCode != null && statusCode! >= 200 && statusCode! < 300;
 }
 
 // Helper functions
@@ -33,10 +34,10 @@ T? castToType<T>(dynamic value) {
 
 dynamic getJsonField(dynamic response, String fieldPath) {
   if (response == null) return null;
-  
+
   final fields = fieldPath.split('.');
   dynamic current = response;
-  
+
   for (final field in fields) {
     if (current is Map) {
       current = current[field];
@@ -51,7 +52,7 @@ dynamic getJsonField(dynamic response, String fieldPath) {
       return null;
     }
   }
-  
+
   return current;
 }
 
@@ -67,54 +68,58 @@ class LoginCall {
     // TODO: Implement actual API call
     return ApiCallResponse(
       statusCode: 200,
-      jsonBody: '{"status": 0, "message": "Success", "data": {"companyID": 1, "employeeID": 1, "token": "stub_token"}}',
-      bodyMap: {'status': 0, 'message': 'Success', 'data': {'companyID': 1, 'employeeID': 1, 'token': 'stub_token'}},
+      jsonBody:
+          '{"status": 0, "message": "Success", "data": {"companyID": 1, "employeeID": 1, "token": "stub_token"}}',
+      bodyMap: {
+        'status': 0,
+        'message': 'Success',
+        'data': {'companyID': 1, 'employeeID': 1, 'token': 'stub_token'}
+      },
     );
   }
 
-  static String? message(dynamic response) => 
+  static String? message(dynamic response) =>
       castToType<String>(getJsonField(response, 'message'));
-  
-  static int? status(dynamic response) => 
+
+  static int? status(dynamic response) =>
       castToType<int>(getJsonField(response, 'status'));
-  
-  static dynamic data(dynamic response) => 
-      getJsonField(response, 'data');
-  
-  static int? userID(dynamic response) => 
+
+  static dynamic data(dynamic response) => getJsonField(response, 'data');
+
+  static int? userID(dynamic response) =>
       castToType<int>(getJsonField(response, 'data.userID'));
-  
-  static String? firstName(dynamic response) => 
+
+  static String? firstName(dynamic response) =>
       castToType<String>(getJsonField(response, 'data.firstName'));
-  
-  static String? username(dynamic response) => 
+
+  static String? username(dynamic response) =>
       castToType<String>(getJsonField(response, 'data.username'));
-  
-  static String? country(dynamic response) => 
+
+  static String? country(dynamic response) =>
       castToType<String>(getJsonField(response, 'data.country'));
-  
-  static String? createDate(dynamic response) => 
+
+  static String? createDate(dynamic response) =>
       castToType<String>(getJsonField(response, 'data.createDate'));
-  
-  static int? createBy(dynamic response) => 
+
+  static int? createBy(dynamic response) =>
       castToType<int>(getJsonField(response, 'data.createBy'));
-  
-  static bool? activeFlag(dynamic response) => 
+
+  static bool? activeFlag(dynamic response) =>
       castToType<bool>(getJsonField(response, 'data.activeFlag'));
-  
-  static String? token(dynamic response) => 
+
+  static String? token(dynamic response) =>
       castToType<String>(getJsonField(response, 'data.token'));
-  
-  static int? companyID(dynamic response) => 
+
+  static int? companyID(dynamic response) =>
       castToType<int>(getJsonField(response, 'data.companyID'));
-  
+
   // Lowercase aliases for compatibility
   static int? companyId(dynamic response) => companyID(response);
-  
-  static int? employeeId(dynamic response) => 
+
+  static int? employeeId(dynamic response) =>
       castToType<int>(getJsonField(response, 'data.employeeID'));
-  
-  static int? roleID(dynamic response) => 
+
+  static int? roleID(dynamic response) =>
       castToType<int>(getJsonField(response, 'data.roleID'));
 }
 
@@ -139,12 +144,12 @@ class GetPersonalInfoCall {
     String? todayDateMain,
   }) async {
     return ApiCallResponse(
-      statusCode: 200, 
+      statusCode: 200,
       jsonBody: '{"apiStatus": 0, "data": {}}',
       bodyMap: {'apiStatus': 0, 'data': {}},
     );
   }
-  
+
   static int apiStatus(dynamic jsonBody) => 0;
   static String? prefix(dynamic jsonBody) => 'Mr.';
   static String? email(dynamic jsonBody) => 'user@example.com';
@@ -157,7 +162,7 @@ class GetPersonalInfoCall {
 // Add more API call stubs as needed
 class ApiManager {
   static const String baseUrl = 'https://api.example.com';
-  
+
   static Future<ApiCallResponse> makeRequest({
     required String endpoint,
     String method = 'GET',
@@ -168,12 +173,12 @@ class ApiManager {
     try {
       final uri = Uri.parse('$baseUrl$endpoint');
       http.Response response;
-      
+
       final defaultHeaders = {
         'Content-Type': 'application/json',
         ...?headers,
       };
-      
+
       switch (method.toUpperCase()) {
         case 'POST':
           response = await http.post(
@@ -195,14 +200,14 @@ class ApiManager {
         default:
           response = await http.get(uri, headers: defaultHeaders);
       }
-      
+
       dynamic bodyData;
       try {
         bodyData = jsonDecode(response.body);
       } catch (e) {
         bodyData = null;
       }
-      
+
       return ApiCallResponse(
         statusCode: response.statusCode,
         jsonBody: response.body,
@@ -225,8 +230,18 @@ class MainGroup {
   static final doCheckInOutAttendanceCall = DoCheckInOutAttendanceCall();
   static final getDayViewOfSTACall = GetDayViewOfSTACall();
   static final apiLatestNotificationPOSTCall = ApiLatestNotificationPOSTCall();
-  static final getTimeOffRequestByCompanyIdPaginationCall = GetTimeOffRequestByCompanyIdPaginationCall();
+  static final getTimeOffRequestByCompanyIdPaginationCall =
+      GetTimeOffRequestByCompanyIdPaginationCall();
   static final getLeaveWithRemainingDaysCall = GetLeaveWithRemainingDaysCall();
+  static final overtimeListViewCall = OvertimeListViewCall();
+  static final apiOvertimeHistoryPOSTCall = ApiOvertimeHistoryPOSTCall();
+  static final getOTRequestByStatusMobileCall =
+      GetOTRequestByStatusMobileCall();
+  static final getCurrentOTMobileCall =
+      OvertimeListViewCall(); // Alias for compatibility
+  static final oTCheckkOutMobileCall = OTCheckOutMobileCall();
+  static final getTimeAttendanceListMobileCall =
+      GetTimeAttendanceListMobileCall();
 }
 
 /// Stub for GetCustomerWebCall
@@ -243,7 +258,7 @@ class GetCustomerWebCall {
       bodyList: [],
     );
   }
-  
+
   List<String> announcementTitle(dynamic jsonBody) => [];
   List<String> announcementDetail(dynamic jsonBody) => [];
   List<String> announcementImage(dynamic jsonBody) => [];
@@ -256,7 +271,7 @@ class TokenValidationCall {
   Future<ApiCallResponse> call({required String token}) async {
     return ApiCallResponse(statusCode: 401);
   }
-  
+
   int status(dynamic jsonBody) => -1;
 }
 
@@ -265,7 +280,7 @@ class TokenRefreshCall {
   Future<ApiCallResponse> call({required String token}) async {
     return ApiCallResponse(statusCode: 401);
   }
-  
+
   int status(dynamic jsonBody) => -1;
   String? companyId(dynamic jsonBody) => null;
   String? employeeId(dynamic jsonBody) => null;
@@ -289,7 +304,7 @@ class DoCheckInOutAttendanceCall {
       bodyMap: {'status': 0, 'message': 'Success'},
     );
   }
-  
+
   int status(dynamic jsonBody) => 0;
   String? message(dynamic jsonBody) => 'Check-in/out successful';
 }
@@ -309,7 +324,7 @@ class GetDayViewOfSTACall {
       bodyMap: {'status': 0, 'data': []},
     );
   }
-  
+
   int status(dynamic jsonBody) => 0;
   List<dynamic> data(dynamic jsonBody) => [];
   String? latestCheckIN(dynamic jsonBody) => '-';
@@ -336,7 +351,7 @@ class ApiLatestNotificationPOSTCall {
       bodyMap: {'status': 0, 'count': 0},
     );
   }
-  
+
   int status(dynamic jsonBody) => 0;
   int count(dynamic jsonBody) => 0;
 }
@@ -361,7 +376,7 @@ class GetTimeOffRequestByCompanyIdPaginationCall {
       bodyMap: {'status': 0, 'data': []},
     );
   }
-  
+
   int status(dynamic jsonBody) => 0;
   List<dynamic>? dataResult(dynamic jsonBody) => [];
 }
@@ -379,9 +394,146 @@ class GetLeaveWithRemainingDaysCall {
       bodyMap: {'status': 0, 'data': []},
     );
   }
-  
+
   int status(dynamic jsonBody) => 0;
   List<dynamic>? timeOffTypeResult(dynamic jsonBody) => [];
   List<dynamic>? leaveTypeList(dynamic jsonBody) => [];
 }
 
+/// Stub for OvertimeListViewCall
+class OvertimeListViewCall {
+  Future<ApiCallResponse> call({
+    String? timezoneOffset,
+    int? employeeID,
+    int? companyID,
+    String? token,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"status": "0", "data": []}',
+      bodyMap: {'status': '0', 'data': []},
+    );
+  }
+
+  String status(dynamic jsonBody) => '0';
+  List<dynamic>? dataResult(dynamic jsonBody) => [];
+  List<dynamic>? currentListView(dynamic jsonBody) => [];
+  List<dynamic>? currentOTList(dynamic jsonBody) => [];
+  String clockInTime(dynamic jsonBody) => '-';
+  String clockOutTime(dynamic jsonBody) => '-';
+  int oTRequestID(dynamic jsonBody) => 0;
+  int otrequestID(dynamic jsonBody) => 0;
+  int clockID(dynamic jsonBody) => 0;
+  String otStartTime(dynamic jsonBody) => '';
+  String otEndTime(dynamic jsonBody) => '';
+  String oTHour(dynamic jsonBody) => '0 hr 0 min';
+}
+
+/// Stub for ApiOvertimeHistoryPOSTCall
+class ApiOvertimeHistoryPOSTCall {
+  Future<ApiCallResponse> call({
+    String? timezoneOffset,
+    int? employeeID,
+    int? companyID,
+    int? companyIDMain,
+    int? employeeIDMain,
+    String? todayDateMain,
+    String? token,
+    String? start,
+    String? end,
+    String? monthNum,
+    String? yearNum,
+    int? page,
+    int? perPage,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"status": "0", "data": []}',
+      bodyMap: {'status': '0', 'data': []},
+    );
+  }
+
+  String outputstatus(dynamic jsonBody) => '0';
+  List<dynamic>? dataResult(dynamic jsonBody) => [];
+  List<dynamic>? statusData(dynamic jsonBody) => [];
+  List<dynamic>? approvedData(dynamic jsonBody) => [];
+  List<dynamic>? overtimeHistoryList(dynamic jsonBody) => [];
+}
+
+/// Stub for GetOTRequestByStatusMobileCall
+class GetOTRequestByStatusMobileCall {
+  Future<ApiCallResponse> call({
+    String? timezoneOffset,
+    int? employeeID,
+    int? companyID,
+    String? token,
+    dynamic status, // Can be String or int
+    String? monthNum,
+    String? yearNum,
+    int? page,
+    int? perPage,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"status": "0", "data": []}',
+      bodyMap: {'status': '0', 'data': []},
+    );
+  }
+
+  String status(dynamic jsonBody) => '0';
+  List<dynamic>? dataResult(dynamic jsonBody) => [];
+}
+
+/// Stub for OTCheckOutMobileCall
+class OTCheckOutMobileCall {
+  Future<ApiCallResponse> call({
+    int? clockID,
+    int? userID,
+    List<dynamic>? checkOutImage,
+    String? token,
+    String? checkOutTime,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"status": 0, "message": "Check out successful"}',
+      bodyMap: {'status': 0, 'message': 'Check out successful'},
+    );
+  }
+
+  int status(dynamic jsonBody) => 0;
+  String? message(dynamic jsonBody) => 'Check out successful';
+}
+
+/// Stub for GetTimeAttendanceListMobileCall
+class GetTimeAttendanceListMobileCall {
+  Future<ApiCallResponse> call({
+    int? employeeID,
+    int? companyID,
+    String? token,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"status": 0, "data": []}',
+      bodyMap: {'status': 0, 'data': []},
+    );
+  }
+
+  int status(dynamic jsonBody) => 0;
+  List<dynamic>? timeAttendanceList(dynamic jsonBody) => [];
+}
+
+/// Stub for GetCheckInImageURLCall
+class GetCheckInImageURLCall {
+  static Future<ApiCallResponse> call({
+    String? filePath,
+    String? token,
+  }) async {
+    return ApiCallResponse(
+      statusCode: 200,
+      jsonBody: '{"url": ""}',
+      bodyMap: {'url': ''},
+    );
+  }
+
+  static String? url(dynamic jsonBody) => '';
+}

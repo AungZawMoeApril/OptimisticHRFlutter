@@ -36,9 +36,8 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveIconColor = disabled 
-      ? (disabledIconColor ?? Theme.of(context).disabledColor)
-      : iconColor;
+    final effectiveIconColor =
+        disabled ? (disabledIconColor ?? Theme.of(context).disabledColor) : iconColor;
 
     Widget effectiveIcon = icon;
     if (icon is Icon && effectiveIconColor != null) {
@@ -73,7 +72,7 @@ class CustomIconButton extends StatelessWidget {
           icon: effectiveIcon,
           padding: padding,
           iconSize: iconSize,
-          constraints: buttonSize != null 
+          constraints: buttonSize != null
               ? BoxConstraints.expand(width: buttonSize!, height: buttonSize!)
               : const BoxConstraints(),
         ),

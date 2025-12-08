@@ -17,12 +17,10 @@ class LeaveAttachmentModelWidget extends StatefulWidget {
   final dynamic reason;
 
   @override
-  State<LeaveAttachmentModelWidget> createState() =>
-      _LeaveAttachmentModelWidgetState();
+  State<LeaveAttachmentModelWidget> createState() => _LeaveAttachmentModelWidgetState();
 }
 
-class _LeaveAttachmentModelWidgetState
-    extends State<LeaveAttachmentModelWidget> {
+class _LeaveAttachmentModelWidgetState extends State<LeaveAttachmentModelWidget> {
   late LeaveAttachmentModelModel _model;
 
   @override

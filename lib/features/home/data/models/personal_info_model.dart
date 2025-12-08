@@ -3,7 +3,7 @@ import '../../domain/entities/personal_info.dart';
 class PersonalInfoModel extends PersonalInfo {
   PersonalInfoModel({
     required String prefix,
-    required String email, 
+    required String email,
     required String departmentName,
     required String mobile,
     required String hiredDate,
@@ -16,7 +16,7 @@ class PersonalInfoModel extends PersonalInfo {
   }) : super(
           prefix: prefix,
           email: email,
-          departmentName: departmentName, 
+          departmentName: departmentName,
           mobile: mobile,
           hiredDate: hiredDate,
           nickname: nickname,
@@ -46,19 +46,21 @@ class PersonalInfoModel extends PersonalInfo {
 
   Map<String, dynamic> toJson() {
     return {
-      'data': [{
-        'prefix': prefix,
-        'email': email,
-        'departmentName': departmentName,
-        'mobile': mobile,
-        'hiredDate': hiredDate,
-        'nickname': nickname,
-        'employeeImage': employeeImage,
-        'employeeName': employeeName,
-        'department': department,
-        'position': position,
-        'totalLeaveRemain': totalLeaveRemain,
-      }]
+      'data': [
+        {
+          'prefix': prefix,
+          'email': email,
+          'departmentName': departmentName,
+          'mobile': mobile,
+          'hiredDate': hiredDate,
+          'nickname': nickname,
+          'employeeImage': employeeImage,
+          'employeeName': employeeName,
+          'department': department,
+          'position': position,
+          'totalLeaveRemain': totalLeaveRemain,
+        }
+      ]
     };
   }
 }

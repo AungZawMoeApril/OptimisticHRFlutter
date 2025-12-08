@@ -21,6 +21,5 @@ class OvertimeRequest with _$OvertimeRequest {
     DateTime? updatedAt,
   }) = _OvertimeRequest;
 
-  factory OvertimeRequest.fromJson(Map<String, dynamic> json) =>
-      _$OvertimeRequestFromJson(json);
+  factory OvertimeRequest.fromJson(Map<String, dynamic> json) => _$OvertimeRequestFromJson(json);
 }

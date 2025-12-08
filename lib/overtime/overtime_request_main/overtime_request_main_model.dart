@@ -17,36 +17,36 @@ class OvertimeRequestMainModel extends FlutterFlowModel<OvertimeRequestMainWidge
   /// State fields for text input
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
-  
+
   /// State fields for dates
   DateTime? datePicked1;
   DateTime? datePicked2;
   DateTime? datePicked3;
   DateTime? datePicked4;
-  
+
   /// State fields for times
   DateTime? oTStartDate;
   DateTime? oTEndDate;
   String? oTStartTime;
   String? oTEndTime;
-  
+
   /// State fields for dropdowns
   int? dropDownValue1;
   FormFieldController<int>? dropDownValueController1;
-  
+
   /// State fields for file uploads
   List<FFUploadedFile> uploadedFilesList = [];
   bool isDataUploading = false;
   FFUploadedFile? uploadedLocalFile;
   ApiCallResponse? apiResultGetImageURL;
   List<String> attachmentModel = [];
-  
+
   /// API call results
   ApiCallResponse? getworkFlowOfOTRequestAPI;
   ApiCallResponse? addNotificationInfoMobResult;
   int? wfID;
   int? senderID;
-  
+
   /// Methods for managing attachments
   void addToAttachmentModel(String item) => attachmentModel.add(item);
   void removeFromAttachmentModel(String item) => attachmentModel.remove(item);
@@ -54,6 +54,7 @@ class OvertimeRequestMainModel extends FlutterFlowModel<OvertimeRequestMainWidge
   void updateAttachmentModelAtIndex(int index, String Function(String) updateFn) {
     attachmentModel[index] = updateFn(attachmentModel[index]);
   }
+
   void insertAtIndexInAttachmentModel(int index, String item) {
     attachmentModel.insert(index, item);
   }

@@ -48,7 +48,7 @@ class _ConfirmPinCodeWidgetState extends State<ConfirmPinCodeWidget> {
     try {
       // TODO: Implement PIN confirmation logic
       await Future.delayed(const Duration(seconds: 1)); // Simulated API call
-      
+
       if (!mounted) return;
 
       // Navigate to home page if confirmation is successful

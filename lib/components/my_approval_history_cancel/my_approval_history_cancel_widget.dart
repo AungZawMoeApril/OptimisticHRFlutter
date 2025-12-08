@@ -8,12 +8,10 @@ class MyApprovalHistoryCancelWidget extends StatefulWidget {
   const MyApprovalHistoryCancelWidget({super.key});
 
   @override
-  State<MyApprovalHistoryCancelWidget> createState() =>
-      _MyApprovalHistoryCancelWidgetState();
+  State<MyApprovalHistoryCancelWidget> createState() => _MyApprovalHistoryCancelWidgetState();
 }
 
-class _MyApprovalHistoryCancelWidgetState
-    extends State<MyApprovalHistoryCancelWidget> {
+class _MyApprovalHistoryCancelWidgetState extends State<MyApprovalHistoryCancelWidget> {
   late MyApprovalHistoryCancelModel _model;
 
   @override

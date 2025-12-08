@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AnnouncementWebViewWidget extends StatefulWidget {
   final String? announcementMobileViewURL;
-  
+
   const AnnouncementWebViewWidget({
     Key? key,
     this.announcementMobileViewURL,

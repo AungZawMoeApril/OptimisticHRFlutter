@@ -155,7 +155,7 @@ class _PinCodePageState extends State<PinCodePage> {
                     shape: BoxShape.circle,
                     color: digit.isNotEmpty
                         ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.secondaryText.withOpacity(0.3),
+                        : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3),
                   ),
                 );
               }),
@@ -183,7 +183,7 @@ class _PinCodePageState extends State<PinCodePage> {
                       child: Center(
                         child: Text(
                           '0',
-                          style: context.textTheme.displaySmall,
+                          style: Theme.of(context).textTheme.displaySmall,
                         ),
                       ),
                     );
@@ -195,7 +195,7 @@ class _PinCodePageState extends State<PinCodePage> {
                       child: Center(
                         child: Icon(
                           Icons.backspace,
-                          color: Theme.of(context).colorScheme.primaryText,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     );
@@ -207,7 +207,7 @@ class _PinCodePageState extends State<PinCodePage> {
                     child: Center(
                       child: Text(
                         number,
-                        style: context.textTheme.displaySmall,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
                   );

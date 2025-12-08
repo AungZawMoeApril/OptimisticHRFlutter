@@ -44,17 +44,15 @@ class LeaveAttachmentListStruct extends BaseStruct {
 
   bool hasFiletype() => _filetype != null;
 
-  static LeaveAttachmentListStruct fromMap(Map<String, dynamic> data) =>
-      LeaveAttachmentListStruct(
+  static LeaveAttachmentListStruct fromMap(Map<String, dynamic> data) => LeaveAttachmentListStruct(
         attachment: data['attachment'] as String?,
         attachmentUrl: data['attachmentUrl'] as String?,
         filename: data['filename'] as String?,
         filetype: data['filetype'] as String?,
       );
 
-  static LeaveAttachmentListStruct? maybeFromMap(dynamic data) => data is Map
-      ? LeaveAttachmentListStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static LeaveAttachmentListStruct? maybeFromMap(dynamic data) =>
+      data is Map ? LeaveAttachmentListStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'attachment': _attachment,
@@ -83,8 +81,7 @@ class LeaveAttachmentListStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static LeaveAttachmentListStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static LeaveAttachmentListStruct fromSerializableMap(Map<String, dynamic> data) =>
       LeaveAttachmentListStruct(
         attachment: deserializeParam(
           data['attachment'],
@@ -121,8 +118,7 @@ class LeaveAttachmentListStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([attachment, attachmentUrl, filename, filetype]);
+  int get hashCode => const ListEquality().hash([attachment, attachmentUrl, filename, filetype]);
 }
 
 LeaveAttachmentListStruct createLeaveAttachmentListStruct({

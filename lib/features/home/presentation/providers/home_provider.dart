@@ -79,7 +79,7 @@ class HomeProvider extends ChangeNotifier {
         hiredDate: api.GetPersonalInfoCall.hiredDate(result.jsonBody) ?? '',
         nickname: api.GetPersonalInfoCall.nickname(result.jsonBody) ?? '',
       );
-      
+
       // Update app state for compatibility
       AppState().prefix = _personalInfo!.prefix;
       AppState().email = _personalInfo!.email;
@@ -140,7 +140,8 @@ class HomeProvider extends ChangeNotifier {
 
       _attendanceStatus = AttendanceStatus(
         clockInTime: clockIn == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockIn)!,
-        clockOutTime: clockOut == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockOut)!,
+        clockOutTime:
+            clockOut == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockOut)!,
         shiftStartTime: startTime,
         shiftEndTime: endTime,
         timeType: AppState().timeType ?? '',
@@ -160,8 +161,7 @@ class HomeProvider extends ChangeNotifier {
     );
 
     if (result.succeeded) {
-      _notificationCount = api.MainGroup.apiLatestNotificationPOSTCall
-          .count(result.jsonBody);
+      _notificationCount = api.MainGroup.apiLatestNotificationPOSTCall.count(result.jsonBody);
     } else {
       throw Exception('Failed to load notifications');
     }

@@ -4,7 +4,7 @@ import '../storage/secure_storage.dart';
 /// Settings state model
 class SettingsState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   String _languageStatus = 'English';
   String _mainPinCode = '';
   bool _biometricEnabled = false;

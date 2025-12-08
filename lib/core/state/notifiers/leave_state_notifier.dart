@@ -21,7 +21,7 @@ class LeaveStateNotifier extends BaseStateNotifier {
 
     _remainingAnnualLeave = (await getValue('leave_annual_balance')) ?? 0.0;
     _remainingSickLeave = (await getValue('leave_sick_balance')) ?? 0.0;
-    
+
     final balances = await getValue<Map>('leave_other_balances') ?? {};
     _otherLeaveBalances = balances.cast<String, double>();
   }

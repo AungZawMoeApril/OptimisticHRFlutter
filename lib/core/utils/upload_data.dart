@@ -1,6 +1,55 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+
+// FlutterFlow FFUploadedFile stub
+class FFUploadedFile {
+  final Uint8List bytes;
+  final String? name;
+  final int? height;
+  final int? width;
+  final String? blurHash;
+
+  FFUploadedFile({
+    required this.bytes,
+    this.name,
+    this.height,
+    this.width,
+    this.blurHash,
+  });
+
+  // Compatibility properties
+  String get storagePath => name ?? '';
+  MediaDimensions? get dimensions =>
+      (height != null && width != null) ? MediaDimensions(height: height!, width: width!) : null;
+}
+
+class MediaDimensions {
+  final int height;
+  final int width;
+
+  MediaDimensions({required this.height, required this.width});
+}
+
+// Media selection stub
+Future<List<FFUploadedFile>?> selectMediaWithSourceBottomSheet({
+  required BuildContext context,
+  bool allowPhoto = false,
+  bool allowVideo = false,
+}) async {
+  // TODO: Implement actual media selection
+  // This is a stub that returns null (no media selected)
+  return null;
+}
+
+// File format validation stub
+bool validateFileFormat(String path, BuildContext context) {
+  // TODO: Implement actual file format validation
+  // This stub returns true (all formats allowed)
+  return true;
+}
 
 class UploadData {
   static Future<String?> uploadFile(String path, {String? url}) async {
@@ -12,7 +61,7 @@ class UploadData {
 
       final bytes = await file.readAsBytes();
       final uri = Uri.parse(url);
-      
+
       final request = http.MultipartRequest('POST', uri)
         ..files.add(http.MultipartFile.fromBytes(
           'file',
@@ -25,7 +74,7 @@ class UploadData {
 
       final responseData = await response.stream.bytesToString();
       final json = jsonDecode(responseData);
-      
+
       return json['url'] as String?;
     } catch (e) {
       print('Error uploading file: $e');
@@ -41,9 +90,6 @@ class UploadData {
     for (final path in paths) {
       uploads.add(uploadFile(path, url: url));
     }
-    return (await Future.wait(uploads))
-        .where((url) => url != null)
-        .map((url) => url!)
-        .toList();
+    return (await Future.wait(uploads)).where((url) => url != null).map((url) => url!).toList();
   }
 }

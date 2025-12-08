@@ -117,11 +117,11 @@ class AnnouncementList extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (announcement.imageUrl != null && announcement.imageUrl!.isNotEmpty)
+                            if (announcement.imageUrl.isNotEmpty)
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: CachedNetworkImage(
-                                  imageUrl: announcement.imageUrl!,
+                                  imageUrl: announcement.imageUrl,
                                   width: 80,
                                   height: 80,
                                   fit: BoxFit.cover,

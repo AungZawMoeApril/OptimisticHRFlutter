@@ -8,8 +8,7 @@ class OnSiteDetailListWidget extends StatefulWidget {
   const OnSiteDetailListWidget({super.key});
 
   @override
-  State<OnSiteDetailListWidget> createState() =>
-      _OnSiteDetailListWidgetState();
+  State<OnSiteDetailListWidget> createState() => _OnSiteDetailListWidgetState();
 }
 
 class _OnSiteDetailListWidgetState extends State<OnSiteDetailListWidget> {

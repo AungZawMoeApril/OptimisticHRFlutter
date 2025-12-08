@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AnnouncementWebViewCopyWidget extends StatefulWidget {
   final String? announcementMobileViewURL;
-  
+
   const AnnouncementWebViewCopyWidget({
     Key? key,
     this.announcementMobileViewURL,

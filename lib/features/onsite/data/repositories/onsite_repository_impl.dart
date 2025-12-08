@@ -25,14 +25,13 @@ class OnsiteRepositoryImpl implements OnsiteRepository {
   Future<List<OnsiteRequest>> getOnsiteRequests(String employeeId) async {
     try {
       final response = await client.get(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteByEmployee.replaceAll('{employeeId}', employeeId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteByEmployee.replaceAll('{employeeId}', employeeId)}'),
       );
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body);
-        return jsonList
-            .map((json) => OnsiteRequestModel.fromJson(json))
-            .toList();
+        return jsonList.map((json) => OnsiteRequestModel.fromJson(json)).toList();
       } else {
         throw ServerException();
       }
@@ -92,7 +91,8 @@ class OnsiteRepositoryImpl implements OnsiteRepository {
   }) async {
     try {
       final response = await client.put(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'status': status.toString().split('.').last,
@@ -114,7 +114,8 @@ class OnsiteRepositoryImpl implements OnsiteRepository {
   Future<OnsiteRequest> cancelOnsiteRequest(String requestId) async {
     try {
       final response = await client.put(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'status': OnsiteStatus.cancelled.toString().split('.').last,
@@ -135,7 +136,8 @@ class OnsiteRepositoryImpl implements OnsiteRepository {
   Future<void> deleteOnsiteRequest(String requestId) async {
     try {
       final response = await client.delete(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.onsiteById.replaceAll('{id}', requestId)}'),
       );
 
       if (response.statusCode != 204) {
@@ -165,9 +167,7 @@ class OnsiteRepositoryImpl implements OnsiteRepository {
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body);
-        return jsonList
-            .map((json) => OnsiteRequestModel.fromJson(json))
-            .toList();
+        return jsonList.map((json) => OnsiteRequestModel.fromJson(json)).toList();
       } else {
         throw ServerException();
       }

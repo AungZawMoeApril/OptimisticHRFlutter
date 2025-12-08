@@ -1,17 +1,16 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme_extension.dart';
+import '../../core/widgets/app_widgets.dart';
 import '/auth/custom_auth/auth_util.dart';
 import '/components/change_language_component/change_language_component_widget.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
+import '../../core/widgets/app_icon_button.dart';
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
+import '../../core/widgets/app_button.dart';
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'my_info_model.dart';
 import '/core/theme/app_colors.dart';
 export 'my_info_model.dart';
@@ -49,7 +48,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    AppState();
 
     return GestureDetector(
       onTap: () {
@@ -58,9 +57,9 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Theme.of(context).colorScheme.secondaryBackground,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryBackground,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           automaticallyImplyLeading: false,
           leading: AppIconButton(
             borderColor: Theme.of(context).colorScheme.primary,
@@ -70,7 +69,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
             fillColor: Theme.of(context).colorScheme.primary,
             icon: Icon(
               Icons.arrow_back_ios_rounded,
-              color: Theme.of(context).colorScheme.primaryText,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 20.0,
             ),
             onPressed: () async {
@@ -82,17 +81,15 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
               'tnuytwfp' /* My info */,
             ),
             style: Theme.of(context).textTheme.$1?.copyWith(
-                  font: GoogleFonts.outfit(
+                  fontFamily: GoogleFonts.outfit(
                     fontWeight: FontWeight.w500,
-                    fontStyle:
-                        context.headlineMedium.fontStyle,
-                  ),
-                  color: Theme.of(context).colorScheme.primaryText,
+                    fontStyle: context.headlineMedium.fontStyle,
+                  ).fontFamily,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
-                  fontStyle:
-                      context.headlineMedium.fontStyle,
+                  fontStyle: context.headlineMedium.fontStyle,
                 ),
           ),
           actions: [],
@@ -105,7 +102,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryBackground,
+              color: Theme.of(context).colorScheme.surface,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -113,13 +110,12 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryBackground,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Align(
                         alignment: AlignmentDirectional(0.0, 0.0),
@@ -129,7 +125,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            Navigator.of(context).pushNamed(ProfileWidget.routeName);
+                            Navigator.of(context).pushNamed('/profile');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -145,8 +141,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 10.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                       child: Container(
                                         width: 80.0,
                                         height: 80.0,
@@ -162,65 +157,62 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     ),
                                     Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Align(
-                                          alignment:
-                                              AlignmentDirectional(-0.5, -0.98),
+                                          alignment: AlignmentDirectional(-0.5, -0.98),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              functions
-                                                  .myInfoNameCombinationCopy(
-                                                      AppState().prefix,
-                                                      AppState().firstName,
-                                                      AppState().lastName,
-                                                      AppState().nickName),
+                                              functions.myInfoNameCombinationCopy(
+                                                  AppState().prefix,
+                                                  AppState().firstName,
+                                                  AppState().lastName,
+                                                  AppState().nickName),
                                               'my info name',
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.kanit(
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.kanit(
+                                                    fontWeight: FontWeight.normal,
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
                                         Align(
-                                          alignment:
-                                              AlignmentDirectional(-0.5, -0.93),
+                                          alignment: AlignmentDirectional(-0.5, -0.93),
                                           child: Text(
                                             AppState().positionName,
                                             textAlign: TextAlign.start,
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.readexPro(
+                                                    fontWeight: FontWeight.normal,
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: Color(0xFF4D4F5C),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -230,8 +222,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 15.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -239,12 +230,11 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     Navigator.of(context).pushNamed(
-                                      ProfileWidget.routeName,
+                                      '/profile',
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
+                                          transitionType: PageTransitionType.fade,
                                           duration: Duration(milliseconds: 0),
                                         ),
                                       },
@@ -264,42 +254,40 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 240.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryBackground,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            15.0, 10.0, 15.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  3.0, 0.0, 0.0, 0.0),
+                              padding: EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '7tbyg3tt' /* Setting */,
                                 ),
-                                style: Theme.of(context).textTheme.bodyMedium!
-                                    .override(
-                                      font: GoogleFonts.kanit(
+                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      fontFamily: GoogleFonts.kanit(
                                         fontWeight: FontWeight.normal,
-                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                        fontStyle: Theme.of(context)
+                                            .fontFamily
+                                            .textTheme
+                                            .bodyMedium!
                                             .fontStyle,
-                                      ),
+                                      ).fontFamily,
                                       color: AppColors.blackFontColor,
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                          .fontStyle,
+                                      fontStyle: Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                     ),
                               ),
                             ),
@@ -317,8 +305,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        borderRadius: BorderRadius.circular(8.0),
                                         child: Image.asset(
                                           'assets/images/Vector_(2).png',
                                           width: 22.0,
@@ -327,27 +314,28 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             '8w18i9oc' /* Notification */,
                                           ),
-                                          style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.kanit(
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                fontFamily: GoogleFonts.kanit(
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    AppColors.blackFontColor,
+                                                  fontStyle: Theme.of(context)
+                                                      .fontFamily
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
+                                                color: AppColors.blackFontColor,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
                                         ),
                                       ),
@@ -357,21 +345,16 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 3.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
                                     child: Switch.adaptive(
                                       value: _model.switchValue!,
                                       onChanged: (newValue) async {
-                                        safeSetState(() =>
-                                            _model.switchValue = newValue);
+                                        safeSetState(() => _model.switchValue = newValue);
                                       },
-                                      activeColor:
-                                          Theme.of(context).colorScheme.primary,
+                                      activeColor: Theme.of(context).colorScheme.primary,
                                       activeTrackColor: Color(0xFFF99D20),
-                                      inactiveTrackColor:
-                                          Theme.of(context).colorScheme.primary,
-                                      inactiveThumbColor:
-                                          Theme.of(context).colorScheme.primary,
+                                      inactiveTrackColor: Theme.of(context).colorScheme.primary,
+                                      inactiveThumbColor: Theme.of(context).colorScheme.primary,
                                     ),
                                   ),
                                 ),
@@ -393,14 +376,12 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     color: Theme.of(context).colorScheme.surface,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        3.0, 0.0, 0.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             'assets/images/translate-variant_1.png',
                                             width: 22.0,
@@ -410,26 +391,27 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'twzjasx8' /* Language */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.kanit(
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -441,8 +423,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Builder(
                                     builder: (context) => Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 5.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                       child: AppButton(
                                         onPressed: () async {
                                           await showDialog(
@@ -452,24 +433,16 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                               return Dialog(
                                                 elevation: 0,
                                                 insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
+                                                backgroundColor: Colors.transparent,
+                                                alignment: AlignmentDirectional(0.0, 0.0)
+                                                    .resolve(Directionality.of(context)),
                                                 child: WebViewAware(
                                                   child: GestureDetector(
                                                     onTap: () {
-                                                      FocusScope.of(
-                                                              dialogContext)
-                                                          .unfocus();
-                                                      FocusManager
-                                                          .instance.primaryFocus
-                                                          ?.unfocus();
+                                                      FocusScope.of(dialogContext).unfocus();
+                                                      FocusManager.instance.primaryFocus?.unfocus();
                                                     },
-                                                    child:
-                                                        ChangeLanguageComponentWidget(),
+                                                    child: ChangeLanguageComponentWidget(),
                                                   ),
                                                 ),
                                               );
@@ -480,36 +453,40 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                           color: Theme.of(context).colorScheme.surface,
-                                          textStyle: Theme.of(context).textTheme.titleSmall!
-                                              .override(
-                                                font: GoogleFonts.kanit(
-                                                  fontWeight:
-                                                      Theme.of(context).textTheme.titleSmall!
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.titleSmall!
-                                                          .fontStyle,
-                                                ),
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall!
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.kanit(
+                                                  fontWeight: Theme.of(context)
+                                                      .fontFamily
+                                                      .textTheme
+                                                      .titleSmall!
+                                                      .fontWeight,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .titleSmall!
+                                                      .fontStyle,
+                                                ).fontFamily,
                                                 color:
                                                     Theme.of(context).textTheme.bodyMedium?.color,
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.titleSmall!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.titleSmall!
-                                                        .fontStyle,
+                                                fontWeight: Theme.of(context)
+                                                    .textTheme
+                                                    .titleSmall!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .titleSmall!
+                                                    .fontStyle,
                                               ),
                                           elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                         ),
                                       ),
                                     ),
@@ -536,12 +513,10 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
+                                    width: MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.surface,
@@ -550,8 +525,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             'assets/images/form-textbox-password_1.png',
                                             width: 22.0,
@@ -561,26 +535,27 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '965rqefa' /* Change Pincode */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.kanit(
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -593,8 +568,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context
-                                          .pushNamed(PinCodeWidget.routeName);
+                                      context.pushNamed(PinCodeWidget.routeName);
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
@@ -616,17 +590,14 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context
-                                    .pushNamed(ChangePasswordWidget.routeName);
+                                context.pushNamed(ChangePasswordWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
+                                    width: MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.surface,
@@ -635,8 +606,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             'assets/images/shield-key-outline_1.png',
                                             width: 22.0,
@@ -646,26 +616,27 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '3cklnagw' /* Change Password */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.kanit(
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -681,8 +652,8 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       if (Navigator.of(context).canPop()) {
                                         Navigator.of(context).pop();
                                       }
-                                      Navigator.of(context).pushNamed(
-                                          ChangePasswordWidget.routeName);
+                                      Navigator.of(context)
+                                          .pushNamed(ChangePasswordWidget.routeName);
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
@@ -699,17 +670,15 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 135.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryBackground,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            15.0, 10.0, 15.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -719,18 +688,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               FFLocalizations.of(context).getText(
                                 'haobzufu' /* About Application */,
                               ),
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .override(
-                                    font: GoogleFonts.kanit(
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: GoogleFonts.kanit(
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                      fontStyle: Theme.of(context)
+                                          .fontFamily
+                                          .textTheme
+                                          .bodyMedium!
                                           .fontStyle,
-                                    ),
+                                    ).fontFamily,
                                     color: AppColors.blackFontColor,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
-                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                        .fontStyle,
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                   ),
                             ),
                             InkWell(
@@ -739,17 +709,15 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                Navigator.of(context).pushNamed(
-                                    CookieAndPrivacyPolicyWidget.routeName);
+                                Navigator.of(context)
+                                    .pushNamed(CookieAndPrivacyPolicyWidget.routeName);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
+                                    width: MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.surface,
@@ -758,8 +726,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             'assets/images/Vector_(3).png',
                                             width: 22.0,
@@ -769,26 +736,27 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '5btw1cez' /* Privacy Policy */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.kanit(
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.kanit(
                                                     fontWeight: FontWeight.w300,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -804,9 +772,8 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       if (Navigator.of(context).canPop()) {
                                         Navigator.of(context).pop();
                                       }
-                                      Navigator.of(context).pushNamed(
-                                          CookieAndPrivacyPolicyWidget
-                                              .routeName);
+                                      Navigator.of(context)
+                                          .pushNamed(CookieAndPrivacyPolicyWidget.routeName);
                                     },
                                     child: Icon(
                                       Icons.arrow_forward_ios_sharp,
@@ -836,8 +803,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        borderRadius: BorderRadius.circular(8.0),
                                         child: Image.asset(
                                           'assets/images/version-svgrepo-com_1.png',
                                           width: 22.0,
@@ -846,27 +812,28 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'gclmvwj7' /* Version */,
                                           ),
-                                          style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.kanit(
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                fontFamily: GoogleFonts.kanit(
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    AppColors.blackFontColor,
+                                                  fontStyle: Theme.of(context)
+                                                      .fontFamily
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
+                                                color: AppColors.blackFontColor,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
                                         ),
                                       ),
@@ -874,29 +841,26 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 5.0, 0.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
                                       'puduuegb' /* 1.0.5 */,
                                     ),
-                                    style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontWeight,
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                          fontFamily: GoogleFonts.readexPro(
+                                            fontWeight: Theme.of(context)
+                                                .fontFamily
+                                                .textTheme
+                                                .bodyMedium!
+                                                .fontWeight,
                                             fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontStyle,
-                                          ),
+                                                Theme.of(context).textTheme.bodyMedium!.fontStyle,
+                                          ).fontFamily,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontWeight,
+                                              Theme.of(context).textTheme.bodyMedium!.fontWeight,
                                           fontStyle:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontStyle,
+                                              Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                         ),
                                   ),
                                 ),
@@ -908,17 +872,15 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 85.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryBackground,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            15.0, 10.0, 15.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -928,18 +890,19 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                               FFLocalizations.of(context).getText(
                                 'ozo0k2kl' /* Account */,
                               ),
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .override(
-                                    font: GoogleFonts.kanit(
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: GoogleFonts.kanit(
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                      fontStyle: Theme.of(context)
+                                          .fontFamily
+                                          .textTheme
+                                          .bodyMedium!
                                           .fontStyle,
-                                    ),
+                                    ).fontFamily,
                                     color: AppColors.blackFontColor,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
-                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                        .fontStyle,
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                   ),
                             ),
                             InkWell(
@@ -984,17 +947,14 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth(
-                                    LoginPageWidget.routeName, context.mounted);
+                                context.goNamedAuth(LoginPageWidget.routeName, context.mounted);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
+                                    width: MediaQuery.sizeOf(context).width * 0.5,
                                     height: 50.0,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.surface,
@@ -1003,8 +963,7 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: BorderRadius.circular(8.0),
                                           child: Image.asset(
                                             'assets/images/Vector_(4).png',
                                             width: 22.0,
@@ -1014,26 +973,27 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'bk2xkq4f' /* Sign Out */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.readexPro(
                                                     fontWeight: FontWeight.w300,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                                    fontStyle: Theme.of(context)
+                                                        .fontFamily
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w300,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -1054,13 +1014,12 @@ class _MyInfoWidgetState extends State<MyInfoWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 140.0,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryBackground,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,

@@ -8,14 +8,14 @@ import 'core/injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize dependency injection
   await di.initializeDependencies();
-  
+
   // Initialize app state
   final appState = AppState();
   await appState.ensureInitialized();
-  
+
   // Error handling
   ErrorWidget.builder = (FlutterErrorDetails details) {
     return MaterialApp(

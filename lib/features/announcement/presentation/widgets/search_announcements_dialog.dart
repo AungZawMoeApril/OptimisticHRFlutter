@@ -17,7 +17,7 @@ class SearchAnnouncementsDialog extends StatelessWidget {
       ],
     );
   }
-  
+
   static Future<void> show(BuildContext context) {
     return showDialog(
       context: context,

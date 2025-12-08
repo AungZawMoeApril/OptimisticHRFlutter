@@ -35,16 +35,14 @@ class AttachmentFileModelStruct extends BaseStruct {
 
   bool hasFiletype() => _filetype != null;
 
-  static AttachmentFileModelStruct fromMap(Map<String, dynamic> data) =>
-      AttachmentFileModelStruct(
+  static AttachmentFileModelStruct fromMap(Map<String, dynamic> data) => AttachmentFileModelStruct(
         attachmentFile: data['attachment_file'] as String?,
         filename: data['filename'] as String?,
         filetype: data['filetype'] as String?,
       );
 
-  static AttachmentFileModelStruct? maybeFromMap(dynamic data) => data is Map
-      ? AttachmentFileModelStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static AttachmentFileModelStruct? maybeFromMap(dynamic data) =>
+      data is Map ? AttachmentFileModelStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'attachment_file': _attachmentFile,
@@ -68,8 +66,7 @@ class AttachmentFileModelStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static AttachmentFileModelStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static AttachmentFileModelStruct fromSerializableMap(Map<String, dynamic> data) =>
       AttachmentFileModelStruct(
         attachmentFile: deserializeParam(
           data['attachment_file'],
@@ -100,8 +97,7 @@ class AttachmentFileModelStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([attachmentFile, filename, filetype]);
+  int get hashCode => const ListEquality().hash([attachmentFile, filename, filetype]);
 }
 
 AttachmentFileModelStruct createAttachmentFileModelStruct({

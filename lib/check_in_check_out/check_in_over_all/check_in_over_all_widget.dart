@@ -7,6 +7,9 @@ export 'check_in_over_all_model.dart';
 class CheckInOverAllWidget extends StatefulWidget {
   const CheckInOverAllWidget({super.key});
 
+  static String routeName = 'CheckInOverAll';
+  static String routePath = '/checkInOverAll';
+
   @override
   State<CheckInOverAllWidget> createState() => _CheckInOverAllWidgetState();
 }

@@ -33,8 +33,7 @@ dynamic deserializeStructParam<T>(
       return null;
     }
     return paramValues
-        .map<T>((e) => deserializeStructParam<T>(e, paramType, false,
-            structBuilder: structBuilder))
+        .map<T>((e) => deserializeStructParam<T>(e, paramType, false, structBuilder: structBuilder))
         .toList();
   } else if (param is Map<String, dynamic>) {
     return structBuilder(param);
@@ -82,5 +81,4 @@ List<T>? getStructDataList<T>(dynamic value) =>
     value is! List ? null : value.map((e) => castToType<T>(e)).whereType<T>().toList();
 
 // Helper for getting data lists from JSON
-List<T>? getDataList<T>(dynamic value) =>
-    value is! List ? null : value.cast<T>();
+List<T>? getDataList<T>(dynamic value) => value is! List ? null : value.cast<T>();

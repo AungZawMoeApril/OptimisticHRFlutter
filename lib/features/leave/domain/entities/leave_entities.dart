@@ -1,22 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-enum LeaveType {
-  annual,
-  sick,
-  personal,
-  maternity,
-  paternity,
-  bereavement,
-  unpaid,
-  other
-}
+enum LeaveType { annual, sick, personal, maternity, paternity, bereavement, unpaid, other }
 
-enum LeaveStatus {
-  pending,
-  approved,
-  rejected,
-  cancelled
-}
+enum LeaveStatus { pending, approved, rejected, cancelled }
 
 class LeaveRequest extends Equatable {
   final String id;

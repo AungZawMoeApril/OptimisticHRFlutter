@@ -19,12 +19,10 @@ class DeleteLeaveRequestDialogWidget extends StatefulWidget {
   final String? reason;
 
   @override
-  State<DeleteLeaveRequestDialogWidget> createState() =>
-      _DeleteLeaveRequestDialogWidgetState();
+  State<DeleteLeaveRequestDialogWidget> createState() => _DeleteLeaveRequestDialogWidgetState();
 }
 
-class _DeleteLeaveRequestDialogWidgetState
-    extends State<DeleteLeaveRequestDialogWidget> {
+class _DeleteLeaveRequestDialogWidgetState extends State<DeleteLeaveRequestDialogWidget> {
   late DeleteLeaveRequestDialogModel _model;
 
   @override

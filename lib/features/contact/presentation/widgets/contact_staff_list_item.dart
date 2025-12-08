@@ -5,7 +5,7 @@ class ContactStaffListItem extends StatelessWidget {
   final ContactStaff staff;
 
   const ContactStaffListItem({
-    super.key, 
+    super.key,
     required this.staff,
   });
 

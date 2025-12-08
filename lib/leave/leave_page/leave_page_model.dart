@@ -8,17 +8,16 @@ class LeavePageModel extends FlutterFlowModel<LeavePageWidget> {
 
   // State field(s) for TabBar widget.
   TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarCurrentIndex => tabBarController != null ? tabBarController!.index : 0;
 
   // Stores action output result for [Backend Call - API (getTimeOffRequestByCompanyIdPagination)] action in LeavePage widget.
   ApiCallResponse? apiResutleaveList;
-  
+
   // State field(s) for leave list
   List<dynamic> allLeaveListView = [];
   List<dynamic> todayLeaveList = [];
   List<dynamic> historyLeaveList = [];
-  
+
   // State field(s) for leave type filter
   dynamic leaveTypeID = '';
   String? leavedayCount;

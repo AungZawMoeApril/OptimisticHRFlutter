@@ -28,8 +28,7 @@ mixin _$LeaveRequest {
   DateTime get endDate => throw _privateConstructorUsedError;
   double get duration => throw _privateConstructorUsedError;
   String get reason => throw _privateConstructorUsedError;
-  String get status =>
-      throw _privateConstructorUsedError; // 'PENDING', 'APPROVED', 'REJECTED'
+  String get status => throw _privateConstructorUsedError; // 'PENDING', 'APPROVED', 'REJECTED'
   String? get approverNote => throw _privateConstructorUsedError;
   String? get approverId => throw _privateConstructorUsedError;
   DateTime? get approvedAt => throw _privateConstructorUsedError;
@@ -43,14 +42,12 @@ mixin _$LeaveRequest {
   /// Create a copy of LeaveRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $LeaveRequestCopyWith<LeaveRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $LeaveRequestCopyWith<LeaveRequest> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeaveRequestCopyWith<$Res> {
-  factory $LeaveRequestCopyWith(
-          LeaveRequest value, $Res Function(LeaveRequest) then) =
+  factory $LeaveRequestCopyWith(LeaveRequest value, $Res Function(LeaveRequest) then) =
       _$LeaveRequestCopyWithImpl<$Res, LeaveRequest>;
   @useResult
   $Res call(
@@ -168,8 +165,7 @@ class _$LeaveRequestCopyWithImpl<$Res, $Val extends LeaveRequest>
 }
 
 /// @nodoc
-abstract class _$$LeaveRequestImplCopyWith<$Res>
-    implements $LeaveRequestCopyWith<$Res> {
+abstract class _$$LeaveRequestImplCopyWith<$Res> implements $LeaveRequestCopyWith<$Res> {
   factory _$$LeaveRequestImplCopyWith(
           _$LeaveRequestImpl value, $Res Function(_$LeaveRequestImpl) then) =
       __$$LeaveRequestImplCopyWithImpl<$Res>;
@@ -354,29 +350,20 @@ class _$LeaveRequestImpl implements _LeaveRequest {
             other is _$LeaveRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
-            (identical(other.leaveType, leaveType) ||
-                other.leaveType == leaveType) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
+            (identical(other.employeeName, employeeName) || other.employeeName == employeeName) &&
+            (identical(other.leaveType, leaveType) || other.leaveType == leaveType) &&
+            (identical(other.startDate, startDate) || other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration) &&
+            (identical(other.duration, duration) || other.duration == duration) &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.approverNote, approverNote) ||
-                other.approverNote == approverNote) &&
-            (identical(other.approverId, approverId) ||
-                other.approverId == approverId) &&
-            (identical(other.approvedAt, approvedAt) ||
-                other.approvedAt == approvedAt) &&
+            (identical(other.approverNote, approverNote) || other.approverNote == approverNote) &&
+            (identical(other.approverId, approverId) || other.approverId == approverId) &&
+            (identical(other.approvedAt, approvedAt) || other.approvedAt == approvedAt) &&
             (identical(other.attachmentUrl, attachmentUrl) ||
                 other.attachmentUrl == attachmentUrl) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -433,8 +420,7 @@ abstract class _LeaveRequest implements LeaveRequest {
       required final DateTime createdAt,
       final DateTime? updatedAt}) = _$LeaveRequestImpl;
 
-  factory _LeaveRequest.fromJson(Map<String, dynamic> json) =
-      _$LeaveRequestImpl.fromJson;
+  factory _LeaveRequest.fromJson(Map<String, dynamic> json) = _$LeaveRequestImpl.fromJson;
 
   @override
   String get id;

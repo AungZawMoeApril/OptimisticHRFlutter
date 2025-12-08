@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'leave_page_model.dart';
 import '/core/theme/app_colors.dart';
 export 'leave_page_model.dart';
@@ -31,8 +30,7 @@ class LeavePageWidget extends StatefulWidget {
   State<LeavePageWidget> createState() => _LeavePageWidgetState();
 }
 
-class _LeavePageWidgetState extends State<LeavePageWidget>
-    with TickerProviderStateMixin {
+class _LeavePageWidgetState extends State<LeavePageWidget> with TickerProviderStateMixin {
   late LeavePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -44,28 +42,26 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResutleaveList =
-          await MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
+      _model.apiResutleaveList = await MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
         monthNum: 13,
         yearNum: functions.leaveforYearCustomFunction(),
-        employeeID: context.read<AppState>().employeeID,
-        companyID: context.read<AppState>().companyID,
-        requesterID: context.read<AppState>().reportID,
+        employeeID: AppState().employeeID,
+        companyID: AppState().companyID,
+        requesterID: AppState().reportID,
         leaveTypeID: _model.leaveTypeID,
         status: 'All',
         perpage: 1000,
         page: 1,
-        token: context.read<AppState>().token,
+        token: AppState().token,
       );
 
       if ((_model.apiResutleaveList?.succeeded ?? true)) {
-        _model.allLeaveListView =
-            MainGroup.getTimeOffRequestByCompanyIdPaginationCall
-                .dataResult(
-                  (_model.apiResutleaveList?.jsonBody ?? ''),
-                )!
-                .toList()
-                .cast<dynamic>();
+        _model.allLeaveListView = MainGroup.getTimeOffRequestByCompanyIdPaginationCall
+            .dataResult(
+              (_model.apiResutleaveList?.jsonBody ?? ''),
+            )!
+            .toList()
+            .cast<dynamic>();
         safeSetState(() {});
       }
     });
@@ -88,7 +84,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    AppState();
 
     return GestureDetector(
       onTap: () {
@@ -99,7 +95,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
         key: scaffoldKey,
         backgroundColor: Color(0xFFF6F6F6),
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.secondaryBackground,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           automaticallyImplyLeading: false,
           leading: AppIconButton(
             borderColor: Colors.transparent,
@@ -108,7 +104,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
             buttonSize: 60.0,
             icon: FaIcon(
               FontAwesomeIcons.angleLeft,
-              color: Theme.of(context).colorScheme.secondaryText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               size: 30.0,
             ),
             onPressed: () async {
@@ -120,13 +116,11 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
               'o10rjd0l' /* Leave */,
             ),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
-                  fontWeight:
-                      context.headlineMedium?.fontWeight,
-                  fontStyle:
-                      context.headlineMedium?.fontStyle,
+                  fontWeight: Theme.of(context).textTheme.headlineMedium?.fontWeight,
+                  fontStyle: Theme.of(context).textTheme.headlineMedium?.fontStyle,
                 ),
           ),
           actions: [
@@ -174,30 +168,20 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                         ),
                         options: FFButtonOptions(
                           height: 35.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
+                          padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                           color: _model.leaveTypeID == 0
                               ? Color(0xFFF89D27)
                               : Theme.of(context).colorScheme.surface,
-                          textStyle: Theme.of(context).textTheme.titleSmall!
-                              .override(
-                                font: GoogleFonts.readexPro(
-                                  fontWeight: Theme.of(context).textTheme.titleSmall!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleSmall!
-                                      .fontStyle,
-                                ),
+                          textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                                fontFamily: GoogleFonts.readexPro().fontFamily,
                                 color: _model.leaveTypeID == 0
                                     ? Theme.of(context).colorScheme.surface
-                                    : Theme.of(context).colorScheme.primaryText,
+                                    : Theme.of(context).colorScheme.onSurface,
                                 fontSize: 14.0,
                                 letterSpacing: 0.0,
-                                fontWeight: Theme.of(context).textTheme.titleSmall!
-                                    .fontWeight,
-                                fontStyle: Theme.of(context).textTheme.titleSmall!
-                                    .fontStyle,
+                                fontWeight: Theme.of(context).textTheme.titleSmall!.fontWeight,
+                                fontStyle: Theme.of(context).textTheme.titleSmall!.fontStyle,
                               ),
                           elevation: 3.0,
                           borderSide: BorderSide(
@@ -209,8 +193,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 100.0,
@@ -219,9 +202,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                         ),
                         child: FutureBuilder<ApiCallResponse>(
                           future: MainGroup.getLeaveWithRemainingDaysCall.call(
-                            companyIDMain: context.read<AppState>().companyID,
-                            employeeIDMain: context.read<AppState>().employeeID,
-                            token: context.read<AppState>().token,
+                            companyIDMain: AppState().companyID,
+                            employeeIDMain: AppState().employeeID,
+                            token: AppState().token,
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -238,16 +221,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                 ),
                               );
                             }
-                            final listViewGetLeaveWithRemainingDaysResponse =
-                                snapshot.data!;
+                            final listViewGetLeaveWithRemainingDaysResponse = snapshot.data!;
 
                             return Builder(
                               builder: (context) {
                                 final getLeaveWithRemainingDaysList =
                                     MainGroup.getLeaveWithRemainingDaysCall
                                             .leaveTypeList(
-                                              listViewGetLeaveWithRemainingDaysResponse
-                                                  .jsonBody,
+                                              listViewGetLeaveWithRemainingDaysResponse.jsonBody,
                                             )
                                             ?.toList() ??
                                         [];
@@ -256,12 +237,9 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                   padding: EdgeInsets.zero,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount:
-                                      getLeaveWithRemainingDaysList.length,
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(width: 10.0),
-                                  itemBuilder: (context,
-                                      getLeaveWithRemainingDaysListIndex) {
+                                  itemCount: getLeaveWithRemainingDaysList.length,
+                                  separatorBuilder: (_, __) => SizedBox(width: 10.0),
+                                  itemBuilder: (context, getLeaveWithRemainingDaysListIndex) {
                                     final getLeaveWithRemainingDaysListItem =
                                         getLeaveWithRemainingDaysList[
                                             getLeaveWithRemainingDaysListIndex];
@@ -278,19 +256,17 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                               getLeaveWithRemainingDaysListItem,
                                               r'''$.timeOff_ID''',
                                             );
-                                            _model.leavedayCount = functions
-                                                        .getDaysLeftFunction(
-                                                            getJsonField(
-                                                      getLeaveWithRemainingDaysListItem,
-                                                      r'''$.leaveDaysLeft''',
-                                                    ).toString()) ==
-                                                    '0'
-                                                ? '0'
-                                                : functions.getDaysLeftFunction(
-                                                    getJsonField(
-                                                    getLeaveWithRemainingDaysListItem,
-                                                    r'''$.leaveDaysLeft''',
-                                                  ).toString());
+                                            _model.leavedayCount =
+                                                functions.getDaysLeftFunction(getJsonField(
+                                                          getLeaveWithRemainingDaysListItem,
+                                                          r'''$.leaveDaysLeft''',
+                                                        ).toString()) ==
+                                                        '0'
+                                                    ? '0'
+                                                    : functions.getDaysLeftFunction(getJsonField(
+                                                        getLeaveWithRemainingDaysListItem,
+                                                        r'''$.leaveDaysLeft''',
+                                                      ).toString());
                                             safeSetState(() {});
                                           },
                                           child: Container(
@@ -304,75 +280,63 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                       )
                                                   ? Color(0xFFF9B052)
                                                   : Theme.of(context).colorScheme.surface,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                              borderRadius: BorderRadius.circular(8.0),
                                               border: Border.all(
-                                                color:
-                                                    Theme.of(context).colorScheme.surface,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 width: 1.0,
                                               ),
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Expanded(
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 8.0,
-                                                                0.0, 8.0),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                                        0.0, 8.0, 0.0, 8.0),
                                                     child: Text(
                                                       getJsonField(
                                                         getLeaveWithRemainingDaysListItem,
                                                         r'''$.timeoff_TypeEN''',
                                                       ).toString(),
                                                       maxLines: 2,
-                                                      style:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w300,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Theme.of(context).textTheme.bodyLarge?.color,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                    .fontStyle,
-                                                              ),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                            fontFamily: GoogleFonts.readexPro(
+                                                              fontWeight: FontWeight.w300,
+                                                              fontStyle: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .fontStyle,
+                                                            ).fontFamily,
+                                                            color: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyLarge
+                                                                ?.color,
+                                                            fontSize: 12.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight: FontWeight.w300,
+                                                            fontStyle: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .fontStyle,
+                                                          ),
                                                     ),
                                                   ),
                                                 ),
                                                 Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, -1.0),
+                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                0.0, 0.0),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                                        8.0, 0.0, 0.0, 0.0),
                                                     child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
+                                                          borderRadius: BorderRadius.circular(8.0),
                                                           child: Image.asset(
                                                             'assets/images/Group_9084.png',
                                                             width: 38.0,
@@ -381,42 +345,44 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                           ),
                                                         ),
                                                         Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, 0.0),
+                                                          alignment: AlignmentDirectional(1.0, 0.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        13.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                13.0, 0.0, 0.0, 0.0),
                                                             child: Text(
                                                               getJsonField(
                                                                 getLeaveWithRemainingDaysListItem,
                                                                 r'''$.leaveDaysLeft''',
                                                               ).toString(),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              textAlign: TextAlign.start,
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
-                                                                    ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    ).fontFamily,
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    fontSize: 12.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -449,25 +415,18 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                     Align(
                       alignment: Alignment(0.0, 0),
                       child: FlutterFlowButtonTabBar(
-                        labelStyle:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.titleSmall!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleSmall!
-                                      .fontStyle,
-                                ),
+                        labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              letterSpacing: 0.0,
+                              fontWeight: Theme.of(context).textTheme.titleSmall!.fontWeight,
+                              fontStyle: Theme.of(context).textTheme.titleSmall!.fontStyle,
+                            ),
                         unselectedLabelStyle: TextStyle(),
-                        labelColor:
-                            Theme.of(context).colorScheme.secondaryBackground,
-                        unselectedLabelColor:
-                            Theme.of(context).colorScheme.primary,
+                        labelColor: Theme.of(context).colorScheme.surface,
+                        unselectedLabelColor: Theme.of(context).colorScheme.primary,
                         backgroundColor: Color(0xFFF9B052),
-                        unselectedBackgroundColor:
-                            AppColors.greyTitle,
+                        unselectedBackgroundColor: AppColors.greyTitle,
                         borderColor: Theme.of(context).colorScheme.primary,
-                        unselectedBorderColor:
-                            Theme.of(context).colorScheme.secondaryBackground,
+                        unselectedBorderColor: Theme.of(context).colorScheme.surface,
                         borderWidth: 2.0,
                         borderRadius: 8.0,
                         elevation: 0.0,
@@ -503,55 +462,40 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((_model.leavedayCount == '0') &&
-                                  (_model.leaveTypeID != 0))
+                              if ((_model.leavedayCount == '0') && (_model.leaveTypeID != 0))
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
                                       'tkxntmcu' /* No Data Available */,
                                     ),
-                                    style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontWeight,
-                                            fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontStyle,
-                                          ),
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontWeight,
+                                              Theme.of(context).textTheme.bodyMedium!.fontWeight,
                                           fontStyle:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontStyle,
+                                              Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                         ),
                                   ),
                                 ),
                               if (_model.leavedayCount != '0')
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 5.0, 5.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
                                     child: FutureBuilder<ApiCallResponse>(
-                                      future: MainGroup
-                                          .getTimeOffRequestByCompanyIdPaginationCall
-                                          .call(
+                                      future:
+                                          MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
                                         monthNum: 13,
-                                        yearNum: functions
-                                            .leaveforYearCustomFunction(),
-                                        employeeID: context.read<AppState>().employeeID,
-                                        companyID: context.read<AppState>().companyID,
-                                        requesterID: context.read<AppState>().reportID,
+                                        yearNum: functions.leaveforYearCustomFunction(),
+                                        employeeID: AppState().employeeID,
+                                        companyID: AppState().companyID,
+                                        requesterID: AppState().reportID,
                                         leaveTypeID: _model.leaveTypeID,
                                         status: 'All',
                                         perpage: 300,
                                         page: 1,
-                                        token: context.read<AppState>().token,
+                                        token: AppState().token,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -561,9 +505,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                               width: 50.0,
                                               height: 50.0,
                                               child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
+                                                valueColor: AlwaysStoppedAnimation<Color>(
                                                   Theme.of(context).colorScheme.primary,
                                                 ),
                                               ),
@@ -575,14 +517,14 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
 
                                         return Builder(
                                           builder: (context) {
-                                            final yearforLeave = MainGroup
-                                                    .getTimeOffRequestByCompanyIdPaginationCall
-                                                    .dataResult(
-                                                      listViewGetTimeOffRequestByCompanyIdPaginationResponse
-                                                          .jsonBody,
-                                                    )
-                                                    ?.toList() ??
-                                                [];
+                                            final yearforLeave =
+                                                MainGroup.getTimeOffRequestByCompanyIdPaginationCall
+                                                        .dataResult(
+                                                          listViewGetTimeOffRequestByCompanyIdPaginationResponse
+                                                              .jsonBody,
+                                                        )
+                                                        ?.toList() ??
+                                                    [];
                                             if (yearforLeave.isEmpty) {
                                               return Image.asset(
                                                 '',
@@ -594,78 +536,54 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                               shrinkWrap: true,
                                               scrollDirection: Axis.vertical,
                                               itemCount: yearforLeave.length,
-                                              itemBuilder:
-                                                  (context, yearforLeaveIndex) {
+                                              itemBuilder: (context, yearforLeaveIndex) {
                                                 final yearforLeaveItem =
-                                                    yearforLeave[
-                                                        yearforLeaveIndex];
+                                                    yearforLeave[yearforLeaveIndex];
                                                 return SingleChildScrollView(
                                                   child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
+                                                    mainAxisSize: MainAxisSize.max,
                                                     children: [
                                                       Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, -1.0),
+                                                        alignment: AlignmentDirectional(-1.0, -1.0),
                                                         child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      8.0,
-                                                                      5.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              8.0, 0.0, 8.0, 5.0),
                                                           child: Container(
-                                                            width:
-                                                                double.infinity,
+                                                            width: double.infinity,
                                                             height: 220.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Theme.of(context).colorScheme.surface,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .only(
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        13.0),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        13.0),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        13.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        13.0),
+                                                            decoration: BoxDecoration(
+                                                              color: Theme.of(context)
+                                                                  .colorScheme
+                                                                  .surface,
+                                                              borderRadius: BorderRadius.only(
+                                                                bottomLeft: Radius.circular(13.0),
+                                                                bottomRight: Radius.circular(13.0),
+                                                                topLeft: Radius.circular(13.0),
+                                                                topRight: Radius.circular(13.0),
                                                               ),
                                                             ),
                                                             child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               children: [
                                                                 Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Column(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                          MainAxisSize.max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              8.0,
-                                                                              15.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      10.0,
+                                                                                      8.0,
+                                                                                      15.0,
+                                                                                      0.0),
+                                                                          child: Text(
                                                                             valueOrDefault<String>(
                                                                               getJsonField(
                                                                                 yearforLeaveItem,
@@ -673,60 +591,96 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               )?.toString(),
                                                                               'LeaveName',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Color(0xFFF9B052),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                                ),
+                                                                            style:
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.copyWith(
+                                                                                      color: Color(
+                                                                                          0xFFF9B052),
+                                                                                      letterSpacing:
+                                                                                          0.0,
+                                                                                      fontWeight: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontWeight,
+                                                                                      fontStyle: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontStyle,
+                                                                                    ),
                                                                           ),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                     Column(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                          MainAxisSize.max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              15.0,
-                                                                              15.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                100.0,
-                                                                            height:
-                                                                                25.0,
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      0.0,
+                                                                                      15.0,
+                                                                                      15.0,
+                                                                                      0.0),
+                                                                          child: Container(
+                                                                            width: 100.0,
+                                                                            height: 25.0,
                                                                             decoration:
                                                                                 BoxDecoration(
-                                                                              color: functions.leaveStatusBackgroundColor(getJsonField(
+                                                                              color: functions
+                                                                                  .leaveStatusBackgroundColor(
+                                                                                      getJsonField(
                                                                                 yearforLeaveItem,
                                                                                 r'''$.status''',
                                                                               ).toString()),
-                                                                              borderRadius: BorderRadius.circular(24.0),
+                                                                              borderRadius:
+                                                                                  BorderRadius
+                                                                                      .circular(
+                                                                                          24.0),
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Align(
+                                                                              alignment:
+                                                                                  AlignmentDirectional(
+                                                                                      0.0, 0.0),
                                                                               child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  functions.changeLeaveStatusPendingFunction(getJsonField(
+                                                                                valueOrDefault<
+                                                                                    String>(
+                                                                                  functions
+                                                                                      .changeLeaveStatusPendingFunction(
+                                                                                          getJsonField(
                                                                                     yearforLeaveItem,
                                                                                     r'''$.status''',
                                                                                   ).toString()),
                                                                                   'status',
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                      color: functions.leaveStatusTextColor(getJsonField(
+                                                                                style: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.copyWith(
+                                                                                      color: functions
+                                                                                          .leaveStatusTextColor(
+                                                                                              getJsonField(
                                                                                         yearforLeaveItem,
                                                                                         r'''$.status''',
                                                                                       ).toString()),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                      letterSpacing:
+                                                                                          0.0,
+                                                                                      fontWeight: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontWeight,
+                                                                                      fontStyle: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -737,123 +691,149 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                   ],
                                                                 ),
                                                                 Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0, -1.0),
+                                                                      child: Padding(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 0.0,
+                                                                                    0.0, 8.0),
+                                                                        child: Text(
+                                                                          FFLocalizations.of(
+                                                                                  context)
                                                                               .getText(
                                                                             'm89ulbz6' /* Amount */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          5.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          functions.leaveDayAmountFunction(
-                                                                              getJsonField(
-                                                                                yearforLeaveItem,
-                                                                                r'''$.start_Date''',
-                                                                              ).toString(),
-                                                                              getJsonField(
-                                                                                yearforLeaveItem,
-                                                                                r'''$.end_Date''',
-                                                                              ).toString(),
-                                                                              getJsonField(
-                                                                                yearforLeaveItem,
-                                                                                r'''$.start_Time''',
-                                                                              ).toString(),
-                                                                              getJsonField(
-                                                                                yearforLeaveItem,
-                                                                                r'''$.end_Time''',
-                                                                              ).toString()),
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              8.0, 0.0, 5.0, 8.0),
+                                                                      child: Text(
+                                                                        valueOrDefault<String>(
+                                                                          functions
+                                                                              .leaveDayAmountFunction(
+                                                                                  getJsonField(
+                                                                                    yearforLeaveItem,
+                                                                                    r'''$.start_Date''',
+                                                                                  ).toString(),
+                                                                                  getJsonField(
+                                                                                    yearforLeaveItem,
+                                                                                    r'''$.end_Date''',
+                                                                                  ).toString(),
+                                                                                  getJsonField(
+                                                                                    yearforLeaveItem,
+                                                                                    r'''$.start_Time''',
+                                                                                  ).toString(),
+                                                                                  getJsonField(
+                                                                                    yearforLeaveItem,
+                                                                                    r'''$.end_Time''',
+                                                                                  ).toString()),
                                                                           'leaveAmount',
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0, -1.0),
+                                                                      child: Padding(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 0.0,
+                                                                                    0.0, 8.0),
+                                                                        child: Text(
+                                                                          FFLocalizations.of(
+                                                                                  context)
                                                                               .getText(
                                                                             'ljcb9h46' /* From  */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0.0, 0.0, 0.0, 8.0),
+                                                                      child: Text(
+                                                                        valueOrDefault<String>(
                                                                           functions
-                                                                              .changeDateFormat(valueOrDefault<String>(
+                                                                              .changeDateFormat(
+                                                                                  valueOrDefault<
+                                                                                      String>(
                                                                             getJsonField(
                                                                               yearforLeaveItem,
                                                                               r'''$.start_Date''',
@@ -862,178 +842,233 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           )),
                                                                           'start date',
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0.0, 0.0, 0.0, 8.0),
+                                                                      child: Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
                                                                           '4mpgd3tg' /*  - */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              8.0, 0.0, 0.0, 8.0),
+                                                                      child: Text(
+                                                                        valueOrDefault<String>(
                                                                           functions
-                                                                              .changeDateFormat(getJsonField(
+                                                                              .changeDateFormat(
+                                                                                  getJsonField(
                                                                             yearforLeaveItem,
                                                                             r'''$.end_Date''',
                                                                           ).toString()),
                                                                           'end date',
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0, -1.0),
+                                                                      child: Padding(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 0.0,
+                                                                                    0.0, 0.0),
+                                                                        child: Text(
+                                                                          FFLocalizations.of(
+                                                                                  context)
                                                                               .getText(
                                                                             'ywbamyv2' /* Note :  */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      valueOrDefault<
-                                                                          String>(
+                                                                      valueOrDefault<String>(
                                                                         getJsonField(
                                                                           yearforLeaveItem,
                                                                           r'''$.message''',
                                                                         )?.toString(),
                                                                         'leaveNote',
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            fontSize: 12.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Builder(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          Padding(
+                                                                  builder: (context) => Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        InkWell(
+                                                                            0.0, 10.0, 0.0, 0.0),
+                                                                    child: InkWell(
                                                                       splashColor:
-                                                                          Colors
-                                                                              .transparent,
+                                                                          Colors.transparent,
                                                                       focusColor:
-                                                                          Colors
-                                                                              .transparent,
+                                                                          Colors.transparent,
                                                                       hoverColor:
-                                                                          Colors
-                                                                              .transparent,
+                                                                          Colors.transparent,
                                                                       highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
+                                                                          Colors.transparent,
+                                                                      onTap: () async {
                                                                         if ((getJsonField(
                                                                           yearforLeaveItem,
                                                                           r'''$.attachmentList''',
-                                                                        ).toList().map<LeaveAttachmentListStruct?>(LeaveAttachmentListStruct.maybeFromMap).toList()
-                                                                                as Iterable<LeaveAttachmentListStruct?>)
+                                                                        )
+                                                                                    .toList()
+                                                                                    .map<LeaveAttachmentListStruct?>(
+                                                                                        LeaveAttachmentListStruct
+                                                                                            .maybeFromMap)
+                                                                                    .toList()
+                                                                                as Iterable<
+                                                                                    LeaveAttachmentListStruct?>)
                                                                             .withoutNulls
                                                                             .isNotEmpty) {
                                                                           await showDialog(
-                                                                            context:
-                                                                                context,
+                                                                            context: context,
                                                                             builder:
                                                                                 (dialogContext) {
                                                                               return Dialog(
                                                                                 elevation: 0,
-                                                                                insetPadding: EdgeInsets.zero,
-                                                                                backgroundColor: Colors.transparent,
-                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                insetPadding:
+                                                                                    EdgeInsets.zero,
+                                                                                backgroundColor:
+                                                                                    Colors
+                                                                                        .transparent,
+                                                                                alignment: AlignmentDirectional(
+                                                                                        0.0, 0.0)
+                                                                                    .resolve(
+                                                                                        Directionality.of(
+                                                                                            context)),
                                                                                 child: WebViewAware(
-                                                                                  child: GestureDetector(
+                                                                                  child:
+                                                                                      GestureDetector(
                                                                                     onTap: () {
-                                                                                      FocusScope.of(dialogContext).unfocus();
-                                                                                      FocusManager.instance.primaryFocus?.unfocus();
+                                                                                      FocusScope.of(
+                                                                                              dialogContext)
+                                                                                          .unfocus();
+                                                                                      FocusManager
+                                                                                          .instance
+                                                                                          .primaryFocus
+                                                                                          ?.unfocus();
                                                                                     },
-                                                                                    child: LeaveAttachmentModelWidget(
-                                                                                      attachmentListJson: getJsonField(
+                                                                                    child:
+                                                                                        LeaveAttachmentModelWidget(
+                                                                                      attachmentListJson:
+                                                                                          getJsonField(
                                                                                         yearforLeaveItem,
                                                                                         r'''$.attachmentList''',
                                                                                       )!,
@@ -1045,53 +1080,101 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                           );
                                                                         }
                                                                       },
-                                                                      child:
-                                                                          Row(
+                                                                      child: Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                AlignmentDirectional(
+                                                                                    0.0, 0.0),
+                                                                            child: Padding(
+                                                                              padding:
+                                                                                  EdgeInsetsDirectional
+                                                                                      .fromSTEB(
+                                                                                          10.0,
+                                                                                          0.0,
+                                                                                          0.0,
+                                                                                          0.0),
                                                                               child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  functions.attachmentCountFunction((getJsonField(
-                                                                                    yearforLeaveItem,
-                                                                                    r'''$.attachmentList''',
-                                                                                  ) as List)
-                                                                                      .map<String>((s) => s.toString())
-                                                                                      .toList()).toString(),
+                                                                                valueOrDefault<
+                                                                                    String>(
+                                                                                  functions
+                                                                                      .attachmentCountFunction(
+                                                                                          (getJsonField(
+                                                                                        yearforLeaveItem,
+                                                                                        r'''$.attachmentList''',
+                                                                                      ) as List)
+                                                                                              .map<String>((s) =>
+                                                                                                  s.toString())
+                                                                                              .toList())
+                                                                                      .toString(),
                                                                                   '0',
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                      color: Color(0xFFF9B052),
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                style: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.copyWith(
+                                                                                      color: Color(
+                                                                                          0xFFF9B052),
+                                                                                      fontSize:
+                                                                                          12.0,
+                                                                                      letterSpacing:
+                                                                                          0.0,
+                                                                                      fontWeight: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontWeight,
+                                                                                      fontStyle: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, -1.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                                AlignmentDirectional(
+                                                                                    -1.0, -1.0),
+                                                                            child: Padding(
+                                                                              padding:
+                                                                                  EdgeInsetsDirectional
+                                                                                      .fromSTEB(
+                                                                                          5.0,
+                                                                                          0.0,
+                                                                                          0.0,
+                                                                                          0.0),
                                                                               child: Text(
-                                                                                FFLocalizations.of(context).getText(
+                                                                                FFLocalizations.of(
+                                                                                        context)
+                                                                                    .getText(
                                                                                   'pk0gkjsa' /* attachement */,
                                                                                 ),
-                                                                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                      color: Color(0xFFF9B052),
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                style: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.copyWith(
+                                                                                      color: Color(
+                                                                                          0xFFF9B052),
+                                                                                      fontSize:
+                                                                                          12.0,
+                                                                                      letterSpacing:
+                                                                                          0.0,
+                                                                                      fontWeight: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontWeight,
+                                                                                      fontStyle: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -1102,140 +1185,188 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                   ),
                                                                 ),
                                                                 Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0, -1.0),
+                                                                      child: Padding(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 8.0,
+                                                                                    0.0, 0.0),
+                                                                        child: Text(
+                                                                          FFLocalizations.of(
+                                                                                  context)
                                                                               .getText(
                                                                             '4auid072' /* Request date :  */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0.0, 8.0, 0.0, 0.0),
+                                                                      child: Text(
+                                                                        valueOrDefault<String>(
                                                                           functions
-                                                                              .changeRequestedDateFormat(getJsonField(
+                                                                              .changeRequestedDateFormat(
+                                                                                  getJsonField(
                                                                             yearforLeaveItem,
                                                                             r'''$.request_On''',
                                                                           ).toString()),
                                                                           'Request date',
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1.0,
-                                                                          1.0),
-                                                                  child:
-                                                                      Padding(
+                                                                  alignment: AlignmentDirectional(
+                                                                      1.0, 1.0),
+                                                                  child: Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            10.0,
-                                                                            0.0),
+                                                                            0.0, 10.0, 10.0, 0.0),
                                                                     child: Row(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                          MainAxisSize.max,
                                                                       mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
+                                                                          MainAxisAlignment.start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      10.0,
+                                                                                      0.0,
+                                                                                      0.0,
+                                                                                      0.0),
+                                                                          child: Text(
                                                                             valueOrDefault<String>(
-                                                                              functions.changeLeaveStatusRejectedFunction(getJsonField(
+                                                                              functions
+                                                                                  .changeLeaveStatusRejectedFunction(
+                                                                                      getJsonField(
                                                                                 yearforLeaveItem,
                                                                                 r'''$.status''',
                                                                               ).toString()),
                                                                               'Supervisor',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Theme.of(context).colorScheme.secondaryText,
+                                                                            style: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium
+                                                                                ?.copyWith(
+                                                                                  color: Theme.of(
+                                                                                          context)
+                                                                                      .colorScheme
+                                                                                      .onSurfaceVariant,
                                                                                   fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                  letterSpacing:
+                                                                                      0.0,
+                                                                                  fontWeight: Theme
+                                                                                          .of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                                  fontStyle: Theme.of(
+                                                                                          context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              5.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            FFLocalizations.of(context).getText(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      5.0,
+                                                                                      0.0,
+                                                                                      0.0,
+                                                                                      0.0),
+                                                                          child: Text(
+                                                                            FFLocalizations.of(
+                                                                                    context)
+                                                                                .getText(
                                                                               'x059z4y4' /* by : */,
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Theme.of(context).colorScheme.secondaryText,
+                                                                            style: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium
+                                                                                ?.copyWith(
+                                                                                  color: Theme.of(
+                                                                                          context)
+                                                                                      .colorScheme
+                                                                                      .onSurfaceVariant,
                                                                                   fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                  letterSpacing:
+                                                                                      0.0,
+                                                                                  fontWeight: Theme
+                                                                                          .of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                                  fontStyle: Theme.of(
+                                                                                          context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              5.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      5.0,
+                                                                                      0.0,
+                                                                                      0.0,
+                                                                                      0.0),
+                                                                          child: Text(
                                                                             valueOrDefault<String>(
                                                                               getJsonField(
                                                                                 yearforLeaveItem,
@@ -1243,12 +1374,27 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               )?.toString(),
                                                                               'ApproverName',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Theme.of(context).colorScheme.secondaryText,
+                                                                            style: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium
+                                                                                ?.copyWith(
+                                                                                  color: Theme.of(
+                                                                                          context)
+                                                                                      .colorScheme
+                                                                                      .onSurfaceVariant,
                                                                                   fontSize: 12.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                  letterSpacing:
+                                                                                      0.0,
+                                                                                  fontWeight: Theme
+                                                                                          .of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                                  fontStyle: Theme.of(
+                                                                                          context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1279,23 +1425,20 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 5.0, 5.0, 0.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
                                   child: FutureBuilder<ApiCallResponse>(
-                                    future: MainGroup
-                                        .getTimeOffRequestByCompanyIdPaginationCall
-                                        .call(
+                                    future:
+                                        MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
                                       monthNum: 13,
-                                      yearNum: functions
-                                          .leaveforYearCustomFunction(),
-                                      employeeID: context.read<AppState>().employeeID,
-                                      companyID: context.read<AppState>().companyID,
-                                      requesterID: context.read<AppState>().reportID,
+                                      yearNum: functions.leaveforYearCustomFunction(),
+                                      employeeID: AppState().employeeID,
+                                      companyID: AppState().companyID,
+                                      requesterID: AppState().reportID,
                                       leaveTypeID: _model.leaveTypeID,
                                       status: 'All',
                                       perpage: 1000,
                                       page: 1,
-                                      token: context.read<AppState>().token,
+                                      token: AppState().token,
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -1305,8 +1448,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                             width: 50.0,
                                             height: 50.0,
                                             child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
+                                              valueColor: AlwaysStoppedAnimation<Color>(
                                                 Theme.of(context).colorScheme.primary,
                                               ),
                                             ),
@@ -1318,21 +1460,21 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
 
                                       return Builder(
                                         builder: (context) {
-                                          final leaveStatusPending = MainGroup
-                                                  .getTimeOffRequestByCompanyIdPaginationCall
-                                                  .dataResult(
-                                                    listViewGetTimeOffRequestByCompanyIdPaginationResponse
-                                                        .jsonBody,
-                                                  )
-                                                  ?.where((e) =>
-                                                      'Waiting Approval' ==
-                                                      getJsonField(
-                                                        e,
-                                                        r'''$.status''',
-                                                      ).toString())
-                                                  .toList()
-                                                  .toList() ??
-                                              [];
+                                          final leaveStatusPending =
+                                              MainGroup.getTimeOffRequestByCompanyIdPaginationCall
+                                                      .dataResult(
+                                                        listViewGetTimeOffRequestByCompanyIdPaginationResponse
+                                                            .jsonBody,
+                                                      )
+                                                      ?.where((e) =>
+                                                          'Waiting Approval' ==
+                                                          getJsonField(
+                                                            e,
+                                                            r'''$.status''',
+                                                          ).toString())
+                                                      .toList()
+                                                      .toList() ??
+                                                  [];
                                           if (leaveStatusPending.isEmpty) {
                                             return Image.asset(
                                               '',
@@ -1343,138 +1485,126 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                             padding: EdgeInsets.zero,
                                             shrinkWrap: true,
                                             scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                leaveStatusPending.length,
-                                            itemBuilder: (context,
-                                                leaveStatusPendingIndex) {
+                                            itemCount: leaveStatusPending.length,
+                                            itemBuilder: (context, leaveStatusPendingIndex) {
                                               final leaveStatusPendingItem =
-                                                  leaveStatusPending[
-                                                      leaveStatusPendingIndex];
+                                                  leaveStatusPending[leaveStatusPendingIndex];
                                               return Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, -1.0),
+                                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                                     child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  5.0),
+                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                          8.0, 0.0, 8.0, 5.0),
                                                       child: Container(
                                                         width: double.infinity,
                                                         height: 220.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Theme.of(context).colorScheme.surface,
-                                                          borderRadius:
-                                                              BorderRadius.only(
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    13.0),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    13.0),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    13.0),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    13.0),
+                                                        decoration: BoxDecoration(
+                                                          color:
+                                                              Theme.of(context).colorScheme.surface,
+                                                          borderRadius: BorderRadius.only(
+                                                            bottomLeft: Radius.circular(13.0),
+                                                            bottomRight: Radius.circular(13.0),
+                                                            topLeft: Radius.circular(13.0),
+                                                            topRight: Radius.circular(13.0),
                                                           ),
                                                         ),
                                                         child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
+                                                                  MainAxisAlignment.spaceBetween,
                                                               children: [
                                                                 Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          8.0,
-                                                                          15.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10.0, 8.0, 15.0, 0.0),
+                                                                      child: Text(
+                                                                        valueOrDefault<String>(
                                                                           getJsonField(
                                                                             leaveStatusPendingItem,
                                                                             r'''$.timeoff_Name''',
                                                                           )?.toString(),
                                                                           'leave Type',
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Color(0xFFF9B052),
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color:
+                                                                                  Color(0xFFF9B052),
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
                                                                 Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          15.0,
-                                                                          15.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            100.0,
-                                                                        height:
-                                                                            35.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Color(0xFFDAE3F3),
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0.0, 15.0, 15.0, 0.0),
+                                                                      child: Container(
+                                                                        width: 100.0,
+                                                                        height: 35.0,
+                                                                        decoration: BoxDecoration(
+                                                                          color: Color(0xFFDAE3F3),
                                                                           borderRadius:
-                                                                              BorderRadius.circular(24.0),
+                                                                              BorderRadius.circular(
+                                                                                  24.0),
                                                                         ),
-                                                                        child:
-                                                                            Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
+                                                                        child: Align(
+                                                                          alignment:
+                                                                              AlignmentDirectional(
+                                                                                  0.0, 0.0),
+                                                                          child: Text(
                                                                             valueOrDefault<String>(
-                                                                              functions.changeLeaveStatusPendingFunction(getJsonField(
+                                                                              functions
+                                                                                  .changeLeaveStatusPendingFunction(
+                                                                                      getJsonField(
                                                                                 leaveStatusPendingItem,
                                                                                 r'''$.status''',
                                                                               ).toString()),
                                                                               'status',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Color(0xFF21A8D6),
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                                ),
+                                                                            style:
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.copyWith(
+                                                                                      color: Color(
+                                                                                          0xFF21A8D6),
+                                                                                      letterSpacing:
+                                                                                          0.0,
+                                                                                      fontWeight: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontWeight,
+                                                                                      fontStyle: Theme.of(
+                                                                                              context)
+                                                                                          .textTheme
+                                                                                          .bodyMedium
+                                                                                          ?.fontStyle,
+                                                                                    ),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -1484,387 +1614,385 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                               ],
                                                             ),
                                                             Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               children: [
                                                                 Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                  child:
-                                                                      Padding(
+                                                                  alignment: AlignmentDirectional(
+                                                                      -1.0, -1.0),
+                                                                  child: Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
+                                                                            10.0, 0.0, 0.0, 8.0),
                                                                     child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
+                                                                      FFLocalizations.of(context)
                                                                           .getText(
                                                                         'y06o4her' /* Amount */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            fontSize:
-                                                                                10.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            fontSize: 10.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          5.0,
-                                                                          8.0),
+                                                                      .fromSTEB(8.0, 0.0, 5.0, 8.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      functions.leaveDayAmountFunction(
-                                                                          getJsonField(
-                                                                            leaveStatusPendingItem,
-                                                                            r'''$.start_Date''',
-                                                                          ).toString(),
-                                                                          getJsonField(
-                                                                            leaveStatusPendingItem,
-                                                                            r'''$.end_Date''',
-                                                                          ).toString(),
-                                                                          getJsonField(
-                                                                            leaveStatusPendingItem,
-                                                                            r'''$.start_Time''',
-                                                                          ).toString(),
-                                                                          getJsonField(
-                                                                            leaveStatusPendingItem,
-                                                                            r'''$.end_Time''',
-                                                                          ).toString()),
+                                                                    valueOrDefault<String>(
+                                                                      functions
+                                                                          .leaveDayAmountFunction(
+                                                                              getJsonField(
+                                                                                leaveStatusPendingItem,
+                                                                                r'''$.start_Date''',
+                                                                              ).toString(),
+                                                                              getJsonField(
+                                                                                leaveStatusPendingItem,
+                                                                                r'''$.end_Date''',
+                                                                              ).toString(),
+                                                                              getJsonField(
+                                                                                leaveStatusPendingItem,
+                                                                                r'''$.start_Time''',
+                                                                              ).toString(),
+                                                                              getJsonField(
+                                                                                leaveStatusPendingItem,
+                                                                                r'''$.end_Time''',
+                                                                              ).toString()),
                                                                       'leave amount',
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
-                                                                          fontSize:
-                                                                              10.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .onSurfaceVariant,
+                                                                          fontSize: 10.0,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
                                                             Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               children: [
                                                                 Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                  child:
-                                                                      Padding(
+                                                                  alignment: AlignmentDirectional(
+                                                                      -1.0, -1.0),
+                                                                  child: Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
+                                                                            10.0, 0.0, 0.0, 8.0),
                                                                     child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
+                                                                      FFLocalizations.of(context)
                                                                           .getText(
                                                                         'i8hs16h9' /* From  */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
+                                                                      .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      functions
-                                                                          .changeDateFormat(
-                                                                              getJsonField(
+                                                                    valueOrDefault<String>(
+                                                                      functions.changeDateFormat(
+                                                                          getJsonField(
                                                                         leaveStatusPendingItem,
                                                                         r'''$.start_Date''',
                                                                       ).toString()),
                                                                       'start date',
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .onSurfaceVariant,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
+                                                                      .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                                                   child: Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
+                                                                    FFLocalizations.of(context)
                                                                         .getText(
                                                                       '2zfl2kam' /*  - */,
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .onSurfaceVariant,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
+                                                                      .fromSTEB(8.0, 0.0, 0.0, 8.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      functions
-                                                                          .changeDateFormat(
-                                                                              getJsonField(
+                                                                    valueOrDefault<String>(
+                                                                      functions.changeDateFormat(
+                                                                          getJsonField(
                                                                         leaveStatusPendingItem,
                                                                         r'''$.end_Date''',
                                                                       ).toString()),
                                                                       'end date',
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .onSurfaceVariant,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
                                                             Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               children: [
                                                                 Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                  child:
-                                                                      Padding(
+                                                                  alignment: AlignmentDirectional(
+                                                                      -1.0, -1.0),
+                                                                  child: Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            10.0, 0.0, 0.0, 0.0),
                                                                     child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
+                                                                      FFLocalizations.of(context)
                                                                           .getText(
                                                                         '9qsxmgnq' /* Note :  */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            fontSize:
-                                                                                10.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            fontSize: 10.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  valueOrDefault<
-                                                                      String>(
+                                                                  valueOrDefault<String>(
                                                                     getJsonField(
                                                                       leaveStatusPendingItem,
                                                                       r'''$.message''',
                                                                     )?.toString(),
                                                                     'Note',
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                        fontSize:
-                                                                            10.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        fontFamily:
+                                                                            GoogleFonts.readexPro(
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
+                                                                        ).fontFamily,
+                                                                        color: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium
+                                                                            ?.color,
+                                                                        fontSize: 10.0,
+                                                                        letterSpacing: 0.0,
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
                                                               ],
                                                             ),
                                                             Builder(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Padding(
+                                                              builder: (context) => Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        0.0, 10.0, 0.0, 0.0),
                                                                 child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
+                                                                  splashColor: Colors.transparent,
+                                                                  focusColor: Colors.transparent,
+                                                                  hoverColor: Colors.transparent,
                                                                   highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
+                                                                      Colors.transparent,
+                                                                  onTap: () async {
                                                                     if ((getJsonField(
                                                                       leaveStatusPendingItem,
                                                                       r'''$.attachmentList''',
-                                                                    ).toList().map<LeaveAttachmentListStruct?>(LeaveAttachmentListStruct.maybeFromMap).toList()
-                                                                            as Iterable<LeaveAttachmentListStruct?>)
+                                                                    )
+                                                                                .toList()
+                                                                                .map<LeaveAttachmentListStruct?>(
+                                                                                    LeaveAttachmentListStruct
+                                                                                        .maybeFromMap)
+                                                                                .toList()
+                                                                            as Iterable<
+                                                                                LeaveAttachmentListStruct?>)
                                                                         .withoutNulls
                                                                         .isNotEmpty) {
                                                                       await showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (dialogContext) {
+                                                                        context: context,
+                                                                        builder: (dialogContext) {
                                                                           return Dialog(
-                                                                            elevation:
-                                                                                0,
+                                                                            elevation: 0,
                                                                             insetPadding:
                                                                                 EdgeInsets.zero,
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            child:
-                                                                                WebViewAware(
-                                                                              child: GestureDetector(
+                                                                                AlignmentDirectional(
+                                                                                        0.0, 0.0)
+                                                                                    .resolve(
+                                                                                        Directionality.of(
+                                                                                            context)),
+                                                                            child: WebViewAware(
+                                                                              child:
+                                                                                  GestureDetector(
                                                                                 onTap: () {
-                                                                                  FocusScope.of(dialogContext).unfocus();
-                                                                                  FocusManager.instance.primaryFocus?.unfocus();
+                                                                                  FocusScope.of(
+                                                                                          dialogContext)
+                                                                                      .unfocus();
+                                                                                  FocusManager
+                                                                                      .instance
+                                                                                      .primaryFocus
+                                                                                      ?.unfocus();
                                                                                 },
-                                                                                child: LeaveAttachmentModelWidget(
-                                                                                  attachmentListJson: getJsonField(
+                                                                                child:
+                                                                                    LeaveAttachmentModelWidget(
+                                                                                  attachmentListJson:
+                                                                                      getJsonField(
                                                                                     leaveStatusPendingItem,
                                                                                     r'''$.attachmentList''',
                                                                                   )!,
@@ -1877,64 +2005,95 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                     }
                                                                   },
                                                                   child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
+                                                                    mainAxisSize: MainAxisSize.max,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
+                                                                        alignment:
+                                                                            AlignmentDirectional(
+                                                                                0.0, 0.0),
+                                                                        child: Padding(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      10.0,
+                                                                                      0.0,
+                                                                                      0.0,
+                                                                                      0.0),
+                                                                          child: Text(
                                                                             valueOrDefault<String>(
-                                                                              functions.attachmentCountFunction((getJsonField(
-                                                                                leaveStatusPendingItem,
-                                                                                r'''$.attachmentList''',
-                                                                              ) as List)
-                                                                                  .map<String>((s) => s.toString())
-                                                                                  .toList()).toString(),
+                                                                              functions
+                                                                                  .attachmentCountFunction(
+                                                                                      (getJsonField(
+                                                                                    leaveStatusPendingItem,
+                                                                                    r'''$.attachmentList''',
+                                                                                  ) as List)
+                                                                                          .map<String>(
+                                                                                              (s) =>
+                                                                                                  s.toString())
+                                                                                          .toList())
+                                                                                  .toString(),
                                                                               '0',
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Color(0xFFF9B052),
+                                                                            style: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium
+                                                                                ?.copyWith(
+                                                                                  color: Color(
+                                                                                      0xFFF9B052),
                                                                                   fontSize: 10.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                  letterSpacing:
+                                                                                      0.0,
+                                                                                  fontWeight: Theme
+                                                                                          .of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                                  fontStyle: Theme.of(
+                                                                                          context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            -1.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              5.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            FFLocalizations.of(context).getText(
+                                                                        alignment:
+                                                                            AlignmentDirectional(
+                                                                                -1.0, 0.0),
+                                                                        child: Padding(
+                                                                          padding:
+                                                                              EdgeInsetsDirectional
+                                                                                  .fromSTEB(
+                                                                                      5.0,
+                                                                                      0.0,
+                                                                                      0.0,
+                                                                                      0.0),
+                                                                          child: Text(
+                                                                            FFLocalizations.of(
+                                                                                    context)
+                                                                                .getText(
                                                                               '2atwuidd' /* attachement */,
                                                                             ),
-                                                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                  color: Color(0xFFF9B052),
+                                                                            style: Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium
+                                                                                ?.copyWith(
+                                                                                  color: Color(
+                                                                                      0xFFF9B052),
                                                                                   fontSize: 10.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                  letterSpacing:
+                                                                                      0.0,
+                                                                                  fontWeight: Theme
+                                                                                          .of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                                  fontStyle: Theme.of(
+                                                                                          context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1945,60 +2104,50 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                               ),
                                                             ),
                                                             Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                              mainAxisSize: MainAxisSize.max,
                                                               children: [
                                                                 Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1.0,
-                                                                          -1.0),
-                                                                  child:
-                                                                      Padding(
+                                                                  alignment: AlignmentDirectional(
+                                                                      -1.0, -1.0),
+                                                                  child: Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            10.0, 8.0, 0.0, 0.0),
                                                                     child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
+                                                                      FFLocalizations.of(context)
                                                                           .getText(
                                                                         '8j7l3fdo' /* Request date :  */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                AppColors.overtimetextcolor,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: AppColors
+                                                                                .overtimetextcolor,
+                                                                            fontSize: 12.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                      .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
+                                                                    valueOrDefault<String>(
                                                                       functions
                                                                           .changeRequestedDateFormat(
                                                                               getJsonField(
@@ -2007,61 +2156,54 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                       ).toString()),
                                                                       'request date',
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              AppColors.overtimetextcolor,
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: AppColors
+                                                                              .overtimetextcolor,
+                                                                          fontSize: 12.0,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
                                                             Divider(
-                                                              color: Theme.of(context).colorScheme.surface,
+                                                              color: Theme.of(context)
+                                                                  .colorScheme
+                                                                  .surface,
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      1.0, 1.0),
+                                                                  AlignmentDirectional(1.0, 1.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        0.0, 0.0, 10.0, 0.0),
                                                                 child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
+                                                                  mainAxisSize: MainAxisSize.max,
                                                                   mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .end,
+                                                                      MainAxisAlignment.end,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          15.0,
-                                                                          5.0),
-                                                                      child:
-                                                                          InkWell(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0.0, 0.0, 15.0, 5.0),
+                                                                      child: InkWell(
                                                                         splashColor:
                                                                             Colors.transparent,
                                                                         focusColor:
@@ -2070,14 +2212,13 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             Colors.transparent,
                                                                         highlightColor:
                                                                             Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          context
-                                                                              .pushNamed(
-                                                                            LeaveRequestEditMainWidget.routeName,
-                                                                            queryParameters:
-                                                                                {
-                                                                              'editLeaveRequest': serializeParam(
+                                                                        onTap: () async {
+                                                                          context.pushNamed(
+                                                                            LeaveRequestEditMainWidget
+                                                                                .routeName,
+                                                                            queryParameters: {
+                                                                              'editLeaveRequest':
+                                                                                  serializeParam(
                                                                                 getJsonField(
                                                                                   leaveStatusPendingItem,
                                                                                   r'''$''',
@@ -2087,34 +2228,26 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                             }.withoutNulls,
                                                                           );
                                                                         },
-                                                                        child:
-                                                                            ClipRRect(
+                                                                        child: ClipRRect(
                                                                           borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                          child:
-                                                                              Image.asset(
+                                                                              BorderRadius.circular(
+                                                                                  8.0),
+                                                                          child: Image.asset(
                                                                             'assets/images/edit-rectangle-svgrepo-com_1.png',
-                                                                            width:
-                                                                                28.0,
-                                                                            height:
-                                                                                30.0,
-                                                                            fit:
-                                                                                BoxFit.cover,
+                                                                            width: 28.0,
+                                                                            height: 30.0,
+                                                                            fit: BoxFit.cover,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Builder(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0),
-                                                                        child:
-                                                                            InkWell(
+                                                                      builder: (context) => Padding(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(0.0, 0.0,
+                                                                                    0.0, 5.0),
+                                                                        child: InkWell(
                                                                           splashColor:
                                                                               Colors.transparent,
                                                                           focusColor:
@@ -2123,28 +2256,46 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               Colors.transparent,
                                                                           highlightColor:
                                                                               Colors.transparent,
-                                                                          onTap:
-                                                                              () async {
+                                                                          onTap: () async {
                                                                             await showDialog(
                                                                               context: context,
-                                                                              builder: (dialogContext) {
+                                                                              builder:
+                                                                                  (dialogContext) {
                                                                                 return Dialog(
                                                                                   elevation: 0,
-                                                                                  insetPadding: EdgeInsets.zero,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: WebViewAware(
-                                                                                    child: GestureDetector(
+                                                                                  insetPadding:
+                                                                                      EdgeInsets
+                                                                                          .zero,
+                                                                                  backgroundColor:
+                                                                                      Colors
+                                                                                          .transparent,
+                                                                                  alignment: AlignmentDirectional(
+                                                                                          0.0, 0.0)
+                                                                                      .resolve(
+                                                                                          Directionality.of(
+                                                                                              context)),
+                                                                                  child:
+                                                                                      WebViewAware(
+                                                                                    child:
+                                                                                        GestureDetector(
                                                                                       onTap: () {
-                                                                                        FocusScope.of(dialogContext).unfocus();
-                                                                                        FocusManager.instance.primaryFocus?.unfocus();
+                                                                                        FocusScope.of(
+                                                                                                dialogContext)
+                                                                                            .unfocus();
+                                                                                        FocusManager
+                                                                                            .instance
+                                                                                            .primaryFocus
+                                                                                            ?.unfocus();
                                                                                       },
-                                                                                      child: DeleteLeaveRequestDialogWidget(
-                                                                                        timeOffRequestID: getJsonField(
+                                                                                      child:
+                                                                                          DeleteLeaveRequestDialogWidget(
+                                                                                        timeOffRequestID:
+                                                                                            getJsonField(
                                                                                           leaveStatusPendingItem,
                                                                                           r'''$.time_off_RequestID''',
                                                                                         ),
-                                                                                        reason: getJsonField(
+                                                                                        reason:
+                                                                                            getJsonField(
                                                                                           leaveStatusPendingItem,
                                                                                           r'''$.reason''',
                                                                                         ).toString(),
@@ -2155,12 +2306,11 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                               },
                                                                             );
                                                                           },
-                                                                          child:
-                                                                              ClipRRect(
+                                                                          child: ClipRRect(
                                                                             borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                            child:
-                                                                                Image.asset(
+                                                                                BorderRadius
+                                                                                    .circular(8.0),
+                                                                            child: Image.asset(
                                                                               'assets/images/delete-trash-remove-svgrepo-com_1.png',
                                                                               width: 28.0,
                                                                               height: 30.0,
@@ -2199,43 +2349,32 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                   FFLocalizations.of(context).getText(
                                     'q1oxvbj1' /* No Data Available */,
                                   ),
-                                  style: Theme.of(context).textTheme.bodyMedium!
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontWeight,
-                                          fontStyle:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontStyle,
-                                        ),
+                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                        fontFamily: GoogleFonts.readexPro().fontFamily,
                                         letterSpacing: 0.0,
-                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                            .fontWeight,
-                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                            .fontStyle,
+                                        fontWeight:
+                                            Theme.of(context).textTheme.bodyMedium!.fontWeight,
+                                        fontStyle:
+                                            Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                       ),
                                 ),
                               if (_model.leavedayCount != '0')
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 5.0, 5.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
                                     child: FutureBuilder<ApiCallResponse>(
-                                      future: MainGroup
-                                          .getTimeOffRequestByCompanyIdPaginationCall
-                                          .call(
+                                      future:
+                                          MainGroup.getTimeOffRequestByCompanyIdPaginationCall.call(
                                         monthNum: 13,
-                                        yearNum: functions
-                                            .leaveforYearCustomFunction(),
-                                        employeeID: context.read<AppState>().employeeID,
-                                        companyID: context.read<AppState>().companyID,
-                                        requesterID: context.read<AppState>().reportID,
+                                        yearNum: functions.leaveforYearCustomFunction(),
+                                        employeeID: AppState().employeeID,
+                                        companyID: AppState().companyID,
+                                        requesterID: AppState().reportID,
                                         leaveTypeID: _model.leaveTypeID,
                                         status: 'All',
                                         perpage: 1000000,
                                         page: 1,
-                                        token: context.read<AppState>().token,
+                                        token: AppState().token,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -2245,9 +2384,7 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                               width: 50.0,
                                               height: 50.0,
                                               child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
+                                                valueColor: AlwaysStoppedAnimation<Color>(
                                                   Theme.of(context).colorScheme.primary,
                                                 ),
                                               ),
@@ -2259,34 +2396,33 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
 
                                         return Builder(
                                           builder: (context) {
-                                            final leaveHistory = MainGroup
-                                                    .getTimeOffRequestByCompanyIdPaginationCall
-                                                    .dataResult(
-                                                      listViewGetTimeOffRequestByCompanyIdPaginationResponse
-                                                          .jsonBody,
-                                                    )
-                                                    ?.where((e) =>
-                                                        valueOrDefault<bool>(
-                                                          ('Approved' ==
-                                                                  getJsonField(
-                                                                    e,
-                                                                    r'''$.status''',
-                                                                  ).toString()) ||
-                                                              ('Denied' ==
-                                                                  getJsonField(
-                                                                    e,
-                                                                    r'''$.status''',
-                                                                  ).toString()) ||
-                                                              ('Canceled' ==
-                                                                  getJsonField(
-                                                                    e,
-                                                                    r'''$.status''',
-                                                                  ).toString()),
-                                                          true,
-                                                        ))
-                                                    .toList()
-                                                    .toList() ??
-                                                [];
+                                            final leaveHistory =
+                                                MainGroup.getTimeOffRequestByCompanyIdPaginationCall
+                                                        .dataResult(
+                                                          listViewGetTimeOffRequestByCompanyIdPaginationResponse
+                                                              .jsonBody,
+                                                        )
+                                                        ?.where((e) => valueOrDefault<bool>(
+                                                              ('Approved' ==
+                                                                      getJsonField(
+                                                                        e,
+                                                                        r'''$.status''',
+                                                                      ).toString()) ||
+                                                                  ('Denied' ==
+                                                                      getJsonField(
+                                                                        e,
+                                                                        r'''$.status''',
+                                                                      ).toString()) ||
+                                                                  ('Canceled' ==
+                                                                      getJsonField(
+                                                                        e,
+                                                                        r'''$.status''',
+                                                                      ).toString()),
+                                                              true,
+                                                            ))
+                                                        .toList()
+                                                        .toList() ??
+                                                    [];
                                             if (leaveHistory.isEmpty) {
                                               return Image.asset(
                                                 '',
@@ -2298,146 +2434,138 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                               shrinkWrap: true,
                                               scrollDirection: Axis.vertical,
                                               itemCount: leaveHistory.length,
-                                              itemBuilder:
-                                                  (context, leaveHistoryIndex) {
+                                              itemBuilder: (context, leaveHistoryIndex) {
                                                 final leaveHistoryItem =
-                                                    leaveHistory[
-                                                        leaveHistoryIndex];
+                                                    leaveHistory[leaveHistoryIndex];
                                                 return Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   children: [
                                                     Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -1.0, -1.0),
+                                                      alignment: AlignmentDirectional(-1.0, -1.0),
                                                       child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    8.0,
-                                                                    5.0),
+                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                            8.0, 0.0, 8.0, 5.0),
                                                         child: Container(
-                                                          width:
-                                                              double.infinity,
+                                                          width: double.infinity,
                                                           height: 220.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Theme.of(context).colorScheme.surface,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(
-                                                                      13.0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          13.0),
-                                                              topLeft: Radius
-                                                                  .circular(
-                                                                      13.0),
-                                                              topRight: Radius
-                                                                  .circular(
-                                                                      13.0),
+                                                          decoration: BoxDecoration(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .surface,
+                                                            borderRadius: BorderRadius.only(
+                                                              bottomLeft: Radius.circular(13.0),
+                                                              bottomRight: Radius.circular(13.0),
+                                                              topLeft: Radius.circular(13.0),
+                                                              topRight: Radius.circular(13.0),
                                                             ),
                                                           ),
                                                           child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
+                                                            mainAxisSize: MainAxisSize.max,
                                                             children: [
                                                               Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
+                                                                mainAxisSize: MainAxisSize.max,
                                                                 mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
+                                                                    MainAxisAlignment.spaceBetween,
                                                                 children: [
                                                                   Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
+                                                                    mainAxisSize: MainAxisSize.max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            8.0,
-                                                                            15.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 8.0,
+                                                                                    15.0, 0.0),
+                                                                        child: Text(
+                                                                          valueOrDefault<String>(
                                                                             getJsonField(
                                                                               leaveHistoryItem,
                                                                               r'''$.timeoff_Name''',
                                                                             )?.toString(),
                                                                             'LeaveName',
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Color(0xFFF9B052),
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Color(
+                                                                                    0xFFF9B052),
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                   Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
+                                                                    mainAxisSize: MainAxisSize.max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            15.0,
-                                                                            15.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Container(
-                                                                          width:
-                                                                              100.0,
-                                                                          height:
-                                                                              25.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                functions.leaveStatusBackgroundColor(getJsonField(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(0.0, 15.0,
+                                                                                    15.0, 0.0),
+                                                                        child: Container(
+                                                                          width: 100.0,
+                                                                          height: 25.0,
+                                                                          decoration: BoxDecoration(
+                                                                            color: functions
+                                                                                .leaveStatusBackgroundColor(
+                                                                                    getJsonField(
                                                                               leaveHistoryItem,
                                                                               r'''$.status''',
                                                                             ).toString()),
                                                                             borderRadius:
-                                                                                BorderRadius.circular(24.0),
+                                                                                BorderRadius
+                                                                                    .circular(24.0),
                                                                           ),
-                                                                          child:
-                                                                              Align(
+                                                                          child: Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              valueOrDefault<String>(
-                                                                                functions.changeLeaveStatusRejectedFunction(getJsonField(
+                                                                                AlignmentDirectional(
+                                                                                    0.0, 0.0),
+                                                                            child: Text(
+                                                                              valueOrDefault<
+                                                                                  String>(
+                                                                                functions
+                                                                                    .changeLeaveStatusRejectedFunction(
+                                                                                        getJsonField(
                                                                                   leaveHistoryItem,
                                                                                   r'''$.status''',
                                                                                 ).toString()),
                                                                                 'status',
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                    color: functions.leaveStatusTextColor(getJsonField(
-                                                                                      leaveHistoryItem,
-                                                                                      r'''$.status''',
-                                                                                    ).toString()),
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                                  ),
+                                                                              style:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.copyWith(
+                                                                                        color: functions
+                                                                                            .leaveStatusTextColor(
+                                                                                                getJsonField(
+                                                                                          leaveHistoryItem,
+                                                                                          r'''$.status''',
+                                                                                        ).toString()),
+                                                                                        letterSpacing:
+                                                                                            0.0,
+                                                                                        fontWeight: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontWeight,
+                                                                                        fontStyle: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontStyle,
+                                                                                      ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -2447,35 +2575,40 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                 ],
                                                               ),
                                                               Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
+                                                                mainAxisSize: MainAxisSize.max,
                                                                 children: [
                                                                   Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -1.0, -1.0),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10.0, 0.0, 0.0, 8.0),
+                                                                      child: Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
                                                                           'v8dvycp8' /* Amount */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2483,83 +2616,90 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            5.0,
-                                                                            8.0),
+                                                                            8.0, 0.0, 5.0, 8.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        functions.leaveDayAmountFunction(
-                                                                            getJsonField(
-                                                                              leaveHistoryItem,
-                                                                              r'''$.start_Date''',
-                                                                            ).toString(),
-                                                                            getJsonField(
-                                                                              leaveHistoryItem,
-                                                                              r'''$.end_Date''',
-                                                                            ).toString(),
-                                                                            getJsonField(
-                                                                              leaveHistoryItem,
-                                                                              r'''$.start_Time''',
-                                                                            ).toString(),
-                                                                            getJsonField(
-                                                                              leaveHistoryItem,
-                                                                              r'''$.end_Time''',
-                                                                            ).toString()),
+                                                                      valueOrDefault<String>(
+                                                                        functions
+                                                                            .leaveDayAmountFunction(
+                                                                                getJsonField(
+                                                                                  leaveHistoryItem,
+                                                                                  r'''$.start_Date''',
+                                                                                ).toString(),
+                                                                                getJsonField(
+                                                                                  leaveHistoryItem,
+                                                                                  r'''$.end_Date''',
+                                                                                ).toString(),
+                                                                                getJsonField(
+                                                                                  leaveHistoryItem,
+                                                                                  r'''$.start_Time''',
+                                                                                ).toString(),
+                                                                                getJsonField(
+                                                                                  leaveHistoryItem,
+                                                                                  r'''$.end_Time''',
+                                                                                ).toString()),
                                                                         'leaveAmount',
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            fontSize: 12.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
                                                               Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
+                                                                mainAxisSize: MainAxisSize.max,
                                                                 children: [
                                                                   Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -1.0, -1.0),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10.0, 0.0, 0.0, 8.0),
+                                                                      child: Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
                                                                           '96f7xk34' /* From  */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2567,15 +2707,11 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
+                                                                            0.0, 0.0, 0.0, 8.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        functions
-                                                                            .changeDateFormat(valueOrDefault<String>(
+                                                                      valueOrDefault<String>(
+                                                                        functions.changeDateFormat(
+                                                                            valueOrDefault<String>(
                                                                           getJsonField(
                                                                             leaveHistoryItem,
                                                                             r'''$.start_Date''',
@@ -2584,209 +2720,231 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                         )),
                                                                         'start date',
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
+                                                                            0.0, 0.0, 0.0, 8.0),
                                                                     child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
+                                                                      FFLocalizations.of(context)
                                                                           .getText(
                                                                         '04eqg811' /*  - */,
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            8.0),
+                                                                            8.0, 0.0, 0.0, 8.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        functions
-                                                                            .changeDateFormat(getJsonField(
+                                                                      valueOrDefault<String>(
+                                                                        functions.changeDateFormat(
+                                                                            getJsonField(
                                                                           leaveHistoryItem,
                                                                           r'''$.end_Date''',
                                                                         ).toString()),
                                                                         'end date',
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
                                                               Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
+                                                                mainAxisSize: MainAxisSize.max,
                                                                 children: [
                                                                   Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -1.0, -1.0),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10.0, 0.0, 0.0, 0.0),
+                                                                      child: Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
                                                                           'z2sb05v7' /* Note :  */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    valueOrDefault<
-                                                                        String>(
+                                                                    valueOrDefault<String>(
                                                                       getJsonField(
                                                                         leaveHistoryItem,
                                                                         r'''$.message''',
                                                                       )?.toString(),
                                                                       'leaveNote',
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts
+                                                                                  .readexPro()
+                                                                              .fontFamily,
+                                                                          color: Theme.of(context)
+                                                                              .colorScheme
+                                                                              .onSurfaceVariant,
+                                                                          fontSize: 12.0,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ],
                                                               ),
                                                               Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        Padding(
+                                                                builder: (context) => Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
+                                                                          0.0, 10.0, 0.0, 0.0),
+                                                                  child: InkWell(
+                                                                    splashColor: Colors.transparent,
+                                                                    focusColor: Colors.transparent,
+                                                                    hoverColor: Colors.transparent,
                                                                     highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
+                                                                        Colors.transparent,
+                                                                    onTap: () async {
                                                                       if ((getJsonField(
                                                                         leaveHistoryItem,
                                                                         r'''$.attachmentList''',
-                                                                      ).toList().map<LeaveAttachmentListStruct?>(LeaveAttachmentListStruct.maybeFromMap).toList()
-                                                                              as Iterable<LeaveAttachmentListStruct?>)
+                                                                      )
+                                                                                  .toList()
+                                                                                  .map<LeaveAttachmentListStruct?>(
+                                                                                      LeaveAttachmentListStruct
+                                                                                          .maybeFromMap)
+                                                                                  .toList()
+                                                                              as Iterable<
+                                                                                  LeaveAttachmentListStruct?>)
                                                                           .withoutNulls
                                                                           .isNotEmpty) {
                                                                         await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (dialogContext) {
+                                                                          context: context,
+                                                                          builder: (dialogContext) {
                                                                             return Dialog(
                                                                               elevation: 0,
-                                                                              insetPadding: EdgeInsets.zero,
-                                                                              backgroundColor: Colors.transparent,
-                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              insetPadding:
+                                                                                  EdgeInsets.zero,
+                                                                              backgroundColor:
+                                                                                  Colors
+                                                                                      .transparent,
+                                                                              alignment: AlignmentDirectional(
+                                                                                      0.0, 0.0)
+                                                                                  .resolve(
+                                                                                      Directionality.of(
+                                                                                          context)),
                                                                               child: WebViewAware(
-                                                                                child: GestureDetector(
+                                                                                child:
+                                                                                    GestureDetector(
                                                                                   onTap: () {
-                                                                                    FocusScope.of(dialogContext).unfocus();
-                                                                                    FocusManager.instance.primaryFocus?.unfocus();
+                                                                                    FocusScope.of(
+                                                                                            dialogContext)
+                                                                                        .unfocus();
+                                                                                    FocusManager
+                                                                                        .instance
+                                                                                        .primaryFocus
+                                                                                        ?.unfocus();
                                                                                   },
-                                                                                  child: LeaveAttachmentModelWidget(
-                                                                                    attachmentListJson: getJsonField(
+                                                                                  child:
+                                                                                      LeaveAttachmentModelWidget(
+                                                                                    attachmentListJson:
+                                                                                        getJsonField(
                                                                                       leaveHistoryItem,
                                                                                       r'''$.attachmentList''',
                                                                                     )!,
@@ -2800,64 +2958,100 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                     },
                                                                     child: Row(
                                                                       mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
+                                                                          MainAxisSize.max,
                                                                       children: [
                                                                         Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              valueOrDefault<String>(
-                                                                                functions.attachmentCountFunction((getJsonField(
-                                                                                  leaveHistoryItem,
-                                                                                  r'''$.attachmentList''',
-                                                                                ) as List)
-                                                                                    .map<String>((s) => s.toString())
-                                                                                    .toList()).toString(),
+                                                                          alignment:
+                                                                              AlignmentDirectional(
+                                                                                  0.0, 0.0),
+                                                                          child: Padding(
+                                                                            padding:
+                                                                                EdgeInsetsDirectional
+                                                                                    .fromSTEB(
+                                                                                        10.0,
+                                                                                        0.0,
+                                                                                        0.0,
+                                                                                        0.0),
+                                                                            child: Text(
+                                                                              valueOrDefault<
+                                                                                  String>(
+                                                                                functions
+                                                                                    .attachmentCountFunction(
+                                                                                        (getJsonField(
+                                                                                      leaveHistoryItem,
+                                                                                      r'''$.attachmentList''',
+                                                                                    ) as List)
+                                                                                            .map<String>((s) =>
+                                                                                                s.toString())
+                                                                                            .toList())
+                                                                                    .toString(),
                                                                                 '0',
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                    color: Color(0xFFF9B052),
-                                                                                    fontSize: 12.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                                  ),
+                                                                              style:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.copyWith(
+                                                                                        color: Color(
+                                                                                            0xFFF9B052),
+                                                                                        fontSize:
+                                                                                            12.0,
+                                                                                        letterSpacing:
+                                                                                            0.0,
+                                                                                        fontWeight: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontWeight,
+                                                                                        fontStyle: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontStyle,
+                                                                                      ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                         Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              -1.0,
-                                                                              -1.0),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              FFLocalizations.of(context).getText(
+                                                                          alignment:
+                                                                              AlignmentDirectional(
+                                                                                  -1.0, -1.0),
+                                                                          child: Padding(
+                                                                            padding:
+                                                                                EdgeInsetsDirectional
+                                                                                    .fromSTEB(
+                                                                                        5.0,
+                                                                                        0.0,
+                                                                                        0.0,
+                                                                                        0.0),
+                                                                            child: Text(
+                                                                              FFLocalizations.of(
+                                                                                      context)
+                                                                                  .getText(
                                                                                 '2kiboccb' /* attachement */,
                                                                               ),
-                                                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                                                    color: Color(0xFFF9B052),
-                                                                                    fontSize: 12.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                                  ),
+                                                                              style:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.copyWith(
+                                                                                        color: Color(
+                                                                                            0xFFF9B052),
+                                                                                        fontSize:
+                                                                                            12.0,
+                                                                                        letterSpacing:
+                                                                                            0.0,
+                                                                                        fontWeight: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontWeight,
+                                                                                        fontStyle: Theme.of(
+                                                                                                context)
+                                                                                            .textTheme
+                                                                                            .bodyMedium
+                                                                                            ?.fontStyle,
+                                                                                      ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -2867,35 +3061,40 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                 ),
                                                               ),
                                                               Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
+                                                                mainAxisSize: MainAxisSize.max,
                                                                 children: [
                                                                   Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Text(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -1.0, -1.0),
+                                                                    child: Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10.0, 8.0, 0.0, 0.0),
+                                                                      child: Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
                                                                           'aoltyjqv' /* Request date :  */,
                                                                         ),
-                                                                        style: Theme.of(context).textTheme.bodyMedium!
-                                                                            .override(
-                                                                              color: Theme.of(context).colorScheme.secondaryText,
+                                                                        style: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                              color: Theme.of(
+                                                                                      context)
+                                                                                  .colorScheme
+                                                                                  .onSurfaceVariant,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                              fontWeight:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontWeight,
+                                                                              fontStyle:
+                                                                                  Theme.of(context)
+                                                                                      .textTheme
+                                                                                      .bodyMedium
+                                                                                      ?.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -2903,37 +3102,39 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                            0.0, 8.0, 0.0, 0.0),
                                                                     child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
+                                                                      valueOrDefault<String>(
                                                                         functions
-                                                                            .changeRequestedDateFormat(getJsonField(
+                                                                            .changeRequestedDateFormat(
+                                                                                getJsonField(
                                                                           leaveHistoryItem,
                                                                           r'''$.request_On''',
                                                                         ).toString()),
                                                                         'Request date',
                                                                       ),
-                                                                      style: Theme.of(context).textTheme.bodyMedium!
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium?.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      style: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts
+                                                                                    .readexPro()
+                                                                                .fontFamily,
+                                                                            color: Theme.of(context)
+                                                                                .colorScheme
+                                                                                .onSurfaceVariant,
+                                                                            fontSize: 12.0,
+                                                                            letterSpacing: 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium?.fontWeight,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium?.fontStyle,
+                                                                                Theme.of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2941,95 +3142,121 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
-                                                                        1.0,
-                                                                        1.0),
+                                                                    AlignmentDirectional(1.0, 1.0),
                                                                 child: Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          10.0,
-                                                                          0.0),
+                                                                          0.0, 10.0, 10.0, 0.0),
                                                                   child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
+                                                                    mainAxisSize: MainAxisSize.max,
                                                                     mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .start,
+                                                                        MainAxisAlignment.start,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            functions.changeLeaveStatusRejectedFunction(getJsonField(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(10.0, 0.0,
+                                                                                    0.0, 0.0),
+                                                                        child: Text(
+                                                                          valueOrDefault<String>(
+                                                                            functions
+                                                                                .changeLeaveStatusRejectedFunction(
+                                                                                    getJsonField(
                                                                               leaveHistoryItem,
                                                                               r'''$.status''',
                                                                             ).toString()),
                                                                             'Supervisor',
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            5.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(5.0, 0.0,
+                                                                                    0.0, 0.0),
+                                                                        child: Text(
+                                                                          FFLocalizations.of(
+                                                                                  context)
                                                                               .getText(
                                                                             'jkr24xck' /* by : */,
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            5.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
+                                                                        padding:
+                                                                            EdgeInsetsDirectional
+                                                                                .fromSTEB(5.0, 0.0,
+                                                                                    0.0, 0.0),
+                                                                        child: Text(
+                                                                          valueOrDefault<String>(
                                                                             getJsonField(
                                                                               leaveHistoryItem,
                                                                               r'''$.approver_Name''',
                                                                             )?.toString(),
                                                                             'ApproverName',
                                                                           ),
-                                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                                              .override(
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium!
+                                                                              .copyWith(
+                                                                                color: Theme.of(
+                                                                                        context)
+                                                                                    .colorScheme
+                                                                                    .onSurfaceVariant,
                                                                                 fontSize: 12.0,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium?.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium?.fontStyle,
+                                                                                fontWeight: Theme
+                                                                                        .of(context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight,
+                                                                                fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -3067,9 +3294,3 @@ class _LeavePageWidgetState extends State<LeavePageWidget>
     );
   }
 }
-
-
-
-
-
-

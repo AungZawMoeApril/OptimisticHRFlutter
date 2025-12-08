@@ -119,9 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                 prefixIcon: const Icon(Icons.lock),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    _isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -155,8 +153,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                         if (authProvider.error != null) {
                                           if (!mounted) return;
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
+                                          ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
                                               content: Text(
                                                 authProvider.error!,
@@ -167,8 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                                               backgroundColor: Colors.red,
                                             ),
                                           );
-                                        } else if (authProvider
-                                            .status.isAuthenticated) {
+                                        } else if (authProvider.status.isAuthenticated) {
                                           AppRouter.router.go('/pin-code');
                                         }
                                       }

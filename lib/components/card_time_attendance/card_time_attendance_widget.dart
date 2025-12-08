@@ -10,7 +10,10 @@ class CardTimeAttendanceWidget extends StatefulWidget {
     this.clockInDate,
     this.clockInStatus,
     this.checkInStatus,
-    this.checkOutStatus, required String clockInTime, required String clockOutTime, required String checkInAndOuttype,
+    this.checkOutStatus,
+    required String clockInTime,
+    required String clockOutTime,
+    required String checkInAndOuttype,
   });
 
   final String? clockInDate;
@@ -19,8 +22,7 @@ class CardTimeAttendanceWidget extends StatefulWidget {
   final bool? checkOutStatus;
 
   @override
-  State<CardTimeAttendanceWidget> createState() =>
-      _CardTimeAttendanceWidgetState();
+  State<CardTimeAttendanceWidget> createState() => _CardTimeAttendanceWidgetState();
 }
 
 class _CardTimeAttendanceWidgetState extends State<CardTimeAttendanceWidget> {

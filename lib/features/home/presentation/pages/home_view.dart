@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     // Access the HomeProvider
     final provider = Provider.of<HomeProvider>(context, listen: false);
-    
+
     return ChangeNotifierProvider.value(
       value: provider,
       child: Scaffold(

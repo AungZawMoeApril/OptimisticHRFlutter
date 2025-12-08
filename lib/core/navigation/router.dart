@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state_provider.dart';
@@ -59,11 +60,11 @@ final goRouter = GoRouter(
       ],
     ),
   ],
-  
+
   // Error handling
-  errorBuilder: (context, state) => Scaffold(
-    body: Center(
-      child: Text('Error: ${state.error}'),
+  errorBuilder: (context, state) => material.Scaffold(
+    body: material.Center(
+      child: material.Text('Error: ${state.error}'),
     ),
   ),
 
@@ -77,7 +78,7 @@ final goRouter = GoRouter(
     if (!isAuthenticated && !isGoingToLogin) {
       return '/login';
     }
-    
+
     if (isAuthenticated && isGoingToLogin) {
       return '/';
     }

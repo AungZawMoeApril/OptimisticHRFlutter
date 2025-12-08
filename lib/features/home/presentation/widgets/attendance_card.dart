@@ -60,8 +60,8 @@ class AttendanceCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     'Shift: ${attendance.shiftStartTime} - ${attendance.shiftEndTime}',
-                    style: context.textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.secondaryText,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                   ),
                 ],
@@ -82,7 +82,7 @@ class AttendanceCard extends StatelessWidget {
                           children: [
                             Text(
                               'Check In',
-                              style: context.textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             const SizedBox(height: 8),
                             Text(
@@ -95,7 +95,7 @@ class AttendanceCard extends StatelessWidget {
                           children: [
                             Text(
                               'Check Out',
-                              style: context.textTheme.bodyMedium,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             const SizedBox(height: 8),
                             Text(
@@ -113,14 +113,16 @@ class AttendanceCard extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: provider.isLoading ? null : () async {
-                        // Implement location-based check-in/out
-                        await provider.checkInOut(
-                          isCheckIn: attendance.clockInTime == '-',
-                          latitude: 0.0,
-                          longitude: 0.0,
-                        );
-                      },
+                      onPressed: provider.isLoading
+                          ? null
+                          : () async {
+                              // Implement location-based check-in/out
+                              await provider.checkInOut(
+                                isCheckIn: attendance.clockInTime == '-',
+                                latitude: 0.0,
+                                longitude: 0.0,
+                              );
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -129,12 +131,14 @@ class AttendanceCard extends StatelessWidget {
                         ),
                       ),
                       child: provider.isLoading
-                        ? const CircularProgressIndicator()
-                        : Text(
-                            attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
-                            style: Theme.of(context).textTheme.titleSmall!
-                                .copyWith(color: Colors.white),
-                          ),
+                          ? const CircularProgressIndicator()
+                          : Text(
+                              attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: Colors.white),
+                            ),
                     ),
                   ),
               ],

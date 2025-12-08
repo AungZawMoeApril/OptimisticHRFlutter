@@ -1,4 +1,3 @@
-
 /// Location model representing latitude and longitude coordinates
 class LatLng {
   const LatLng(this.latitude, this.longitude);
@@ -10,29 +9,25 @@ class LatLng {
   LatLng toGoogleMaps() => LatLng(latitude, longitude);
 
   /// Create from Google Maps LatLng
-  static LatLng fromGoogleMaps(LatLng latLng) => 
-    LatLng(latLng.latitude, latLng.longitude);
+  static LatLng fromGoogleMaps(LatLng latLng) => LatLng(latLng.latitude, latLng.longitude);
 
   @override
   String toString() => '($latitude, $longitude)';
 
   @override
   bool operator ==(Object other) =>
-    identical(this, other) ||
-    other is LatLng &&
-      other.latitude == latitude &&
-      other.longitude == longitude;
+      identical(this, other) ||
+      other is LatLng && other.latitude == latitude && other.longitude == longitude;
 
   @override
   int get hashCode => latitude.hashCode ^ longitude.hashCode;
 
   Map<String, dynamic> toMap() => {
-    'latitude': latitude,
-    'longitude': longitude,
-  };
+        'latitude': latitude,
+        'longitude': longitude,
+      };
 
-  static LatLng? fromMap(Map<String, dynamic>? data) =>
-    data == null
+  static LatLng? fromMap(Map<String, dynamic>? data) => data == null
       ? null
       : LatLng(
           data['latitude'] as double,

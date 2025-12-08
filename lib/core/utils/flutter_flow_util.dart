@@ -16,7 +16,7 @@ enum ParamType {
 // Safe type casting
 T? castToType<T>(dynamic value) {
   if (value == null) return null;
-  
+
   try {
     if (T == int) {
       if (value is int) return value as T;
@@ -38,7 +38,7 @@ T? castToType<T>(dynamic value) {
   } catch (e) {
     return null;
   }
-  
+
   return null;
 }
 
@@ -49,12 +49,12 @@ dynamic serializeParam(
   bool isList = false,
 }) {
   if (value == null) return null;
-  
+
   if (isList) {
     if (value is! List) return null;
     return value.map((item) => serializeParam(item, paramType)).toList();
   }
-  
+
   switch (paramType) {
     case ParamType.int:
     case ParamType.double:
@@ -87,7 +87,7 @@ T? deserializeParam<T>(
   StructBuilder<T>? structBuilder,
 }) {
   if (value == null) return null;
-  
+
   if (isList) {
     if (value is! List) return null;
     return value
@@ -96,7 +96,7 @@ T? deserializeParam<T>(
         .cast<T>()
         .toList() as T?;
   }
-  
+
   try {
     switch (paramType) {
       case ParamType.int:

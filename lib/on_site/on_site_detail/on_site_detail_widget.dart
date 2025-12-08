@@ -59,7 +59,7 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    AppState();
 
     return GestureDetector(
       onTap: () {
@@ -79,7 +79,7 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
             buttonSize: 60.0,
             icon: FaIcon(
               FontAwesomeIcons.angleLeft,
-              color: Theme.of(context).colorScheme.secondaryText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               size: 30.0,
             ),
             onPressed: () async {
@@ -91,13 +91,12 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
               'h0glojcf' /* On-site */,
             ),
             style: Theme.of(context).textTheme.$1?.copyWith(
-                  font: GoogleFonts.outfit(
-                    fontWeight:
+                  fontFamily: GoogleFonts.outfit().fontFamily, fontWeight:
                         context.headlineMedium.fontWeight,
                     fontStyle:
                         context.headlineMedium.fontStyle,
                   ),
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight:
@@ -171,8 +170,7 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                         'q77jjfzo' /* History */,
                       ),
                       style: Theme.of(context).textTheme.$1?.copyWith(
-                            font: GoogleFonts.readexPro(
-                              fontWeight: FontWeight.w800,
+                            fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: FontWeight.w800,
                               fontStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
@@ -196,8 +194,7 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                         useToggleButtonStyle: true,
                         labelStyle:
                             Theme.of(context).textTheme.$1?.copyWith(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: FlutterFlowTheme.of(context)
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
@@ -213,9 +210,9 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                       .fontStyle,
                                 ),
                         unselectedLabelStyle: TextStyle(),
-                        labelColor: Theme.of(context).colorScheme.primaryText,
+                        labelColor: Theme.of(context).colorScheme.onSurface,
                         unselectedLabelColor:
-                            Theme.of(context).colorScheme.secondaryText,
+                            Theme.of(context).colorScheme.onSurfaceVariant,
                         backgroundColor: Color(0xFFD9D9D9),
                         unselectedBackgroundColor:
                             Theme.of(context).colorScheme.secondaryBackground,
@@ -264,9 +261,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .fontWeight,
@@ -394,8 +390,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
+                                                                      .copyWith(
+                                                                fontFamily: GoogleFonts
                                                                             .readexPro(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
@@ -556,14 +552,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                     'biyvy9cu' /* Check In */,
                                                                                   ),
                                                                                   style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                          fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                         ),
-                                                                                        color: Theme.of(context).colorScheme.secondaryText,
+                                                                                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                         letterSpacing: 0.0,
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                       ),
                                                                                 ),
                                                                               ),
@@ -581,13 +576,12 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                     '88uozjx3' /* Check Out */,
                                                                                   ),
                                                                                   style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                          fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                         ),
                                                                                         letterSpacing: 0.0,
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                       ),
                                                                                 ),
                                                                               ),
@@ -653,14 +647,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               ),
                                                                               textAlign: TextAlign.center,
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
                                                                                     color: Color(0xFF51BA60),
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -690,14 +683,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                               ),
                                                                               textAlign: TextAlign.center,
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
                                                                                     color: Color(0xFF51BA60),
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -782,15 +774,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
                                                                                 style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                       ),
-                                                                                      color: Theme.of(context).colorScheme.secondaryText,
+                                                                                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                       fontSize: 12.0,
                                                                                       letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -847,15 +838,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
                                                                                 style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                        fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                       ),
-                                                                                      color: Theme.of(context).colorScheme.secondaryText,
+                                                                                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                       fontSize: 12.0,
                                                                                       letterSpacing: 0.0,
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
                                                                               ),
                                                                             ),
@@ -899,20 +889,18 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                              fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                             color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
+                                                                                Theme.of(context).colorScheme.onSurfaceVariant,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -925,16 +913,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
+                                                                                Theme.of(context).textTheme.bodyMedium.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                           color:
-                                                                              Theme.of(context).colorScheme.secondaryText,
+                                                                              Theme.of(context).colorScheme.onSurfaceVariant,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
@@ -980,20 +966,18 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                              fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                             color:
-                                                                                Theme.of(context).colorScheme.secondaryText,
+                                                                                Theme.of(context).colorScheme.onSurfaceVariant,
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -1122,8 +1106,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
+                                                                  .copyWith(
+                                                                fontFamily: GoogleFonts
                                                                         .readexPro(
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
@@ -1230,14 +1214,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 'han5ljy9' /* Check In */,
                                                                               ),
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    color: Theme.of(context).colorScheme.secondaryText,
+                                                                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -1263,14 +1246,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 '7qw1mlsh' /* Check Out */,
                                                                               ),
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    color: Theme.of(context).colorScheme.secondaryText,
+                                                                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -1335,15 +1317,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
-                                                                              .override(
-                                                                                font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              .copyWith(
+                                                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                 ),
                                                                                 color: Color(0xFF51BA60),
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -1365,15 +1346,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                            .copyWith(
+                                                                              fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
-                                                                              color: Theme.of(context).colorScheme.primaryText,
+                                                                              color: Theme.of(context).colorScheme.onSurface,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                              fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ],
@@ -1529,8 +1509,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
+                                                                  .copyWith(
+                                                                fontFamily: GoogleFonts
                                                                         .readexPro(
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
@@ -1637,14 +1617,13 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 '4fsghb20' /* Check In */,
                                                                               ),
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    color: Theme.of(context).colorScheme.secondaryText,
+                                                                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -1670,13 +1649,12 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                                 'u8wyzkgl' /* Check Out */,
                                                                               ),
                                                                               style: Theme.of(context).textTheme.$1?.copyWith(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                      fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                     ),
                                                                                     letterSpacing: 0.0,
-                                                                                    fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                    fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -1741,15 +1719,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
-                                                                              .override(
-                                                                                font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              .copyWith(
+                                                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                 ),
                                                                                 color: Color(0xFF51BA60),
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -1771,15 +1748,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.readexPro(
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                            .copyWith(
+                                                                              fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
                                                                               color: Color(0xFF51BA60),
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                              fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ],
@@ -1882,8 +1858,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
-                                                              .override(
-                                                                font: GoogleFonts
+                                                              .copyWith(
+                                                                fontFamily: GoogleFonts
                                                                     .readexPro(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
@@ -1992,15 +1968,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
-                                                                              .override(
-                                                                                font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              .copyWith(
+                                                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                 ),
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                                color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -2029,15 +2004,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
-                                                                              .override(
-                                                                                font: GoogleFonts.readexPro(
-                                                                                  fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                  fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                              .copyWith(
+                                                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                                 ),
-                                                                                color: Theme.of(context).colorScheme.secondaryText,
+                                                                                color: Theme.of(context).colorScheme.onSurfaceVariant,
                                                                                 letterSpacing: 0.0,
-                                                                                fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                                fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                                fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                                fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                               ),
                                                                         ),
                                                                       ),
@@ -2103,20 +2077,18 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.readexPro(
-                                                                              fontWeight: context.textTheme.bodyMedium.fontWeight,
-                                                                              fontStyle: context.textTheme.bodyMedium.fontStyle,
+                                                                          .copyWith(
+                                                                            fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium.fontWeight,
+                                                                              fontStyle: Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                             ),
                                                                             color:
                                                                                 Color(0xFF51BA60),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -2140,16 +2112,14 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
+                                                                        .copyWith(
+                                                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
+                                                                                Theme.of(context).textTheme.bodyMedium.fontWeight,
                                                                             fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
+                                                                                Theme.of(context).textTheme.bodyMedium.fontStyle,
                                                                           ),
                                                                           color:
-                                                                              Theme.of(context).colorScheme.primaryText,
+                                                                              Theme.of(context).colorScheme.onSurface,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
@@ -2206,8 +2176,8 @@ class _OnSiteDetailWidgetState extends State<OnSiteDetailWidget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .titleSmall
-                                                                .override(
-                                                                  font: GoogleFonts
+                                                                .copyWith(
+                                                                fontFamily: GoogleFonts
                                                                       .readexPro(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)

@@ -112,7 +112,7 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
           buttonSize: 60.0,
           icon: FaIcon(
             FontAwesomeIcons.angleLeft,
-            color: Theme.of(context).colorScheme.primaryText,
+            color: Theme.of(context).colorScheme.onSurface,
             size: 30.0,
           ),
           onPressed: () async {
@@ -124,13 +124,12 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
             'rn41ny7q' /* Edit Overtime Request */,
           ),
           style: Theme.of(context).textTheme.$1?.copyWith(
-                font: GoogleFonts.outfit(
-                  fontWeight:
+                fontFamily: GoogleFonts.outfit().fontFamily, fontWeight:
                       context.headlineMedium.fontWeight,
                   fontStyle:
                       context.headlineMedium.fontStyle,
                 ),
-                color: Theme.of(context).colorScheme.primaryText,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 22.0,
                 letterSpacing: 0.0,
                 fontWeight:
@@ -181,9 +180,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     '6hxpprk7' /* Start Date */,
                                   ),
                                   style: Theme.of(context).textTheme.bodyMedium!
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
+                                      .copyWith(
+                                        fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                               Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
@@ -233,9 +231,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           headerForegroundColor:
                                               Theme.of(context).colorScheme.surface,
                                           headerTextStyle: Theme.of(context).textTheme.headlineLarge!
-                                              .override(
-                                                font: GoogleFonts.outfit(
-                                                  fontWeight: FontWeight.w600,
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
@@ -317,9 +314,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                             'start date',
                                           ),
                                           style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
@@ -376,9 +372,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     ),
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
@@ -420,9 +415,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           headerForegroundColor:
                                               Theme.of(context).colorScheme.outline,
                                           headerTextStyle: Theme.of(context).textTheme.headlineLarge!
-                                              .override(
-                                                font: GoogleFonts.outfit(
-                                                  fontWeight: FontWeight.w600,
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
@@ -504,9 +498,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                             'start time',
                                           ),
                                           style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
@@ -552,9 +545,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       '8907rs3h' /* End Time */,
                                     ),
                                     style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
@@ -596,9 +588,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           headerForegroundColor:
                                               Theme.of(context).colorScheme.outline,
                                           headerTextStyle: Theme.of(context).textTheme.headlineLarge!
-                                              .override(
-                                                font: GoogleFonts.outfit(
-                                                  fontWeight: FontWeight.w600,
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       Theme.of(context).textTheme.headlineLarge!
                                                           .fontStyle,
@@ -680,9 +671,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                             'end time ',
                                           ),
                                           style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                       Theme.of(context).textTheme.bodyMedium!
                                                           .fontWeight,
                                                   fontStyle:
@@ -733,9 +723,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     ),
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
@@ -800,9 +789,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                           '00 hr 00 min',
                                         ),
                                         style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                     Theme.of(context).textTheme.bodyMedium!
                                                         .fontWeight,
                                                 fontStyle:
@@ -847,9 +835,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     ),
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
@@ -893,9 +880,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                   width: 340.0,
                                   height: 56.0,
                                   textStyle: Theme.of(context).textTheme.bodyMedium!
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
+                                      .copyWith(
+                                        fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                               Theme.of(context).textTheme.bodyMedium!
                                                   .fontWeight,
                                           fontStyle:
@@ -955,9 +941,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                     ),
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
+                                        .copyWith(
+                                          fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                 Theme.of(context).textTheme.bodyMedium!
                                                     .fontWeight,
                                             fontStyle:
@@ -990,9 +975,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelStyle: Theme.of(context).textTheme.labelMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                     Theme.of(context).textTheme.labelMedium!
                                                         .fontWeight,
                                                 fontStyle:
@@ -1008,9 +992,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                       .fontStyle,
                                             ),
                                         hintStyle: Theme.of(context).textTheme.labelMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
+                                            .copyWith(
+                                              fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                     Theme.of(context).textTheme.labelMedium!
                                                         .fontWeight,
                                                 fontStyle:
@@ -1061,9 +1044,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                         fillColor: Theme.of(context).colorScheme.surface,
                                       ),
                                       style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
-                                              fontWeight:
+                                          .copyWith(
+                                            fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                   Theme.of(context).textTheme.bodyMedium!
                                                       .fontWeight,
                                               fontStyle:
@@ -1107,9 +1089,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                   'pl920q6f' /* Attachment */,
                                 ),
                                 style: Theme.of(context).textTheme.bodyMedium!
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                    .copyWith(
+                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium!
                                             .fontWeight,
                                         fontStyle: Theme.of(context).textTheme.bodyMedium!
                                             .fontStyle,
@@ -1247,9 +1228,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                                 '81crmldl' /* Attach File */,
                                               ),
                                               style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
+                                                  .copyWith(
+                                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
                                                           Theme.of(context).textTheme.bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
@@ -1496,9 +1476,8 @@ class _EditOvertimeRequestWidgetState extends State<EditOvertimeRequestWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF9B052),
                             textStyle: Theme.of(context).textTheme.titleSmall!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.titleSmall!
+                                .copyWith(
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
                                     fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,

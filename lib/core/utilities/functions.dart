@@ -7,7 +7,7 @@ String dateFormatToDay() {
 
 String? changeCheckInOutTimeFormatFunction(String? time) {
   if (time == null || time.isEmpty || time == '-') return null;
-  
+
   try {
     final inputFormat = DateFormat('HH:mm:ss');
     final outputFormat = DateFormat('HH:mm');

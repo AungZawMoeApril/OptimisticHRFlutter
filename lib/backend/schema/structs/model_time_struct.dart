@@ -113,9 +113,8 @@ class ModelTimeStruct extends BaseStruct {
         type: data['type'] as String?,
       );
 
-  static ModelTimeStruct? maybeFromMap(dynamic data) => data is Map
-      ? ModelTimeStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static ModelTimeStruct? maybeFromMap(dynamic data) =>
+      data is Map ? ModelTimeStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'clock_ID': _clockID,
@@ -174,8 +173,7 @@ class ModelTimeStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ModelTimeStruct fromSerializableMap(Map<String, dynamic> data) =>
-      ModelTimeStruct(
+  static ModelTimeStruct fromSerializableMap(Map<String, dynamic> data) => ModelTimeStruct(
         clockID: deserializeParam(
           data['clock_ID'],
           ParamType.int,

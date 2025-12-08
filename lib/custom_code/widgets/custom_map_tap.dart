@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions
@@ -98,8 +98,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      gmap.LatLng currentLatLng =
-          gmap.LatLng(position.latitude, position.longitude);
+      gmap.LatLng currentLatLng = gmap.LatLng(position.latitude, position.longitude);
 
       setState(() {
         _centerPosition = currentLatLng;
@@ -107,8 +106,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
         _isLoadingLocation = false;
       });
 
-      widget.onInitialPositionSet
-          ?.call(LatLng(currentLatLng.latitude, currentLatLng.longitude));
+      widget.onInitialPositionSet?.call(LatLng(currentLatLng.latitude, currentLatLng.longitude));
       _moveCameraToPosition(currentLatLng);
 
       widget.locstatus?.call(false);
@@ -134,8 +132,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
     _moveCameraToPosition(tappedPosition);
 
     // Immediately check distance without delay
-    double distanceThreshold =
-        double.tryParse(widget.distanceThreshold ?? '') ?? 100;
+    double distanceThreshold = double.tryParse(widget.distanceThreshold ?? '') ?? 100;
 
     double distance = Geolocator.distanceBetween(
       tappedPosition.latitude,

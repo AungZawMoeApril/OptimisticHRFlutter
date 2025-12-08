@@ -6,8 +6,7 @@ part of 'announcement.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AnnouncementImpl _$$AnnouncementImplFromJson(Map<String, dynamic> json) =>
-    _$AnnouncementImpl(
+_$AnnouncementImpl _$$AnnouncementImplFromJson(Map<String, dynamic> json) => _$AnnouncementImpl(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
@@ -17,8 +16,7 @@ _$AnnouncementImpl _$$AnnouncementImplFromJson(Map<String, dynamic> json) =>
       isRead: json['isRead'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$AnnouncementImplToJson(_$AnnouncementImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$AnnouncementImplToJson(_$AnnouncementImpl instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,

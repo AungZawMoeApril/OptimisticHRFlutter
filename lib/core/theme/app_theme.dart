@@ -28,7 +28,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      
+
       // Colors
       primaryColor: AppColors.primary,
       colorScheme: ColorScheme.light(
@@ -36,7 +36,7 @@ class AppTheme {
         secondary: AppColors.secondary,
         error: AppColors.error,
       ),
-      
+
       // Text Theme
       textTheme: TextTheme(
         displayLarge: GoogleFonts.readexPro(
@@ -58,7 +58,7 @@ class AppTheme {
           color: AppColors.primary,
         ),
       ),
-      
+
       // AppBar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primary,
@@ -66,7 +66,7 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
       ),
-      
+
       // Input Decoration
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -89,7 +89,7 @@ class AppTheme {
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
-      
+
       // Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

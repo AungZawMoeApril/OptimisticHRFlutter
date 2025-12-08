@@ -5,16 +5,16 @@ import 'app_localizations.dart';
 /// This wraps AppLocalizations to maintain backward compatibility
 class FFLocalizations {
   final AppLocalizations _appLocalizations;
-  
+
   FFLocalizations._(this._appLocalizations);
-  
+
   static FFLocalizations of(BuildContext context) {
     final appLoc = AppLocalizations.of(context);
     return FFLocalizations._(appLoc);
   }
-  
+
   String get languageCode => _appLocalizations.locale.languageCode;
-  
+
   String getText(String key, {String? fallback}) {
     // Map common text keys to AppLocalizations methods
     switch (key) {
@@ -29,7 +29,7 @@ class FFLocalizations {
         return _appLocalizations.forgotPassword;
       case 'loginError':
         return _appLocalizations.loginError;
-        
+
       // Check In/Out
       case 'checkIn':
         return _appLocalizations.checkIn;
@@ -49,7 +49,7 @@ class FFLocalizations {
         return _appLocalizations.takePhoto;
       case 'locationOutOfRange':
         return _appLocalizations.locationOutOfRange;
-        
+
       // General
       case 'loading':
         return _appLocalizations.loading;
@@ -65,7 +65,7 @@ class FFLocalizations {
         return _appLocalizations.save;
       case 'ok':
         return _appLocalizations.ok;
-        
+
       default:
         return fallback ?? key;
     }

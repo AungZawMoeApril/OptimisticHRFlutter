@@ -7,22 +7,22 @@ part 'announcement_model.g.dart';
 class AnnouncementModel {
   @HiveField(0)
   final String id;
-  
+
   @HiveField(1)
   final String title;
-  
+
   @HiveField(2)
   final String detail;
-  
+
   @HiveField(3)
   final String image;
-  
+
   @HiveField(4)
   final String name;
-  
+
   @HiveField(5)
   final DateTime date;
-  
+
   @HiveField(6)
   final bool isRead;
 

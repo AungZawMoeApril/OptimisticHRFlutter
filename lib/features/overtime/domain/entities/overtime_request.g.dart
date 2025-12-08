@@ -6,8 +6,7 @@ part of 'overtime_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OvertimeRequestImpl _$$OvertimeRequestImplFromJson(
-        Map<String, dynamic> json) =>
+_$OvertimeRequestImpl _$$OvertimeRequestImplFromJson(Map<String, dynamic> json) =>
     _$OvertimeRequestImpl(
       id: json['id'] as String,
       userId: json['userId'] as String,
@@ -19,17 +18,12 @@ _$OvertimeRequestImpl _$$OvertimeRequestImplFromJson(
       status: json['status'] as String,
       approverNote: json['approverNote'] as String?,
       approverId: json['approverId'] as String?,
-      approvedAt: json['approvedAt'] == null
-          ? null
-          : DateTime.parse(json['approvedAt'] as String),
+      approvedAt: json['approvedAt'] == null ? null : DateTime.parse(json['approvedAt'] as String),
       createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      updatedAt: json['updatedAt'] == null ? null : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$OvertimeRequestImplToJson(
-        _$OvertimeRequestImpl instance) =>
+Map<String, dynamic> _$$OvertimeRequestImplToJson(_$OvertimeRequestImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

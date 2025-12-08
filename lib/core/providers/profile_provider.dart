@@ -5,7 +5,7 @@ import '../data/repositories/profile_repository.dart';
 
 class ProfileProvider extends ChangeNotifier {
   final ProfileRepository _repository;
-  
+
   ProfileProvider([ProfileRepository? repository])
       : _repository = repository ?? GetIt.instance<ProfileRepository>();
 

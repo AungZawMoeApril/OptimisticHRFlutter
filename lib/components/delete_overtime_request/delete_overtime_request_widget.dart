@@ -8,12 +8,10 @@ class DeleteOvertimeRequestWidget extends StatefulWidget {
   const DeleteOvertimeRequestWidget({super.key});
 
   @override
-  State<DeleteOvertimeRequestWidget> createState() =>
-      _DeleteOvertimeRequestWidgetState();
+  State<DeleteOvertimeRequestWidget> createState() => _DeleteOvertimeRequestWidgetState();
 }
 
-class _DeleteOvertimeRequestWidgetState
-    extends State<DeleteOvertimeRequestWidget> {
+class _DeleteOvertimeRequestWidgetState extends State<DeleteOvertimeRequestWidget> {
   late DeleteOvertimeRequestModel _model;
 
   @override

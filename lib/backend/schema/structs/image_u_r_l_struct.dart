@@ -36,8 +36,7 @@ class ImageURLStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ImageURLStruct fromSerializableMap(Map<String, dynamic> data) =>
-      ImageURLStruct(
+  static ImageURLStruct fromSerializableMap(Map<String, dynamic> data) => ImageURLStruct(
         image: deserializeParam(
           data['image'],
           ParamType.String,

@@ -29,7 +29,7 @@ class PinCodeProvider extends ChangeNotifier {
       _pinCode.add(digit);
       notifyListeners();
     }
-    
+
     if (_pinCode.length == 6) {
       _verifyPinCode();
     }

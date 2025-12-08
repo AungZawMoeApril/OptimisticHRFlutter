@@ -1,8 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import 'package:h_r_optimistic_mobile/core/utils/app_utils.dart';
-import '/index.dart';
-import 'overtime_detail_widget.dart' show OvertimeDetailWidget;
+import '../../core/presentation/base/base_view.dart';
+import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +16,7 @@ class OvertimeDetailModel extends BaseViewModel {
   List<String> attachmentModel = [];
   void addToAttachmentModel(String item) => attachmentModel.add(item);
   void removeFromAttachmentModel(String item) => attachmentModel.remove(item);
-  void removeAtIndexFromAttachmentModel(int index) =>
-      attachmentModel.removeAt(index);
+  void removeAtIndexFromAttachmentModel(int index) => attachmentModel.removeAt(index);
   void insertAtIndexInAttachmentModel(int index, String item) =>
       attachmentModel.insert(index, item);
   void updateAttachmentModelAtIndex(int index, Function(String) updateFn) =>
@@ -41,17 +39,17 @@ class OvertimeDetailModel extends BaseViewModel {
 
   DateTime? datePicked;
   bool isDataUploading_uploadDataF93 = false;
-  FFUploadedFile uploadedLocalFile_uploadDataF93 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  Uint8List? uploadedLocalFile_uploadDataF93;
 
   // Stores action output result for [Backend Call - API (GetCheckInImageURL)] action in Column widget.
   ApiCallResponse? apiResultGetCheckInImageURL;
   // Stores action output result for [Backend Call - API (OTCheckInMobile)] action in Button widget.
   ApiCallResponse? apiResultOtCheckIn;
 
-  @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

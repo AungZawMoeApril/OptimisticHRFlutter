@@ -1,24 +1,26 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import '../../core/theme/app_theme_extension.dart';
+import '../../core/widgets/app_widgets.dart';
+import '../../core/widgets/web_view_aware.dart';
+import '../../core/widgets/flutter_flow_drop_down.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/delete_o_t_request_dialog/delete_o_t_request_dialog_widget.dart';
-import '/components/overtime_attachment_model/overtime_attachment_model_widget.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
-import 'package:h_r_optimistic_mobile/core/utils/form_field_controller.dart';
+import '../../core/widgets/app_icon_button.dart';
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
+import '../../core/widgets/app_button.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
-import '/index.dart';
-import 'package:flutter/material.dart';
+import '../../app_state.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'overtime_model.dart';
 import '/core/theme/app_colors.dart';
+import '../../pages/home/home_widget.dart';
+import '../overtime_request_main/overtime_request_main_widget.dart';
+import '../overtime_detail/overtime_detail_widget.dart';
+import '../overtime_detail_check_out/overtime_detail_check_out_widget.dart';
 export 'overtime_model.dart';
 
 class OvertimeWidget extends StatefulWidget {
@@ -31,8 +33,7 @@ class OvertimeWidget extends StatefulWidget {
   State<OvertimeWidget> createState() => _OvertimeWidgetState();
 }
 
-class _OvertimeWidgetState extends State<OvertimeWidget>
-    with TickerProviderStateMixin {
+class _OvertimeWidgetState extends State<OvertimeWidget> with TickerProviderStateMixin {
   late OvertimeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -46,8 +47,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.wait([
         Future(() async {
-          _model.apiResultCurrentOTime =
-              await MainGroup.getCurrentOTMobileCall.call(
+          _model.apiResultCurrentOTime = await MainGroup.getCurrentOTMobileCall.call(
             timezoneOffset: AppState().timezoneOffset,
             employeeID: AppState().employeeID,
             companyID: AppState().companyID,
@@ -66,7 +66,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                 : functions.changeCheckInOutTimeFormatFunction(
                     MainGroup.getCurrentOTMobileCall.clockInTime(
                     (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-                  ))!;
+                  ));
             AppState().otClockOutTime = '-' ==
                     MainGroup.getCurrentOTMobileCall.clockOutTime(
                       (_model.apiResultCurrentOTime?.jsonBody ?? ''),
@@ -75,14 +75,13 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                 : functions.changeCheckInOutTimeFormatFunction(
                     MainGroup.getCurrentOTMobileCall.clockOutTime(
                     (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-                  ))!;
-            AppState().OTRequestID =
-                MainGroup.getCurrentOTMobileCall.otrequestID(
+                  ));
+            AppState().OTRequestID = MainGroup.getCurrentOTMobileCall.otrequestID(
               (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-            )!;
+            );
             AppState().clockID = MainGroup.getCurrentOTMobileCall.clockID(
               (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-            )!;
+            );
             safeSetState(() {});
           } else {
             await showDialog(
@@ -108,8 +107,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
           }
         }),
         Future(() async {
-          _model.apiResulHistory =
-              await MainGroup.apiOvertimeHistoryPOSTCall.call(
+          _model.apiResulHistory = await MainGroup.apiOvertimeHistoryPOSTCall.call(
             companyIDMain: AppState().companyID,
             companyID: AppState().companyID,
             employeeIDMain: AppState().employeeID,
@@ -196,7 +194,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
+    AppState();
 
     return GestureDetector(
       onTap: () {
@@ -216,7 +214,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
             buttonSize: 60.0,
             icon: FaIcon(
               FontAwesomeIcons.angleLeft,
-              color: Theme.of(context).colorScheme.secondaryText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               size: 30.0,
             ),
             onPressed: () async {
@@ -227,21 +225,13 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
             FFLocalizations.of(context).getText(
               'k7oclrv5' /* Overtime */,
             ),
-            style: Theme.of(context).textTheme.$1?.copyWith(
-                  font: GoogleFonts.outfit(
-                    fontWeight:
-                        context.headlineMedium.fontWeight,
-                    fontStyle:
-                        context.headlineMedium.fontStyle,
-                  ),
-                  color: Theme.of(context).colorScheme.secondaryText,
-                  fontSize: 22.0,
-                  letterSpacing: 0.0,
-                  fontWeight:
-                      context.headlineMedium.fontWeight,
-                  fontStyle:
-                      context.headlineMedium.fontStyle,
-                ),
+            style: GoogleFonts.outfit(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              fontSize: 22.0,
+              letterSpacing: 0.0,
+              fontWeight: context.headlineMedium?.fontWeight ?? FontWeight.normal,
+              fontStyle: context.headlineMedium?.fontStyle ?? FontStyle.normal,
+            ),
           ),
           actions: [
             Padding(
@@ -273,20 +263,18 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (functions.overtimeShowDataFunction(
-                          MainGroup.getCurrentOTMobileCall.currentOTList(
+                  if (functions
+                          .overtimeShowDataFunction(MainGroup.getCurrentOTMobileCall.currentOTList(
                         (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-                      )) ??
+                      )) ==
                       true)
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.25,
                         decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.secondaryBackground,
+                          color: Theme.of(context).colorScheme.secondaryBackground,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Align(
@@ -296,8 +284,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 8.0, 0.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -307,154 +294,143 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                       size: 24.0,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 10.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 10.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           dateTimeFormat(
                                             "dd/MM/yyyy",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           ),
                                           '18/03/2025',
                                         ),
                                         textAlign: TextAlign.start,
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
+                                                fontWeight: Theme.of(context)
+                                                    .fontFamily
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
                                               letterSpacing: 0.0,
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ),
                                     Text(
                                       valueOrDefault<String>(
-                                        MainGroup.getCurrentOTMobileCall
-                                            .otStartTime(
-                                          (_model.apiResultCurrentOTime
-                                                  ?.jsonBody ??
-                                              ''),
+                                        MainGroup.getCurrentOTMobileCall.otStartTime(
+                                          (_model.apiResultCurrentOTime?.jsonBody ?? ''),
                                         ),
                                         '08:00',
                                       ),
-                                      style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontFamily: GoogleFonts.readexPro(
+                                              fontWeight: Theme.of(context)
+                                                  .fontFamily
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
-                                            ),
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
+                                            ).fontFamily,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontWeight,
+                                                Theme.of(context).textTheme.bodyMedium!.fontWeight,
                                             fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontStyle,
+                                                Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                           ),
                                     ),
                                     Text(
                                       FFLocalizations.of(context).getText(
                                         'tyrukrk2' /*  - */,
                                       ),
-                                      style: Theme.of(context).textTheme.bodyMedium!
-                                          .override(
-                                            font: GoogleFonts.readexPro(
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontFamily: GoogleFonts.readexPro(
+                                              fontWeight: Theme.of(context)
+                                                  .fontFamily
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
-                                            ),
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
+                                            ).fontFamily,
                                             letterSpacing: 0.0,
                                             fontWeight:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontWeight,
+                                                Theme.of(context).textTheme.bodyMedium!.fontWeight,
                                             fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontStyle,
+                                                Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          MainGroup.getCurrentOTMobileCall
-                                              .otEndTime(
-                                            (_model.apiResultCurrentOTime
-                                                    ?.jsonBody ??
-                                                ''),
+                                          MainGroup.getCurrentOTMobileCall.otEndTime(
+                                            (_model.apiResultCurrentOTime?.jsonBody ?? ''),
                                           ),
                                           '17:00',
                                         ),
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
+                                                fontWeight: Theme.of(context)
+                                                    .fontFamily
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
                                               letterSpacing: 0.0,
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 0.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          MainGroup.getCurrentOTMobileCall
-                                              .oTHour(
-                                            (_model.apiResultCurrentOTime
-                                                    ?.jsonBody ??
-                                                ''),
+                                          MainGroup.getCurrentOTMobileCall.oTHour(
+                                            (_model.apiResultCurrentOTime?.jsonBody ?? ''),
                                           ),
                                           '2 hr 30 min',
                                         ),
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
+                                                fontWeight: Theme.of(context)
+                                                    .fontFamily
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
                                               letterSpacing: 0.0,
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ),
@@ -467,8 +443,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Column(
@@ -484,28 +459,32 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                               Padding(
                                                 padding: EdgeInsets.all(8.0),
                                                 child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
+                                                  FFLocalizations.of(context).getText(
                                                     'ydrku3fa' /* Check in */,
                                                   ),
-                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontStyle,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontWeight,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -516,26 +495,30 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                     AppState().otClockInTime,
                                                     '-',
                                                   ),
-                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontStyle,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontWeight,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontStyle,
                                                         ),
-                                                        color:
-                                                            AppColors.timeCheckin,
+                                                        color: AppColors.timeCheckin,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -545,8 +528,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             height: 50.0,
                                             child: VerticalDivider(
                                               thickness: 1.0,
-                                              color:
-                                                  Theme.of(context).textTheme.bodyMedium?.color,
+                                              color: Theme.of(context).textTheme.bodyMedium?.color,
                                             ),
                                           ),
                                           Column(
@@ -555,28 +537,32 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                               Padding(
                                                 padding: EdgeInsets.all(8.0),
                                                 child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
+                                                  FFLocalizations.of(context).getText(
                                                     'bb1ouzmo' /* Check out */,
                                                   ),
-                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontStyle,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontWeight,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -587,26 +573,30 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                     AppState().otClockOutTime,
                                                     '-',
                                                   ),
-                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontStyle,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontWeight,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontStyle,
                                                         ),
-                                                        color:
-                                                            AppColors.timeCheckin,
+                                                        color: AppColors.timeCheckin,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -615,82 +605,82 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                         ],
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
+                                        alignment: AlignmentDirectional(-1.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 20.0, 40.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 40.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
+                                                FFLocalizations.of(context).getText(
                                                   'mkppa3jc' /* Total : */,
                                                 ),
                                                 textAlign: TextAlign.start,
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 0.0, 0.0, 0.0),
+                                                padding: EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
                                                 child: Text(
                                                   valueOrDefault<String>(
-                                                    (AppState().otClockInTime !=
-                                                                '-') &&
-                                                            (AppState()
-                                                                    .otClockOutTime !=
-                                                                '-')
+                                                    (AppState().otClockInTime != '-') &&
+                                                            (AppState().otClockOutTime != '-')
                                                         ? functions.calculateOTHourFunction(
-                                                            AppState()
-                                                                .otClockInTime,
-                                                            AppState()
-                                                                .otClockOutTime)
+                                                            AppState().otClockInTime,
+                                                            AppState().otClockOutTime)
                                                         : '00 hr 00 min',
                                                     '00 hr 00 min',
                                                   ),
-                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
-                                                                  .fontStyle,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontWeight,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .fontStyle,
                                                         ),
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -702,37 +692,27 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
                                       Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.356,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.169,
+                                        width: MediaQuery.sizeOf(context).width * 0.356,
+                                        height: MediaQuery.sizeOf(context).height * 0.169,
                                         constraints: BoxConstraints(
                                           maxWidth: 150.0,
                                           maxHeight: 150.0,
                                         ),
                                         decoration: BoxDecoration(
                                           color: () {
-                                            if (AppState().otClockInTime ==
-                                                '-') {
+                                            if (AppState().otClockInTime == '-') {
                                               return Theme.of(context).colorScheme.primary;
-                                            } else if ((AppState()
-                                                        .otClockInTime !=
-                                                    '-') &&
-                                                (AppState().otClockOutTime !=
-                                                    '-')) {
+                                            } else if ((AppState().otClockInTime != '-') &&
+                                                (AppState().otClockOutTime != '-')) {
                                               return Color(0xFFFFA500);
                                             } else {
                                               return Color(0xFF57636C);
                                             }
                                           }(),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
+                                          borderRadius: BorderRadius.circular(10.0),
                                         ),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -740,96 +720,63 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            if (AppState().otClockInTime ==
-                                                '-') {
+                                            if (AppState().otClockInTime == '-') {
                                               Navigator.of(context).pushNamed(
                                                 OvertimeDetailWidget.routeName,
-                                                queryParameters: {
-                                                  'overtimedetails':
-                                                      serializeParam(
-                                                    CurrentOTListStruct
-                                                        .maybeFromMap(
-                                                            getJsonField(
-                                                      (_model.apiResultCurrentOTime
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$.data[0]''',
-                                                    )),
-                                                    ParamType.DataStruct,
-                                                  ),
-                                                }.withoutNulls,
                                               );
                                             } else {
-                                              if (AppState().otClockOutTime ==
-                                                  '-') {
+                                              if (AppState().otClockOutTime == '-') {
                                                 Navigator.of(context).pushNamed(
-                                                  OvertimeDetailCheckOutWidget
-                                                      .routeName,
-                                                  queryParameters: {
-                                                    'overtimedetails':
-                                                        serializeParam(
-                                                      CurrentOTListStruct
-                                                          .maybeFromMap(
-                                                              getJsonField(
-                                                        (_model.apiResultCurrentOTime
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data[0]''',
-                                                      )),
-                                                      ParamType.DataStruct,
-                                                    ),
-                                                  }.withoutNulls,
+                                                  OvertimeDetailCheckOutWidget.routeName,
                                                 );
                                               }
                                             }
                                           },
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Icon(
                                                 Icons.fingerprint,
-                                                color:
-                                                    Theme.of(context).colorScheme.surface,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 size: 100.0,
                                               ),
                                               Text(
                                                 () {
-                                                  if (AppState()
-                                                          .otClockInTime ==
-                                                      '-') {
+                                                  if (AppState().otClockInTime == '-') {
                                                     return 'Check In';
-                                                  } else if ((AppState()
-                                                              .otClockInTime !=
-                                                          '-') &&
-                                                      (AppState()
-                                                              .otClockOutTime ==
-                                                          '-')) {
+                                                  } else if ((AppState().otClockInTime != '-') &&
+                                                      (AppState().otClockOutTime == '-')) {
                                                     return 'Check Out';
                                                   } else {
                                                     return 'Completed';
                                                   }
                                                 }(),
                                                 textAlign: TextAlign.center,
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                             ],
@@ -845,19 +792,17 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                         ),
                       ),
                     ),
-                  if (!functions.overtimeShowDataFunction(
-                      MainGroup.getCurrentOTMobileCall.currentOTList(
+                  if (!functions
+                      .overtimeShowDataFunction(MainGroup.getCurrentOTMobileCall.currentOTList(
                     (_model.apiResultCurrentOTime?.jsonBody ?? ''),
-                  ))!)
+                  )))
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                       child: Container(
                         width: double.infinity,
                         height: 100.0,
                         decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.secondaryBackground,
+                          color: Theme.of(context).colorScheme.secondaryBackground,
                           borderRadius: BorderRadius.circular(12.0),
                           border: Border.all(
                             color: Color(0xFFB4AFAF),
@@ -869,19 +814,18 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             FFLocalizations.of(context).getText(
                               'buy7hooh' /* There is no overtime shift tim... */,
                             ),
-                            style: Theme.of(context).textTheme.bodyMedium!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  fontFamily: GoogleFonts.readexPro(
+                                    fontWeight: Theme.of(context)
+                                        .fontFamily
+                                        .textTheme
+                                        .bodyMedium!
                                         .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                        .fontStyle,
-                                  ),
+                                    fontStyle: Theme.of(context).textTheme.bodyMedium!.fontStyle,
+                                  ).fontFamily,
                                   letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                      .fontStyle,
+                                  fontWeight: Theme.of(context).textTheme.bodyMedium!.fontWeight,
+                                  fontStyle: Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                 ),
                           ),
                         ),
@@ -895,38 +839,24 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                     Align(
                       alignment: Alignment(0.0, 0),
                       child: FlutterFlowButtonTabBar(
-                        useToggleButtonStyle: true,
-                        labelStyle:
-                            Theme.of(context).textTheme.$1?.copyWith(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.titleMedium!
-                                        .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.titleMedium!
-                                        .fontStyle,
-                                  ),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.titleMedium!
-                                      .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleMedium!
-                                      .fontStyle,
-                                ),
+                        labelStyle: GoogleFonts.readexPro(
+                          fontSize: 14.0,
+                          letterSpacing: 0.0,
+                          fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight ??
+                              FontWeight.normal,
+                          fontStyle: Theme.of(context).textTheme.titleMedium?.fontStyle ??
+                              FontStyle.normal,
+                        ),
                         unselectedLabelStyle: TextStyle(),
-                        labelColor:
-                            Theme.of(context).colorScheme.secondaryBackground,
-                        unselectedLabelColor:
-                            Theme.of(context).colorScheme.secondaryText,
+                        labelColor: Theme.of(context).colorScheme.secondaryBackground,
+                        unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
                         backgroundColor: Color(0xFFF9B052),
                         unselectedBackgroundColor:
                             Theme.of(context).colorScheme.secondaryBackground,
                         borderColor: Theme.of(context).colorScheme.primary,
-                        unselectedBorderColor:
-                            Theme.of(context).colorScheme.surface,
                         borderWidth: 2.0,
-                        borderRadius: 8.0,
+                        borderRadius: BorderRadius.circular(8.0),
                         elevation: 0.0,
-                        buttonMargin:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         padding: EdgeInsets.all(4.0),
                         tabs: [
                           Tab(
@@ -945,57 +875,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             ),
                           ),
                         ],
-                        controller: _model.tabBarController,
-                        onTap: (i) async {
-                          [
-                            () async {
-                              _model.overtimeApprovedTab =
-                                  _model.overTimeHistory
-                                      .where((e) =>
-                                          'Approved' ==
-                                          getJsonField(
-                                            e,
-                                            r'''$.status''',
-                                          ).toString())
-                                      .toList()
-                                      .cast<dynamic>();
-                              safeSetState(() {});
-                            },
-                            () async {
-                              _model.apiResulOTPendingList = await MainGroup
-                                  .getOTRequestByStatusMobileCall
-                                  .call(
-                                monthNum: '13',
-                                yearNum: dateTimeFormat(
-                                  "yyyy",
-                                  getCurrentTimestamp,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                ),
-                                status: 2,
-                                employeeID: AppState().employeeID,
-                                companyID: AppState().companyID,
-                                token: AppState().token,
-                              );
-
-                              if ((_model.apiResulOTPendingList?.succeeded ??
-                                  true)) {
-                                _model.overtimePendingTab = getJsonField(
-                                  (_model.apiResulOTPendingList?.jsonBody ??
-                                      ''),
-                                  r'''$.data''',
-                                  true,
-                                )!
-                                    .toList()
-                                    .cast<dynamic>();
-                                safeSetState(() {});
-                              }
-
-                              safeSetState(() {});
-                            },
-                            () async {}
-                          ][i]();
-                        },
+                        controller: _model.tabBarController!,
                       ),
                     ),
                     Expanded(
@@ -1006,8 +886,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 10.0, 0.0, 10.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 0.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -1016,8 +895,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                       height: 40.0,
                                       decoration: BoxDecoration(
                                         color: Theme.of(context).colorScheme.surface,
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(4.0),
                                         border: Border.all(
                                           color: Theme.of(context).colorScheme.surface,
                                           width: 1.0,
@@ -1032,32 +910,25 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           _model.yeardata = dateTimeFormat(
                                             "yyyy",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           _model.monthData = dateTimeFormat(
                                             "MM",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           safeSetState(() {});
-                                          _model.apiResultftp = await MainGroup
-                                              .getOTRequestByStatusMobileCall
-                                              .call(
+                                          _model.apiResultftp =
+                                              await MainGroup.getOTRequestByStatusMobileCall.call(
                                             monthNum: dateTimeFormat(
                                               "MM",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             yearNum: dateTimeFormat(
                                               "yyyy",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             status: 1,
                                             employeeID: AppState().employeeID,
@@ -1065,17 +936,13 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             token: AppState().token,
                                           );
 
-                                          if ((_model.apiResultftp?.succeeded ??
-                                              true)) {
-                                            _model.overtimeApprovedTab =
-                                                getJsonField(
-                                              (_model.apiResultftp?.jsonBody ??
-                                                  ''),
+                                          if ((_model.apiResultftp?.succeeded ?? true)) {
+                                            _model.overtimeApprovedTab = getJsonField(
+                                              (_model.apiResultftp?.jsonBody ?? ''),
                                               r'''$.data''',
-                                              true,
                                             )!
-                                                    .toList()
-                                                    .cast<dynamic>();
+                                                .toList()
+                                                .cast<dynamic>();
                                             safeSetState(() {});
                                           }
 
@@ -1085,33 +952,40 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
+                                                FFLocalizations.of(context).getText(
                                                   'w8yzgxer' /* Month:  */,
                                                 ),
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          Theme.of(context).textTheme.bodyMedium?.color,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.color,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -1119,58 +993,71 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                               dateTimeFormat(
                                                 "MMM",
                                                 getCurrentTimestamp,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
+                                                locale: FFLocalizations.of(context).languageCode,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .fontFamily
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.color,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                  ),
+                                                      ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
+                                                FFLocalizations.of(context).getText(
                                                   'gmtn4nly' /* Year:  */,
                                                 ),
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          Theme.of(context).textTheme.bodyMedium?.color,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.color,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -1178,33 +1065,39 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                               dateTimeFormat(
                                                 "yyyy",
                                                 getCurrentTimestamp,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
+                                                locale: FFLocalizations.of(context).languageCode,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .fontFamily
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.color,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                  ),
+                                                      ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(3.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  3.0, 0.0, 0.0, 0.0),
                                               child: Icon(
                                                 Icons.calendar_month,
                                                 color:
@@ -1222,92 +1115,82 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                               Expanded(
                                 child: Builder(
                                   builder: (context) {
-                                    final overtimeApproved =
-                                        _model.overtimeApprovedTab.toList();
+                                    final overtimeApproved = _model.overtimeApprovedTab.toList();
 
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: overtimeApproved.length,
-                                      itemBuilder:
-                                          (context, overtimeApprovedIndex) {
+                                      itemBuilder: (context, overtimeApprovedIndex) {
                                         final overtimeApprovedItem =
-                                            overtimeApproved[
-                                                overtimeApprovedIndex];
+                                            overtimeApproved[overtimeApprovedIndex];
                                         return Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, -1.0),
+                                          alignment: AlignmentDirectional(-1.0, -1.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 5.0),
+                                                EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 5.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: 220.0,
                                               decoration: BoxDecoration(
-                                                color:
-                                                    Theme.of(context).colorScheme.surface,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(13.0),
-                                                  bottomRight:
-                                                      Radius.circular(13.0),
-                                                  topLeft:
-                                                      Radius.circular(13.0),
-                                                  topRight:
-                                                      Radius.circular(13.0),
+                                                  bottomLeft: Radius.circular(13.0),
+                                                  bottomRight: Radius.circular(13.0),
+                                                  topLeft: Radius.circular(13.0),
+                                                  topRight: Radius.circular(13.0),
                                                 ),
                                               ),
                                               child: SingleChildScrollView(
                                                 child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   children: [
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          8.0,
-                                                                          15.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 8.0, 15.0, 0.0),
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
+                                                                valueOrDefault<String>(
                                                                   getJsonField(
                                                                     overtimeApprovedItem,
                                                                     r'''$.workFlow_Name''',
                                                                   )?.toString(),
                                                                   'OT',
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: Color(
-                                                                          0xFFF89D27),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: Color(0xFFF89D27),
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -1315,90 +1198,83 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                           ],
                                                         ),
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                  AlignmentDirectional(0.0, 0.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        15.0,
-                                                                        20.0,
-                                                                        0.0),
-                                                                child:
-                                                                    AppButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    print(
-                                                                        'Button pressed ...');
+                                                                padding:
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        0.0, 15.0, 20.0, 0.0),
+                                                                child: AppButton(
+                                                                  onPressed: () {
+                                                                    print('Button pressed ...');
                                                                   },
-                                                                  text:
-                                                                      getJsonField(
+                                                                  text: getJsonField(
                                                                     overtimeApprovedItem,
                                                                     r'''$.status''',
                                                                   ).toString(),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        30.0,
+                                                                  options: FFButtonOptions(
+                                                                    height: 30.0,
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
+                                                                            24.0, 0.0, 24.0, 0.0),
                                                                     iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                                0.0, 0.0, 0.0, 0.0),
                                                                     color: functions
                                                                         .overtimeStatusBackgroundColor(
                                                                             getJsonField(
                                                                       overtimeApprovedItem,
                                                                       r'''$.status''',
                                                                     ).toString()),
-                                                                    textStyle: Theme.of(context).textTheme.titleSmall!
-                                                                        .override(
-                                                                          font:
+                                                                    textStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .titleSmall!
+                                                                        .copyWith(
+                                                                          fontFamily:
                                                                               GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                Theme.of(context).textTheme.titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                Theme.of(context).textTheme.titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              functions.overtimeStatusTextColor(getJsonField(
+                                                                            fontWeight: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontWeight ??
+                                                                                FontWeight.normal,
+                                                                            fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontStyle ??
+                                                                                FontStyle.normal,
+                                                                          ).fontFamily,
+                                                                          color: functions
+                                                                              .overtimeStatusTextColor(
+                                                                                  getJsonField(
                                                                             overtimeApprovedItem,
                                                                             r'''$.status''',
                                                                           ).toString()),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontStyle,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                    elevation:
-                                                                        3.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
+                                                                    elevation: 3.0,
+                                                                    borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 1.0,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            24.0),
+                                                                        BorderRadius.circular(24.0),
                                                                   ),
-                                                                  showLoadingIndicator:
-                                                                      false,
                                                                 ),
                                                               ),
                                                             ),
@@ -1407,59 +1283,54 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              10.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               '3f2xdgj0' /* Amount */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  color: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium
+                                                                      ?.color,
+                                                                  fontSize: 12.0,
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
+                                                              valueOrDefault<String>(
                                                                 functions.leaveDayAmountFunction(
                                                                     getJsonField(
                                                                       overtimeApprovedItem,
@@ -1479,23 +1350,34 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                     ).toString()),
                                                                 'OverTimeDayAmount',
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1504,42 +1386,45 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 'jkmwzdoj' /* From  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1547,41 +1432,42 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                              AlignmentDirectional(0.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        5.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 5.0, 8.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
+                                                              valueOrDefault<String>(
                                                                 functions
-                                                                    .changeDateFormat(
-                                                                        getJsonField(
+                                                                    .changeDateFormat(getJsonField(
                                                                   overtimeApprovedItem,
                                                                   r'''$.start_Date''',
                                                                 ).toString()),
                                                                 'start date',
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1589,99 +1475,106 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                              AlignmentDirectional(0.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 0.0, 8.0),
                                                             child: Text(
                                                               getJsonField(
                                                                 overtimeApprovedItem,
                                                                 r'''$.oT_Start_Time''',
                                                               ).toString(),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               '3n0duixp' /*  - */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              5.0, 0.0, 0.0, 8.0),
                                                           child: Text(
                                                             getJsonField(
                                                               overtimeApprovedItem,
                                                               r'''$.oT_End_Time''',
                                                             ).toString(),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -1689,43 +1582,42 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 'mee4aeun' /* Note :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -1736,36 +1628,39 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                             overtimeApprovedItem,
                                                             r'''$.purpose_OT''',
                                                           ).toString(),
-                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                fontFamily: GoogleFonts.readexPro(
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                letterSpacing: 0.0,
+                                                                fontWeight: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                fontStyle: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
                                                       ],
                                                     ),
                                                     Builder(
-                                                      builder: (context) =>
-                                                          InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
+                                                      builder: (context) => InkWell(
+                                                        splashColor: Colors.transparent,
+                                                        focusColor: Colors.transparent,
+                                                        hoverColor: Colors.transparent,
+                                                        highlightColor: Colors.transparent,
                                                         onTap: () async {
                                                           if ((getJsonField(
                                                             overtimeApprovedItem,
@@ -1782,42 +1677,33 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                               .isNotEmpty) {
                                                             await showDialog(
                                                               context: context,
-                                                              builder:
-                                                                  (dialogContext) {
+                                                              builder: (dialogContext) {
                                                                 return Dialog(
                                                                   elevation: 0,
-                                                                  insetPadding:
-                                                                      EdgeInsets
-                                                                          .zero,
+                                                                  insetPadding: EdgeInsets.zero,
                                                                   backgroundColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  alignment: AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0)
-                                                                      .resolve(
-                                                                          Directionality.of(
-                                                                              context)),
-                                                                  child:
-                                                                      WebViewAware(
-                                                                    child:
-                                                                        GestureDetector(
-                                                                      onTap:
-                                                                          () {
+                                                                      Colors.transparent,
+                                                                  alignment:
+                                                                      AlignmentDirectional(0.0, 0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(
+                                                                                  context)),
+                                                                  child: WebViewAware(
+                                                                    child: GestureDetector(
+                                                                      onTap: () {
                                                                         FocusScope.of(dialogContext)
                                                                             .unfocus();
                                                                         FocusManager
-                                                                            .instance
-                                                                            .primaryFocus
+                                                                            .instance.primaryFocus
                                                                             ?.unfocus();
                                                                       },
                                                                       child:
                                                                           OvertimeAttachmentModelWidget(
-                                                                        attachmentListJson:
+                                                                        oTRequestID: 0,
+                                                                        attachmentList:
                                                                             getJsonField(
                                                                           overtimeApprovedItem,
                                                                           r'''$.attachmentlist''',
-                                                                          true,
                                                                         )!,
                                                                       ),
                                                                     ),
@@ -1828,89 +1714,98 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                           }
                                                         },
                                                         child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 10.0, 0.0, 0.0),
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  functions.attachmentCountFunction(
-                                                                      (getJsonField(
-                                                                    overtimeApprovedItem,
-                                                                    r'''$.attachmentlist''',
-                                                                    true,
-                                                                  ) as List)
-                                                                          .map<String>((s) =>
-                                                                              s.toString())
-                                                                          .toList()),
+                                                                valueOrDefault<String>(
+                                                                  functions
+                                                                      .attachmentCountFunction(
+                                                                          (getJsonField(
+                                                                        overtimeApprovedItem,
+                                                                        r'''$.attachmentlist''',
+                                                                      ) as List)
+                                                                              .map<String>((s) =>
+                                                                                  s.toString())
+                                                                              .toList())
+                                                                      .toString(),
                                                                   '0',
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: Theme.of(context).colorScheme.primary,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: Theme.of(context)
+                                                                          .colorScheme
+                                                                          .primary,
+                                                                      fontSize: 10.0,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
+                                                                  AlignmentDirectional(-1.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        5.0, 10.0, 0.0, 0.0),
                                                                 child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
+                                                                  FFLocalizations.of(context)
                                                                       .getText(
                                                                     'pj3psnly' /* attachement */,
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        fontFamily:
+                                                                            GoogleFonts.readexPro(
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                        color: Color(
-                                                                            0xFFF89D27),
-                                                                        fontSize:
-                                                                            10.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                        color: Color(0xFFF89D27),
+                                                                        fontSize: 10.0,
+                                                                        letterSpacing: 0.0,
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -1921,81 +1816,84 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ),
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 8.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 'q3mekv41' /* Request date :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: AppColors.overtimetextcolor,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color:
+                                                                        AppColors.overtimetextcolor,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 8.0, 0.0, 0.0),
                                                           child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              functions
-                                                                  .changeRequestedDateFormat(
-                                                                      getJsonField(
+                                                            valueOrDefault<String>(
+                                                              functions.changeRequestedDateFormat(
+                                                                  getJsonField(
                                                                 overtimeApprovedItem,
                                                                 r'''$.oT_Requested_Date''',
                                                               ).toString()),
                                                               'request Date',
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: AppColors.overtimetextcolor,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  color:
+                                                                      AppColors.overtimetextcolor,
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -2003,59 +1901,62 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Divider(
-                                                      color:
-                                                          Theme.of(context).colorScheme.surface,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Container(
                                                           width: 250.0,
                                                           height: 20.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Theme.of(context).colorScheme.surface,
+                                                          decoration: BoxDecoration(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .surface,
                                                           ),
                                                           child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
+                                                            mainAxisSize: MainAxisSize.max,
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        10.0, 0.0, 0.0, 0.0),
                                                                 child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
+                                                                  FFLocalizations.of(context)
                                                                       .getText(
                                                                     'g9fvj8v3' /* Approved by :  */,
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        fontFamily:
+                                                                            GoogleFonts.readexPro(
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                        color: AppColors.overtimetextcolor,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                        color: AppColors
+                                                                            .overtimetextcolor,
+                                                                        fontSize: 12.0,
+                                                                        letterSpacing: 0.0,
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -2065,21 +1966,32 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                   overtimeApprovedItem,
                                                                   r'''$.approver_Name''',
                                                                 ).toString(),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: AppColors.overtimetextcolor,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: AppColors
+                                                                          .overtimetextcolor,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -2089,30 +2001,32 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         Container(
                                                           width: 100.0,
                                                           height: 20.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Theme.of(context).colorScheme.surface,
+                                                          decoration: BoxDecoration(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .surface,
                                                           ),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 10.0, 0.0),
                                                             child: Text(
                                                               getJsonField(
                                                                 overtimeApprovedItem,
                                                                 r'''$.status''',
                                                               ).toString(),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                                     color: functions
@@ -2121,11 +2035,14 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                       overtimeApprovedItem,
                                                                       r'''$.status''',
                                                                     ).toString()),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -2150,8 +2067,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 10.0, 0.0, 10.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 0.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -2160,8 +2076,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                       height: 40.0,
                                       decoration: BoxDecoration(
                                         color: Theme.of(context).colorScheme.surface,
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(4.0),
                                         border: Border.all(
                                           color: Theme.of(context).colorScheme.surface,
                                           width: 1.0,
@@ -2176,33 +2091,25 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           _model.yeardata = dateTimeFormat(
                                             "yyyy",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           _model.monthData = dateTimeFormat(
                                             "MM",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           safeSetState(() {});
                                           _model.apiResulOTPending =
-                                              await MainGroup
-                                                  .getOTRequestByStatusMobileCall
-                                                  .call(
+                                              await MainGroup.getOTRequestByStatusMobileCall.call(
                                             monthNum: dateTimeFormat(
                                               "MM",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             yearNum: dateTimeFormat(
                                               "yyyy",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             status: 2,
                                             employeeID: AppState().employeeID,
@@ -2210,19 +2117,13 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             token: AppState().token,
                                           );
 
-                                          if ((_model.apiResulOTPending
-                                                  ?.succeeded ??
-                                              true)) {
-                                            _model.overtimePendingTab =
-                                                getJsonField(
-                                              (_model.apiResulOTPending
-                                                      ?.jsonBody ??
-                                                  ''),
+                                          if ((_model.apiResulOTPending?.succeeded ?? true)) {
+                                            _model.overtimePendingTab = getJsonField(
+                                              (_model.apiResulOTPending?.jsonBody ?? ''),
                                               r'''$.data''',
-                                              true,
                                             )!
-                                                    .toList()
-                                                    .cast<dynamic>();
+                                                .toList()
+                                                .cast<dynamic>();
                                             safeSetState(() {});
                                           }
 
@@ -2232,48 +2133,52 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 'Month: ${dateTimeFormat(
                                                   "MMM",
                                                   getCurrentTimestamp,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
+                                                  locale: FFLocalizations.of(context).languageCode,
                                                 )} Year: ${dateTimeFormat(
                                                   "yyyy",
                                                   getCurrentTimestamp,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
+                                                  locale: FFLocalizations.of(context).languageCode,
                                                 )}',
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          Theme.of(context).textTheme.bodyMedium?.color,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.color,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(3.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  3.0, 0.0, 0.0, 0.0),
                                               child: Icon(
                                                 Icons.calendar_month,
                                                 color:
@@ -2291,92 +2196,82 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                               Expanded(
                                 child: Builder(
                                   builder: (context) {
-                                    final overtimePending =
-                                        _model.overtimePendingTab.toList();
+                                    final overtimePending = _model.overtimePendingTab.toList();
 
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: overtimePending.length,
-                                      itemBuilder:
-                                          (context, overtimePendingIndex) {
+                                      itemBuilder: (context, overtimePendingIndex) {
                                         final overtimePendingItem =
-                                            overtimePending[
-                                                overtimePendingIndex];
+                                            overtimePending[overtimePendingIndex];
                                         return Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, -1.0),
+                                          alignment: AlignmentDirectional(-1.0, -1.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 5.0),
+                                                EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 5.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: 220.0,
                                               decoration: BoxDecoration(
-                                                color:
-                                                    Theme.of(context).colorScheme.surface,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(13.0),
-                                                  bottomRight:
-                                                      Radius.circular(13.0),
-                                                  topLeft:
-                                                      Radius.circular(13.0),
-                                                  topRight:
-                                                      Radius.circular(13.0),
+                                                  bottomLeft: Radius.circular(13.0),
+                                                  bottomRight: Radius.circular(13.0),
+                                                  topLeft: Radius.circular(13.0),
+                                                  topRight: Radius.circular(13.0),
                                                 ),
                                               ),
                                               child: SingleChildScrollView(
                                                 child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   children: [
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          8.0,
-                                                                          15.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 8.0, 15.0, 0.0),
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
+                                                                valueOrDefault<String>(
                                                                   getJsonField(
                                                                     overtimePendingItem,
                                                                     r'''$.workFlow_Name''',
                                                                   )?.toString(),
                                                                   'OT',
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: Color(
-                                                                          0xFFF89D27),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: Color(0xFFF89D27),
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -2384,83 +2279,73 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                           ],
                                                         ),
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                  AlignmentDirectional(0.0, 0.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        15.0,
-                                                                        20.0,
-                                                                        0.0),
-                                                                child:
-                                                                    AppButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    print(
-                                                                        'Button pressed ...');
+                                                                padding:
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        0.0, 15.0, 20.0, 0.0),
+                                                                child: AppButton(
+                                                                  onPressed: () {
+                                                                    print('Button pressed ...');
                                                                   },
-                                                                  text: FFLocalizations.of(
-                                                                          context)
+                                                                  text: FFLocalizations.of(context)
                                                                       .getText(
                                                                     '5pdvx498' /* Pending */,
                                                                   ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        30.0,
+                                                                  options: FFButtonOptions(
+                                                                    height: 30.0,
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
+                                                                            24.0, 0.0, 24.0, 0.0),
                                                                     iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: Color(
-                                                                        0xFFDAE3F3),
-                                                                    textStyle: Theme.of(context).textTheme.titleSmall!
-                                                                        .override(
-                                                                          font:
+                                                                        EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                                0.0, 0.0, 0.0, 0.0),
+                                                                    color: Color(0xFFDAE3F3),
+                                                                    textStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .titleSmall!
+                                                                        .copyWith(
+                                                                          fontFamily:
                                                                               GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                Theme.of(context).textTheme.titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                Theme.of(context).textTheme.titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Color(0xFF21A8D6),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontStyle,
+                                                                            fontWeight: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontWeight ??
+                                                                                FontWeight.normal,
+                                                                            fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontStyle ??
+                                                                                FontStyle.normal,
+                                                                          ).fontFamily,
+                                                                          color: Color(0xFF21A8D6),
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                    elevation:
-                                                                        3.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
+                                                                    elevation: 3.0,
+                                                                    borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 1.0,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            24.0),
+                                                                        BorderRadius.circular(24.0),
                                                                   ),
-                                                                  showLoadingIndicator:
-                                                                      false,
                                                                 ),
                                                               ),
                                                             ),
@@ -2469,59 +2354,54 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              10.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               'e3rw36wf' /* Amount */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  color: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium
+                                                                      ?.color,
+                                                                  fontSize: 12.0,
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
+                                                              valueOrDefault<String>(
                                                                 functions.leaveDayAmountFunction(
                                                                     getJsonField(
                                                                       overtimePendingItem,
@@ -2541,23 +2421,34 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                     ).toString()),
                                                                 'OverTimeDayAmount',
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -2566,42 +2457,45 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 '9e6etozh' /* From  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -2609,41 +2503,42 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                              AlignmentDirectional(0.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        5.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 5.0, 8.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
+                                                              valueOrDefault<String>(
                                                                 functions
-                                                                    .changeDateFormat(
-                                                                        getJsonField(
+                                                                    .changeDateFormat(getJsonField(
                                                                   overtimePendingItem,
                                                                   r'''$.start_Date''',
                                                                 ).toString()),
                                                                 'start date',
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -2651,99 +2546,106 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                              AlignmentDirectional(0.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 0.0, 8.0),
                                                             child: Text(
                                                               getJsonField(
                                                                 overtimePendingItem,
                                                                 r'''$.oT_Start_Time''',
                                                               ).toString(),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               'u44hfory' /*  - */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              5.0, 0.0, 0.0, 8.0),
                                                           child: Text(
                                                             getJsonField(
                                                               overtimePendingItem,
                                                               r'''$.oT_End_Time''',
                                                             ).toString(),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -2751,43 +2653,42 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 '9tufhddr' /* Note :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -2798,36 +2699,39 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                             overtimePendingItem,
                                                             r'''$.purpose_OT''',
                                                           ).toString(),
-                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                fontFamily: GoogleFonts.readexPro(
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                letterSpacing: 0.0,
+                                                                fontWeight: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                fontStyle: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
                                                       ],
                                                     ),
                                                     Builder(
-                                                      builder: (context) =>
-                                                          InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
+                                                      builder: (context) => InkWell(
+                                                        splashColor: Colors.transparent,
+                                                        focusColor: Colors.transparent,
+                                                        hoverColor: Colors.transparent,
+                                                        highlightColor: Colors.transparent,
                                                         onTap: () async {
                                                           if ((getJsonField(
                                                             overtimePendingItem,
@@ -2844,42 +2748,32 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                               .isNotEmpty) {
                                                             await showDialog(
                                                               context: context,
-                                                              builder:
-                                                                  (dialogContext) {
+                                                              builder: (dialogContext) {
                                                                 return Dialog(
                                                                   elevation: 0,
-                                                                  insetPadding:
-                                                                      EdgeInsets
-                                                                          .zero,
+                                                                  insetPadding: EdgeInsets.zero,
                                                                   backgroundColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  alignment: AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0)
-                                                                      .resolve(
-                                                                          Directionality.of(
-                                                                              context)),
-                                                                  child:
-                                                                      WebViewAware(
-                                                                    child:
-                                                                        GestureDetector(
-                                                                      onTap:
-                                                                          () {
+                                                                      Colors.transparent,
+                                                                  alignment:
+                                                                      AlignmentDirectional(0.0, 0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(
+                                                                                  context)),
+                                                                  child: WebViewAware(
+                                                                    child: GestureDetector(
+                                                                      onTap: () {
                                                                         FocusScope.of(dialogContext)
                                                                             .unfocus();
                                                                         FocusManager
-                                                                            .instance
-                                                                            .primaryFocus
+                                                                            .instance.primaryFocus
                                                                             ?.unfocus();
                                                                       },
                                                                       child:
                                                                           OvertimeAttachmentModelWidget(
-                                                                        attachmentListJson:
+                                                                        attachmentList:
                                                                             getJsonField(
                                                                           overtimePendingItem,
                                                                           r'''$.attachmentlist''',
-                                                                          true,
                                                                         )!,
                                                                       ),
                                                                     ),
@@ -2890,89 +2784,98 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                           }
                                                         },
                                                         child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 10.0, 0.0, 0.0),
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  functions.attachmentCountFunction(
-                                                                      (getJsonField(
-                                                                    overtimePendingItem,
-                                                                    r'''$.attachmentlist''',
-                                                                    true,
-                                                                  ) as List)
-                                                                          .map<String>((s) =>
-                                                                              s.toString())
-                                                                          .toList()),
+                                                                valueOrDefault<String>(
+                                                                  functions
+                                                                      .attachmentCountFunction(
+                                                                          (getJsonField(
+                                                                        overtimePendingItem,
+                                                                        r'''$.attachmentlist''',
+                                                                      ) as List)
+                                                                              .map<String>((s) =>
+                                                                                  s.toString())
+                                                                              .toList())
+                                                                      .toString(),
                                                                   '0',
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: Theme.of(context).colorScheme.primary,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: Theme.of(context)
+                                                                          .colorScheme
+                                                                          .primary,
+                                                                      fontSize: 10.0,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
+                                                                  AlignmentDirectional(-1.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        5.0, 10.0, 0.0, 0.0),
                                                                 child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
+                                                                  FFLocalizations.of(context)
                                                                       .getText(
                                                                     'sfu04278' /* attachement */,
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        fontFamily:
+                                                                            GoogleFonts.readexPro(
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                        color: Color(
-                                                                            0xFFF89D27),
-                                                                        fontSize:
-                                                                            10.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                        color: Color(0xFFF89D27),
+                                                                        fontSize: 10.0,
+                                                                        letterSpacing: 0.0,
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
@@ -2983,81 +2886,84 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ),
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 8.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 'pgc99vje' /* Request date :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: AppColors.overtimetextcolor,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color:
+                                                                        AppColors.overtimetextcolor,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 8.0, 0.0, 0.0),
                                                           child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              functions
-                                                                  .changeRequestedDateFormat(
-                                                                      getJsonField(
+                                                            valueOrDefault<String>(
+                                                              functions.changeRequestedDateFormat(
+                                                                  getJsonField(
                                                                 overtimePendingItem,
                                                                 r'''$.oT_Requested_Date''',
                                                               ).toString()),
                                                               'request Date',
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: AppColors.overtimetextcolor,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  color:
+                                                                      AppColors.overtimetextcolor,
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -3065,119 +2971,72 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Divider(
-                                                      color:
-                                                          Theme.of(context).colorScheme.surface,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 0.0, 15.0, 0.0),
                                                           child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
+                                                            splashColor: Colors.transparent,
+                                                            focusColor: Colors.transparent,
+                                                            hoverColor: Colors.transparent,
+                                                            highlightColor: Colors.transparent,
                                                             onTap: () async {
                                                               Navigator.of(context).pushNamed(
-                                                                EditOvertimeRequestWidget
-                                                                    .routeName,
-                                                                queryParameters:
-                                                                    {
-                                                                  'editOTRequest':
-                                                                      serializeParam(
-                                                                    getJsonField(
-                                                                      overtimePendingItem,
-                                                                      r'''$''',
-                                                                    ),
-                                                                    ParamType
-                                                                        .JSON,
-                                                                  ),
-                                                                }.withoutNulls,
+                                                                '/editOvertimeRequest',
                                                               );
                                                             },
                                                             child: ClipRRect(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              child:
-                                                                  Image.asset(
+                                                                  BorderRadius.circular(8.0),
+                                                              child: Image.asset(
                                                                 'assets/images/edit-rectangle-svgrepo-com_1_(1).png',
                                                                 width: 28.0,
                                                                 height: 30.0,
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                                fit: BoxFit.cover,
                                                               ),
                                                             ),
                                                           ),
                                                         ),
                                                         Builder(
-                                                          builder: (context) =>
-                                                              InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
+                                                          builder: (context) => InkWell(
+                                                            splashColor: Colors.transparent,
+                                                            focusColor: Colors.transparent,
+                                                            hoverColor: Colors.transparent,
+                                                            highlightColor: Colors.transparent,
                                                             onTap: () async {
                                                               await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (dialogContext) {
+                                                                context: context,
+                                                                builder: (dialogContext) {
                                                                   return Dialog(
-                                                                    elevation:
-                                                                        0,
-                                                                    insetPadding:
-                                                                        EdgeInsets
-                                                                            .zero,
+                                                                    elevation: 0,
+                                                                    insetPadding: EdgeInsets.zero,
                                                                     backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
+                                                                        Colors.transparent,
                                                                     alignment: AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                    child:
-                                                                        WebViewAware(
-                                                                      child:
-                                                                          GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          FocusScope.of(dialogContext)
+                                                                            0.0, 0.0)
+                                                                        .resolve(Directionality.of(
+                                                                            context)),
+                                                                    child: WebViewAware(
+                                                                      child: GestureDetector(
+                                                                        onTap: () {
+                                                                          FocusScope.of(
+                                                                                  dialogContext)
                                                                               .unfocus();
                                                                           FocusManager
-                                                                              .instance
-                                                                              .primaryFocus
+                                                                              .instance.primaryFocus
                                                                               ?.unfocus();
                                                                         },
                                                                         child:
                                                                             DeleteOTRequestDialogWidget(
-                                                                          oTRequestID:
-                                                                              getJsonField(
+                                                                          oTID: getJsonField(
                                                                             overtimePendingItem,
                                                                             r'''$.oT_Request_ID''',
-                                                                          ),
+                                                                          ).toString(),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -3187,16 +3046,12 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                             },
                                                             child: ClipRRect(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              child:
-                                                                  Image.asset(
+                                                                  BorderRadius.circular(8.0),
+                                                              child: Image.asset(
                                                                 'assets/images/delete-trash-remove-svgrepo-com_1.png',
                                                                 width: 28.0,
                                                                 height: 30.0,
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                                fit: BoxFit.cover,
                                                               ),
                                                             ),
                                                           ),
@@ -3220,8 +3075,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 10.0, 0.0, 10.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 0.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -3230,8 +3084,7 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                       height: 40.0,
                                       decoration: BoxDecoration(
                                         color: Theme.of(context).colorScheme.surface,
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(4.0),
                                         border: Border.all(
                                           color: Theme.of(context).colorScheme.surface,
                                           width: 1.0,
@@ -3246,33 +3099,25 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           _model.yeardata = dateTimeFormat(
                                             "yyyy",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           _model.monthData = dateTimeFormat(
                                             "MM",
                                             getCurrentTimestamp,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                            locale: FFLocalizations.of(context).languageCode,
                                           );
                                           safeSetState(() {});
                                           _model.apiHistoryYearResult =
-                                              await MainGroup
-                                                  .getOTRequestByStatusMobileCall
-                                                  .call(
+                                              await MainGroup.getOTRequestByStatusMobileCall.call(
                                             monthNum: dateTimeFormat(
                                               "MM",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             yearNum: dateTimeFormat(
                                               "yyyy",
                                               getCurrentTimestamp,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
+                                              locale: FFLocalizations.of(context).languageCode,
                                             ),
                                             status: 3,
                                             employeeID: AppState().employeeID,
@@ -3280,19 +3125,13 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             token: AppState().token,
                                           );
 
-                                          if ((_model.apiHistoryYearResult
-                                                  ?.succeeded ??
-                                              true)) {
-                                            _model.overTimeHistory =
-                                                getJsonField(
-                                              (_model.apiHistoryYearResult
-                                                      ?.jsonBody ??
-                                                  ''),
+                                          if ((_model.apiHistoryYearResult?.succeeded ?? true)) {
+                                            _model.overTimeHistory = getJsonField(
+                                              (_model.apiHistoryYearResult?.jsonBody ?? ''),
                                               r'''$.data''',
-                                              true,
                                             )!
-                                                    .toList()
-                                                    .cast<dynamic>();
+                                                .toList()
+                                                .cast<dynamic>();
                                             safeSetState(() {});
                                           }
 
@@ -3302,33 +3141,40 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
+                                                FFLocalizations.of(context).getText(
                                                   'cxo95bpf' /* Month: */,
                                                 ),
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          Theme.of(context).textTheme.bodyMedium?.color,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro(
+                                                        fontWeight: Theme.of(context)
+                                                            .fontFamily
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontWeight,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .fontStyle,
+                                                      ).fontFamily,
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.color,
                                                       letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
-                                                              .fontStyle,
+                                                      fontWeight: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontWeight,
+                                                      fontStyle: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .fontStyle,
                                                     ),
                                               ),
                                             ),
@@ -3336,86 +3182,105 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                               dateTimeFormat(
                                                 "MMM",
                                                 getCurrentTimestamp,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
+                                                locale: FFLocalizations.of(context).languageCode,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .fontFamily
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.color,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                  ),
+                                                      ),
                                             ),
                                             Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
+                                              FFLocalizations.of(context).getText(
                                                 'i3sff4zj' /*  Year: */,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .fontFamily
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.color,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                  ),
+                                                      ),
                                             ),
                                             Text(
                                               dateTimeFormat(
                                                 "yyyy",
                                                 getCurrentTimestamp,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
+                                                locale: FFLocalizations.of(context).languageCode,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .fontFamily
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                            ?.color,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                  ),
+                                                      ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(3.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  3.0, 0.0, 0.0, 0.0),
                                               child: Icon(
                                                 Icons.calendar_month,
                                                 color:
@@ -3428,15 +3293,11 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                       ),
                                     ),
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, -1.0),
+                                      alignment: AlignmentDirectional(-1.0, -1.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
+                                        padding:
+                                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                         child: FlutterFlowDropDown<String>(
-                                          controller: _model
-                                                  .overtimeStatusValueController ??=
-                                              FormFieldController<String>(null),
                                           options: [
                                             FFLocalizations.of(context).getText(
                                               '6p3cd236' /* All */,
@@ -3452,43 +3313,45 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             )
                                           ],
                                           onChanged: (val) async {
-                                            safeSetState(() => _model
-                                                .overtimeStatusValue = val);
+                                            safeSetState(() => _model.overtimeStatusValue = val);
                                             _model.overTimeHistory = functions
                                                 .filteredOvertimeStatusFunction(
-                                                    _model.overtimeStatusValue!,
-                                                    _model.overtimeStatusAllData
-                                                        .toList(),
-                                                    _model.overTimeHistory
-                                                        .toList())!
+                                                    _model.overTimeHistory.toList(),
+                                                    _model.overtimeStatusValue)
                                                 .toList()
                                                 .cast<dynamic>();
                                             safeSetState(() {});
                                           },
                                           width: 180.0,
                                           height: 40.0,
-                                          textStyle: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
+                                                  fontWeight: Theme.of(context)
+                                                      .fontFamily
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontWeight,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
                                                 color:
                                                     Theme.of(context).textTheme.bodyMedium?.color,
                                                 letterSpacing: 0.0,
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontWeight: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
+                                          hintText: FFLocalizations.of(context).getText(
                                             'ibjt2lcn' /* All */,
                                           ),
                                           icon: Icon(
@@ -3496,20 +3359,14 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                             color: Theme.of(context).textTheme.bodyMedium?.color,
                                             size: 24.0,
                                           ),
-                                          fillColor:
-                                              Theme.of(context).colorScheme.surface,
+                                          fillColor: Theme.of(context).colorScheme.surface,
                                           elevation: 0.0,
-                                          borderColor:
-                                              Theme.of(context).colorScheme.surface,
+                                          borderColor: Theme.of(context).colorScheme.surface,
                                           borderWidth: 1.0,
                                           borderRadius: 4.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 10.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                           hidesUnderline: true,
-                                          isOverButton: false,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
                                         ),
                                       ),
                                     ),
@@ -3519,92 +3376,82 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                               Expanded(
                                 child: Builder(
                                   builder: (context) {
-                                    final overtimeHistoryList =
-                                        _model.overTimeHistory.toList();
+                                    final overtimeHistoryList = _model.overTimeHistory.toList();
 
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: overtimeHistoryList.length,
-                                      itemBuilder:
-                                          (context, overtimeHistoryListIndex) {
+                                      itemBuilder: (context, overtimeHistoryListIndex) {
                                         final overtimeHistoryListItem =
-                                            overtimeHistoryList[
-                                                overtimeHistoryListIndex];
+                                            overtimeHistoryList[overtimeHistoryListIndex];
                                         return Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, -1.0),
+                                          alignment: AlignmentDirectional(-1.0, -1.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 5.0),
+                                                EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 5.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: 220.0,
                                               decoration: BoxDecoration(
-                                                color:
-                                                    Theme.of(context).colorScheme.surface,
+                                                color: Theme.of(context).colorScheme.surface,
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(13.0),
-                                                  bottomRight:
-                                                      Radius.circular(13.0),
-                                                  topLeft:
-                                                      Radius.circular(13.0),
-                                                  topRight:
-                                                      Radius.circular(13.0),
+                                                  bottomLeft: Radius.circular(13.0),
+                                                  bottomRight: Radius.circular(13.0),
+                                                  topLeft: Radius.circular(13.0),
+                                                  topRight: Radius.circular(13.0),
                                                 ),
                                               ),
                                               child: SingleChildScrollView(
                                                 child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   children: [
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          8.0,
-                                                                          15.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 8.0, 15.0, 0.0),
                                                               child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
+                                                                valueOrDefault<String>(
                                                                   getJsonField(
                                                                     overtimeHistoryListItem,
                                                                     r'''$.workFlow_Name''',
                                                                   )?.toString(),
                                                                   'OT',
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: Color(
-                                                                          0xFFF89D27),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      color: Color(0xFFF89D27),
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -3612,29 +3459,20 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                           ],
                                                         ),
                                                         Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                  AlignmentDirectional(0.0, 0.0),
                                                               child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        15.0,
-                                                                        20.0,
-                                                                        0.0),
-                                                                child:
-                                                                    AppButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    print(
-                                                                        'Button pressed ...');
+                                                                padding:
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        0.0, 15.0, 20.0, 0.0),
+                                                                child: AppButton(
+                                                                  onPressed: () {
+                                                                    print('Button pressed ...');
                                                                   },
-                                                                  text: valueOrDefault<
-                                                                      String>(
+                                                                  text: valueOrDefault<String>(
                                                                     functions
                                                                         .changeLeaveStatusRejectedFunction(
                                                                             getJsonField(
@@ -3643,64 +3481,66 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                     ).toString()),
                                                                     'status',
                                                                   ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        30.0,
+                                                                  options: FFButtonOptions(
+                                                                    height: 30.0,
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
+                                                                            24.0, 0.0, 24.0, 0.0),
                                                                     iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        EdgeInsetsDirectional
+                                                                            .fromSTEB(
+                                                                                0.0, 0.0, 0.0, 0.0),
                                                                     color: functions
                                                                         .overtimeStatusBackgroundColor(
                                                                             getJsonField(
                                                                       overtimeHistoryListItem,
                                                                       r'''$.status''',
                                                                     ).toString()),
-                                                                    textStyle: Theme.of(context).textTheme.titleSmall!
-                                                                        .override(
-                                                                          font:
+                                                                    textStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .titleSmall!
+                                                                        .copyWith(
+                                                                          fontFamily:
                                                                               GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                Theme.of(context).textTheme.titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                Theme.of(context).textTheme.titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              functions.overtimeStatusTextColor(getJsonField(
+                                                                            fontWeight: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontWeight ??
+                                                                                FontWeight.normal,
+                                                                            fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .titleSmall
+                                                                                    ?.fontStyle ??
+                                                                                FontStyle.normal,
+                                                                          ).fontFamily,
+                                                                          color: functions
+                                                                              .overtimeStatusTextColor(
+                                                                                  getJsonField(
                                                                             overtimeHistoryListItem,
                                                                             r'''$.status''',
                                                                           ).toString()),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.titleSmall!
-                                                                              .fontStyle,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .titleSmall!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                    elevation:
-                                                                        3.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
+                                                                    elevation: 3.0,
+                                                                    borderSide: BorderSide(
+                                                                      color: Colors.transparent,
+                                                                      width: 1.0,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            24.0),
+                                                                        BorderRadius.circular(24.0),
                                                                   ),
-                                                                  showLoadingIndicator:
-                                                                      false,
                                                                 ),
                                                               ),
                                                             ),
@@ -3709,78 +3549,85 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              10.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               'rv2l9gd3' /* Amount */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  color: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium
+                                                                      ?.color,
+                                                                  fontSize: 12.0,
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
                                                               getJsonField(
                                                                 overtimeHistoryListItem,
                                                                 r'''$.oT_Hours''',
                                                               ).toString(),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -3789,42 +3636,45 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 'xtr9ohoo' /* From  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -3832,92 +3682,87 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                              AlignmentDirectional(0.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        8.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                0.0, 0.0, 0.0, 8.0),
                                                             child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
+                                                              valueOrDefault<String>(
                                                                 functions
-                                                                    .changeDateFormat(
-                                                                        getJsonField(
+                                                                    .changeDateFormat(getJsonField(
                                                                   overtimeHistoryListItem,
                                                                   r'''$.start_Date''',
                                                                 ).toString()),
                                                                 'Start Date',
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
+                                                            FFLocalizations.of(context).getText(
                                                               'do21wmg3' /*  - */,
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      8.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              5.0, 0.0, 0.0, 8.0),
                                                           child: Text(
-                                                            valueOrDefault<
-                                                                String>(
+                                                            valueOrDefault<String>(
                                                               functions.changeDateFormat(
-                                                                  valueOrDefault<
-                                                                      String>(
+                                                                  valueOrDefault<String>(
                                                                 getJsonField(
                                                                   overtimeHistoryListItem,
                                                                   r'''$.end_Date''',
@@ -3926,20 +3771,28 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                               )),
                                                               'End Date',
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -3947,43 +3800,42 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 0.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 '20lb826q' /* Note :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontSize: 10.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
@@ -3994,96 +3846,84 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                             overtimeHistoryListItem,
                                                             r'''$.purpose_OT''',
                                                           ).toString(),
-                                                          style: Theme.of(context).textTheme.bodyMedium!
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
+                                                              .copyWith(
+                                                                fontFamily: GoogleFonts.readexPro(
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                letterSpacing: 0.0,
+                                                                fontWeight: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontWeight,
-                                                                fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                fontStyle: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontStyle,
                                                               ),
                                                         ),
                                                       ],
                                                     ),
                                                     Builder(
-                                                      builder: (context) =>
-                                                          Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                      builder: (context) => Padding(
+                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                            0.0, 10.0, 0.0, 0.0),
                                                         child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
+                                                          splashColor: Colors.transparent,
+                                                          focusColor: Colors.transparent,
+                                                          hoverColor: Colors.transparent,
+                                                          highlightColor: Colors.transparent,
                                                           onTap: () async {
                                                             if ((getJsonField(
                                                               overtimeHistoryListItem,
                                                               r'''$.attachmentlist''',
                                                             )
                                                                         .toList()
-                                                                        .map<AttachmentFileModelStruct?>(AttachmentFileModelStruct
-                                                                            .maybeFromMap)
+                                                                        .map<AttachmentFileModelStruct?>(
+                                                                            AttachmentFileModelStruct
+                                                                                .maybeFromMap)
                                                                         .toList()
                                                                     as Iterable<
                                                                         AttachmentFileModelStruct?>)
                                                                 .withoutNulls
                                                                 .isNotEmpty) {
                                                               await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (dialogContext) {
+                                                                context: context,
+                                                                builder: (dialogContext) {
                                                                   return Dialog(
-                                                                    elevation:
-                                                                        0,
-                                                                    insetPadding:
-                                                                        EdgeInsets
-                                                                            .zero,
+                                                                    elevation: 0,
+                                                                    insetPadding: EdgeInsets.zero,
                                                                     backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
+                                                                        Colors.transparent,
                                                                     alignment: AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                    child:
-                                                                        WebViewAware(
-                                                                      child:
-                                                                          GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          FocusScope.of(dialogContext)
+                                                                            0.0, 0.0)
+                                                                        .resolve(Directionality.of(
+                                                                            context)),
+                                                                    child: WebViewAware(
+                                                                      child: GestureDetector(
+                                                                        onTap: () {
+                                                                          FocusScope.of(
+                                                                                  dialogContext)
                                                                               .unfocus();
                                                                           FocusManager
-                                                                              .instance
-                                                                              .primaryFocus
+                                                                              .instance.primaryFocus
                                                                               ?.unfocus();
                                                                         },
                                                                         child:
                                                                             OvertimeAttachmentModelWidget(
-                                                                          attachmentListJson:
+                                                                          attachmentList:
                                                                               getJsonField(
                                                                             overtimeHistoryListItem,
                                                                             r'''$.attachmentlist''',
-                                                                            true,
                                                                           )!,
                                                                         ),
                                                                       ),
@@ -4094,90 +3934,103 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                             }
                                                           },
                                                           child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
+                                                            mainAxisSize: MainAxisSize.max,
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                    EdgeInsetsDirectional.fromSTEB(
+                                                                        10.0, 0.0, 0.0, 0.0),
                                                                 child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    functions.attachmentCountFunction(
-                                                                        (getJsonField(
-                                                                      overtimeHistoryListItem,
-                                                                      r'''$.attachmentlist''',
-                                                                      true,
-                                                                    ) as List)
-                                                                            .map<String>((s) =>
-                                                                                s.toString())
-                                                                            .toList()),
+                                                                  valueOrDefault<String>(
+                                                                    functions
+                                                                        .attachmentCountFunction(
+                                                                            (getJsonField(
+                                                                          overtimeHistoryListItem,
+                                                                          r'''$.attachmentlist''',
+                                                                        ) as List)
+                                                                                .map<String>((s) =>
+                                                                                    s.toString())
+                                                                                .toList())
+                                                                        .toString(),
                                                                     '0',
                                                                   ),
-                                                                  style: Theme.of(context).textTheme.bodyMedium!
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                  style: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
+                                                                      .copyWith(
+                                                                        fontFamily:
+                                                                            GoogleFonts.readexPro(
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
-                                                                        color: Theme.of(context).colorScheme.primary,
-                                                                        fontSize:
-                                                                            10.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                        color: Theme.of(context)
+                                                                            .colorScheme
+                                                                            .primary,
+                                                                        fontSize: 10.0,
+                                                                        letterSpacing: 0.0,
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
                                                               Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        -1.0),
+                                                                alignment: AlignmentDirectional(
+                                                                    -1.0, -1.0),
                                                                 child: Padding(
                                                                   padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                      .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                   child: Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
+                                                                    FFLocalizations.of(context)
                                                                         .getText(
                                                                       'e1xwsu52' /* attachement */,
                                                                     ),
-                                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                                        .override(
-                                                                          font:
+                                                                    style: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                          fontFamily:
                                                                               GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                context.textTheme.bodyMedium.fontWeight,
-                                                                            fontStyle:
-                                                                                context.textTheme.bodyMedium.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Color(0xFFF89D27),
-                                                                          fontSize:
-                                                                              10.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontWeight,
-                                                                          fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                                                              .fontStyle,
+                                                                            fontWeight: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontWeight ??
+                                                                                FontWeight.normal,
+                                                                            fontStyle: Theme.of(
+                                                                                        context)
+                                                                                    .textTheme
+                                                                                    .bodyMedium
+                                                                                    ?.fontStyle ??
+                                                                                FontStyle.normal,
+                                                                          ).fontFamily,
+                                                                          color: Color(0xFFF89D27),
+                                                                          fontSize: 10.0,
+                                                                          letterSpacing: 0.0,
+                                                                          fontWeight:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontWeight,
+                                                                          fontStyle:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .bodyMedium!
+                                                                                  .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -4188,80 +4041,84 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ),
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, -1.0),
+                                                              AlignmentDirectional(-1.0, -1.0),
                                                           child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0),
+                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                10.0, 8.0, 0.0, 0.0),
                                                             child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
+                                                              FFLocalizations.of(context).getText(
                                                                 '9deb77gz' /* Request date :  */,
                                                               ),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    color: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium
+                                                                        ?.color,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                              0.0, 8.0, 0.0, 0.0),
                                                           child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              functions
-                                                                  .changeRequestedDateFormat(
-                                                                      getJsonField(
+                                                            valueOrDefault<String>(
+                                                              functions.changeRequestedDateFormat(
+                                                                  getJsonField(
                                                                 overtimeHistoryListItem,
                                                                 r'''$.oT_Requested_Date''',
                                                               ).toString()),
                                                               'Request Date',
                                                             ),
-                                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                  fontFamily: GoogleFonts.readexPro(
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                  letterSpacing: 0.0,
+                                                                  fontWeight: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontWeight,
-                                                                  fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                  fontStyle: Theme.of(context)
+                                                                      .textTheme
+                                                                      .bodyMedium!
                                                                       .fontStyle,
                                                                 ),
                                                           ),
@@ -4269,50 +4126,49 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                       ],
                                                     ),
                                                     Divider(
-                                                      color:
-                                                          Theme.of(context).colorScheme.surface,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                     ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisSize: MainAxisSize.max,
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                          MainAxisAlignment.spaceBetween,
                                                       children: [
                                                         Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
+                                                          mainAxisSize: MainAxisSize.max,
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                  EdgeInsetsDirectional.fromSTEB(
+                                                                      10.0, 0.0, 0.0, 0.0),
                                                               child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
+                                                                FFLocalizations.of(context).getText(
                                                                   '45wfvnii' /* Approved by :  */,
                                                                 ),
-                                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: Theme.of(context).textTheme.bodyMedium!
-                                                                            .fontWeight,
-                                                                        fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                style: Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
+                                                                    .copyWith(
+                                                                      fontFamily:
+                                                                          GoogleFonts.readexPro(
+                                                                        fontWeight:
+                                                                            Theme.of(context)
+                                                                                .textTheme
+                                                                                .bodyMedium!
+                                                                                .fontWeight,
+                                                                        fontStyle: Theme.of(context)
+                                                                            .textTheme
+                                                                            .bodyMedium!
                                                                             .fontStyle,
                                                                       ),
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontSize: 12.0,
+                                                                      letterSpacing: 0.0,
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
                                                               ),
@@ -4322,22 +4178,30 @@ class _OvertimeWidgetState extends State<OvertimeWidget>
                                                                 overtimeHistoryListItem,
                                                                 r'''$.approver_Name''',
                                                               ).toString(),
-                                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                              style: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                    fontFamily:
+                                                                        GoogleFonts.readexPro(
+                                                                      fontWeight: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontWeight,
-                                                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                      fontStyle: Theme.of(context)
+                                                                          .textTheme
+                                                                          .bodyMedium!
                                                                           .fontStyle,
                                                                     ),
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontSize: 12.0,
+                                                                    letterSpacing: 0.0,
+                                                                    fontWeight: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontWeight,
-                                                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
+                                                                    fontStyle: Theme.of(context)
+                                                                        .textTheme
+                                                                        .bodyMedium!
                                                                         .fontStyle,
                                                                   ),
                                                             ),

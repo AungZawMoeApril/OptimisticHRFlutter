@@ -34,16 +34,16 @@ class _ContactStaffWidgetState extends State<ContactStaffWidget> {
     try {
       // TODO: Implement staff list loading logic
       await Future.delayed(const Duration(seconds: 1)); // Simulated API call
-      
+
       if (!mounted) return;
-      
+
       setState(() {
         // TODO: Update staffList with actual data
         staffList = [];
       });
     } catch (e) {
       if (!mounted) return;
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error loading staff list: ${e.toString()}'),

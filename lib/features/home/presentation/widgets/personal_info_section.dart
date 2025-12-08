@@ -37,17 +37,17 @@ class PersonalInfoSection extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Name Section  
+              // Name Section
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
                 child: Text(
                   _buildDisplayName(personalInfo),
                   textAlign: TextAlign.start,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontFamily: GoogleFonts.readexPro().fontFamily,
-                    fontSize: 14.0,
-                    letterSpacing: 0.0,
-                  ),
+                        fontFamily: GoogleFonts.readexPro().fontFamily,
+                        fontSize: 14.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
 
@@ -57,11 +57,11 @@ class PersonalInfoSection extends StatelessWidget {
                 child: Text(
                   personalInfo.departmentName,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontFamily: GoogleFonts.readexPro().fontFamily,
-                    color: AppColors.greyTitle,
-                    fontSize: 12.0,
-                    letterSpacing: 0.0,
-                  ),
+                        fontFamily: GoogleFonts.readexPro().fontFamily,
+                        color: AppColors.greyTitle,
+                        fontSize: 12.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
             ],

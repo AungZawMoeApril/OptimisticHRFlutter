@@ -58,8 +58,7 @@ class HomePage extends StatelessWidget {
                   ),
 
                   // Personal Info Section
-                  if (provider.personalInfo != null)
-                    const PersonalInfoSection(),
+                  if (provider.personalInfo != null) const PersonalInfoSection(),
 
                   // Attendance Status Section
                   if (provider.attendanceStatus != null)

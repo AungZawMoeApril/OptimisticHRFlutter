@@ -57,8 +57,7 @@ class BalanceDaysStruct extends BaseStruct {
   int get availablDays => _availablDays ?? 0;
   set availablDays(int? val) => _availablDays = val;
 
-  void incrementAvailablDays(int amount) =>
-      availablDays = availablDays + amount;
+  void incrementAvailablDays(int amount) => availablDays = availablDays + amount;
 
   bool hasAvailablDays() => _availablDays != null;
 
@@ -78,8 +77,7 @@ class BalanceDaysStruct extends BaseStruct {
 
   bool hasApproveName() => _approveName != null;
 
-  static BalanceDaysStruct fromMap(Map<String, dynamic> data) =>
-      BalanceDaysStruct(
+  static BalanceDaysStruct fromMap(Map<String, dynamic> data) => BalanceDaysStruct(
         timeOffID: castToType<int>(data['timeOff_ID']),
         timeoffTypeEN: data['timeoff_TypeEN'] as String?,
         timeoffTypeTH: data['timeoff_TypeTH'] as String?,
@@ -89,9 +87,8 @@ class BalanceDaysStruct extends BaseStruct {
         approveName: data['approve_Name'] as String?,
       );
 
-  static BalanceDaysStruct? maybeFromMap(dynamic data) => data is Map
-      ? BalanceDaysStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static BalanceDaysStruct? maybeFromMap(dynamic data) =>
+      data is Map ? BalanceDaysStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'timeOff_ID': _timeOffID,
@@ -135,8 +132,7 @@ class BalanceDaysStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static BalanceDaysStruct fromSerializableMap(Map<String, dynamic> data) =>
-      BalanceDaysStruct(
+  static BalanceDaysStruct fromSerializableMap(Map<String, dynamic> data) => BalanceDaysStruct(
         timeOffID: deserializeParam(
           data['timeOff_ID'],
           ParamType.int,

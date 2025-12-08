@@ -11,12 +11,10 @@ class OvertimeRequestMainWidget extends StatefulWidget {
   static String routePath = '/overtimeRequestMain';
 
   @override
-  State<OvertimeRequestMainWidget> createState() =>
-      _OvertimeRequestMainWidgetState();
+  State<OvertimeRequestMainWidget> createState() => _OvertimeRequestMainWidgetState();
 }
 
-class _OvertimeRequestMainWidgetState
-    extends State<OvertimeRequestMainWidget> {
+class _OvertimeRequestMainWidgetState extends State<OvertimeRequestMainWidget> {
   late OvertimeRequestMainModel _model;
 
   @override

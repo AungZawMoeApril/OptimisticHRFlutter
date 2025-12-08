@@ -8,8 +8,7 @@ class DeleteLeaveRequestWidget extends StatefulWidget {
   const DeleteLeaveRequestWidget({super.key});
 
   @override
-  State<DeleteLeaveRequestWidget> createState() =>
-      _DeleteLeaveRequestWidgetState();
+  State<DeleteLeaveRequestWidget> createState() => _DeleteLeaveRequestWidgetState();
 }
 
 class _DeleteLeaveRequestWidgetState extends State<DeleteLeaveRequestWidget> {

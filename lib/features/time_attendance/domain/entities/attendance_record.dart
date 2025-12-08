@@ -24,6 +24,5 @@ class AttendanceRecord with _$AttendanceRecord {
     DateTime? updatedAt,
   }) = _AttendanceRecord;
 
-  factory AttendanceRecord.fromJson(Map<String, dynamic> json) =>
-      _$AttendanceRecordFromJson(json);
+  factory AttendanceRecord.fromJson(Map<String, dynamic> json) => _$AttendanceRecordFromJson(json);
 }

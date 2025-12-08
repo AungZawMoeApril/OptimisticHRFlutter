@@ -104,8 +104,10 @@ class StorageMigrationManager {
       // Write to new storage
       await StorageManager.setValue(StorageManager.settingsBox, 'language', language ?? 'en');
       await StorageManager.setValue(StorageManager.settingsBox, 'theme', theme ?? 'light');
-      await StorageManager.setValue(StorageManager.settingsBox, 'notifications_enabled', notifications == 'true');
-      await StorageManager.setValue(StorageManager.settingsBox, 'biometric_enabled', biometric == 'true');
+      await StorageManager.setValue(
+          StorageManager.settingsBox, 'notifications_enabled', notifications == 'true');
+      await StorageManager.setValue(
+          StorageManager.settingsBox, 'biometric_enabled', biometric == 'true');
 
       // Clean up old data
       await _secureStorage.delete(key: 'settings_language');
@@ -126,7 +128,7 @@ class StorageMigrationManager {
       }
 
       progress?.startMigration();
-      
+
       // Migrate all data types
       progress?.updateProgress('Migrating authentication data...', 0.25);
       await migrateAuthData();

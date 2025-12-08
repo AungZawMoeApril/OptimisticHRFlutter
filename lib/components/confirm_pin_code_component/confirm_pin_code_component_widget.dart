@@ -8,12 +8,10 @@ class ConfirmPinCodeComponentWidget extends StatefulWidget {
   const ConfirmPinCodeComponentWidget({super.key});
 
   @override
-  State<ConfirmPinCodeComponentWidget> createState() =>
-      _ConfirmPinCodeComponentWidgetState();
+  State<ConfirmPinCodeComponentWidget> createState() => _ConfirmPinCodeComponentWidgetState();
 }
 
-class _ConfirmPinCodeComponentWidgetState
-    extends State<ConfirmPinCodeComponentWidget> {
+class _ConfirmPinCodeComponentWidgetState extends State<ConfirmPinCodeComponentWidget> {
   late ConfirmPinCodeComponentModel _model;
 
   @override

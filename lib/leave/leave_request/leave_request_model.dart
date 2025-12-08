@@ -30,7 +30,7 @@ class LeaveRequestModel extends FlutterFlowModel<LeaveRequestWidget> {
   ApiCallResponse? addNotificationInfoMobResult;
   int? wfID;
   int? senderID;
-  
+
   /// State fields for form values
   int? ddlLeaveTypeValue;
   FormFieldController<int>? ddlLeaveTypeValueController;
@@ -43,28 +43,28 @@ class LeaveRequestModel extends FlutterFlowModel<LeaveRequestWidget> {
   DateTime? datePicked4;
   DateTime? datePicked5;
   DateTime? datePicked6;
-  
+
   /// State fields for TextFields
   FocusNode? txtDescriptionFocusNode;
   TextEditingController? txtDescriptionTextController;
   String? Function(BuildContext, String?)? txtDescriptionTextControllerValidator;
-  
+
   /// State fields for file uploads
   List<FFUploadedFile> uploadedFiles = [];
   bool isDataUploading_uploadDataleave = false;
   FFUploadedFile? uploadedLocalFile_uploadDataleave;
   ApiCallResponse? apiResultGetCheckinImageURL;
   List<String> attachmentModel = [];
-  
+
   /// Methods for managing attachment list
   void addToAttachmentModel(String item) {
     attachmentModel.add(item);
   }
-  
+
   void removeFromAttachmentModel(String item) {
     attachmentModel.remove(item);
   }
-  
+
   @override
   void initState(BuildContext context) {
     super.initState(context);

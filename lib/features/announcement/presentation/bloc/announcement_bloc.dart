@@ -6,17 +6,17 @@ import 'announcement_state.dart';
 /// The actual bloc implementation requires flutter_bloc package
 class AnnouncementBloc {
   AnnouncementState _state = AnnouncementInitial();
-  
+
   AnnouncementState get state => _state;
-  
+
   AnnouncementBloc(dynamic repository);
-  
+
   void add(AnnouncementEvent event) {
     // Stub implementation
   }
-  
+
   Stream<AnnouncementState> get stream => Stream.value(_state);
-  
+
   void close() {
     // Stub implementation
   }

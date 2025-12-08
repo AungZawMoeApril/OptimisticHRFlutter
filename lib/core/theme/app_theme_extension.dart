@@ -19,15 +19,15 @@ extension BuildContextExtension on BuildContext {
 // FlutterFlow localization stub
 class FFLocalizations {
   final Locale locale;
-  
+
   FFLocalizations(this.locale);
-  
+
   static FFLocalizations of(BuildContext context) {
     return FFLocalizations(Localizations.localeOf(context));
   }
-  
+
   String get languageCode => locale.languageCode;
-  
+
   String getText(String key, [String? fallback]) {
     // Return fallback text from comments or empty string
     // In a real app, this would look up translations
@@ -88,7 +88,8 @@ dynamic serializeParam(
 }
 
 extension NavigationExtension on BuildContext {
-  Future<T?> pushNamed<T>(String routeName, {Map<String, dynamic>? queryParameters, Object? extra}) {
+  Future<T?> pushNamed<T>(String routeName,
+      {Map<String, dynamic>? queryParameters, Object? extra}) {
     // Use Navigator.pushNamed or go_router
     return Navigator.of(this).pushNamed<T>(routeName, arguments: queryParameters);
   }
@@ -97,7 +98,7 @@ extension NavigationExtension on BuildContext {
 // FlutterFlow TextStyle override extension
 extension TextStyleExtension on TextStyle {
   TextStyle override({
-    TextStyle? font,  // FlutterFlow uses 'font' to pass a complete TextStyle
+    TextStyle? font, // FlutterFlow uses 'font' to pass a complete TextStyle
     FontWeight? fontWeight,
     FontStyle? fontStyle,
     Color? color,
@@ -118,7 +119,7 @@ extension TextStyleExtension on TextStyle {
       fontFamily: fontFamily ?? (font != null ? font.fontFamily : this.fontFamily),
     );
   }
-  
+
   // Add copyWith that also accepts 'font' parameter for FlutterFlow compatibility
   TextStyle copyWithFont({
     TextStyle? font,

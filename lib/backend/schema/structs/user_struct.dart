@@ -36,8 +36,7 @@ class UserStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static UserStruct fromSerializableMap(Map<String, dynamic> data) =>
-      UserStruct(
+  static UserStruct fromSerializableMap(Map<String, dynamic> data) => UserStruct(
         token: deserializeParam(
           data['token'],
           ParamType.String,

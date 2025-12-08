@@ -11,7 +11,7 @@ class CustomAuthManager extends ChangeNotifier {
   final _authStateController = StreamController<bool>.broadcast();
 
   Stream<bool> get authStateChanges => _authStateController.stream;
-  
+
   bool get isAuthenticated => _authToken != null;
   String? get authToken => _authToken;
   Map<String, dynamic>? get userData => _userData;

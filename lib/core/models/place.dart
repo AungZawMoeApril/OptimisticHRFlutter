@@ -33,18 +33,17 @@ class Place {
   )''';
 
   Map<String, dynamic> toMap() => {
-    'latLng': latLng.toMap(),
-    'name': name,
-    'address': address,
-    'placeId': placeId,
-    'city': city,
-    'state': state,
-    'country': country,
-    'zipCode': zipCode,
-  };
+        'latLng': latLng.toMap(),
+        'name': name,
+        'address': address,
+        'placeId': placeId,
+        'city': city,
+        'state': state,
+        'country': country,
+        'zipCode': zipCode,
+      };
 
-  static Place? fromMap(Map<String, dynamic>? data) =>
-    data == null
+  static Place? fromMap(Map<String, dynamic>? data) => data == null
       ? null
       : Place(
           latLng: LatLng.fromMap(data['latLng'] as Map<String, dynamic>)!,
@@ -69,12 +68,11 @@ class LatLng {
   String toString() => '($latitude, $longitude)';
 
   Map<String, dynamic> toMap() => {
-    'latitude': latitude,
-    'longitude': longitude,
-  };
+        'latitude': latitude,
+        'longitude': longitude,
+      };
 
-  static LatLng? fromMap(Map<String, dynamic>? data) =>
-    data == null
+  static LatLng? fromMap(Map<String, dynamic>? data) => data == null
       ? null
       : LatLng(
           data['latitude'] as double,

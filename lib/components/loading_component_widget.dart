@@ -8,8 +8,7 @@ class LoadingComponentWidget extends StatefulWidget {
   const LoadingComponentWidget({super.key});
 
   @override
-  State<LoadingComponentWidget> createState() =>
-      _LoadingComponentWidgetState();
+  State<LoadingComponentWidget> createState() => _LoadingComponentWidgetState();
 }
 
 class _LoadingComponentWidgetState extends State<LoadingComponentWidget> {

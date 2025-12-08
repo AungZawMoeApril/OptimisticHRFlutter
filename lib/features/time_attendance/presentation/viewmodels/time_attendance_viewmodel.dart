@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 
 class TimeAttendanceViewModel extends BaseViewModel {
   final TimeAttendanceRepository _repository;
-  
+
   TimeAttendanceViewModel(this._repository);
 
   AttendanceRecord? _todayAttendance;

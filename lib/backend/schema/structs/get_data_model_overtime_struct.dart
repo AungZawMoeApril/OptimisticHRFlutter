@@ -314,9 +314,8 @@ class GetDataModelOvertimeStruct extends BaseStruct {
         workFlowName: data['workFlow_Name'] as String?,
       );
 
-  static GetDataModelOvertimeStruct? maybeFromMap(dynamic data) => data is Map
-      ? GetDataModelOvertimeStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static GetDataModelOvertimeStruct? maybeFromMap(dynamic data) =>
+      data is Map ? GetDataModelOvertimeStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'approver_ID': _approverID,
@@ -470,8 +469,7 @@ class GetDataModelOvertimeStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static GetDataModelOvertimeStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static GetDataModelOvertimeStruct fromSerializableMap(Map<String, dynamic> data) =>
       GetDataModelOvertimeStruct(
         approverID: deserializeParam(
           data['approver_ID'],

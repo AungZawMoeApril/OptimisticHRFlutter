@@ -36,7 +36,7 @@ class AnnouncementRemoteDataSourceImpl implements AnnouncementRemoteDataSource {
       final details = MainGroup.getCustomerWebCall.announcementDetail(result.jsonBody);
       final images = MainGroup.getCustomerWebCall.announcementImage(result.jsonBody);
       final dates = MainGroup.getCustomerWebCall.announcementCreatedDate(result.jsonBody);
-      
+
       if (titles.isEmpty) {
         throw Exception('Failed to load announcements');
       }
@@ -48,7 +48,7 @@ class AnnouncementRemoteDataSourceImpl implements AnnouncementRemoteDataSource {
           title: titles[i],
           detail: details[i],
           image: images[i],
-          name: 'Admin', 
+          name: 'Admin',
           date: DateTime.tryParse(dates[i]) ?? DateTime.now(),
           isRead: false,
         ),

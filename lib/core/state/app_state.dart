@@ -15,9 +15,9 @@ class AppState with ChangeNotifier {
   late final TimeTrackingStateNotifier timeTracking;
   late final LeaveStateNotifier leave;
   late final OvertimeStateNotifier overtime;
-  
+
   bool _initialized = false;
-  
+
   // Personal info fields for compatibility
   String? _prefix;
   String? _email;
@@ -28,62 +28,62 @@ class AppState with ChangeNotifier {
   String? _token;
   int? _companyID;
   int? _employeeID;
-  
+
   // Getters and setters
   String? get prefix => _prefix;
   set prefix(String? value) {
     _prefix = value;
     notifyListeners();
   }
-  
+
   String? get email => _email;
   set email(String? value) {
     _email = value;
     notifyListeners();
   }
-  
+
   String? get departmentName => _departmentName;
   set departmentName(String? value) {
     _departmentName = value;
     notifyListeners();
   }
-  
+
   String? get phone => _phone;
   set phone(String? value) {
     _phone = value;
     notifyListeners();
   }
-  
+
   String? get hiredDate => _hiredDate;
   set hiredDate(String? value) {
     _hiredDate = value;
     notifyListeners();
   }
-  
+
   String? get nickName => _nickName;
   set nickName(String? value) {
     _nickName = value;
     notifyListeners();
   }
-  
+
   String? get token => _token;
   set token(String? value) {
     _token = value;
     notifyListeners();
   }
-  
+
   int? get companyID => _companyID;
   set companyID(int? value) {
     _companyID = value;
     notifyListeners();
   }
-  
+
   int? get employeeID => _employeeID;
   set employeeID(int? value) {
     _employeeID = value;
     notifyListeners();
   }
-  
+
   // Additional compatibility fields
   String? _timeType;
   String? get timeType => _timeType;
@@ -91,7 +91,7 @@ class AppState with ChangeNotifier {
     _timeType = value;
     notifyListeners();
   }
-  
+
   String? _timezoneOffset;
   String? get timezoneOffset => _timezoneOffset;
   set timezoneOffset(String? value) {

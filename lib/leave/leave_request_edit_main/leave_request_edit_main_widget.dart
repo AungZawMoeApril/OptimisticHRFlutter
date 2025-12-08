@@ -23,12 +23,10 @@ class LeaveRequestEditMainWidget extends StatefulWidget {
   static const String routePath = '/leaveRequestEditMain';
 
   @override
-  State<LeaveRequestEditMainWidget> createState() =>
-      _LeaveRequestEditMainWidgetState();
+  State<LeaveRequestEditMainWidget> createState() => _LeaveRequestEditMainWidgetState();
 }
 
-class _LeaveRequestEditMainWidgetState
-    extends State<LeaveRequestEditMainWidget> {
+class _LeaveRequestEditMainWidgetState extends State<LeaveRequestEditMainWidget> {
   late LeaveRequestEditMainModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();

@@ -70,9 +70,9 @@ class _ContactStaffPageState extends State<ContactStaffPage> {
             title: Text(
               'Contact Staff',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: 22,
-              ),
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: 22,
+                  ),
             ),
             centerTitle: true,
             elevation: 2,

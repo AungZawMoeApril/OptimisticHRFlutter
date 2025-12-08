@@ -53,9 +53,8 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
       if (response.statusCode == 200) {
         final data = response.data['data'] as List;
         setState(() {
-          _model.monthViewTimeAttendance = data
-              .map((item) => TimeAttendanceList.fromJson(item))
-              .toList();
+          _model.monthViewTimeAttendance =
+              data.map((item) => TimeAttendanceList.fromJson(item)).toList();
         });
       }
     } catch (e) {
@@ -77,7 +76,7 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: const Color(0xFFEDEDED),
@@ -170,13 +169,11 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
   Widget _buildLastWeekList() {
     final now = DateTime.now();
     final lastWeek = now.subtract(const Duration(days: 7));
-    final lastWeekAttendance = _model.monthViewTimeAttendance
-        .where((e) => e.remark != 'Holiday')
-        .where((e) {
-          final date = DateFormat('yyyy-MM-dd').parse(e.timeEntryDate);
-          return date.isAfter(lastWeek) && date.isBefore(now);
-        })
-        .toList();
+    final lastWeekAttendance =
+        _model.monthViewTimeAttendance.where((e) => e.remark != 'Holiday').where((e) {
+      final date = DateFormat('yyyy-MM-dd').parse(e.timeEntryDate);
+      return date.isAfter(lastWeek) && date.isBefore(now);
+    }).toList();
 
     return ListView.builder(
       padding: EdgeInsets.zero,
@@ -191,12 +188,10 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
   Widget _buildThisWeekList() {
     final now = DateTime.now();
     final weekStart = now.subtract(Duration(days: now.weekday - 1));
-    final thisWeekAttendance = _model.monthViewTimeAttendance
-        .where((e) {
-          final date = DateFormat('yyyy-MM-dd').parse(e.timeEntryDate);
-          return date.isAfter(weekStart) && date.isBefore(now.add(const Duration(days: 1)));
-        })
-        .toList();
+    final thisWeekAttendance = _model.monthViewTimeAttendance.where((e) {
+      final date = DateFormat('yyyy-MM-dd').parse(e.timeEntryDate);
+      return date.isAfter(weekStart) && date.isBefore(now.add(const Duration(days: 1)));
+    }).toList();
 
     return ListView.builder(
       padding: EdgeInsets.zero,
@@ -209,9 +204,8 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
   }
 
   Widget _buildMonthList() {
-    final monthAttendance = _model.monthViewTimeAttendance
-      .where((e) => e.remark != 'Holiday')
-      .toList();
+    final monthAttendance =
+        _model.monthViewTimeAttendance.where((e) => e.remark != 'Holiday').toList();
 
     return ListView.builder(
       padding: EdgeInsets.zero,
@@ -234,8 +228,8 @@ class _TimeAttendanceListWidgetState extends State<TimeAttendanceListWidget>
             child: Text(
               AppUtils.formatTimeEntriesDate(item.timeEntryDate),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFFF9B052),
-              ),
+                    color: const Color(0xFFF9B052),
+                  ),
             ),
           ),
         ),

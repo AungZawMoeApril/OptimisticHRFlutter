@@ -1,12 +1,13 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
+import '../../core/theme/app_theme_extension.dart';
+import '../../core/widgets/app_widgets.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/on_site_detail_list/on_site_detail_list_widget.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
-import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
+import '../../core/widgets/app_icon_button.dart';
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
+import '../../core/widgets/app_button.dart';
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'
+    as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,6 +17,13 @@ import 'package:provider/provider.dart';
 import 'on_site_model.dart';
 export 'on_site_model.dart';
 
+
+// FFLocalizations stub
+class FFLocalizations {
+  static FFLocalizations of(BuildContext context) => FFLocalizations();
+  String getText(String key, [String? fallback]) => fallback ?? key;
+  String get languageCode => 'en';
+}
 class OnSiteWidget extends StatefulWidget {
   const OnSiteWidget({super.key});
 
@@ -75,7 +83,6 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<AppState>();
 
     return FutureBuilder<ApiCallResponse>(
       future: MainGroup.getTimeAttendanceListMobileCall.call(
@@ -112,7 +119,8 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
             key: scaffoldKey,
             backgroundColor: Color(0xFFF6F6F6),
             appBar: AppBar(
-              backgroundColor: Theme.of(context).colorScheme.secondaryBackground,
+              backgroundColor:
+                  Theme.of(context).colorScheme.surface,
               automaticallyImplyLeading: false,
               leading: AppIconButton(
                 borderColor: Colors.transparent,
@@ -121,7 +129,7 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                 buttonSize: 60.0,
                 icon: FaIcon(
                   FontAwesomeIcons.angleLeft,
-                  color: Theme.of(context).colorScheme.secondaryText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   size: 30.0,
                 ),
                 onPressed: () async {
@@ -136,20 +144,24 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                 FFLocalizations.of(context).getText(
                   'csrhv0qr' /* On-site */,
                 ),
-                style: Theme.of(context).textTheme.$1?.copyWith(
-                      font: GoogleFonts.outfit(
-                        fontWeight: Theme.of(context).textTheme.headlineMedium!
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
                             .fontWeight,
-                        fontStyle: Theme.of(context).textTheme.headlineMedium!
+                        fontStyle: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
                             .fontStyle,
                       ),
-                      color: Theme.of(context).colorScheme.secondaryText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontSize: 22.0,
                       letterSpacing: 0.0,
-                      fontWeight: Theme.of(context).textTheme.headlineMedium!
+                      fontWeight: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
                           .fontWeight,
-                      fontStyle:
-                          context.headlineMedium.fontStyle,
+                      fontStyle: Theme.of(context).textTheme.headlineMedium.fontStyle,
                     ),
               ),
               actions: [],
@@ -173,12 +185,7 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
 
                           Navigator.of(context).pushNamed(
                             CheckInOverAllWidget.routeName,
-                            queryParameters: {
-                              'timeType': serializeParam(
-                                AppState().timeType,
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
+                            /* TODO: Fix navigation */.withoutNulls,
                           );
                         },
                         text: FFLocalizations.of(context).getText(
@@ -192,21 +199,27 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: Color(0xFFF9B052),
-                          textStyle:
-                              Theme.of(context).textTheme.$1?.copyWith(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: Theme.of(context).textTheme.titleSmall!
-                                          .fontWeight,
-                                      fontStyle: Theme.of(context).textTheme.titleSmall!
-                                          .fontStyle,
-                                    ),
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    fontWeight: Theme.of(context).textTheme.titleSmall!
-                                        .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.titleSmall!
-                                        .fontStyle,
-                                  ),
+                          textStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .fontWeight,
+                                  fontStyle: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .fontStyle,
+                                ),
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                                fontWeight: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .fontWeight,
+                                fontStyle: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .fontStyle,
+                              ),
                           elevation: 3.0,
                           borderSide: BorderSide(
                             color: Colors.transparent,
@@ -240,18 +253,20 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                           FFLocalizations.of(context).getText(
                             '1rayouze' /* History */,
                           ),
-                          style:
-                              Theme.of(context).textTheme.$1?.copyWith(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: FontWeight.w800,
-                                      fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w800,
-                                    fontStyle: Theme.of(context).textTheme.bodyMedium!
-                                        .fontStyle,
-                                  ),
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: FontWeight.w800,
+                                  fontStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .fontStyle,
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w800,
+                                fontStyle: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .fontStyle,
+                              ),
                         ),
                       ),
                     ],
@@ -263,25 +278,34 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                           alignment: Alignment(0.0, 0),
                           child: FlutterFlowButtonTabBar(
                             useToggleButtonStyle: true,
-                            labelStyle: Theme.of(context).textTheme.titleMedium!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.titleMedium!
+                            labelStyle: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
                                         .fontWeight,
-                                    fontStyle: Theme.of(context).textTheme.titleMedium!
+                                    fontStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
-                                  fontWeight: Theme.of(context).textTheme.titleMedium!
+                                  fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
                                       .fontWeight,
-                                  fontStyle: Theme.of(context).textTheme.titleMedium!
+                                  fontStyle: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
                                       .fontStyle,
                                 ),
                             unselectedLabelStyle: TextStyle(),
                             labelColor:
-                                Theme.of(context).colorScheme.primaryText,
+                                Theme.of(context).colorScheme.onSurface,
                             unselectedLabelColor:
-                                Theme.of(context).colorScheme.secondaryText,
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                             backgroundColor: Color(0xFFBDBDBD),
                             unselectedBackgroundColor:
                                 Theme.of(context).colorScheme.surface,
@@ -362,24 +386,38 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                                                       ).toString()),
                                                       'date',
                                                     ),
-                                                    style: Theme.of(context).textTheme.bodyMedium!
-                                                        .override(
-                                                          font: GoogleFonts
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                                fontFamily: GoogleFonts
                                                               .readexPro(
                                                             fontWeight:
-                                                                Theme.of(context).textTheme.bodyMedium!
+                                                                Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium!
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                Theme.of(context).textTheme.bodyMedium!
-                                                                    .fontStyle,
+                                                            fontStyle: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .fontStyle,
                                                           ),
-                                                          color: Theme.of(context).colorScheme.primary,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .primary,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              Theme.of(context).textTheme.bodyMedium!
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
                                                                   .fontWeight,
                                                           fontStyle:
-                                                              Theme.of(context).textTheme.bodyMedium!
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
                                                                   .fontStyle,
                                                         ),
                                                   ),
@@ -468,25 +506,34 @@ class _OnSiteWidgetState extends State<OnSiteWidget>
                                                   ).toString()),
                                                   'date',
                                                 ),
-                                                style: Theme.of(context).textTheme.bodyMedium!
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            Theme.of(context).textTheme.bodyMedium!
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
                                                                 .fontWeight,
                                                         fontStyle:
-                                                            Theme.of(context).textTheme.bodyMedium!
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .bodyMedium!
                                                                 .fontStyle,
                                                       ),
-                                                      color:
-                                                          Theme.of(context).colorScheme.primary,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primary,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
                                                       fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
                                                     ),
                                               ),

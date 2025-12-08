@@ -8,12 +8,10 @@ class MyApprovalPendingRejectWidget extends StatefulWidget {
   const MyApprovalPendingRejectWidget({super.key});
 
   @override
-  State<MyApprovalPendingRejectWidget> createState() =>
-      _MyApprovalPendingRejectWidgetState();
+  State<MyApprovalPendingRejectWidget> createState() => _MyApprovalPendingRejectWidgetState();
 }
 
-class _MyApprovalPendingRejectWidgetState
-    extends State<MyApprovalPendingRejectWidget> {
+class _MyApprovalPendingRejectWidgetState extends State<MyApprovalPendingRejectWidget> {
   late MyApprovalPendingRejectModel _model;
 
   @override

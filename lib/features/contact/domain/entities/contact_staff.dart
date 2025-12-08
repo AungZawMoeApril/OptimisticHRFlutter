@@ -9,7 +9,7 @@ class ContactStaff extends Equatable {
   final String email;
   final String phone;
   final String? photoUrl;
-  
+
   // Additional properties for compatibility
   String get imageUrl => photoUrl ?? '';
   String get prefix => name.split(' ').firstOrNull ?? '';

@@ -32,18 +32,18 @@ class _AttendancePageState extends State<AttendancePage> {
 
     final provider = context.read<CheckInOutProvider>();
     await provider.getCurrentDayRecord(employeeId);
-    
+
     // Load last month's attendance history
     final now = DateTime.now();
     final startDate = DateTime(now.year, now.month - 1, 1);
     final endDate = DateTime(now.year, now.month, 0);
-    
+
     await provider.getAttendanceHistory(
       employeeId: employeeId,
       startDate: startDate,
       endDate: endDate,
     );
-    
+
     await provider.getAttendanceStats(
       employeeId: employeeId,
       startDate: startDate,
@@ -202,9 +202,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                     ),
                                   )
                                 : Text(
-                                    provider.canCheckOut
-                                        ? 'Check Out'
-                                        : 'Check In',
+                                    provider.canCheckOut ? 'Check Out' : 'Check In',
                                   ),
                           ),
                         ),
@@ -215,8 +213,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 const SizedBox(height: 16),
 
                 // Attendance stats
-                if (provider.stats != null)
-                  AttendanceStatsCard(stats: provider.stats!),
+                if (provider.stats != null) AttendanceStatsCard(stats: provider.stats!),
                 const SizedBox(height: 16),
 
                 // Attendance history

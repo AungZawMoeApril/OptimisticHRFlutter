@@ -32,16 +32,16 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     try {
       // TODO: Implement notification loading logic
       await Future.delayed(const Duration(seconds: 1)); // Simulated API call
-      
+
       if (!mounted) return;
-      
+
       setState(() {
         // TODO: Update notifications with actual data
         notifications = [];
       });
     } catch (e) {
       if (!mounted) return;
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error loading notifications: ${e.toString()}'),

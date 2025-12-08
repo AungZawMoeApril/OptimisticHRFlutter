@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-
 import 'index.dart';
 import '/core/utils/flutter_flow_util.dart';
 
@@ -161,8 +160,7 @@ class CurrentOTListStruct extends BaseStruct {
 
   bool hasClockOutTime() => _clockOutTime != null;
 
-  static CurrentOTListStruct fromMap(Map<String, dynamic> data) =>
-      CurrentOTListStruct(
+  static CurrentOTListStruct fromMap(Map<String, dynamic> data) => CurrentOTListStruct(
         oTRequestID: castToType<int>(data['oT_Request_ID']),
         clockID: castToType<int>(data['clock_ID']),
         startDate: data['start_Date'] as String?,
@@ -184,9 +182,8 @@ class CurrentOTListStruct extends BaseStruct {
         clockOutTime: data['clock_Out_Time'] as String?,
       );
 
-  static CurrentOTListStruct? maybeFromMap(dynamic data) => data is Map
-      ? CurrentOTListStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static CurrentOTListStruct? maybeFromMap(dynamic data) =>
+      data is Map ? CurrentOTListStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'oT_Request_ID': _oTRequestID,
@@ -276,8 +273,7 @@ class CurrentOTListStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static CurrentOTListStruct fromSerializableMap(Map<String, dynamic> data) =>
-      CurrentOTListStruct(
+  static CurrentOTListStruct fromSerializableMap(Map<String, dynamic> data) => CurrentOTListStruct(
         oTRequestID: deserializeParam(
           data['oT_Request_ID'],
           ParamType.int,

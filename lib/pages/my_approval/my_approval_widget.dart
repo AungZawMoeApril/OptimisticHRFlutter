@@ -41,19 +41,19 @@ class _MyApprovalWidgetState extends State<MyApprovalWidget> with SingleTickerPr
 
     try {
       final appState = Provider.of<AppState>(context, listen: false);
-      
+
       // TODO: Implement approval requests loading logic
       await Future.delayed(const Duration(seconds: 1)); // Simulated API call
-      
+
       if (!mounted) return;
-      
+
       setState(() {
         // TODO: Update approvalRequests with actual data
         approvalRequests = [];
       });
     } catch (e) {
       if (!mounted) return;
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error loading approval requests: ${e.toString()}'),
@@ -122,9 +122,10 @@ class _MyApprovalWidgetState extends State<MyApprovalWidget> with SingleTickerPr
       );
     }
 
-    final filteredRequests = approvalRequests.where(
-      (request) => isPending ? request['status'] == 'pending' : request['status'] != 'pending'
-    ).toList();
+    final filteredRequests = approvalRequests
+        .where((request) =>
+            isPending ? request['status'] == 'pending' : request['status'] != 'pending')
+        .toList();
 
     if (filteredRequests.isEmpty) {
       return Center(

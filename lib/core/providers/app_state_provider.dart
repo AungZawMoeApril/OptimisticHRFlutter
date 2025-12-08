@@ -4,7 +4,7 @@ import '../storage/storage_service.dart';
 
 class AppStateProvider extends ChangeNotifier {
   final IStorageService _storage;
-  
+
   AppStateProvider(this._storage) {
     _loadPersistedState();
   }
@@ -12,25 +12,25 @@ class AppStateProvider extends ChangeNotifier {
   // Theme
   ThemeMode _themeMode = ThemeMode.system;
   ThemeMode get themeMode => _themeMode;
-  
+
   // Locale
   Locale _locale = const Locale('en');
   Locale get locale => _locale;
-  
+
   // Auth State
   String? _token;
   String? get token => _token;
   String? get authToken => _token; // Alias for compatibility
-  
+
   String? _userId;
   String? get userId => _userId;
-  
+
   String? _companyId;
   String? get companyId => _companyId;
-  
+
   String? _employeeId;
   String? get employeeId => _employeeId;
-  
+
   bool get isAuthenticated => _token != null;
   String get matchedLocation => _currentRoute;
   String _currentRoute = '/';
@@ -56,13 +56,13 @@ class AppStateProvider extends ChangeNotifier {
   // Location State
   String? _clockInTime;
   String? get clockInTime => _clockInTime;
-  
+
   String? _clockInLocation;
   String? get clockInLocation => _clockInLocation;
-  
+
   double? _clockInLatitude;
   double? get clockInLatitude => _clockInLatitude;
-  
+
   double? _clockInLongitude;
   double? get clockInLongitude => _clockInLongitude;
 
@@ -118,7 +118,7 @@ class AppStateProvider extends ChangeNotifier {
   Future<void> setAuthState({
     required String token,
     required String userId,
-    required String companyId, 
+    required String companyId,
     required String employeeId,
   }) async {
     _token = token;

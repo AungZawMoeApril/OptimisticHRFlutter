@@ -188,8 +188,7 @@ class ReqStaffOTRequestStruct extends BaseStruct {
 
   bool hasAttachments() => _attachments != null;
 
-  static ReqStaffOTRequestStruct fromMap(Map<String, dynamic> data) =>
-      ReqStaffOTRequestStruct(
+  static ReqStaffOTRequestStruct fromMap(Map<String, dynamic> data) => ReqStaffOTRequestStruct(
         requestedDate: data['requestedDate'] as String?,
         wholeDay: data['wholeDay'] as bool?,
         startDate: data['start_Date'] as String?,
@@ -210,9 +209,8 @@ class ReqStaffOTRequestStruct extends BaseStruct {
         attachments: getDataList(data['attachments']),
       );
 
-  static ReqStaffOTRequestStruct? maybeFromMap(dynamic data) => data is Map
-      ? ReqStaffOTRequestStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static ReqStaffOTRequestStruct? maybeFromMap(dynamic data) =>
+      data is Map ? ReqStaffOTRequestStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'requestedDate': _requestedDate,
@@ -312,8 +310,7 @@ class ReqStaffOTRequestStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ReqStaffOTRequestStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static ReqStaffOTRequestStruct fromSerializableMap(Map<String, dynamic> data) =>
       ReqStaffOTRequestStruct(
         requestedDate: deserializeParam(
           data['requestedDate'],

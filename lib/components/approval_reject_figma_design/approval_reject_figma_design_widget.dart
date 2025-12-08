@@ -15,12 +15,10 @@ class ApprovalRejectFigmaDesignWidget extends StatefulWidget {
   final String? status;
 
   @override
-  State<ApprovalRejectFigmaDesignWidget> createState() =>
-      _ApprovalRejectFigmaDesignWidgetState();
+  State<ApprovalRejectFigmaDesignWidget> createState() => _ApprovalRejectFigmaDesignWidgetState();
 }
 
-class _ApprovalRejectFigmaDesignWidgetState
-    extends State<ApprovalRejectFigmaDesignWidget> {
+class _ApprovalRejectFigmaDesignWidgetState extends State<ApprovalRejectFigmaDesignWidget> {
   late ApprovalRejectFigmaDesignModel _model;
 
   @override

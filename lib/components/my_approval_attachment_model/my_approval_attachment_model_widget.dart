@@ -8,12 +8,10 @@ class MyApprovalAttachmentModelWidget extends StatefulWidget {
   const MyApprovalAttachmentModelWidget({super.key});
 
   @override
-  State<MyApprovalAttachmentModelWidget> createState() =>
-      _MyApprovalAttachmentModelWidgetState();
+  State<MyApprovalAttachmentModelWidget> createState() => _MyApprovalAttachmentModelWidgetState();
 }
 
-class _MyApprovalAttachmentModelWidgetState
-    extends State<MyApprovalAttachmentModelWidget> {
+class _MyApprovalAttachmentModelWidgetState extends State<MyApprovalAttachmentModelWidget> {
   late MyApprovalAttachmentModelModel _model;
 
   @override

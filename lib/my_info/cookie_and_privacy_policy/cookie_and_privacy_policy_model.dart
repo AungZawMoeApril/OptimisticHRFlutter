@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
-part '${filename.replaceAll('.dart', '.freezed.dart')}';
-part '${filename.replaceAll('.dart', '.g.dart')}';
+part 'cookie_and_privacy_policy_model.freezed.dart';
+part 'cookie_and_privacy_policy_model.g.dart';
 
 @freezed
 class CookieAndPrivacyPolicyState with _$CookieAndPrivacyPolicyState {

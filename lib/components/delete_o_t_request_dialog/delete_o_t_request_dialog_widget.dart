@@ -10,12 +10,10 @@ class DeleteOTRequestDialogWidget extends StatefulWidget {
   final String? oTID;
 
   @override
-  State<DeleteOTRequestDialogWidget> createState() =>
-      _DeleteOTRequestDialogWidgetState();
+  State<DeleteOTRequestDialogWidget> createState() => _DeleteOTRequestDialogWidgetState();
 }
 
-class _DeleteOTRequestDialogWidgetState
-    extends State<DeleteOTRequestDialogWidget> {
+class _DeleteOTRequestDialogWidgetState extends State<DeleteOTRequestDialogWidget> {
   late DeleteOTRequestDialogModel _model;
 
   @override

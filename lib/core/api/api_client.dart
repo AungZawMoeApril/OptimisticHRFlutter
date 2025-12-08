@@ -100,12 +100,12 @@ class TimeAttendanceList {
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'timeEntry_Date': timeEntryDate,
-    'clock_In_Time': clockInTime,
-    'clock_Out_Time': clockOutTime,
-    'clock_In_Location': clockInLocation,
-    'checkIn_Status': checkInStatus,
-    'remark': remark,
-  };
+        'id': id,
+        'timeEntry_Date': timeEntryDate,
+        'clock_In_Time': clockInTime,
+        'clock_Out_Time': clockOutTime,
+        'clock_In_Location': clockInLocation,
+        'checkIn_Status': checkInStatus,
+        'remark': remark,
+      };
 }

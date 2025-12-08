@@ -1,8 +1,6 @@
-import 'package:hr_optimistic/core/theme/app_theme_extension.dart';
-import '../core/widgets/app_widgets.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import '../../core/widgets/app_widgets.dart';
+import '../../core/widgets/app_icon_button.dart';
+import '../../core/utils/app_utils.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,12 +15,10 @@ class CookieAndPrivacyPolicyWidget extends StatefulWidget {
   static String routePath = '/cookieAndPrivacyPolicy';
 
   @override
-  State<CookieAndPrivacyPolicyWidget> createState() =>
-      _CookieAndPrivacyPolicyWidgetState();
+  State<CookieAndPrivacyPolicyWidget> createState() => _CookieAndPrivacyPolicyWidgetState();
 }
 
-class _CookieAndPrivacyPolicyWidgetState
-    extends State<CookieAndPrivacyPolicyWidget> {
+class _CookieAndPrivacyPolicyWidgetState extends State<CookieAndPrivacyPolicyWidget> {
   late CookieAndPrivacyPolicyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -63,7 +59,7 @@ class _CookieAndPrivacyPolicyWidgetState
             fillColor: Theme.of(context).colorScheme.primary,
             icon: Icon(
               Icons.arrow_back_rounded,
-              color: Theme.of(context).colorScheme.primaryText,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 30.0,
             ),
             onPressed: () async {
@@ -75,19 +71,15 @@ class _CookieAndPrivacyPolicyWidgetState
               's76rgwq5' /* Cookies and Privacy Policy */,
             ),
             style: Theme.of(context).textTheme.$1?.copyWith(
-                  font: GoogleFonts.outfit(
-                    fontWeight:
-                        context.headlineMedium.fontWeight,
-                    fontStyle:
-                        context.headlineMedium.fontStyle,
-                  ),
-                  color: Theme.of(context).colorScheme.primaryText,
+                  fontFamily: GoogleFonts.outfit(
+                    fontWeight: context.headlineMedium.fontWeight,
+                    fontStyle: context.headlineMedium.fontStyle,
+                  ).fontFamily,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
-                  fontWeight:
-                      context.headlineMedium.fontWeight,
-                  fontStyle:
-                      context.headlineMedium.fontStyle,
+                  fontWeight: context.headlineMedium.fontWeight,
+                  fontStyle: context.headlineMedium.fontStyle,
                 ),
           ),
           actions: [],
@@ -110,14 +102,12 @@ class _CookieAndPrivacyPolicyWidgetState
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          15.0, 10.0, 15.0, 20.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 20.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.secondaryBackground,
+                          color: Theme.of(context).colorScheme.secondaryBackground,
                         ),
                         child: SingleChildScrollView(
                           child: Column(
@@ -136,21 +126,18 @@ class _CookieAndPrivacyPolicyWidgetState
                                       'kzwujqcr' /* Personal Information Protectio... */,
                                     ),
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.bodyMedium!
-                                        .override(
-                                          font: GoogleFonts.readexPro(
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                          fontFamily: GoogleFonts.readexPro(
                                             fontWeight: FontWeight.w500,
                                             fontStyle:
-                                                Theme.of(context).textTheme.bodyMedium!
-                                                    .fontStyle,
-                                          ),
+                                                Theme.of(context).textTheme.bodyMedium!.fontStyle,
+                                          ).fontFamily,
                                           color: AppColors.blackFontColor,
                                           fontSize: 16.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
-                                              Theme.of(context).textTheme.bodyMedium!
-                                                  .fontStyle,
+                                              Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                         ),
                                   ),
                                 ),
@@ -169,56 +156,53 @@ class _CookieAndPrivacyPolicyWidgetState
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                      alignment: AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'cylyr9ca' /* Cookies And Privacy Policy  */,
                                         ),
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
                                                 fontWeight: FontWeight.w500,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  AppColors.blackFontColor,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
+                                              color: AppColors.blackFontColor,
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'fm3dl0rm' /* When we make Optimistic availa... */,
                                         ),
                                         textAlign: TextAlign.start,
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
+                                                fontWeight: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
                                               letterSpacing: 0.0,
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ),
@@ -226,8 +210,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -237,136 +220,129 @@ class _CookieAndPrivacyPolicyWidgetState
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             '64wel5pe' /* Personal Information Protectio... */,
                                           ),
-                                          style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
                                                   fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    AppColors.blackFontColor,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
+                                                color: AppColors.blackFontColor,
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 7.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               '3etxif41' /* Fusion Solution Company Limite... */,
                                             ),
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.readexPro(
+                                                    fontWeight: FontWeight.normal,
+                                                    fontStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   color: AppColors.blackFontColor,
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'kadmxb7f' /* Fusion Solution Co., Ltd. plac... */,
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.readexPro(
+                                                    fontWeight: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontWeight,
+                                                    fontStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontWeight: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontWeight,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 5.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              await launchURL(
-                                                  'https://www.optimistic-app.com');
+                                              await launchURL('https://www.optimistic-app.com');
                                             },
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
+                                              FFLocalizations.of(context).getText(
                                                 'bgf7ogc9' /* https://www.optimistic-app.com */,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: FontWeight.normal,
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF152FC1),
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Color(0xFF152FC1),
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: FontWeight.normal,
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                  ),
+                                                        decoration: TextDecoration.underline,
+                                                      ),
                                             ),
                                           ),
                                         ),
@@ -376,23 +352,24 @@ class _CookieAndPrivacyPolicyWidgetState
                                           'llq0zv51' /* or the website owned or operat... */,
                                         ),
                                         textAlign: TextAlign.start,
-                                        style: Theme.of(context).textTheme.bodyMedium!
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
-                                              ),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                              fontFamily: GoogleFonts.readexPro(
+                                                fontWeight: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
+                                              ).fontFamily,
                                               letterSpacing: 0.0,
-                                              fontWeight:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontWeight,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .fontWeight,
                                               fontStyle:
-                                                  Theme.of(context).textTheme.bodyMedium!
-                                                      .fontStyle,
+                                                  Theme.of(context).textTheme.bodyMedium!.fontStyle,
                                             ),
                                       ),
                                     ],
@@ -400,8 +377,7 @@ class _CookieAndPrivacyPolicyWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -411,71 +387,69 @@ class _CookieAndPrivacyPolicyWidgetState
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'c19j9ymc' /* Cookie Policy  */,
                                           ),
-                                          style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
                                                   fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    AppColors.blackFontColor,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
+                                                color: AppColors.blackFontColor,
                                                 fontSize: 16.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w500,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'bbg6lyn0' /* In this policy, the term "cook... */,
                                             ),
                                             textAlign: TextAlign.start,
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
-                                                            .fontStyle,
-                                                  ),
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontFamily: GoogleFonts.readexPro(
+                                                    fontWeight: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontWeight,
+                                                    fontStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .fontStyle,
+                                                  ).fontFamily,
                                                   letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
+                                                  fontWeight: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontWeight,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
                                                 ),
                                           ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 5.0),
+                                              EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -486,60 +460,64 @@ class _CookieAndPrivacyPolicyWidgetState
                                                   'https://optimisticprd.azurewebsites.net/');
                                             },
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
+                                              FFLocalizations.of(context).getText(
                                                 'ebyaog9b' /* https://optimisticprd.azureweb... */,
                                               ),
-                                              style: Theme.of(context).textTheme.bodyMedium!
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                              style:
+                                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                        fontFamily: GoogleFonts.readexPro(
+                                                          fontWeight: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontWeight,
-                                                      fontStyle:
-                                                          Theme.of(context).textTheme.bodyMedium!
+                                                          fontStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyMedium!
                                                               .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF162DBA),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        ).fontFamily,
+                                                        color: Color(0xFF162DBA),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontWeight,
-                                                    fontStyle:
-                                                        Theme.of(context).textTheme.bodyMedium!
+                                                        fontStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
                                                             .fontStyle,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                  ),
+                                                        decoration: TextDecoration.underline,
+                                                      ),
                                             ),
                                           ),
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
                                             'm16kbt4a' /* This is typically used to spec... */,
                                           ),
                                           textAlign: TextAlign.start,
-                                          style: Theme.of(context).textTheme.bodyMedium!
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      Theme.of(context).textTheme.bodyMedium!
-                                                          .fontStyle,
-                                                ),
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                fontFamily: GoogleFonts.readexPro(
+                                                  fontWeight: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontWeight,
+                                                  fontStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .fontStyle,
+                                                ).fontFamily,
                                                 letterSpacing: 0.0,
-                                                fontWeight:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    Theme.of(context).textTheme.bodyMedium!
-                                                        .fontStyle,
+                                                fontWeight: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontWeight,
+                                                fontStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .fontStyle,
                                               ),
                                         ),
                                       ),

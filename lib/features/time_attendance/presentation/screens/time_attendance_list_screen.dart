@@ -26,7 +26,7 @@ class _TimeAttendanceListScreenState extends State<TimeAttendanceListScreen>
       length: 3,
       initialIndex: 0,
     );
-    
+
     // Load data
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<TimeAttendanceProvider>().fetchRecords();
@@ -42,7 +42,7 @@ class _TimeAttendanceListScreenState extends State<TimeAttendanceListScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(

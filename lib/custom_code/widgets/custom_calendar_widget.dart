@@ -1,7 +1,7 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions
@@ -61,10 +61,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
     final selectedDateString = DateFormat('yyyy-MM-dd').format(date);
     final selectedEvents = widget.calendarList
             ?.where((event) =>
-                (event['timeEntry_Date']
-                    ?.toString()
-                    .startsWith(selectedDateString)) ??
-                false)
+                (event['timeEntry_Date']?.toString().startsWith(selectedDateString)) ?? false)
             .toList() ??
         [];
 
@@ -142,8 +139,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
     }
 
     final firstDay = DateTime(_currentMonth.year, _currentMonth.month, 1);
-    final daysInMonth =
-        DateTime(_currentMonth.year, _currentMonth.month + 1, 0).day;
+    final daysInMonth = DateTime(_currentMonth.year, _currentMonth.month + 1, 0).day;
     final leadingEmptyDays = firstDay.weekday % 7;
     final today = DateTime.now();
 
@@ -166,8 +162,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
               itemBuilder: (context, index) {
                 if (index < leadingEmptyDays) return const SizedBox.shrink();
                 final day = index - leadingEmptyDays + 1;
-                final date =
-                    DateTime(_currentMonth.year, _currentMonth.month, day);
+                final date = DateTime(_currentMonth.year, _currentMonth.month, day);
                 final events = _events[date] ?? [];
                 final color = _eventColors[date] ?? Colors.transparent;
 
@@ -255,9 +250,7 @@ class CalendarDay extends StatelessWidget {
               : isToday
                   ? Colors.blue
                   : const Color(0xFFFFF2E3),
-          border: isSelected
-              ? Border.all(color: Colors.deepOrange, width: 2)
-              : null,
+          border: isSelected ? Border.all(color: Colors.deepOrange, width: 2) : null,
         ),
         child: Stack(
           alignment: Alignment.center,

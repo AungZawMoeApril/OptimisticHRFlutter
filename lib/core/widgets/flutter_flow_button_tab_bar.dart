@@ -51,9 +51,8 @@ class FlutterFlowButtonTabBar extends StatelessWidget {
       indicator: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(borderRadius ?? 8),
-        border: borderColor != null
-            ? Border.all(color: borderColor!, width: borderWidth ?? 1)
-            : null,
+        border:
+            borderColor != null ? Border.all(color: borderColor!, width: borderWidth ?? 1) : null,
       ),
       labelPadding: labelPadding,
       padding: padding,

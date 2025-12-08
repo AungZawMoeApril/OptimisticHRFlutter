@@ -8,10 +8,13 @@ import '/backend/api_requests/api_calls.dart';
 
 abstract class HomeRemoteDataSource {
   Future<PersonalInfoModel> getPersonalInfo(String companyId, String employeeId, String token);
-  Future<AttendanceStatus> getAttendanceStatus(String companyId, String employeeId, String token, String todayDate);
+  Future<AttendanceStatus> getAttendanceStatus(
+      String companyId, String employeeId, String token, String todayDate);
   Future<int> getNotificationCount(String companyId, String employeeId, String token);
-  Future<List<AnnouncementModel>> getAnnouncements(String companyId, String employeeId, String token);
-  Future<void> updateAttendanceStatus(String companyId, String employeeId, String token, String timeType, bool isCheckIn);
+  Future<List<AnnouncementModel>> getAnnouncements(
+      String companyId, String employeeId, String token);
+  Future<void> updateAttendanceStatus(
+      String companyId, String employeeId, String token, String timeType, bool isCheckIn);
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -35,10 +38,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
       if (result.succeeded) {
         // Parse jsonBody which is a String to Map
-        final Map<String, dynamic> jsonData = result.jsonBody is String 
-          ? json.decode(result.jsonBody!) 
-          : result.jsonBody as Map<String, dynamic>;
-        
+        final Map<String, dynamic> jsonData = result.jsonBody is String
+            ? json.decode(result.jsonBody!)
+            : result.jsonBody as Map<String, dynamic>;
+
         if (GetPersonalInfoCall.apiStatus(jsonData.toString()) == 0) {
           return PersonalInfoModel.fromJson(jsonData);
         }

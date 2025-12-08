@@ -21,6 +21,4 @@ HROptimisticMobileAuthUser? currentUser;
 BehaviorSubject<HROptimisticMobileAuthUser> hROptimisticMobileAuthUserSubject =
     BehaviorSubject.seeded(HROptimisticMobileAuthUser(loggedIn: false));
 Stream<HROptimisticMobileAuthUser> hROptimisticMobileAuthUserStream() =>
-    hROptimisticMobileAuthUserSubject
-        .asBroadcastStream()
-        .map((user) => currentUser = user);
+    hROptimisticMobileAuthUserSubject.asBroadcastStream().map((user) => currentUser = user);

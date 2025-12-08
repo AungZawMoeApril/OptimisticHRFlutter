@@ -78,8 +78,7 @@ class AppDropdown<T> extends StatelessWidget {
             icon: icon ?? const Icon(Icons.arrow_drop_down),
             isExpanded: true,
             borderRadius: BorderRadius.circular(borderRadius),
-            padding: contentPadding ??
-                const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 16.0),
           ),
         ),
       ),

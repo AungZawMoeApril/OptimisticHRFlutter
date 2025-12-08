@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-
 import 'index.dart';
 import '/core/utils/flutter_flow_util.dart';
 
@@ -38,8 +37,7 @@ class UpdateLeaveRequestStruct extends BaseStruct {
   int get timeOffRequestID => _timeOffRequestID ?? 0;
   set timeOffRequestID(int? val) => _timeOffRequestID = val;
 
-  void incrementTimeOffRequestID(int amount) =>
-      timeOffRequestID = timeOffRequestID + amount;
+  void incrementTimeOffRequestID(int amount) => timeOffRequestID = timeOffRequestID + amount;
 
   bool hasTimeOffRequestID() => _timeOffRequestID != null;
 
@@ -135,8 +133,7 @@ class UpdateLeaveRequestStruct extends BaseStruct {
 
   bool hasAttachments() => _attachments != null;
 
-  static UpdateLeaveRequestStruct fromMap(Map<String, dynamic> data) =>
-      UpdateLeaveRequestStruct(
+  static UpdateLeaveRequestStruct fromMap(Map<String, dynamic> data) => UpdateLeaveRequestStruct(
         timeOffRequestID: castToType<int>(data['time_off_RequestID']),
         timeoffID: castToType<int>(data['timeoff_ID']),
         wholeDay: data['wholeDay'] as bool?,
@@ -155,9 +152,8 @@ class UpdateLeaveRequestStruct extends BaseStruct {
         ),
       );
 
-  static UpdateLeaveRequestStruct? maybeFromMap(dynamic data) => data is Map
-      ? UpdateLeaveRequestStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static UpdateLeaveRequestStruct? maybeFromMap(dynamic data) =>
+      data is Map ? UpdateLeaveRequestStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'time_off_RequestID': _timeOffRequestID,
@@ -232,8 +228,7 @@ class UpdateLeaveRequestStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static UpdateLeaveRequestStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static UpdateLeaveRequestStruct fromSerializableMap(Map<String, dynamic> data) =>
       UpdateLeaveRequestStruct(
         timeOffRequestID: deserializeParam(
           data['time_off_RequestID'],

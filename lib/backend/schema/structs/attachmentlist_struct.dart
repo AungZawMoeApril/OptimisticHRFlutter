@@ -35,16 +35,14 @@ class AttachmentlistStruct extends BaseStruct {
 
   bool hasFiletype() => _filetype != null;
 
-  static AttachmentlistStruct fromMap(Map<String, dynamic> data) =>
-      AttachmentlistStruct(
+  static AttachmentlistStruct fromMap(Map<String, dynamic> data) => AttachmentlistStruct(
         attachmentFile: data['attachment_file'] as String?,
         filename: data['filename'] as String?,
         filetype: data['filetype'] as String?,
       );
 
-  static AttachmentlistStruct? maybeFromMap(dynamic data) => data is Map
-      ? AttachmentlistStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static AttachmentlistStruct? maybeFromMap(dynamic data) =>
+      data is Map ? AttachmentlistStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'attachment_file': _attachmentFile,
@@ -99,8 +97,7 @@ class AttachmentlistStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([attachmentFile, filename, filetype]);
+  int get hashCode => const ListEquality().hash([attachmentFile, filename, filetype]);
 }
 
 AttachmentlistStruct createAttachmentlistStruct({

@@ -18,7 +18,7 @@ class AuthRepository implements IAuthRepository {
     try {
       final tokensJson = await _storage.getValue<String>(Boxes.auth, _tokenKey);
       if (tokensJson == null) return null;
-      
+
       return TokenPair.fromJson(json.decode(tokensJson));
     } catch (e) {
       print('Error getting tokens: $e');
@@ -84,7 +84,7 @@ class AuthRepository implements IAuthRepository {
     try {
       final tokens = await getTokens();
       if (tokens == null) return false;
-      
+
       // If token is expired or will expire in next 5 minutes
       final expirationBuffer = DateTime.now().add(Duration(minutes: 5));
       return expirationBuffer.isBefore(tokens.expiresAt);

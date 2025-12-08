@@ -1,9 +1,9 @@
-import '../core/widgets/app_widgets.dart';
+import '../../core/widgets/app_widgets.dart';
 import '/backend/api_requests/api_calls.dart';
-import '../core/widgets/app_icon_button.dart';;
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
-import '../core/widgets/app_button.dart';;
+import '../../core/widgets/app_icon_button.dart';
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
+import '../../core/widgets/app_button.dart';
 import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100.0),
         child: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryBackground,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           automaticallyImplyLeading: false,
           actions: [],
           flexibleSpace: FlexibleSpaceBar(
@@ -93,7 +93,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                           buttonSize: 50.0,
                           icon: FaIcon(
                             FontAwesomeIcons.angleLeft,
-                            color: Theme.of(context).colorScheme.secondaryText,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             size: 24.0,
                           ),
                           onPressed: () async {
@@ -111,9 +111,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                             '3gxfwfqs' /* Back */,
                           ),
                           style: Theme.of(context).textTheme.displaySmall!
-                              .override(
-                                font: GoogleFonts.outfit(
-                                  fontWeight: Theme.of(context).textTheme.displaySmall!
+                              .copyWith(
+                                fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: Theme.of(context).textTheme.displaySmall!
                                       .fontWeight,
                                   fontStyle: Theme.of(context).textTheme.displaySmall!
                                       .fontStyle,
@@ -156,20 +155,19 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                   FFLocalizations.of(context).getText(
                     '899vluv2' /* Forgot Password */,
                   ),
-                  style: Theme.of(context).textTheme.$1?.copyWith(
-                        font: GoogleFonts.outfit(
-                          fontWeight: Theme.of(context).textTheme.displaySmall!
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontFamily: GoogleFonts.outfit().fontFamily, fontWeight: Theme.of(context).textTheme.displaySmall!
                               .fontWeight,
                           fontStyle: Theme.of(context).textTheme.displaySmall!
                               .fontStyle,
                         ),
-                        color: Theme.of(context).colorScheme.primaryText,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 32.0,
                         letterSpacing: 0.0,
                         fontWeight: Theme.of(context).textTheme.displaySmall!
                             .fontWeight,
                         fontStyle:
-                            context.textTheme.displaySmall.fontStyle,
+                            Theme.of(context).textTheme.displaySmall.fontStyle,
                       ),
                 ),
               ),
@@ -180,18 +178,17 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                     'oypexxu3' /* Fill the information to reset ... */,
                   ),
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.$1?.copyWith(
-                        font: GoogleFonts.readexPro(
-                          fontWeight:
-                              context.textTheme.bodySmall.fontWeight,
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight:
+                              Theme.of(context).textTheme.bodySmall.fontWeight,
                           fontStyle:
-                              context.textTheme.bodySmall.fontStyle,
+                              Theme.of(context).textTheme.bodySmall.fontStyle,
                         ),
                         letterSpacing: 0.0,
                         fontWeight:
-                            context.textTheme.bodySmall.fontWeight,
+                            Theme.of(context).textTheme.bodySmall.fontWeight,
                         fontStyle:
-                            context.textTheme.bodySmall.fontStyle,
+                            Theme.of(context).textTheme.bodySmall.fontStyle,
                       ),
                 ),
               ),
@@ -218,9 +215,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelStyle: Theme.of(context).textTheme.bodySmall!
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: Theme.of(context).textTheme.bodySmall!
+                                    .copyWith(
+                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodySmall!
                                             .fontWeight,
                                         fontStyle: Theme.of(context).textTheme.bodySmall!
                                             .fontStyle,
@@ -235,9 +231,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                   'lxcti3f6' /* Company Code */,
                                 ),
                                 hintStyle: Theme.of(context).textTheme.bodySmall!
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: Theme.of(context).textTheme.bodySmall!
+                                    .copyWith(
+                                      fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodySmall!
                                             .fontWeight,
                                         fontStyle: Theme.of(context).textTheme.bodySmall!
                                             .fontStyle,
@@ -256,9 +251,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                     20.0, 16.0, 20.0, 16.0),
                               ),
                               style: Theme.of(context).textTheme.bodyMedium!
-                                  .override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                  .copyWith(
+                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium!
                                           .fontWeight,
                                       fontStyle: Theme.of(context).textTheme.bodyMedium!
                                           .fontStyle,
@@ -280,7 +274,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                     ),
                     Divider(
                       thickness: 1.0,
-                      color: Theme.of(context).colorScheme.secondaryText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -297,9 +291,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle: Theme.of(context).textTheme.bodySmall!
-                                  .override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: Theme.of(context).textTheme.bodySmall!
+                                  .copyWith(
+                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
                                       fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
@@ -314,9 +307,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                 'dhpy0rl2' /* Username */,
                               ),
                               hintStyle: Theme.of(context).textTheme.bodySmall!
-                                  .override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: Theme.of(context).textTheme.bodySmall!
+                                  .copyWith(
+                                    fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodySmall!
                                           .fontWeight,
                                       fontStyle: Theme.of(context).textTheme.bodySmall!
                                           .fontStyle,
@@ -335,9 +327,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                   20.0, 18.0, 20.0, 16.0),
                             ),
                             style: Theme.of(context).textTheme.bodyMedium!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.bodyMedium!
                                         .fontWeight,
                                     fontStyle: Theme.of(context).textTheme.bodyMedium!
                                         .fontStyle,
@@ -358,7 +349,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                     ),
                     Divider(
                       thickness: 1.0,
-                      color: Theme.of(context).colorScheme.secondaryText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     Align(
                       alignment: AlignmentDirectional(-1.0, -1.0),
@@ -466,9 +457,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF89D1F),
                             textStyle: Theme.of(context).textTheme.titleSmall!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: Theme.of(context).textTheme.titleSmall!
+                                .copyWith(
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: Theme.of(context).textTheme.titleSmall!
                                         .fontWeight,
                                     fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
@@ -516,9 +506,8 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFFFF2E3),
                             textStyle: Theme.of(context).textTheme.titleSmall!
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: FontWeight.normal,
+                                .copyWith(
+                                  fontFamily: GoogleFonts.readexPro().fontFamily, fontWeight: FontWeight.normal,
                                     fontStyle: Theme.of(context).textTheme.titleSmall!
                                         .fontStyle,
                                   ),

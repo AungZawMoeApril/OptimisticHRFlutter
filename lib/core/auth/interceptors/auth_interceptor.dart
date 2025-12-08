@@ -69,7 +69,7 @@ class AuthInterceptor extends QueuedInterceptor {
 
   Future<void> _queueRequest(QueuedRequest request) async {
     _queue.add(request);
-    
+
     if (!_isRefreshing) {
       await _refreshTokenAndProcessQueue();
     }
@@ -160,7 +160,7 @@ class RequestHandlerWrapper implements Handler {
 
   @override
   void reject(DioException err) => handler.reject(err);
-  
+
   @override
   void resolve(Response response) => handler.resolve(response);
 }
@@ -171,7 +171,7 @@ class ErrorHandlerWrapper implements Handler {
 
   @override
   void reject(DioException err) => handler.next(err);
-  
+
   @override
   void resolve(Response response) => handler.resolve(response);
 }

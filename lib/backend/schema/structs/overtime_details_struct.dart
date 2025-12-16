@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class OvertimeDetailsStruct extends BaseStruct {
   OvertimeDetailsStruct({
@@ -84,8 +84,7 @@ class OvertimeDetailsStruct extends BaseStruct {
 
   bool hasCancelFlag() => _cancelFlag != null;
 
-  static OvertimeDetailsStruct fromMap(Map<String, dynamic> data) =>
-      OvertimeDetailsStruct(
+  static OvertimeDetailsStruct fromMap(Map<String, dynamic> data) => OvertimeDetailsStruct(
         overtime: data['overtime'] as String?,
         status: data['status'] as String?,
         overtimeDay: data['OvertimeDay'] as String?,
@@ -96,9 +95,8 @@ class OvertimeDetailsStruct extends BaseStruct {
         cancelFlag: data['cancelFlag'] as bool?,
       );
 
-  static OvertimeDetailsStruct? maybeFromMap(dynamic data) => data is Map
-      ? OvertimeDetailsStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static OvertimeDetailsStruct? maybeFromMap(dynamic data) =>
+      data is Map ? OvertimeDetailsStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'overtime': _overtime,
@@ -180,11 +178,7 @@ class OvertimeDetailsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        overtImeDescription: deserializeParam<String>(
-          data['overtImeDescription'],
-          ParamType.String,
-          true,
-        ),
+        overtImeDescription: getDataList<String>(data['overtImeDescription']),
         cancelFlag: deserializeParam(
           data['cancelFlag'],
           ParamType.bool,
@@ -210,16 +204,8 @@ class OvertimeDetailsStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode => const ListEquality().hash([
-        overtime,
-        status,
-        overtimeDay,
-        startDate,
-        endDate,
-        note,
-        overtImeDescription,
-        cancelFlag
-      ]);
+  int get hashCode => const ListEquality().hash(
+      [overtime, status, overtimeDay, startDate, endDate, note, overtImeDescription, cancelFlag]);
 }
 
 OvertimeDetailsStruct createOvertimeDetailsStruct({

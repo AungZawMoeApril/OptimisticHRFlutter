@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class RejectPendingApprovalStruct extends BaseStruct {
   RejectPendingApprovalStruct({
@@ -131,8 +131,7 @@ class RejectPendingApprovalStruct extends BaseStruct {
   int get approverOrder => _approverOrder ?? 0;
   set approverOrder(int? val) => _approverOrder = val;
 
-  void incrementApproverOrder(int amount) =>
-      approverOrder = approverOrder + amount;
+  void incrementApproverOrder(int amount) => approverOrder = approverOrder + amount;
 
   bool hasApproverOrder() => _approverOrder != null;
 
@@ -161,9 +160,8 @@ class RejectPendingApprovalStruct extends BaseStruct {
         employeeCode: data['employee_Code'] as String?,
       );
 
-  static RejectPendingApprovalStruct? maybeFromMap(dynamic data) => data is Map
-      ? RejectPendingApprovalStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static RejectPendingApprovalStruct? maybeFromMap(dynamic data) =>
+      data is Map ? RejectPendingApprovalStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'workFlow_Name': _workFlowName,
@@ -243,8 +241,7 @@ class RejectPendingApprovalStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static RejectPendingApprovalStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static RejectPendingApprovalStruct fromSerializableMap(Map<String, dynamic> data) =>
       RejectPendingApprovalStruct(
         workFlowName: deserializeParam(
           data['workFlow_Name'],
@@ -301,11 +298,7 @@ class RejectPendingApprovalStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
-        reqAttachmentlist: deserializeParam<String>(
-          data['req_Attachmentlist'],
-          ParamType.String,
-          true,
-        ),
+        reqAttachmentlist: getDataList<String>(data['req_Attachmentlist']),
         approverOrder: deserializeParam(
           data['approverOrder'],
           ParamType.int,

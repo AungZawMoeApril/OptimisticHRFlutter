@@ -1,80 +1,74 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
-import '../core/utils/app_utils.dart';;
-import 'package:hr_app/core/utils/form_field_controller.dart';
-import '/index.dart';
-import 'leave_request_widget.dart' show LeaveRequestWidget;
 import 'package:flutter/material.dart';
+import '/core/utils/app_utils.dart';
+import '/core/utils/form_field_controller.dart';
+import '/backend/api_requests/api_calls.dart';
+import 'leave_request_widget.dart' show LeaveRequestWidget;
+
+// FlutterFlow uploaded file class
+class FFUploadedFile {
+  final String? name;
+  final List<int>? bytes;
+  final int? height;
+  final int? width;
+  final String? blurHash;
+
+  FFUploadedFile({
+    this.name,
+    this.bytes,
+    this.height,
+    this.width,
+    this.blurHash,
+  });
+}
 
 class LeaveRequestModel extends FlutterFlowModel<LeaveRequestWidget> {
-  ///  Local state fields for this page.
-
-  bool isAllDay = true;
-
-  List<String> attachmentModel = [];
-  void addToAttachmentModel(String item) => attachmentModel.add(item);
-  void removeFromAttachmentModel(String item) => attachmentModel.remove(item);
-  void removeAtIndexFromAttachmentModel(int index) =>
-      attachmentModel.removeAt(index);
-  void insertAtIndexInAttachmentModel(int index, String item) =>
-      attachmentModel.insert(index, item);
-  void updateAttachmentModelAtIndex(int index, Function(String) updateFn) =>
-      attachmentModel[index] = updateFn(attachmentModel[index]);
-
-  List<BalanceDaysStruct> remainingDays = [];
-  void addToRemainingDays(BalanceDaysStruct item) => remainingDays.add(item);
-  void removeFromRemainingDays(BalanceDaysStruct item) =>
-      remainingDays.remove(item);
-  void removeAtIndexFromRemainingDays(int index) =>
-      remainingDays.removeAt(index);
-  void insertAtIndexInRemainingDays(int index, BalanceDaysStruct item) =>
-      remainingDays.insert(index, item);
-  void updateRemainingDaysAtIndex(
-          int index, Function(BalanceDaysStruct) updateFn) =>
-      remainingDays[index] = updateFn(remainingDays[index]);
-
-  int? balance;
-
-  int? availableDay = 0;
-
+  /// State fields for API calls
+  ApiCallResponse? apiResultRemainingDays;
+  ApiCallResponse? apiResultAddTimeOffRequestForEMPWholeDay;
+  ApiCallResponse? apiResultAddTimeOffRequestForEMPHalfDay;
+  ApiCallResponse? getworkFlowOfOTRequestAPI;
+  ApiCallResponse? addNotificationInfoMobResult;
   int? wfID;
-
   int? senderID;
 
-  ///  State fields for stateful widgets in this page.
-
-  // Stores action output result for [Backend Call - API (GetLeaveWithRemainingDays)] action in LeaveRequest widget.
-  ApiCallResponse? apiResultRemainingDays;
-  // State field(s) for ddlLeaveType widget.
+  /// State fields for form values
   int? ddlLeaveTypeValue;
   FormFieldController<int>? ddlLeaveTypeValueController;
+  double? balance;
+  double? availableDay;
+  bool isAllDay = true;
   DateTime? datePicked1;
   DateTime? datePicked2;
   DateTime? datePicked3;
   DateTime? datePicked4;
   DateTime? datePicked5;
-  // State field(s) for txtDescription widget.
+  DateTime? datePicked6;
+
+  /// State fields for TextFields
   FocusNode? txtDescriptionFocusNode;
   TextEditingController? txtDescriptionTextController;
-  String? Function(BuildContext, String?)?
-      txtDescriptionTextControllerValidator;
-  bool isDataUploading_uploadDataleave = false;
-  FFUploadedFile uploadedLocalFile_uploadDataleave =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String? Function(BuildContext, String?)? txtDescriptionTextControllerValidator;
 
-  // Stores action output result for [Backend Call - API (GetCheckInImageURL)] action in Column widget.
+  /// State fields for file uploads
+  List<FFUploadedFile> uploadedFiles = [];
+  bool isDataUploading_uploadDataleave = false;
+  FFUploadedFile? uploadedLocalFile_uploadDataleave;
   ApiCallResponse? apiResultGetCheckinImageURL;
-  // Stores action output result for [Backend Call - API (AddTimeOffRequestForEMPWholeDay)] action in Button widget.
-  ApiCallResponse? apiResultAddTimeOffRequestForEMPWholeDay;
-  // Stores action output result for [Backend Call - API (GetworkFlowOfOTRequest)] action in Button widget.
-  ApiCallResponse? getworkFlowOfOTRequestAPI;
-  // Stores action output result for [Backend Call - API (AddNotificationInfoMob)] action in Button widget.
-  ApiCallResponse? addNotificationInfoMobResult;
-  // Stores action output result for [Backend Call - API (AddTimeOffRequestForEMPHalfDay)] action in Button widget.
-  ApiCallResponse? apiResultAddTimeOffRequestForEMPHalfDay;
+  List<String> attachmentModel = [];
+
+  /// Methods for managing attachment list
+  void addToAttachmentModel(String item) {
+    attachmentModel.add(item);
+  }
+
+  void removeFromAttachmentModel(String item) {
+    attachmentModel.remove(item);
+  }
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    super.initState(context);
+  }
 
   @override
   void dispose() {

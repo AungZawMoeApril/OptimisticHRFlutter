@@ -10,8 +10,7 @@ class TimeAttendanceListModel {
     tabBarController?.dispose();
   }
 
-  void addToMonthViewTimeAttendance(TimeAttendanceList item) =>
-      monthViewTimeAttendance.add(item);
+  void addToMonthViewTimeAttendance(TimeAttendanceList item) => monthViewTimeAttendance.add(item);
   void removeFromMonthViewTimeAttendance(TimeAttendanceList item) =>
       monthViewTimeAttendance.remove(item);
   void removeAtIndexFromMonthViewTimeAttendance(int index) =>
@@ -22,8 +21,6 @@ class TimeAttendanceListModel {
           int index, TimeAttendanceList Function(TimeAttendanceList) updateFn) =>
       monthViewTimeAttendance[index] = updateFn(monthViewTimeAttendance[index]);
 
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
+  int get tabBarCurrentIndex => tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex => tabBarController != null ? tabBarController!.previousIndex : 0;
 }

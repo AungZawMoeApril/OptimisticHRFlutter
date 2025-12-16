@@ -193,9 +193,7 @@ class OnsiteListItem extends StatelessWidget {
   }
 
   String _formatDateRange(DateTime start, DateTime end) {
-    return start == end
-        ? _formatDate(start)
-        : '${_formatDate(start)} - ${_formatDate(end)}';
+    return start == end ? _formatDate(start) : '${_formatDate(start)} - ${_formatDate(end)}';
   }
 
   String _formatDate(DateTime date) {

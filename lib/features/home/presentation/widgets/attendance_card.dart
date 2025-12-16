@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme.dart';
 import '../providers/home_provider.dart';
 
 class AttendanceCard extends StatelessWidget {
@@ -40,8 +40,8 @@ class AttendanceCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Today's Attendance',
-                      style: Theme.of(context).textTheme.titleMedium.copyWith(
+                      "Today's Attendance",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -60,8 +60,8 @@ class AttendanceCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     'Shift: ${attendance.shiftStartTime} - ${attendance.shiftEndTime}',
-                    style: context.textTheme.bodySmall.copyWith(
-                          color: Theme.of(context).colorScheme.secondaryText,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                   ),
                 ],
@@ -77,63 +77,75 @@ class AttendanceCard extends StatelessWidget {
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
                       children: [
-                        Text(
-                          'Check In',
-                          style: context.textTheme.bodyMedium,
+                        Column(
+                          children: [
+                            Text(
+                              'Check In',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              attendance.clockInTime,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          attendance.clockInTime,
-                          style: Theme.of(context).textTheme.titleMedium,
+                        Column(
+                          children: [
+                            Text(
+                              'Check Out',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              attendance.clockOutTime,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
                         ),
                       ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'Check Out',
-                          style: context.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          attendance.clockOutTime,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            if (attendance.canCheckIn)
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: provider.isLoading ? null : provider.checkInOut,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: provider.isLoading
-                    ? const CircularProgressIndicator()
-                    : Text(
-                        attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
-                        style: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .copyWith(color: Colors.white),
-                      ),
                 ),
-              ),
-          ],
-        ),
-      ),
+                const SizedBox(height: 16),
+                if (attendance.canCheckIn)
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: provider.isLoading
+                          ? null
+                          : () async {
+                              // Implement location-based check-in/out
+                              await provider.checkInOut(
+                                isCheckIn: attendance.clockInTime == '-',
+                                latitude: 0.0,
+                                longitude: 0.0,
+                              );
+                            },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: provider.isLoading
+                          ? const CircularProgressIndicator()
+                          : Text(
+                              attendance.clockInTime == '-' ? 'Check In' : 'Check Out',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: Colors.white),
+                            ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

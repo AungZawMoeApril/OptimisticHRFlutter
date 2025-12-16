@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+/// Stub for AppLocalizations - flutter_gen not available
+class AppLocalizations {
+  static AppLocalizations? of(BuildContext context) {
+    return AppLocalizations();
+  }
+
+  String translate(String key) => key;
+}
 
 // Create an extension on BuildContext to make it easier to access translations
 extension FFLocalizationsContextExtension on BuildContext {
   AppLocalizations? get l10n => AppLocalizations.of(this);
 
-  String translate(String key) {
-    // Add your translation logic here
-    // You may want to use a proper localization system
-    return key;
-  }
+  String translate(String key) => key;
 }
 
 class FFLocalizations {

@@ -23,7 +23,7 @@ class AppRouter {
         name: 'login',
         builder: (context, state) => const LoginPageWidget(),
       ),
-      
+
       // Leave Management
       GoRoute(
         path: '/leave',
@@ -39,7 +39,7 @@ class AppRouter {
           ),
         ],
       ),
-      
+
       // Time Attendance
       GoRoute(
         path: '/attendance',
@@ -58,14 +58,14 @@ class AppRouter {
           ),
         ],
       ),
-      
+
       // Profile & Settings
       GoRoute(
         path: '/profile',
         name: 'profile',
         builder: (context, state) => const ProfileWidget(),
       ),
-      
+
       // Main Navigation
       GoRoute(
         path: '/home',
@@ -79,28 +79,28 @@ class AppRouter {
       ),
       GoRoute(
         path: '/settings',
-        name: 'settings', 
+        name: 'settings',
         builder: (context, state) => const SettingsWidget(),
       ),
     ],
     redirect: _handleRedirect,
   );
-  
+
   static String? _handleRedirect(BuildContext context, GoRouterState state) {
     final appState = context.read<AppStateProvider>();
     final bool isAuthenticated = appState.isAuthenticated;
     final bool isGoingToLogin = state.matchedLocation == '/login';
-    
+
     // If user is not authenticated and not going to login, redirect to login
     if (!isAuthenticated && !isGoingToLogin) {
       return '/login';
     }
-    
+
     // If user is authenticated and going to login, redirect to home
     if (isAuthenticated && isGoingToLogin) {
       return '/home';
     }
-    
+
     return null;
   }
 }

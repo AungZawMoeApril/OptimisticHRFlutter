@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class AddressLatLngDataModelStruct extends BaseStruct {
   AddressLatLngDataModelStruct({
@@ -46,9 +46,8 @@ class AddressLatLngDataModelStruct extends BaseStruct {
         status: data['status'] as bool?,
       );
 
-  static AddressLatLngDataModelStruct? maybeFromMap(dynamic data) => data is Map
-      ? AddressLatLngDataModelStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static AddressLatLngDataModelStruct? maybeFromMap(dynamic data) =>
+      data is Map ? AddressLatLngDataModelStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'Latitude': _latitude,
@@ -72,8 +71,7 @@ class AddressLatLngDataModelStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static AddressLatLngDataModelStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static AddressLatLngDataModelStruct fromSerializableMap(Map<String, dynamic> data) =>
       AddressLatLngDataModelStruct(
         latitude: deserializeParam(
           data['Latitude'],

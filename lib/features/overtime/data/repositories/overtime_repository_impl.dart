@@ -16,14 +16,13 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
   Future<List<OvertimeRequest>> getOvertimeRequests(String employeeId) async {
     try {
       final response = await client.get(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeByEmployee.replaceAll('{employeeId}', employeeId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeByEmployee.replaceAll('{employeeId}', employeeId)}'),
       );
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body);
-        return jsonList
-            .map((json) => OvertimeRequestModel.fromJson(json))
-            .toList();
+        return jsonList.map((json) => OvertimeRequestModel.fromJson(json)).toList();
       } else {
         throw ServerException();
       }
@@ -80,7 +79,8 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
   }) async {
     try {
       final response = await client.put(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'status': status.toString().split('.').last,
@@ -102,7 +102,8 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
   Future<void> deleteOvertimeRequest(String requestId) async {
     try {
       final response = await client.delete(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
       );
 
       if (response.statusCode != 204) {
@@ -125,7 +126,8 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
         'endDate': endDate.toIso8601String(),
       };
 
-      final uri = Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeStats.replaceAll('{employeeId}', employeeId)}')
+      final uri = Uri.parse(
+              '${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeStats.replaceAll('{employeeId}', employeeId)}')
           .replace(queryParameters: queryParams);
 
       final response = await client.get(uri);
@@ -165,9 +167,7 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body);
-        return jsonList
-            .map((json) => OvertimeRequestModel.fromJson(json))
-            .toList();
+        return jsonList.map((json) => OvertimeRequestModel.fromJson(json)).toList();
       } else {
         throw ServerException();
       }
@@ -180,7 +180,8 @@ class OvertimeRepositoryImpl implements OvertimeRepository {
   Future<OvertimeRequest> cancelOvertimeRequest(String requestId) async {
     try {
       final response = await client.put(
-        Uri.parse('${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
+        Uri.parse(
+            '${ApiEndpoints.baseUrl}${ApiEndpoints.overtimeById.replaceAll('{id}', requestId)}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'status': OvertimeStatus.cancelled.toString().split('.').last,

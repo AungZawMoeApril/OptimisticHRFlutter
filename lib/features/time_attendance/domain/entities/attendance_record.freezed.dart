@@ -44,14 +44,12 @@ mixin _$AttendanceRecord {
   /// Create a copy of AttendanceRecord
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AttendanceRecordCopyWith<AttendanceRecord> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AttendanceRecordCopyWith<AttendanceRecord> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AttendanceRecordCopyWith<$Res> {
-  factory $AttendanceRecordCopyWith(
-          AttendanceRecord value, $Res Function(AttendanceRecord) then) =
+  factory $AttendanceRecordCopyWith(AttendanceRecord value, $Res Function(AttendanceRecord) then) =
       _$AttendanceRecordCopyWithImpl<$Res, AttendanceRecord>;
   @useResult
   $Res call(
@@ -175,10 +173,9 @@ class _$AttendanceRecordCopyWithImpl<$Res, $Val extends AttendanceRecord>
 }
 
 /// @nodoc
-abstract class _$$AttendanceRecordImplCopyWith<$Res>
-    implements $AttendanceRecordCopyWith<$Res> {
-  factory _$$AttendanceRecordImplCopyWith(_$AttendanceRecordImpl value,
-          $Res Function(_$AttendanceRecordImpl) then) =
+abstract class _$$AttendanceRecordImplCopyWith<$Res> implements $AttendanceRecordCopyWith<$Res> {
+  factory _$$AttendanceRecordImplCopyWith(
+          _$AttendanceRecordImpl value, $Res Function(_$AttendanceRecordImpl) then) =
       __$$AttendanceRecordImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -205,8 +202,8 @@ abstract class _$$AttendanceRecordImplCopyWith<$Res>
 class __$$AttendanceRecordImplCopyWithImpl<$Res>
     extends _$AttendanceRecordCopyWithImpl<$Res, _$AttendanceRecordImpl>
     implements _$$AttendanceRecordImplCopyWith<$Res> {
-  __$$AttendanceRecordImplCopyWithImpl(_$AttendanceRecordImpl _value,
-      $Res Function(_$AttendanceRecordImpl) _then)
+  __$$AttendanceRecordImplCopyWithImpl(
+      _$AttendanceRecordImpl _value, $Res Function(_$AttendanceRecordImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AttendanceRecord
@@ -374,28 +371,19 @@ class _$AttendanceRecordImpl implements _AttendanceRecord {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
-            (identical(other.checkOut, checkOut) ||
-                other.checkOut == checkOut) &&
+            (identical(other.checkOut, checkOut) || other.checkOut == checkOut) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
+            (identical(other.location, location) || other.location == location) &&
+            (identical(other.latitude, latitude) || other.latitude == latitude) &&
+            (identical(other.longitude, longitude) || other.longitude == longitude) &&
             (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.checkInImage, checkInImage) ||
-                other.checkInImage == checkInImage) &&
+            (identical(other.checkInImage, checkInImage) || other.checkInImage == checkInImage) &&
             (identical(other.checkOutImage, checkOutImage) ||
                 other.checkOutImage == checkOutImage) &&
-            (identical(other.isOvertime, isOvertime) ||
-                other.isOvertime == isOvertime) &&
-            (identical(other.isOnSite, isOnSite) ||
-                other.isOnSite == isOnSite) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.isOvertime, isOvertime) || other.isOvertime == isOvertime) &&
+            (identical(other.isOnSite, isOnSite) || other.isOnSite == isOnSite) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -425,8 +413,7 @@ class _$AttendanceRecordImpl implements _AttendanceRecord {
   @override
   @pragma('vm:prefer-inline')
   _$$AttendanceRecordImplCopyWith<_$AttendanceRecordImpl> get copyWith =>
-      __$$AttendanceRecordImplCopyWithImpl<_$AttendanceRecordImpl>(
-          this, _$identity);
+      __$$AttendanceRecordImplCopyWithImpl<_$AttendanceRecordImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -455,8 +442,7 @@ abstract class _AttendanceRecord implements AttendanceRecord {
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$AttendanceRecordImpl;
 
-  factory _AttendanceRecord.fromJson(Map<String, dynamic> json) =
-      _$AttendanceRecordImpl.fromJson;
+  factory _AttendanceRecord.fromJson(Map<String, dynamic> json) = _$AttendanceRecordImpl.fromJson;
 
   @override
   String get id;

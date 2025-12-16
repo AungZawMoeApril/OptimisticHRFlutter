@@ -1,17 +1,16 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'my_info_widget.dart' show MyInfoWidget;
+import '../../core/presentation/base/base_view.dart';
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
+class MyInfoModel extends BaseViewModel {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for Switch widget.
   bool? switchValue;
 
-  @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    super.dispose();
+  }
 }

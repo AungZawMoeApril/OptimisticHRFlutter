@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class UserStruct extends BaseStruct {
   UserStruct({
@@ -36,8 +36,7 @@ class UserStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static UserStruct fromSerializableMap(Map<String, dynamic> data) =>
-      UserStruct(
+  static UserStruct fromSerializableMap(Map<String, dynamic> data) => UserStruct(
         token: deserializeParam(
           data['token'],
           ParamType.String,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';;
+import '../../../../core/theme/app_theme.dart';
 import '../providers/home_provider.dart';
 import '../widgets/personal_info_section.dart';
 
@@ -12,7 +11,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     // Access the HomeProvider
     final provider = Provider.of<HomeProvider>(context, listen: false);
-    
+
     return ChangeNotifierProvider.value(
       value: provider,
       child: Scaffold(

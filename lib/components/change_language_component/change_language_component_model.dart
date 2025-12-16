@@ -1,13 +1,7 @@
-import '../core/utils/app_utils.dart';;
-import 'change_language_component_widget.dart'
-    show ChangeLanguageComponentWidget;
 import 'package:flutter/material.dart';
 
-class ChangeLanguageComponentModel
-    extends FlutterFlowModel<ChangeLanguageComponentWidget> {
-  @override
+/// Stub model for ChangeLanguageComponent
+class ChangeLanguageComponentModel {
   void initState(BuildContext context) {}
-
-  @override
   void dispose() {}
 }

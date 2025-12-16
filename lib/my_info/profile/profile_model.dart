@@ -1,39 +1,30 @@
+import 'dart:typed_data';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '../core/utils/app_utils.dart';;
-import 'package:hr_app/core/utils/form_field_controller.dart';
-import '/index.dart';
-import 'profile_widget.dart' show ProfileWidget;
+import 'package:h_r_optimistic_mobile/core/utils/form_field_controller.dart';
+import 'package:h_r_optimistic_mobile/core/utils/upload_data.dart';
 import 'package:flutter/material.dart';
+import '../../core/presentation/base/base_view.dart';
 
-class $1Model extends BaseViewModel {
+class ProfileModel extends BaseViewModel {
   ///  Local state fields for this page.
 
   List<PaySlipListJsonStruct> paySlipListJson = [];
-  void addToPaySlipListJson(PaySlipListJsonStruct item) =>
-      paySlipListJson.add(item);
-  void removeFromPaySlipListJson(PaySlipListJsonStruct item) =>
-      paySlipListJson.remove(item);
-  void removeAtIndexFromPaySlipListJson(int index) =>
-      paySlipListJson.removeAt(index);
+  void addToPaySlipListJson(PaySlipListJsonStruct item) => paySlipListJson.add(item);
+  void removeFromPaySlipListJson(PaySlipListJsonStruct item) => paySlipListJson.remove(item);
+  void removeAtIndexFromPaySlipListJson(int index) => paySlipListJson.removeAt(index);
   void insertAtIndexInPaySlipListJson(int index, PaySlipListJsonStruct item) =>
       paySlipListJson.insert(index, item);
-  void updatePaySlipListJsonAtIndex(
-          int index, Function(PaySlipListJsonStruct) updateFn) =>
+  void updatePaySlipListJsonAtIndex(int index, Function(PaySlipListJsonStruct) updateFn) =>
       paySlipListJson[index] = updateFn(paySlipListJson[index]);
 
   List<PaySlipListJsonStruct> paySlipListJsonUse = [];
-  void addToPaySlipListJsonUse(PaySlipListJsonStruct item) =>
-      paySlipListJsonUse.add(item);
-  void removeFromPaySlipListJsonUse(PaySlipListJsonStruct item) =>
-      paySlipListJsonUse.remove(item);
-  void removeAtIndexFromPaySlipListJsonUse(int index) =>
-      paySlipListJsonUse.removeAt(index);
-  void insertAtIndexInPaySlipListJsonUse(
-          int index, PaySlipListJsonStruct item) =>
+  void addToPaySlipListJsonUse(PaySlipListJsonStruct item) => paySlipListJsonUse.add(item);
+  void removeFromPaySlipListJsonUse(PaySlipListJsonStruct item) => paySlipListJsonUse.remove(item);
+  void removeAtIndexFromPaySlipListJsonUse(int index) => paySlipListJsonUse.removeAt(index);
+  void insertAtIndexInPaySlipListJsonUse(int index, PaySlipListJsonStruct item) =>
       paySlipListJsonUse.insert(index, item);
-  void updatePaySlipListJsonUseAtIndex(
-          int index, Function(PaySlipListJsonStruct) updateFn) =>
+  void updatePaySlipListJsonUseAtIndex(int index, Function(PaySlipListJsonStruct) updateFn) =>
       paySlipListJsonUse[index] = updateFn(paySlipListJsonUse[index]);
 
   String pdfURLs = 'url';
@@ -48,14 +39,11 @@ class $1Model extends BaseViewModel {
   ApiCallResponse? apiResultPaySlip;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
+  int get tabBarCurrentIndex => tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex => tabBarController != null ? tabBarController!.previousIndex : 0;
 
   bool isDataUploading_profileUpload = false;
-  FFUploadedFile uploadedLocalFile_profileUpload =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  FFUploadedFile uploadedLocalFile_profileUpload = FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Backend Call - API (GetCheckInImageURL)] action in CircleImage widget.
   ApiCallResponse? profileImageURL;
@@ -73,7 +61,6 @@ class $1Model extends BaseViewModel {
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
 
-  @override
   void initState(BuildContext context) {}
 
   @override
@@ -84,5 +71,7 @@ class $1Model extends BaseViewModel {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+    super.dispose();
   }
 }

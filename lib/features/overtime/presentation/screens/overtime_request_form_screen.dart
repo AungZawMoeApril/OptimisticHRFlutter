@@ -14,8 +14,7 @@ class OvertimeRequestFormScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<OvertimeRequestFormScreen> createState() =>
-      _OvertimeRequestFormScreenState();
+  State<OvertimeRequestFormScreen> createState() => _OvertimeRequestFormScreenState();
 }
 
 class _OvertimeRequestFormScreenState extends State<OvertimeRequestFormScreen> {

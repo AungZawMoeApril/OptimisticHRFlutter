@@ -1,8 +1,7 @@
 // ignore_for_file: unnecessary_getters_setters
 
-
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class ExamStruct extends BaseStruct {
   ExamStruct({
@@ -244,8 +243,7 @@ class ExamStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ExamStruct fromSerializableMap(Map<String, dynamic> data) =>
-      ExamStruct(
+  static ExamStruct fromSerializableMap(Map<String, dynamic> data) => ExamStruct(
         requestedDate: deserializeParam(
           data['requestedDate'],
           ParamType.String,

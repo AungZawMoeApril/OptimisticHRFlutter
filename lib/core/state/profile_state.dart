@@ -4,7 +4,7 @@ import '../storage/secure_storage.dart';
 /// Profile state model
 class ProfileState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   String _firstName = '';
   String _lastName = '';
   String _positionName = '';

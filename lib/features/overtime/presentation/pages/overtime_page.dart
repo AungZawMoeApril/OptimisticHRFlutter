@@ -191,8 +191,7 @@ class OvertimePage extends StatelessWidget {
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Reason'),
-                validator: (value) =>
-                    value?.isEmpty ?? true ? 'Please enter a reason' : null,
+                validator: (value) => value?.isEmpty ?? true ? 'Please enter a reason' : null,
                 onSaved: (value) => reason = value ?? '',
               ),
             ],
@@ -209,9 +208,8 @@ class OvertimePage extends StatelessWidget {
                 formKey.currentState?.save();
                 if (startTime != null && endTime != null) {
                   model.createOvertimeRequest(
-                    userId: 'currentUserId', // TODO: Get from auth
-                    startTime: startTime!,
-                    endTime: endTime!,
+                    startDate: startTime!,
+                    endDate: endTime!,
                     reason: reason,
                   );
                   Navigator.pop(context);
@@ -229,8 +227,7 @@ class OvertimePage extends StatelessWidget {
     // Similar to create dialog but pre-filled with request data
   }
 
-  void _showDeleteConfirmation(
-      BuildContext context, OvertimeViewModel model, String id) {
+  void _showDeleteConfirmation(BuildContext context, OvertimeViewModel model, String id) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -267,8 +264,7 @@ class OvertimePage extends StatelessWidget {
                 '${DateFormat('HH:mm').format(request.endTime)}'),
             Text('Reason: ${request.reason}'),
             Text('Status: ${request.status}'),
-            if (request.approverNote != null)
-              Text('Approver Note: ${request.approverNote}'),
+            if (request.approverNote != null) Text('Approver Note: ${request.approverNote}'),
           ],
         ),
         actions: [

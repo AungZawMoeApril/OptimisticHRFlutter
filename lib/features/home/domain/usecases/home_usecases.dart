@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/errors/failures.dart';
-import '../../domain/repositories/home_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../repositories/home_repository.dart';
 import '../entities/personal_info.dart';
 import '../entities/announcement.dart';
+import '../entities/attendance_status.dart';
 
 class GetPersonalInfo {
   final HomeRepository repository;
@@ -23,12 +24,13 @@ class GetAttendanceStatus {
 
   GetAttendanceStatus(this.repository);
 
-  Future<Either<Failure, Map<String, String>>> call({
+  Future<Either<Failure, AttendanceStatus>> call({
     required String companyId,
     required String employeeId,
     required String token,
+    required String todayDate,
   }) async {
-    return await repository.getAttendanceStatus(companyId, employeeId, token);
+    return await repository.getAttendanceStatus(companyId, employeeId, token, todayDate);
   }
 }
 

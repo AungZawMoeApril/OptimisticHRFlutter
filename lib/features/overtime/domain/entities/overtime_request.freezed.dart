@@ -27,8 +27,7 @@ mixin _$OvertimeRequest {
   DateTime get startTime => throw _privateConstructorUsedError;
   DateTime get endTime => throw _privateConstructorUsedError;
   String get reason => throw _privateConstructorUsedError;
-  String get status =>
-      throw _privateConstructorUsedError; // 'PENDING', 'APPROVED', 'REJECTED'
+  String get status => throw _privateConstructorUsedError; // 'PENDING', 'APPROVED', 'REJECTED'
   String? get approverNote => throw _privateConstructorUsedError;
   String? get approverId => throw _privateConstructorUsedError;
   DateTime? get approvedAt => throw _privateConstructorUsedError;
@@ -41,14 +40,12 @@ mixin _$OvertimeRequest {
   /// Create a copy of OvertimeRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OvertimeRequestCopyWith<OvertimeRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $OvertimeRequestCopyWith<OvertimeRequest> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $OvertimeRequestCopyWith<$Res> {
-  factory $OvertimeRequestCopyWith(
-          OvertimeRequest value, $Res Function(OvertimeRequest) then) =
+  factory $OvertimeRequestCopyWith(OvertimeRequest value, $Res Function(OvertimeRequest) then) =
       _$OvertimeRequestCopyWithImpl<$Res, OvertimeRequest>;
   @useResult
   $Res call(
@@ -154,10 +151,9 @@ class _$OvertimeRequestCopyWithImpl<$Res, $Val extends OvertimeRequest>
 }
 
 /// @nodoc
-abstract class _$$OvertimeRequestImplCopyWith<$Res>
-    implements $OvertimeRequestCopyWith<$Res> {
-  factory _$$OvertimeRequestImplCopyWith(_$OvertimeRequestImpl value,
-          $Res Function(_$OvertimeRequestImpl) then) =
+abstract class _$$OvertimeRequestImplCopyWith<$Res> implements $OvertimeRequestCopyWith<$Res> {
+  factory _$$OvertimeRequestImplCopyWith(
+          _$OvertimeRequestImpl value, $Res Function(_$OvertimeRequestImpl) then) =
       __$$OvertimeRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -322,44 +318,23 @@ class _$OvertimeRequestImpl implements _OvertimeRequest {
             other is _$OvertimeRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
-            (identical(other.requestDate, requestDate) ||
-                other.requestDate == requestDate) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
+            (identical(other.employeeName, employeeName) || other.employeeName == employeeName) &&
+            (identical(other.requestDate, requestDate) || other.requestDate == requestDate) &&
+            (identical(other.startTime, startTime) || other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.approverNote, approverNote) ||
-                other.approverNote == approverNote) &&
-            (identical(other.approverId, approverId) ||
-                other.approverId == approverId) &&
-            (identical(other.approvedAt, approvedAt) ||
-                other.approvedAt == approvedAt) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.approverNote, approverNote) || other.approverNote == approverNote) &&
+            (identical(other.approverId, approverId) || other.approverId == approverId) &&
+            (identical(other.approvedAt, approvedAt) || other.approvedAt == approvedAt) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      userId,
-      employeeName,
-      requestDate,
-      startTime,
-      endTime,
-      reason,
-      status,
-      approverNote,
-      approverId,
-      approvedAt,
-      createdAt,
-      updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, employeeName, requestDate, startTime,
+      endTime, reason, status, approverNote, approverId, approvedAt, createdAt, updatedAt);
 
   /// Create a copy of OvertimeRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -367,8 +342,7 @@ class _$OvertimeRequestImpl implements _OvertimeRequest {
   @override
   @pragma('vm:prefer-inline')
   _$$OvertimeRequestImplCopyWith<_$OvertimeRequestImpl> get copyWith =>
-      __$$OvertimeRequestImplCopyWithImpl<_$OvertimeRequestImpl>(
-          this, _$identity);
+      __$$OvertimeRequestImplCopyWithImpl<_$OvertimeRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -394,8 +368,7 @@ abstract class _OvertimeRequest implements OvertimeRequest {
       required final DateTime createdAt,
       final DateTime? updatedAt}) = _$OvertimeRequestImpl;
 
-  factory _OvertimeRequest.fromJson(Map<String, dynamic> json) =
-      _$OvertimeRequestImpl.fromJson;
+  factory _OvertimeRequest.fromJson(Map<String, dynamic> json) = _$OvertimeRequestImpl.fromJson;
 
   @override
   String get id;

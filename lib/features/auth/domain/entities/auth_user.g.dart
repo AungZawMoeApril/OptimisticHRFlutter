@@ -6,8 +6,7 @@ part of 'auth_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthUserImpl _$$AuthUserImplFromJson(Map<String, dynamic> json) =>
-    _$AuthUserImpl(
+_$AuthUserImpl _$$AuthUserImplFromJson(Map<String, dynamic> json) => _$AuthUserImpl(
       id: json['id'] as String,
       email: json['email'] as String,
       fullName: json['fullName'] as String,
@@ -15,13 +14,10 @@ _$AuthUserImpl _$$AuthUserImplFromJson(Map<String, dynamic> json) =>
       isPinCodeSet: json['isPinCodeSet'] as bool,
       roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
       isEmailVerified: json['isEmailVerified'] as bool? ?? false,
-      lastLogin: json['lastLogin'] == null
-          ? null
-          : DateTime.parse(json['lastLogin'] as String),
+      lastLogin: json['lastLogin'] == null ? null : DateTime.parse(json['lastLogin'] as String),
     );
 
-Map<String, dynamic> _$$AuthUserImplToJson(_$AuthUserImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$AuthUserImplToJson(_$AuthUserImpl instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'fullName': instance.fullName,

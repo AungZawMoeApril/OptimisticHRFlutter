@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class AttachmentsStruct extends BaseStruct {
   AttachmentsStruct({
@@ -35,16 +35,14 @@ class AttachmentsStruct extends BaseStruct {
 
   bool hasFiletype() => _filetype != null;
 
-  static AttachmentsStruct fromMap(Map<String, dynamic> data) =>
-      AttachmentsStruct(
+  static AttachmentsStruct fromMap(Map<String, dynamic> data) => AttachmentsStruct(
         attachmentFile: data['attachment_file'] as String?,
         filename: data['filename'] as String?,
         filetype: data['filetype'] as String?,
       );
 
-  static AttachmentsStruct? maybeFromMap(dynamic data) => data is Map
-      ? AttachmentsStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static AttachmentsStruct? maybeFromMap(dynamic data) =>
+      data is Map ? AttachmentsStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'attachment_file': _attachmentFile,
@@ -68,8 +66,7 @@ class AttachmentsStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static AttachmentsStruct fromSerializableMap(Map<String, dynamic> data) =>
-      AttachmentsStruct(
+  static AttachmentsStruct fromSerializableMap(Map<String, dynamic> data) => AttachmentsStruct(
         attachmentFile: deserializeParam(
           data['attachment_file'],
           ParamType.String,
@@ -99,8 +96,7 @@ class AttachmentsStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([attachmentFile, filename, filetype]);
+  int get hashCode => const ListEquality().hash([attachmentFile, filename, filetype]);
 }
 
 AttachmentsStruct createAttachmentsStruct({

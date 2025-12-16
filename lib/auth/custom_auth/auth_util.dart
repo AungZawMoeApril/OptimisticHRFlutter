@@ -6,8 +6,8 @@ export 'custom_auth_manager.dart';
 final _authManager = CustomAuthManager();
 CustomAuthManager get authManager => _authManager;
 
-String get currentUserUid => currentUser?.uid ?? '';
-String? get currentAuthenticationToken => authManager.authenticationToken;
-String? get currentAuthRefreshToken => authManager.refreshToken;
-DateTime? get currentAuthTokenExpiration => authManager.tokenExpiration;
-UserStruct? get currentUserData => currentUser?.userData;
+String get currentUserUid => authManager.currentUser?.uid ?? '';
+String? get currentAuthenticationToken => authManager.currentUser?.uid; // Stub - use uid as token
+String? get currentAuthRefreshToken => authManager.currentUser?.uid; // Stub
+DateTime? get currentAuthTokenExpiration => DateTime.now().add(const Duration(days: 1)); // Stub
+UserStruct? get currentUserData => authManager.currentUser?.userData;

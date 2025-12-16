@@ -4,7 +4,7 @@ import '../storage/secure_storage.dart';
 /// Notification state model
 class NotificationState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   bool _notificationsEnabled = true;
   bool _soundEnabled = true;
   bool _vibrationEnabled = true;
@@ -27,12 +27,12 @@ class NotificationState extends BaseState {
     _notificationsEnabled = await _storage.getValue('notifications_enabled', true) ?? true;
     _soundEnabled = await _storage.getValue('notifications_sound', true) ?? true;
     _vibrationEnabled = await _storage.getValue('notifications_vibration', true) ?? true;
-    
+
     final savedTypes = await _storage.getValue('notification_types', _notificationTypes);
     if (savedTypes != null) {
       _notificationTypes = Map<String, bool>.from(savedTypes as Map);
     }
-    
+
     markInitialized();
   }
 

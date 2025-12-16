@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class ImagePickerModelStruct extends BaseStruct {
   ImagePickerModelStruct({
@@ -26,15 +26,13 @@ class ImagePickerModelStruct extends BaseStruct {
 
   bool hasFilename() => _filename != null;
 
-  static ImagePickerModelStruct fromMap(Map<String, dynamic> data) =>
-      ImagePickerModelStruct(
+  static ImagePickerModelStruct fromMap(Map<String, dynamic> data) => ImagePickerModelStruct(
         base64String: data['base64String'] as String?,
         filename: data['filename'] as String?,
       );
 
-  static ImagePickerModelStruct? maybeFromMap(dynamic data) => data is Map
-      ? ImagePickerModelStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static ImagePickerModelStruct? maybeFromMap(dynamic data) =>
+      data is Map ? ImagePickerModelStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'base64String': _base64String,
@@ -53,8 +51,7 @@ class ImagePickerModelStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ImagePickerModelStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static ImagePickerModelStruct fromSerializableMap(Map<String, dynamic> data) =>
       ImagePickerModelStruct(
         base64String: deserializeParam(
           data['base64String'],

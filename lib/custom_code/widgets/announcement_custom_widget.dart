@@ -1,10 +1,10 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
-import 'package:hr_app/core/utils/custom_functions.dart'; // Imports custom functions
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -27,8 +27,7 @@ class AnnouncementCustomWidget extends StatefulWidget {
   final String weblink;
 
   @override
-  State<AnnouncementCustomWidget> createState() =>
-      _AnnouncementCustomWidgetState();
+  State<AnnouncementCustomWidget> createState() => _AnnouncementCustomWidgetState();
 }
 
 class _AnnouncementCustomWidgetState extends State<AnnouncementCustomWidget> {
@@ -65,8 +64,7 @@ class _AnnouncementCustomWidgetState extends State<AnnouncementCustomWidget> {
     // ✅ Android specific setup
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
-      (controller.platform as AndroidWebViewController)
-          .setMediaPlaybackRequiresUserGesture(false);
+      (controller.platform as AndroidWebViewController).setMediaPlaybackRequiresUserGesture(false);
     }
 
     // ✅ Assign and configure the controller

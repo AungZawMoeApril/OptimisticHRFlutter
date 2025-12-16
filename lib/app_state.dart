@@ -23,8 +23,9 @@ class AppState with ChangeNotifier {
   int _companyID = 0;
   int _employeeID = 0;
   int _userID = 0;
+  int _reportID = 0;
   bool _approve = false;
-  
+
   // User profile state
   String _firstName = '';
   String _lastName = '';
@@ -32,17 +33,34 @@ class AppState with ChangeNotifier {
   String _imagesFile = '';
   String _logoImage = '';
   String _colorCode = '';
-  
+
   // Overtime state
   List<RejectPendingApprovalStruct> _onloadGetOTandTimeOff = [];
   List<RejectPendingApprovalStruct> _onloadGetOTandTimeOffHistory = [];
   String _taskType = 'Time Off';
-  
+  String _timezoneOffset = '+07:00';
+  String _otClockInTime = '';
+  String _otClockOutTime = '';
+  int _otRequestID = 0;
+  int _clockID = 0;
+
   // Calendar state
   List<dynamic> _calendarList = [];
   List<dynamic> _selectedEventsJSon = [];
 
-
+  // Additional state fields
+  String _prefix = '';
+  String _nickName = '';
+  String _languageStatus = 'English';
+  bool _isChangePinCodeFlag = false;
+  bool _resetPinCodeFlag = false;
+  bool _isPinCodeFlag = false;
+  bool _isGeneralFirstTime = true;
+  int _timeoffID = 0;
+  String _password = '';
+  String _mainPinCode = '';
+  String _clockInTime = '-';
+  String _clockOutTime = '-';
 
   factory AppState() {
     return _instance;
@@ -75,9 +93,7 @@ class AppState with ChangeNotifier {
     final localeString = await secureStorage.read(key: 'locale');
     if (localeString != null) {
       final parts = localeString.split('_');
-      _locale = parts.length > 1
-          ? Locale(parts[0], parts[1])
-          : Locale(parts[0]);
+      _locale = parts.length > 1 ? Locale(parts[0], parts[1]) : Locale(parts[0]);
     }
   }
 
@@ -86,6 +102,7 @@ class AppState with ChangeNotifier {
     _companyID = int.tryParse(await secureStorage.read(key: 'app_company_id') ?? '0') ?? 0;
     _employeeID = int.tryParse(await secureStorage.read(key: 'app_employee_id') ?? '0') ?? 0;
     _userID = int.tryParse(await secureStorage.read(key: 'app_user_id') ?? '0') ?? 0;
+    _reportID = int.tryParse(await secureStorage.read(key: 'app_report_id') ?? '0') ?? 0;
     _approve = (await secureStorage.read(key: 'app_approve') ?? 'false') == 'true';
   }
 
@@ -105,6 +122,7 @@ class AppState with ChangeNotifier {
   int get companyID => _companyID;
   int get employeeID => _employeeID;
   int get userID => _userID;
+  int get reportID => _reportID;
   bool get approve => _approve;
 
   String get firstName => _firstName;
@@ -114,6 +132,153 @@ class AppState with ChangeNotifier {
   String get logoImage => _logoImage;
   String get colorCode => _colorCode;
 
+  // Overtime state getters and setters
+  String get timezoneOffset => _timezoneOffset;
+  set timezoneOffset(String value) {
+    _timezoneOffset = value;
+    notifyListeners();
+  }
+
+  String get otClockInTime => _otClockInTime;
+  set otClockInTime(String value) {
+    _otClockInTime = value;
+    notifyListeners();
+  }
+
+  String get otClockOutTime => _otClockOutTime;
+  set otClockOutTime(String value) {
+    _otClockOutTime = value;
+    notifyListeners();
+  }
+
+  int get otRequestID => _otRequestID;
+  set otRequestID(int value) {
+    _otRequestID = value;
+    notifyListeners();
+  }
+
+  int get OTRequestID => _otRequestID; // Alias for compatibility
+  set OTRequestID(int value) {
+    _otRequestID = value;
+    notifyListeners();
+  }
+
+  int get clockID => _clockID;
+  set clockID(int value) {
+    _clockID = value;
+    notifyListeners();
+  }
+
+  // Additional property getters and setters
+  String get prefix => _prefix;
+  set prefix(String value) {
+    _prefix = value;
+    notifyListeners();
+  }
+
+  String get nickName => _nickName;
+  set nickName(String value) {
+    _nickName = value;
+    notifyListeners();
+  }
+
+  String get languageStatus => _languageStatus;
+  set languageStatus(String value) {
+    _languageStatus = value;
+    notifyListeners();
+  }
+
+  bool get isChangePinCodeFlag => _isChangePinCodeFlag;
+  set isChangePinCodeFlag(bool value) {
+    _isChangePinCodeFlag = value;
+    notifyListeners();
+  }
+
+  bool get resetPinCodeFlag => _resetPinCodeFlag;
+  set resetPinCodeFlag(bool value) {
+    _resetPinCodeFlag = value;
+    notifyListeners();
+  }
+
+  bool get isPinCodeFlag => _isPinCodeFlag;
+  set isPinCodeFlag(bool value) {
+    _isPinCodeFlag = value;
+    notifyListeners();
+  }
+
+  bool get isGeneralFirstTime => _isGeneralFirstTime;
+  set isGeneralFirstTime(bool value) {
+    _isGeneralFirstTime = value;
+    notifyListeners();
+  }
+
+  int get timeoffID => _timeoffID;
+  set timeoffID(int value) {
+    _timeoffID = value;
+    notifyListeners();
+  }
+
+  String get password => _password;
+  set password(String value) {
+    _password = value;
+    notifyListeners();
+  }
+
+  String get mainPinCode => _mainPinCode;
+  set mainPinCode(String value) {
+    _mainPinCode = value;
+    notifyListeners();
+  }
+
+  String get clockInTime => _clockInTime;
+  set clockInTime(String value) {
+    _clockInTime = value;
+    notifyListeners();
+  }
+
+  String get clockOutTime => _clockOutTime;
+  set clockOutTime(String value) {
+    _clockOutTime = value;
+    notifyListeners();
+  }
+
+  // Delete methods
+  void deletePassword() {
+    _password = '';
+    secureStorage.delete(key: 'app_password');
+    notifyListeners();
+  }
+
+  void deleteMainPinCode() {
+    _mainPinCode = '';
+    secureStorage.delete(key: 'app_main_pin_code');
+    notifyListeners();
+  }
+
+  void deleteClockInTime() {
+    _clockInTime = '-';
+    secureStorage.delete(key: 'app_clock_in_time');
+    notifyListeners();
+  }
+
+  void deleteClockOutTime() {
+    _clockOutTime = '-';
+    secureStorage.delete(key: 'app_clock_out_time');
+    notifyListeners();
+  }
+
+  void deleteOtClockInTime() {
+    _otClockInTime = '';
+    secureStorage.delete(key: 'app_ot_clock_in_time');
+    notifyListeners();
+  }
+
+  void deleteOtClockOutTime() {
+    _otClockOutTime = '';
+    secureStorage.delete(key: 'app_ot_clock_out_time');
+    notifyListeners();
+  }
+
   // Update Methods
   Future<void> updateToken(String value) async {
     if (_token != value) {
@@ -121,6 +286,44 @@ class AppState with ChangeNotifier {
       await secureStorage.write(key: 'app_token', value: value);
       notifyListeners();
     }
+  }
+
+  // reportID setter and delete method
+  set reportID(int value) {
+    _reportID = value;
+    secureStorage.write(key: 'app_report_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteReportID() {
+    _reportID = 0;
+    secureStorage.delete(key: 'app_report_id');
+    notifyListeners();
+  }
+
+  // Other ID setters for compatibility
+  set companyID(int value) {
+    _companyID = value;
+    secureStorage.write(key: 'app_company_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteCompanyID() {
+    _companyID = 0;
+    secureStorage.delete(key: 'app_company_id');
+    notifyListeners();
+  }
+
+  set employeeID(int value) {
+    _employeeID = value;
+    secureStorage.write(key: 'app_employee_id', value: value.toString());
+    notifyListeners();
+  }
+
+  void deleteEmployeeID() {
+    _employeeID = 0;
+    secureStorage.delete(key: 'app_employee_id');
+    notifyListeners();
   }
 
   Future<void> updateProfile({
@@ -181,6 +384,7 @@ class AppState with ChangeNotifier {
     _companyID = 0;
     _employeeID = 0;
     _userID = 0;
+    _reportID = 0;
     _approve = false;
 
     _firstName = '';
@@ -227,7 +431,8 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
-  List<RejectPendingApprovalStruct> get onloadGetOTandTimeOffHistory => _onloadGetOTandTimeOffHistory;
+  List<RejectPendingApprovalStruct> get onloadGetOTandTimeOffHistory =>
+      _onloadGetOTandTimeOffHistory;
   set onloadGetOTandTimeOffHistory(List<RejectPendingApprovalStruct> value) {
     _onloadGetOTandTimeOffHistory = value;
     notifyListeners();
@@ -250,8 +455,6 @@ class AppState with ChangeNotifier {
     _selectedEventsJSon = value;
     notifyListeners();
   }
-
-
 }
 
 extension FlutterSecureStorageExtensions on FlutterSecureStorage {
@@ -265,32 +468,26 @@ extension FlutterSecureStorageExtensions on FlutterSecureStorage {
   void remove(String key) => delete(key: key);
 
   Future<String?> getString(String key) async => await read(key: key);
-  Future<void> setString(String key, String value) async =>
-      await writeSync(key: key, value: value);
+  Future<void> setString(String key, String value) async => await writeSync(key: key, value: value);
 
   Future<bool?> getBool(String key) async => (await read(key: key)) == 'true';
   Future<void> setBool(String key, bool value) async =>
       await writeSync(key: key, value: value.toString());
 
-  Future<int?> getInt(String key) async =>
-      int.tryParse(await read(key: key) ?? '');
+  Future<int?> getInt(String key) async => int.tryParse(await read(key: key) ?? '');
   Future<void> setInt(String key, int value) async =>
       await writeSync(key: key, value: value.toString());
 
-  Future<double?> getDouble(String key) async =>
-      double.tryParse(await read(key: key) ?? '');
+  Future<double?> getDouble(String key) async => double.tryParse(await read(key: key) ?? '');
   Future<void> setDouble(String key, double value) async =>
       await writeSync(key: key, value: value.toString());
 
-  Future<List<String>?> getStringList(String key) async =>
-      await read(key: key).then((result) {
+  Future<List<String>?> getStringList(String key) async => await read(key: key).then((result) {
         if (result == null || result.isEmpty) {
           return null;
         }
         try {
-          return List<dynamic>.from(jsonDecode(result))
-              .map((e) => e.toString())
-              .toList();
+          return List<dynamic>.from(jsonDecode(result)).map((e) => e.toString()).toList();
         } catch (_) {
           return null;
         }

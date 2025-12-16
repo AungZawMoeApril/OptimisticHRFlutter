@@ -45,8 +45,7 @@ class ProfileRepository {
         _localDataSource.cacheDepartment(profile.department),
         _localDataSource.cacheEmail(profile.email),
         _localDataSource.cachePhone(profile.phone),
-        if (profile.imageUrl != null)
-          _localDataSource.cacheProfileImage(profile.imageUrl!),
+        if (profile.imageUrl != null) _localDataSource.cacheProfileImage(profile.imageUrl!),
       ]);
     } catch (e) {
       print('Error saving profile: $e');

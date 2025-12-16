@@ -35,8 +35,7 @@ mixin _$AuthUser {
   /// Create a copy of AuthUser
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AuthUserCopyWith<AuthUser> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthUserCopyWith<AuthUser> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -56,8 +55,7 @@ abstract class $AuthUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthUserCopyWithImpl<$Res, $Val extends AuthUser>
-    implements $AuthUserCopyWith<$Res> {
+class _$AuthUserCopyWithImpl<$Res, $Val extends AuthUser> implements $AuthUserCopyWith<$Res> {
   _$AuthUserCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -117,10 +115,8 @@ class _$AuthUserCopyWithImpl<$Res, $Val extends AuthUser>
 }
 
 /// @nodoc
-abstract class _$$AuthUserImplCopyWith<$Res>
-    implements $AuthUserCopyWith<$Res> {
-  factory _$$AuthUserImplCopyWith(
-          _$AuthUserImpl value, $Res Function(_$AuthUserImpl) then) =
+abstract class _$$AuthUserImplCopyWith<$Res> implements $AuthUserCopyWith<$Res> {
+  factory _$$AuthUserImplCopyWith(_$AuthUserImpl value, $Res Function(_$AuthUserImpl) then) =
       __$$AuthUserImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -136,11 +132,9 @@ abstract class _$$AuthUserImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AuthUserImplCopyWithImpl<$Res>
-    extends _$AuthUserCopyWithImpl<$Res, _$AuthUserImpl>
+class __$$AuthUserImplCopyWithImpl<$Res> extends _$AuthUserCopyWithImpl<$Res, _$AuthUserImpl>
     implements _$$AuthUserImplCopyWith<$Res> {
-  __$$AuthUserImplCopyWithImpl(
-      _$AuthUserImpl _value, $Res Function(_$AuthUserImpl) _then)
+  __$$AuthUserImplCopyWithImpl(_$AuthUserImpl _value, $Res Function(_$AuthUserImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthUser
@@ -208,8 +202,7 @@ class _$AuthUserImpl implements _AuthUser {
       this.lastLogin})
       : _roles = roles;
 
-  factory _$AuthUserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AuthUserImplFromJson(json);
+  factory _$AuthUserImpl.fromJson(Map<String, dynamic> json) => _$$AuthUserImplFromJson(json);
 
   @override
   final String id;
@@ -247,31 +240,19 @@ class _$AuthUserImpl implements _AuthUser {
             other is _$AuthUserImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.profileImage, profileImage) ||
-                other.profileImage == profileImage) &&
-            (identical(other.isPinCodeSet, isPinCodeSet) ||
-                other.isPinCodeSet == isPinCodeSet) &&
+            (identical(other.fullName, fullName) || other.fullName == fullName) &&
+            (identical(other.profileImage, profileImage) || other.profileImage == profileImage) &&
+            (identical(other.isPinCodeSet, isPinCodeSet) || other.isPinCodeSet == isPinCodeSet) &&
             const DeepCollectionEquality().equals(other._roles, _roles) &&
             (identical(other.isEmailVerified, isEmailVerified) ||
                 other.isEmailVerified == isEmailVerified) &&
-            (identical(other.lastLogin, lastLogin) ||
-                other.lastLogin == lastLogin));
+            (identical(other.lastLogin, lastLogin) || other.lastLogin == lastLogin));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      email,
-      fullName,
-      profileImage,
-      isPinCodeSet,
-      const DeepCollectionEquality().hash(_roles),
-      isEmailVerified,
-      lastLogin);
+  int get hashCode => Object.hash(runtimeType, id, email, fullName, profileImage, isPinCodeSet,
+      const DeepCollectionEquality().hash(_roles), isEmailVerified, lastLogin);
 
   /// Create a copy of AuthUser
   /// with the given fields replaced by the non-null parameter values.
@@ -300,8 +281,7 @@ abstract class _AuthUser implements AuthUser {
       final bool isEmailVerified,
       final DateTime? lastLogin}) = _$AuthUserImpl;
 
-  factory _AuthUser.fromJson(Map<String, dynamic> json) =
-      _$AuthUserImpl.fromJson;
+  factory _AuthUser.fromJson(Map<String, dynamic> json) = _$AuthUserImpl.fromJson;
 
   @override
   String get id;
@@ -324,6 +304,5 @@ abstract class _AuthUser implements AuthUser {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthUserImplCopyWith<_$AuthUserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AuthUserImplCopyWith<_$AuthUserImpl> get copyWith => throw _privateConstructorUsedError;
 }

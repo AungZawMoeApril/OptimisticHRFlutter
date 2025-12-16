@@ -24,8 +24,7 @@ class ConflictException extends ApiException {
 }
 
 class UnprocessableEntityException extends ApiException {
-  UnprocessableEntityException([String message = 'Unprocessable Entity'])
-      : super(message);
+  UnprocessableEntityException([String message = 'Unprocessable Entity']) : super(message);
 }
 
 class ServerException extends ApiException {

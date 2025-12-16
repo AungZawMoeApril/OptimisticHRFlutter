@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// FlutterFlow model base class
+abstract class FlutterFlowModel<T extends Widget> {
+  void initState(BuildContext context) {}
+  void dispose() {}
+}
+
+// Helper function to create models (compatible with BaseViewModel)
+T createModel<T>(BuildContext context, T Function() builder) {
+  final model = builder();
+  return model;
+}
+
+// Extension to add safeSetState to State
+extension StateExtensions on State {
+  void safeSetState(VoidCallback fn) {
+    if (mounted) {
+      // ignore: invalid_use_of_protected_member
+      setState(fn);
+    }
+  }
+}
+
 class AppUtils {
   static void safeSetState(VoidCallback fn) {
     // Only call setState if the widget is mounted
@@ -58,5 +80,33 @@ class AppUtils {
     } catch (e) {
       return date;
     }
+  }
+}
+
+// Helper function for providing default values
+T valueOrDefault<T>(T? value, T defaultValue) {
+  return value ?? defaultValue;
+}
+
+// Extension method for validators
+extension ValidatorExtension on String? Function(BuildContext, String?) {
+  String? Function(String?) asValidator(BuildContext context) {
+    return (value) => this(context, value);
+  }
+}
+
+// List divide extension for adding separators
+extension ListDivideExtension<T extends Widget> on List<T> {
+  List<T> divide(T separator) {
+    if (isEmpty) return [];
+
+    final result = <T>[];
+    for (var i = 0; i < length; i++) {
+      result.add(this[i]);
+      if (i < length - 1) {
+        result.add(separator);
+      }
+    }
+    return result;
   }
 }

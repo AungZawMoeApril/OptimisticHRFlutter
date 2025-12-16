@@ -12,12 +12,12 @@ class OnsiteRequestForm extends StatefulWidget {
 
 class _OnsiteRequestFormState extends State<OnsiteRequestForm> {
   final _formKey = GlobalKey<FormState>();
-  
+
   late DateTime _startDate;
   late DateTime _endDate;
   late TimeOfDay _startTime;
   late TimeOfDay _endTime;
-    OnsiteType _type = OnsiteType.client;
+  OnsiteType _type = OnsiteType.client;
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _reasonController = TextEditingController();
 
@@ -246,10 +246,8 @@ class _OnsiteRequestFormState extends State<OnsiteRequestForm> {
       setState(() {
         if (isStart) {
           _startTime = picked;
-          if (_startDate == _endDate &&
-              _endTime.hour < _startTime.hour ||
-              (_endTime.hour == _startTime.hour &&
-                  _endTime.minute < _startTime.minute)) {
+          if (_startDate == _endDate && _endTime.hour < _startTime.hour ||
+              (_endTime.hour == _startTime.hour && _endTime.minute < _startTime.minute)) {
             _endTime = TimeOfDay(
               hour: _startTime.hour + 1,
               minute: _startTime.minute,

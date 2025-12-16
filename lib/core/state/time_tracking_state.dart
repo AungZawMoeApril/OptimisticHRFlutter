@@ -4,7 +4,7 @@ import '../storage/secure_storage.dart';
 /// Time tracking state model
 class TimeTrackingState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   String _clockInTime = '-';
   String _clockOutTime = '-';
   String _clockInLocation = '';

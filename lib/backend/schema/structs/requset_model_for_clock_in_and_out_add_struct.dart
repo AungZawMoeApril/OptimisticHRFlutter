@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class RequsetModelForClockInAndOutAddStruct extends BaseStruct {
   RequsetModelForClockInAndOutAddStruct({
@@ -223,8 +223,7 @@ class RequsetModelForClockInAndOutAddStruct extends BaseStruct {
 
   bool hasUserID() => _userID != null;
 
-  static RequsetModelForClockInAndOutAddStruct fromMap(
-          Map<String, dynamic> data) =>
+  static RequsetModelForClockInAndOutAddStruct fromMap(Map<String, dynamic> data) =>
       RequsetModelForClockInAndOutAddStruct(
         approve: data['approve'] as bool?,
         clockInLattitude: data['clock_In_Lattitude'] as String?,
@@ -251,11 +250,9 @@ class RequsetModelForClockInAndOutAddStruct extends BaseStruct {
         userID: castToType<int>(data['user_ID']),
       );
 
-  static RequsetModelForClockInAndOutAddStruct? maybeFromMap(dynamic data) =>
-      data is Map
-          ? RequsetModelForClockInAndOutAddStruct.fromMap(
-              data.cast<String, dynamic>())
-          : null;
+  static RequsetModelForClockInAndOutAddStruct? maybeFromMap(dynamic data) => data is Map
+      ? RequsetModelForClockInAndOutAddStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'approve': _approve,
@@ -379,8 +376,7 @@ class RequsetModelForClockInAndOutAddStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static RequsetModelForClockInAndOutAddStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static RequsetModelForClockInAndOutAddStruct fromSerializableMap(Map<String, dynamic> data) =>
       RequsetModelForClockInAndOutAddStruct(
         approve: deserializeParam(
           data['approve'],
@@ -558,8 +554,7 @@ class RequsetModelForClockInAndOutAddStruct extends BaseStruct {
       ]);
 }
 
-RequsetModelForClockInAndOutAddStruct
-    createRequsetModelForClockInAndOutAddStruct({
+RequsetModelForClockInAndOutAddStruct createRequsetModelForClockInAndOutAddStruct({
   bool? approve,
   String? clockInLattitude,
   String? clockInLocation,
@@ -584,28 +579,28 @@ RequsetModelForClockInAndOutAddStruct
   String? timeType,
   int? userID,
 }) =>
-        RequsetModelForClockInAndOutAddStruct(
-          approve: approve,
-          clockInLattitude: clockInLattitude,
-          clockInLocation: clockInLocation,
-          clockInLongitude: clockInLongitude,
-          clockInTime: clockInTime,
-          clockOutLattitude: clockOutLattitude,
-          clockOutLocation: clockOutLocation,
-          clockOutLongitude: clockOutLongitude,
-          clockOutTime: clockOutTime,
-          companyID: companyID,
-          employeeID: employeeID,
-          irregularInLattitude: irregularInLattitude,
-          irregularInLocation: irregularInLocation,
-          irregularInLongitude: irregularInLongitude,
-          irregularInTime: irregularInTime,
-          irregularOutLattitude: irregularOutLattitude,
-          irregularOutLongitude: irregularOutLongitude,
-          irregularOutTime: irregularOutTime,
-          shftEndTime: shftEndTime,
-          shiftStartTime: shiftStartTime,
-          timeID: timeID,
-          timeType: timeType,
-          userID: userID,
-        );
+    RequsetModelForClockInAndOutAddStruct(
+      approve: approve,
+      clockInLattitude: clockInLattitude,
+      clockInLocation: clockInLocation,
+      clockInLongitude: clockInLongitude,
+      clockInTime: clockInTime,
+      clockOutLattitude: clockOutLattitude,
+      clockOutLocation: clockOutLocation,
+      clockOutLongitude: clockOutLongitude,
+      clockOutTime: clockOutTime,
+      companyID: companyID,
+      employeeID: employeeID,
+      irregularInLattitude: irregularInLattitude,
+      irregularInLocation: irregularInLocation,
+      irregularInLongitude: irregularInLongitude,
+      irregularInTime: irregularInTime,
+      irregularOutLattitude: irregularOutLattitude,
+      irregularOutLongitude: irregularOutLongitude,
+      irregularOutTime: irregularOutTime,
+      shftEndTime: shftEndTime,
+      shiftStartTime: shiftStartTime,
+      timeID: timeID,
+      timeType: timeType,
+      userID: userID,
+    );

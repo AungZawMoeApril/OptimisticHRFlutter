@@ -1,10 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'forget_password_widget.dart' show ForgetPasswordWidget;
+import '../../core/presentation/base/base_view.dart';
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
+class ForgetPasswordModel extends BaseViewModel {
   ///  Local state fields for this page.
 
   int? companyID;
@@ -28,7 +26,6 @@ class $1Model extends BaseViewModel {
   // Stores action output result for [Backend Call - API (ForgotPassword)] action in Button-ResetPassword widget.
   ApiCallResponse? apiResultz9c;
 
-  @override
   void initState(BuildContext context) {}
 
   @override
@@ -38,5 +35,7 @@ class $1Model extends BaseViewModel {
 
     usernameFocusNode?.dispose();
     usernameTextController?.dispose();
+
+    super.dispose();
   }
 }

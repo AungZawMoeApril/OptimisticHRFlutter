@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:h_r_optimistic_mobile/core/presentation/base/base_view.dart';
 import '../../domain/entities/announcement.dart';
 import '../../domain/repositories/announcement_repository.dart';
@@ -25,16 +24,14 @@ class AnnouncementViewModel extends BaseViewModel {
   }
 
   Future<void> markAsRead(String id) async {
-    final result = await _repository.markAsRead(id);
+    final result = await _repository.markAnnouncementAsRead(id);
     result.fold(
       (failure) => setError(failure.message),
-      (success) {
-        if (success) {
-          final index = _announcements.indexWhere((a) => a.id == id);
-          if (index != -1) {
-            _announcements[index] = _announcements[index].copyWith(isRead: true);
-            notifyListeners();
-          }
+      (_) {
+        final index = _announcements.indexWhere((a) => a.id == id);
+        if (index != -1) {
+          _announcements[index] = _announcements[index].copyWith(isRead: true);
+          notifyListeners();
         }
       },
     );

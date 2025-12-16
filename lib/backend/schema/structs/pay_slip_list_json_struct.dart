@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class PaySlipListJsonStruct extends BaseStruct {
   PaySlipListJsonStruct({
@@ -59,8 +59,7 @@ class PaySlipListJsonStruct extends BaseStruct {
 
   bool hasPeriodEndDate() => _periodEndDate != null;
 
-  static PaySlipListJsonStruct fromMap(Map<String, dynamic> data) =>
-      PaySlipListJsonStruct(
+  static PaySlipListJsonStruct fromMap(Map<String, dynamic> data) => PaySlipListJsonStruct(
         employeeID: castToType<int>(data['employee_ID']),
         companyID: castToType<int>(data['company_ID']),
         payDueID: castToType<int>(data['payDue_ID']),
@@ -68,9 +67,8 @@ class PaySlipListJsonStruct extends BaseStruct {
         periodEndDate: data['period_End_Date'] as String?,
       );
 
-  static PaySlipListJsonStruct? maybeFromMap(dynamic data) => data is Map
-      ? PaySlipListJsonStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static PaySlipListJsonStruct? maybeFromMap(dynamic data) =>
+      data is Map ? PaySlipListJsonStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'employee_ID': _employeeID,
@@ -147,8 +145,8 @@ class PaySlipListJsonStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([employeeID, companyID, payDueID, periodStartDate, periodEndDate]);
+  int get hashCode =>
+      const ListEquality().hash([employeeID, companyID, payDueID, periodStartDate, periodEndDate]);
 }
 
 PaySlipListJsonStruct createPaySlipListJsonStruct({

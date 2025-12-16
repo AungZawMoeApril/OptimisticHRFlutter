@@ -1,13 +1,10 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'announcement_web_view_widget.dart' show AnnouncementWebViewWidget;
-import 'package:flutter/material.dart';
+// Stub file - original moved to .broken
+class AnnouncementWebViewState {
+  final String? url;
+  final bool isLoading;
 
-class AnnouncementWebViewModel
-    extends FlutterFlowModel<AnnouncementWebViewWidget> {
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {}
+  AnnouncementWebViewState({
+    this.url,
+    this.isLoading = false,
+  });
 }

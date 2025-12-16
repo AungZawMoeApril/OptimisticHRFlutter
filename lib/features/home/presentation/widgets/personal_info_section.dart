@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+
 import '../../domain/entities/personal_info.dart';
 import '../providers/home_provider.dart';
+import '/core/theme/app_colors.dart';
 
 class PersonalInfoSection extends StatelessWidget {
   const PersonalInfoSection({super.key});
@@ -24,7 +24,7 @@ class PersonalInfoSection extends StatelessWidget {
         return Container(
           height: 80,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondaryBackground,
+            color: Theme.of(context).colorScheme.surface,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4,
@@ -37,17 +37,17 @@ class PersonalInfoSection extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Name Section  
+              // Name Section
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
                 child: Text(
                   _buildDisplayName(personalInfo),
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.$1?.copyWith(
-                    font: GoogleFonts.readexPro(),
-                    fontSize: 14.0,
-                    letterSpacing: 0.0,
-                  ),
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontFamily: GoogleFonts.readexPro().fontFamily,
+                        fontSize: 14.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
 
@@ -56,12 +56,12 @@ class PersonalInfoSection extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 8),
                 child: Text(
                   personalInfo.departmentName,
-                  style: Theme.of(context).textTheme.$1?.copyWith(
-                    font: GoogleFonts.readexPro(),
-                    color: FlutterFlowTheme.of(context).greyTitle,
-                    fontSize: 12.0,
-                    letterSpacing: 0.0,
-                  ),
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontFamily: GoogleFonts.readexPro().fontFamily,
+                        color: AppColors.greyTitle,
+                        fontSize: 12.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
             ],

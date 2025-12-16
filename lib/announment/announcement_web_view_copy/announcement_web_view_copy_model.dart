@@ -1,14 +1,10 @@
-import '../core/utils/app_utils.dart';;
-import '/index.dart';
-import 'announcement_web_view_copy_widget.dart'
-    show AnnouncementWebViewCopyWidget;
-import 'package:flutter/material.dart';
+// Stub file - original moved to .broken
+class AnnouncementWebViewCopyState {
+  final String? url;
+  final bool isLoading;
 
-class AnnouncementWebViewCopyModel
-    extends FlutterFlowModel<AnnouncementWebViewCopyWidget> {
-  @override
-  void initState(BuildContext context) {}
-
-  @override
-  void dispose() {}
+  AnnouncementWebViewCopyState({
+    this.url,
+    this.isLoading = false,
+  });
 }

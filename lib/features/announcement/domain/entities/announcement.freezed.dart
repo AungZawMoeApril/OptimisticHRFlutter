@@ -34,14 +34,12 @@ mixin _$Announcement {
   /// Create a copy of Announcement
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnnouncementCopyWith<Announcement> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AnnouncementCopyWith<Announcement> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AnnouncementCopyWith<$Res> {
-  factory $AnnouncementCopyWith(
-          Announcement value, $Res Function(Announcement) then) =
+  factory $AnnouncementCopyWith(Announcement value, $Res Function(Announcement) then) =
       _$AnnouncementCopyWithImpl<$Res, Announcement>;
   @useResult
   $Res call(
@@ -111,8 +109,7 @@ class _$AnnouncementCopyWithImpl<$Res, $Val extends Announcement>
 }
 
 /// @nodoc
-abstract class _$$AnnouncementImplCopyWith<$Res>
-    implements $AnnouncementCopyWith<$Res> {
+abstract class _$$AnnouncementImplCopyWith<$Res> implements $AnnouncementCopyWith<$Res> {
   factory _$$AnnouncementImplCopyWith(
           _$AnnouncementImpl value, $Res Function(_$AnnouncementImpl) then) =
       __$$AnnouncementImplCopyWithImpl<$Res>;
@@ -225,21 +222,17 @@ class _$AnnouncementImpl implements _Announcement {
             other is _$AnnouncementImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.description, description) || other.description == description) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl) &&
             (identical(other.isRead, isRead) || other.isRead == isRead));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
-      createdAt, updatedAt, imageUrl, isRead);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, description, createdAt, updatedAt, imageUrl, isRead);
 
   /// Create a copy of Announcement
   /// with the given fields replaced by the non-null parameter values.
@@ -267,8 +260,7 @@ abstract class _Announcement implements Announcement {
       final String? imageUrl,
       final bool isRead}) = _$AnnouncementImpl;
 
-  factory _Announcement.fromJson(Map<String, dynamic> json) =
-      _$AnnouncementImpl.fromJson;
+  factory _Announcement.fromJson(Map<String, dynamic> json) = _$AnnouncementImpl.fromJson;
 
   @override
   String get id;

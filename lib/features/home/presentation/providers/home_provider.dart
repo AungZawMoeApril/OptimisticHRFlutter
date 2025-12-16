@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
@@ -6,22 +5,18 @@ import 'package:provider/provider.dart';
 import '../../domain/entities/personal_info.dart';
 import '../../domain/entities/announcement.dart';
 import '../../domain/entities/attendance_status.dart';
-import '../../domain/repositories/home_repository.dart';
 import '../../../../core/routes/app_router.dart';
 import '../../../../backend/api_requests/api_calls.dart' as api;
 import '../../../../core/utilities/functions.dart' as functions;
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/notifiers/auth_state_notifier.dart';
-import '../../../../core/state/notifiers/profile_state_notifier.dart';
 
 class HomeProvider extends ChangeNotifier {
-  final HomeRepository _repository;
   final BuildContext context;
 
-  HomeProvider(this._repository, this.context);
+  HomeProvider(this.context);
 
   AuthStateNotifier get _auth => context.read<AppState>().auth;
-  ProfileStateNotifier get _profile => context.read<AppState>().profile;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -68,23 +63,23 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future<void> _loadPersonalInfo() async {
-    final result = await api.MainGroup.getPersonalInfoCall.call(
+    final result = await api.GetPersonalInfoCall.call(
       companyIDMain: int.tryParse(_auth.companyId ?? ''),
       employeeIDMain: int.tryParse(_auth.employeeId ?? ''),
       token: _auth.token,
       todayDateMain: functions.dateFormatToDay(),
     );
 
-    if (result.succeeded && api.MainGroup.getPersonalInfoCall.apiStatus(result.jsonBody) == 0) {
+    if (result.succeeded && api.GetPersonalInfoCall.apiStatus(result.jsonBody) == 0) {
       _personalInfo = PersonalInfo(
-        prefix: api.MainGroup.getPersonalInfoCall.prefix(result.jsonBody) ?? '',
-        email: api.MainGroup.getPersonalInfoCall.email(result.jsonBody) ?? '',
-        departmentName: api.MainGroup.getPersonalInfoCall.departmentName(result.jsonBody) ?? '',
-        mobile: api.MainGroup.getPersonalInfoCall.mobile(result.jsonBody) ?? '',
-        hiredDate: api.MainGroup.getPersonalInfoCall.hiredDate(result.jsonBody) ?? '',
-        nickname: api.MainGroup.getPersonalInfoCall.nickname(result.jsonBody) ?? '',
+        prefix: api.GetPersonalInfoCall.prefix(result.jsonBody) ?? '',
+        email: api.GetPersonalInfoCall.email(result.jsonBody) ?? '',
+        departmentName: api.GetPersonalInfoCall.departmentName(result.jsonBody) ?? '',
+        mobile: api.GetPersonalInfoCall.mobile(result.jsonBody) ?? '',
+        hiredDate: api.GetPersonalInfoCall.hiredDate(result.jsonBody) ?? '',
+        nickname: api.GetPersonalInfoCall.nickname(result.jsonBody) ?? '',
       );
-      
+
       // Update app state for compatibility
       AppState().prefix = _personalInfo!.prefix;
       AppState().email = _personalInfo!.email;
@@ -119,7 +114,7 @@ class HomeProvider extends ChangeNotifier {
       if (result.succeeded) {
         await _loadAttendanceStatus();
       } else {
-        _error = result.jsonBody['message'] ?? 'Check in/out failed';
+        _error = 'Check in/out failed';
       }
     } catch (e) {
       _error = e.toString();
@@ -145,10 +140,11 @@ class HomeProvider extends ChangeNotifier {
 
       _attendanceStatus = AttendanceStatus(
         clockInTime: clockIn == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockIn)!,
-        clockOutTime: clockOut == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockOut)!,
+        clockOutTime:
+            clockOut == '-' ? '-' : functions.changeCheckInOutTimeFormatFunction(clockOut)!,
         shiftStartTime: startTime,
         shiftEndTime: endTime,
-        timeType: AppState().timeType,
+        timeType: AppState().timeType ?? '',
         canCheckIn: clockIn == '-' || clockOut != '-',
         approve: api.MainGroup.getDayViewOfSTACall.approve(result.jsonBody) ?? false,
       );
@@ -159,16 +155,13 @@ class HomeProvider extends ChangeNotifier {
 
   Future<void> _loadNotifications() async {
     final result = await api.MainGroup.apiLatestNotificationPOSTCall.call(
-      companyID: AppState().companyID,
-      receiverID: AppState().employeeID,
-      token: AppState().token,
+      companyID: AppState().companyID ?? 0,
+      employeeID: AppState().employeeID,
+      token: AppState().token ?? '',
     );
 
     if (result.succeeded) {
-      _notificationCount = api.MainGroup.apiLatestNotificationPOSTCall
-          .notificationList(result.jsonBody)!
-          .where((e) => 'true' == (e['seen'] ?? '').toString())
-          .length;
+      _notificationCount = api.MainGroup.apiLatestNotificationPOSTCall.count(result.jsonBody);
     } else {
       throw Exception('Failed to load notifications');
     }
@@ -176,13 +169,8 @@ class HomeProvider extends ChangeNotifier {
 
   Future<void> _loadAnnouncements() async {
     final result = await api.MainGroup.getCustomerWebCall.call(
-      timezoneOffset: AppState().timezoneOffset,
-      token: AppState().token,
-      companyID: AppState().companyID,
-      employeeID: AppState().employeeID,
-      perpage: 100,
-      page: 100,
-      searchValue: 'Announcement',
+      token: AppState().token ?? '',
+      companyID: AppState().companyID ?? 0,
     );
 
     if (result.succeeded) {

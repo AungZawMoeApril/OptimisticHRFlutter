@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class OTCheckInReqStruct extends BaseStruct {
   OTCheckInReqStruct({
@@ -72,8 +72,7 @@ class OTCheckInReqStruct extends BaseStruct {
 
   bool hasAttachments() => _attachments != null;
 
-  static OTCheckInReqStruct fromMap(Map<String, dynamic> data) =>
-      OTCheckInReqStruct(
+  static OTCheckInReqStruct fromMap(Map<String, dynamic> data) => OTCheckInReqStruct(
         theDate: data['the_Date'] as String?,
         clockInTime: data['clock_In_Time'] as String?,
         employeeID: castToType<int>(data['employee_ID']),
@@ -82,9 +81,8 @@ class OTCheckInReqStruct extends BaseStruct {
         attachments: getDataList(data['attachments']),
       );
 
-  static OTCheckInReqStruct? maybeFromMap(dynamic data) => data is Map
-      ? OTCheckInReqStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static OTCheckInReqStruct? maybeFromMap(dynamic data) =>
+      data is Map ? OTCheckInReqStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'the_Date': _theDate,
@@ -124,8 +122,7 @@ class OTCheckInReqStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static OTCheckInReqStruct fromSerializableMap(Map<String, dynamic> data) =>
-      OTCheckInReqStruct(
+  static OTCheckInReqStruct fromSerializableMap(Map<String, dynamic> data) => OTCheckInReqStruct(
         theDate: deserializeParam(
           data['the_Date'],
           ParamType.String,
@@ -151,11 +148,7 @@ class OTCheckInReqStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
-        attachments: deserializeParam<String>(
-          data['attachments'],
-          ParamType.String,
-          true,
-        ),
+        attachments: getDataList<String>(data['attachments']),
       );
 
   @override
@@ -174,8 +167,8 @@ class OTCheckInReqStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([theDate, clockInTime, employeeID, companyID, userID, attachments]);
+  int get hashCode =>
+      const ListEquality().hash([theDate, clockInTime, employeeID, companyID, userID, attachments]);
 }
 
 OTCheckInReqStruct createOTCheckInReqStruct({

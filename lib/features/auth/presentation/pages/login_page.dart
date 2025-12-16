@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../domain/entities/auth.dart';
 import '../providers/auth_provider.dart';
 import '../../../../core/routes/app_router.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
 import '../../../../flutter_flow/flutter_flow_language_selector.dart';
 
 class LoginPage extends StatefulWidget {
@@ -122,9 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                 prefixIcon: const Icon(Icons.lock),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    _isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -158,8 +153,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                         if (authProvider.error != null) {
                                           if (!mounted) return;
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
+                                          ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
                                               content: Text(
                                                 authProvider.error!,
@@ -170,8 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                                               backgroundColor: Colors.red,
                                             ),
                                           );
-                                        } else if (authProvider
-                                            .status.isAuthenticated) {
+                                        } else if (authProvider.status.isAuthenticated) {
                                           AppRouter.router.go('/pin-code');
                                         }
                                       }
@@ -202,54 +195,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       },
-    );
-  }
-}
-                    decoration: InputDecoration(
-                      labelText: l10n.password,
-                      prefixIcon: const Icon(Icons.lock),
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter password';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 8),
-
-                  // Forgot password link
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        // TODO: Implement forgot password
-                      },
-                      child: Text(l10n.forgotPassword),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Login button
-                  ElevatedButton(
-                    onPressed: _isLoading ? null : _handleLogin,
-                    child: _isLoading
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : Text(l10n.login),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

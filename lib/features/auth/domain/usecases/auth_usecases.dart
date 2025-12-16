@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import '../entities/auth.dart';
 import '../repositories/auth_repository.dart';
 
 class LoginUseCase {
@@ -5,10 +7,8 @@ class LoginUseCase {
 
   LoginUseCase(this._repository);
 
-  Future<AuthResponse> execute(String username, String password) {
-    return _repository.login(
-      AuthCredentials(username: username, password: password),
-    );
+  Future<Either<String, AuthCredentials>> execute(String username, String password) {
+    return _repository.login(username, password);
   }
 }
 
@@ -17,7 +17,7 @@ class LogoutUseCase {
 
   LogoutUseCase(this._repository);
 
-  Future<void> execute() {
+  Future<Either<String, void>> execute() {
     return _repository.logout();
   }
 }
@@ -27,7 +27,7 @@ class RefreshTokenUseCase {
 
   RefreshTokenUseCase(this._repository);
 
-  Future<AuthResponse> execute(String token) {
+  Future<Either<String, AuthCredentials>> execute(String token) {
     return _repository.refreshToken(token);
   }
 }
@@ -37,7 +37,7 @@ class VerifyTokenUseCase {
 
   VerifyTokenUseCase(this._repository);
 
-  Future<bool> execute(String token) {
-    return _repository.verifyToken(token);
+  Future<Either<String, AuthStatus>> execute() {
+    return _repository.checkAuthStatus();
   }
 }

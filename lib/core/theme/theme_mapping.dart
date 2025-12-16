@@ -5,19 +5,21 @@ const themeMapping = {
   'Theme.of(context).colorScheme.secondary': 'Theme.of(context).colorScheme.secondary',
   'Theme.of(context).colorScheme.tertiary': 'Theme.of(context).colorScheme.tertiary',
   'Theme.of(context).colorScheme.surface': 'Theme.of(context).colorScheme.surface',
-  'Theme.of(context).colorScheme.primaryText': 'Theme.of(context).textTheme.bodyLarge?.color',
-  'Theme.of(context).colorScheme.secondaryText': 'Theme.of(context).textTheme.bodyMedium?.color',
+  'Theme.of(context).colorScheme.onSurface': 'Theme.of(context).textTheme.bodyLarge?.color',
+  'Theme.of(context).colorScheme.onSurfaceVariant': 'Theme.of(context).textTheme.bodyMedium?.color',
   'Theme.of(context).colorScheme.primaryBackground': 'Theme.of(context).colorScheme.background',
   'Theme.of(context).colorScheme.secondaryBackground': 'Theme.of(context).colorScheme.surface',
-  'Theme.of(context).colorScheme.primaryContainer': 'Theme.of(context).colorScheme.primaryContainer',
-  'Theme.of(context).colorScheme.secondaryContainer': 'Theme.of(context).colorScheme.secondaryContainer',
-  'Theme.of(context).colorScheme.tertiaryContainer': 'Theme.of(context).colorScheme.tertiaryContainer',
+  'Theme.of(context).colorScheme.primaryContainer':
+      'Theme.of(context).colorScheme.primaryContainer',
+  'Theme.of(context).colorScheme.secondaryContainer':
+      'Theme.of(context).colorScheme.secondaryContainer',
+  'Theme.of(context).colorScheme.tertiaryContainer':
+      'Theme.of(context).colorScheme.tertiaryContainer',
   'Theme.of(context).colorScheme.surfaceVariant': 'Theme.of(context).colorScheme.surfaceVariant',
   'Theme.of(context).colorScheme.surfaceTint': 'Theme.of(context).colorScheme.surfaceTint',
   'Colors.orange': 'Colors.orange',
   'Theme.of(context).colorScheme.error': 'Theme.of(context).colorScheme.error',
   'Theme.of(context).colorScheme.outline': 'Theme.of(context).colorScheme.outline',
-  'Theme.of(context).colorScheme.primary': 'Theme.of(context).colorScheme.primary',
 
   // Text Styles
   'Theme.of(context).textTheme.displayLarge': 'Theme.of(context).textTheme.displayLarge',

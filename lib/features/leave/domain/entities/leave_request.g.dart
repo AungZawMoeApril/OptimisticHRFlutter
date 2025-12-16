@@ -6,8 +6,7 @@ part of 'leave_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LeaveRequestImpl _$$LeaveRequestImplFromJson(Map<String, dynamic> json) =>
-    _$LeaveRequestImpl(
+_$LeaveRequestImpl _$$LeaveRequestImplFromJson(Map<String, dynamic> json) => _$LeaveRequestImpl(
       id: json['id'] as String,
       userId: json['userId'] as String,
       employeeName: json['employeeName'] as String,
@@ -19,18 +18,13 @@ _$LeaveRequestImpl _$$LeaveRequestImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       approverNote: json['approverNote'] as String?,
       approverId: json['approverId'] as String?,
-      approvedAt: json['approvedAt'] == null
-          ? null
-          : DateTime.parse(json['approvedAt'] as String),
+      approvedAt: json['approvedAt'] == null ? null : DateTime.parse(json['approvedAt'] as String),
       attachmentUrl: json['attachmentUrl'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      updatedAt: json['updatedAt'] == null ? null : DateTime.parse(json['updatedAt'] as String),
     );
 
-Map<String, dynamic> _$$LeaveRequestImplToJson(_$LeaveRequestImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$LeaveRequestImplToJson(_$LeaveRequestImpl instance) => <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'employeeName': instance.employeeName,

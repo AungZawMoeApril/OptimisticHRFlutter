@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/personal_info.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class PersonalInfoCard extends StatelessWidget {
@@ -45,7 +45,7 @@ class PersonalInfoCard extends StatelessWidget {
                           child: Icon(
                             Icons.person,
                             size: 50,
-                            color: Theme.of(context).colorScheme.secondaryText,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
                 ),
@@ -56,18 +56,18 @@ class PersonalInfoCard extends StatelessWidget {
                     children: [
                       Text(
                         personalInfo.employeeName,
-                        style: Theme.of(context).textTheme.titleMedium.copyWith(
-                              fontWeight: FontWeight.w600,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
                             ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         personalInfo.department,
-                        style: context.textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Text(
                         personalInfo.position,
-                        style: context.textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const SizedBox(height: 8),
                       Container(
@@ -81,7 +81,7 @@ class PersonalInfoCard extends StatelessWidget {
                         ),
                         child: Text(
                           'Leave Balance: ${personalInfo.totalLeaveRemain} days',
-                          style: context.textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                     ],

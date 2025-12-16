@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class ImageURLStruct extends BaseStruct {
   ImageURLStruct({
@@ -36,8 +36,7 @@ class ImageURLStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static ImageURLStruct fromSerializableMap(Map<String, dynamic> data) =>
-      ImageURLStruct(
+  static ImageURLStruct fromSerializableMap(Map<String, dynamic> data) => ImageURLStruct(
         image: deserializeParam(
           data['image'],
           ParamType.String,

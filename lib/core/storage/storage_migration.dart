@@ -184,8 +184,10 @@ class StorageMigrationManager {
       await Future.wait([
         _storage.setValue(Boxes.timeTracking, StorageKeys.clockInTime, data[0]),
         _storage.setValue(Boxes.timeTracking, StorageKeys.clockInLocation, data[1]),
-        _storage.setValue(Boxes.timeTracking, StorageKeys.clockInLatitude, double.tryParse(data[2] ?? '')),
-        _storage.setValue(Boxes.timeTracking, StorageKeys.clockInLongitude, double.tryParse(data[3] ?? '')),
+        _storage.setValue(
+            Boxes.timeTracking, StorageKeys.clockInLatitude, double.tryParse(data[2] ?? '')),
+        _storage.setValue(
+            Boxes.timeTracking, StorageKeys.clockInLongitude, double.tryParse(data[3] ?? '')),
       ]);
 
       await Future.wait([

@@ -38,6 +38,7 @@ dependencies:
   hive_flutter: ^1.1.0  # Hive Flutter integration
   flutter_secure_storage: ^9.0.0  # Secure storage
   path_provider: ^2.1.4  # File system access
+  shared_preferences: ^2.2.2  # Shared preferences
 
   # UI Components
   google_fonts: ^6.1.0  # Custom fonts
@@ -88,6 +89,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/fonts/

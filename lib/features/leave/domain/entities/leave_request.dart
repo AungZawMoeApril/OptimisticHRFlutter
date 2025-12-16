@@ -23,6 +23,5 @@ class LeaveRequest with _$LeaveRequest {
     DateTime? updatedAt,
   }) = _LeaveRequest;
 
-  factory LeaveRequest.fromJson(Map<String, dynamic> json) =>
-      _$LeaveRequestFromJson(json);
+  factory LeaveRequest.fromJson(Map<String, dynamic> json) => _$LeaveRequestFromJson(json);
 }

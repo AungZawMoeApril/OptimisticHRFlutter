@@ -85,7 +85,7 @@ class AttendanceHistoryList extends StatelessWidget {
         status,
         style: const TextStyle(fontSize: 12),
       ),
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
     );
   }
 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:hr_app/core/theme/app_theme.dart';
-import '../../../../../flutter_flow/flutter_flow_icon_button.dart';
+import 'package:h_r_optimistic_mobile/core/theme/app_theme.dart';
 import '../../../../../core/routes/app_router.dart';
 import '../../providers/auth_provider.dart';
 
@@ -156,7 +155,7 @@ class _PinCodePageState extends State<PinCodePage> {
                     shape: BoxShape.circle,
                     color: digit.isNotEmpty
                         ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.secondaryText.withOpacity(0.3),
+                        : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3),
                   ),
                 );
               }),
@@ -184,7 +183,7 @@ class _PinCodePageState extends State<PinCodePage> {
                       child: Center(
                         child: Text(
                           '0',
-                          style: context.textTheme.displaySmall,
+                          style: Theme.of(context).textTheme.displaySmall,
                         ),
                       ),
                     );
@@ -196,7 +195,7 @@ class _PinCodePageState extends State<PinCodePage> {
                       child: Center(
                         child: Icon(
                           Icons.backspace,
-                          color: Theme.of(context).colorScheme.primaryText,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     );
@@ -208,7 +207,7 @@ class _PinCodePageState extends State<PinCodePage> {
                     child: Center(
                       child: Text(
                         number,
-                        style: context.textTheme.displaySmall,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                     ),
                   );

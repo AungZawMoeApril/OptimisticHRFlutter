@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class GetLeaveWithRemainingDaysStruct extends BaseStruct {
   GetLeaveWithRemainingDaysStruct({
@@ -57,8 +57,7 @@ class GetLeaveWithRemainingDaysStruct extends BaseStruct {
   int get availablDays => _availablDays ?? 0;
   set availablDays(int? val) => _availablDays = val;
 
-  void incrementAvailablDays(int amount) =>
-      availablDays = availablDays + amount;
+  void incrementAvailablDays(int amount) => availablDays = availablDays + amount;
 
   bool hasAvailablDays() => _availablDays != null;
 
@@ -89,10 +88,8 @@ class GetLeaveWithRemainingDaysStruct extends BaseStruct {
         approveName: data['approve_Name'] as String?,
       );
 
-  static GetLeaveWithRemainingDaysStruct? maybeFromMap(dynamic data) => data
-          is Map
-      ? GetLeaveWithRemainingDaysStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static GetLeaveWithRemainingDaysStruct? maybeFromMap(dynamic data) =>
+      data is Map ? GetLeaveWithRemainingDaysStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'timeOffID': _timeOffID,
@@ -136,8 +133,7 @@ class GetLeaveWithRemainingDaysStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static GetLeaveWithRemainingDaysStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static GetLeaveWithRemainingDaysStruct fromSerializableMap(Map<String, dynamic> data) =>
       GetLeaveWithRemainingDaysStruct(
         timeOffID: deserializeParam(
           data['timeOffID'],

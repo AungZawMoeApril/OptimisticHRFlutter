@@ -1,17 +1,17 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import 'package:flutter/material.dart';;
-import '../core/utils/app_utils.dart';;
+import 'package:flutter/material.dart';
+import '../../core/utils/app_utils.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
-import 'package:hr_app/core/utils/custom_functions.dart'; // Imports custom functions
+import 'package:h_r_optimistic_mobile/core/utils/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as gmap;
-import 'package:hr_app/core/models/lat_lng.dart'; // FlutterFlow's LatLng
+import 'package:h_r_optimistic_mobile/core/models/lat_lng.dart'; // FlutterFlow's LatLng
 import 'package:geolocator/geolocator.dart'; // Geolocator
 
 class CustomMapTap extends StatefulWidget {
@@ -98,8 +98,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      gmap.LatLng currentLatLng =
-          gmap.LatLng(position.latitude, position.longitude);
+      gmap.LatLng currentLatLng = gmap.LatLng(position.latitude, position.longitude);
 
       setState(() {
         _centerPosition = currentLatLng;
@@ -107,8 +106,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
         _isLoadingLocation = false;
       });
 
-      widget.onInitialPositionSet
-          ?.call(LatLng(currentLatLng.latitude, currentLatLng.longitude));
+      widget.onInitialPositionSet?.call(LatLng(currentLatLng.latitude, currentLatLng.longitude));
       _moveCameraToPosition(currentLatLng);
 
       widget.locstatus?.call(false);
@@ -134,8 +132,7 @@ class _CustomMapTapState extends State<CustomMapTap> {
     _moveCameraToPosition(tappedPosition);
 
     // Immediately check distance without delay
-    double distanceThreshold =
-        double.tryParse(widget.distanceThreshold ?? '') ?? 100;
+    double distanceThreshold = double.tryParse(widget.distanceThreshold ?? '') ?? 100;
 
     double distance = Geolocator.distanceBetween(
       tappedPosition.latitude,

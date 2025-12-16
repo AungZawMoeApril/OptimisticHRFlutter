@@ -9,6 +9,7 @@ import '../../features/auth/presentation/screens/pin_code_setup_screen.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/check_in/presentation/pages/check_in_page.dart';
 import '../../features/check_out/presentation/pages/check_out_page.dart';
+import '../widgets/bottom_nav_bar.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -18,7 +19,6 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/login',
     debugLogDiagnostics: true,
-    
     routes: [
       GoRoute(
         path: '/login',
@@ -35,7 +35,6 @@ class AppRouter {
         name: 'pinCodeSetup',
         builder: (context, state) => const PinCodeSetupScreen(),
       ),
-      
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
@@ -62,12 +61,11 @@ class AppRouter {
         ],
       ),
     ],
-    
     redirect: (context, state) {
       final appState = context.read<AppState>();
       final isLoggedIn = appState.token.isNotEmpty;
-      final isAuth = state.matchedLocation.startsWith('/login') ||
-          state.matchedLocation.startsWith('/home');
+      final isAuth =
+          state.matchedLocation.startsWith('/login') || state.matchedLocation.startsWith('/home');
 
       // Not logged in, redirect to login
       if (!isLoggedIn && !isAuth) {

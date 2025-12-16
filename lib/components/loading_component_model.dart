@@ -1,11 +1,7 @@
-import '../core/utils/app_utils.dart';;
-import 'loading_component_widget.dart' show LoadingComponentWidget;
 import 'package:flutter/material.dart';
 
-class $1Model extends BaseViewModel {
-  @override
+/// Stub model for LoadingComponent
+class LoadingComponentModel {
   void initState(BuildContext context) {}
-
-  @override
   void dispose() {}
 }

@@ -94,9 +94,7 @@ class CheckInOutRepositoryImpl implements CheckInOutRepository {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        return data
-            .map((json) => CheckInRecordModel.fromJson(json))
-            .toList();
+        return data.map((json) => CheckInRecordModel.fromJson(json)).toList();
       } else {
         throw Exception('Failed to get attendance history: ${response.statusCode}');
       }

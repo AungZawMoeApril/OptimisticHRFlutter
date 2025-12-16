@@ -4,7 +4,7 @@ import '../storage/secure_storage.dart';
 /// Theme state model
 class ThemeState extends BaseState {
   final SecureStorageProvider _storage;
-  
+
   bool _isDarkMode = false;
   String _primaryColor = '0xFF2196F3'; // Default blue
   double _textScaleFactor = 1.0;

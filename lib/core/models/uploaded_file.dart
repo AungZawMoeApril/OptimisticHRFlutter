@@ -60,21 +60,25 @@ class UploadedFile {
 
     // Check for common image signatures
     final signature = bytes.sublist(0, 4);
-    
+
     // JPEG
     if (bytes[0] == 0xFF && bytes[1] == 0xD8) {
       return true;
     }
-    
+
     // PNG
-    if (signature[0] == 0x89 && signature[1] == 0x50 && 
-        signature[2] == 0x4E && signature[3] == 0x47) {
+    if (signature[0] == 0x89 &&
+        signature[1] == 0x50 &&
+        signature[2] == 0x4E &&
+        signature[3] == 0x47) {
       return true;
     }
-    
+
     // GIF
-    if (signature[0] == 0x47 && signature[1] == 0x49 && 
-        signature[2] == 0x46 && signature[3] == 0x38) {
+    if (signature[0] == 0x47 &&
+        signature[1] == 0x49 &&
+        signature[2] == 0x46 &&
+        signature[3] == 0x38) {
       return true;
     }
 
@@ -82,15 +86,14 @@ class UploadedFile {
   }
 
   Map<String, dynamic> toMap() => {
-    'name': name,
-    'bytes': base64Encode(bytes),
-    'height': height,
-    'width': width,
-    'contentType': contentType,
-  };
+        'name': name,
+        'bytes': base64Encode(bytes),
+        'height': height,
+        'width': width,
+        'contentType': contentType,
+      };
 
-  static UploadedFile? fromMap(Map<String, dynamic>? data) =>
-    data == null
+  static UploadedFile? fromMap(Map<String, dynamic>? data) => data == null
       ? null
       : UploadedFile(
           name: data['name'] as String,
@@ -100,3 +103,6 @@ class UploadedFile {
           contentType: data['contentType'] as String?,
         );
 }
+
+// FlutterFlow compatibility alias
+typedef FFUploadedFile = UploadedFile;

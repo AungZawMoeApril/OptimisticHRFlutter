@@ -145,8 +145,7 @@ class OvertimeRequestDetailsScreen extends StatelessWidget {
           context,
           icon: Icons.access_time,
           label: 'Time',
-          value:
-              '${_formatTime(request.startTime)} - ${_formatTime(request.endTime)}',
+          value: '${_formatTime(request.startTime)} - ${_formatTime(request.endTime)}',
         ),
         const SizedBox(height: 12),
         _buildDetailRow(
@@ -181,9 +180,7 @@ class OvertimeRequestDetailsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          request.status == OvertimeStatus.rejected
-              ? 'Rejection Reason'
-              : 'Approver Note',
+          request.status == OvertimeStatus.rejected ? 'Rejection Reason' : 'Approver Note',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: 8),
@@ -207,10 +204,7 @@ class OvertimeRequestDetailsScreen extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           '$label:',
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: Colors.grey),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
         ),
         const SizedBox(width: 8),
         Text(

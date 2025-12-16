@@ -10,6 +10,14 @@ class ContactStaff extends Equatable {
   final String phone;
   final String? photoUrl;
 
+  // Additional properties for compatibility
+  String get imageUrl => photoUrl ?? '';
+  String get prefix => name.split(' ').firstOrNull ?? '';
+  String get firstName => name.split(' ').skip(1).firstOrNull ?? name;
+  String get lastName => name.split(' ').skip(2).firstOrNull ?? '';
+  String get positionName => position;
+  String get departmentName => department;
+
   const ContactStaff({
     required this.id,
     required this.name,

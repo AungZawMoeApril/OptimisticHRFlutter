@@ -1,59 +1,63 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
-import '../core/utils/app_utils.dart';;
-import 'package:hr_app/core/utils/form_field_controller.dart';
-import '/index.dart';
-import 'overtime_request_main_widget.dart' show OvertimeRequestMainWidget;
 import 'package:flutter/material.dart';
+import '/core/utils/app_utils.dart';
+import '/core/utils/form_field_controller.dart';
+import '/backend/api_requests/api_calls.dart';
+import 'overtime_request_main_widget.dart' show OvertimeRequestMainWidget;
 
-class OvertimeRequestMainModel
-    extends FlutterFlowModel<OvertimeRequestMainWidget> {
-  ///  Local state fields for this page.
+// FFUploadedFile class for file uploads
+class FFUploadedFile {
+  final String? name;
+  final String? path;
+  final List<int>? bytes;
 
-  ReqStaffOTRequestStruct? reqstaffotrequest;
-  void updateReqstaffotrequestStruct(
-      Function(ReqStaffOTRequestStruct) updateFn) {
-    updateFn(reqstaffotrequest ??= ReqStaffOTRequestStruct());
-  }
+  FFUploadedFile({this.name, this.path, this.bytes});
+}
 
-  List<String> attachmentModel = [];
-  void addToAttachmentModel(String item) => attachmentModel.add(item);
-  void removeFromAttachmentModel(String item) => attachmentModel.remove(item);
-  void removeAtIndexFromAttachmentModel(int index) =>
-      attachmentModel.removeAt(index);
-  void insertAtIndexInAttachmentModel(int index, String item) =>
-      attachmentModel.insert(index, item);
-  void updateAttachmentModelAtIndex(int index, Function(String) updateFn) =>
-      attachmentModel[index] = updateFn(attachmentModel[index]);
+class OvertimeRequestMainModel extends FlutterFlowModel<OvertimeRequestMainWidget> {
+  /// State fields for text input
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
 
-  int? wFID;
-
-  int? senderID;
-
-  ///  State fields for stateful widgets in this page.
-
+  /// State fields for dates
   DateTime? datePicked1;
   DateTime? datePicked2;
   DateTime? datePicked3;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  bool isDataUploading_uploadDataEditOTRequest = false;
-  FFUploadedFile uploadedLocalFile_uploadDataEditOTRequest =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  DateTime? datePicked4;
 
-  // Stores action output result for [Backend Call - API (GetCheckInImageURL)] action in Container widget.
-  ApiCallResponse? apiResultGetCheckinImageURL;
-  // Stores action output result for [Backend Call - API (OTRequest)] action in Button widget.
-  ApiCallResponse? apiResultuOT;
-  // Stores action output result for [Backend Call - API (GetworkFlowOfOTRequest)] action in Button widget.
-  ApiCallResponse? getworkFlowOfOTRequestResult;
-  // Stores action output result for [Backend Call - API (AddNotificationInfoMob)] action in Button widget.
-  ApiCallResponse? addNotiResult;
+  /// State fields for times
+  DateTime? oTStartDate;
+  DateTime? oTEndDate;
+  String? oTStartTime;
+  String? oTEndTime;
+
+  /// State fields for dropdowns
+  int? dropDownValue1;
+  FormFieldController<int>? dropDownValueController1;
+
+  /// State fields for file uploads
+  List<FFUploadedFile> uploadedFilesList = [];
+  bool isDataUploading = false;
+  FFUploadedFile? uploadedLocalFile;
+  ApiCallResponse? apiResultGetImageURL;
+  List<String> attachmentModel = [];
+
+  /// API call results
+  ApiCallResponse? getworkFlowOfOTRequestAPI;
+  ApiCallResponse? addNotificationInfoMobResult;
+  int? wfID;
+  int? senderID;
+
+  /// Methods for managing attachments
+  void addToAttachmentModel(String item) => attachmentModel.add(item);
+  void removeFromAttachmentModel(String item) => attachmentModel.remove(item);
+  void removeAtIndexFromAttachmentModel(int index) => attachmentModel.removeAt(index);
+  void updateAttachmentModelAtIndex(int index, String Function(String) updateFn) {
+    attachmentModel[index] = updateFn(attachmentModel[index]);
+  }
+
+  void insertAtIndexInAttachmentModel(int index, String item) {
+    attachmentModel.insert(index, item);
+  }
 
   @override
   void initState(BuildContext context) {}

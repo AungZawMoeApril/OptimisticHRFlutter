@@ -1,7 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
 import '/backend/schema/structs/index.dart';
-import 'custom_auth_manager.dart';
 
 class HROptimisticMobileAuthUser {
   HROptimisticMobileAuthUser({
@@ -15,10 +14,11 @@ class HROptimisticMobileAuthUser {
   UserStruct? userData;
 }
 
+/// Current authenticated user
+HROptimisticMobileAuthUser? currentUser;
+
 /// Generates a stream of the authenticated user.
 BehaviorSubject<HROptimisticMobileAuthUser> hROptimisticMobileAuthUserSubject =
     BehaviorSubject.seeded(HROptimisticMobileAuthUser(loggedIn: false));
 Stream<HROptimisticMobileAuthUser> hROptimisticMobileAuthUserStream() =>
-    hROptimisticMobileAuthUserSubject
-        .asBroadcastStream()
-        .map((user) => currentUser = user);
+    hROptimisticMobileAuthUserSubject.asBroadcastStream().map((user) => currentUser = user);

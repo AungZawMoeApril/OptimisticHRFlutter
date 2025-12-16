@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../presentation/providers/home_provider.dart';
-import '../presentation/pages/home_page.dart';
+import '../providers/home_provider.dart';
+import '../pages/home_page.dart';
 
 class HomeRouter {
-  static const String routeName = HomePage.routeName;
-  static const String routePath = HomePage.routePath;
+  static String get routeName => HomePage.routeName;
+  static String get routePath => HomePage.routePath;
 
   static Widget page() {
     return ChangeNotifierProvider(

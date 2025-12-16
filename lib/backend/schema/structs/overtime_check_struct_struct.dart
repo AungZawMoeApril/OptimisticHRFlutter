@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '../core/utils/app_utils.dart';;
+import '/core/utils/flutter_flow_util.dart';
 
 class OvertimeCheckStructStruct extends BaseStruct {
   OvertimeCheckStructStruct({
@@ -29,15 +29,13 @@ class OvertimeCheckStructStruct extends BaseStruct {
 
   bool hasTimeZoneOffsetMinutes() => _timeZoneOffsetMinutes != null;
 
-  static OvertimeCheckStructStruct fromMap(Map<String, dynamic> data) =>
-      OvertimeCheckStructStruct(
+  static OvertimeCheckStructStruct fromMap(Map<String, dynamic> data) => OvertimeCheckStructStruct(
         hasValidOvertime: data['hasValidOvertime'] as bool?,
         timeZoneOffsetMinutes: castToType<int>(data['timeZoneOffsetMinutes']),
       );
 
-  static OvertimeCheckStructStruct? maybeFromMap(dynamic data) => data is Map
-      ? OvertimeCheckStructStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static OvertimeCheckStructStruct? maybeFromMap(dynamic data) =>
+      data is Map ? OvertimeCheckStructStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'hasValidOvertime': _hasValidOvertime,
@@ -56,8 +54,7 @@ class OvertimeCheckStructStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static OvertimeCheckStructStruct fromSerializableMap(
-          Map<String, dynamic> data) =>
+  static OvertimeCheckStructStruct fromSerializableMap(Map<String, dynamic> data) =>
       OvertimeCheckStructStruct(
         hasValidOvertime: deserializeParam(
           data['hasValidOvertime'],
@@ -82,8 +79,7 @@ class OvertimeCheckStructStruct extends BaseStruct {
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([hasValidOvertime, timeZoneOffsetMinutes]);
+  int get hashCode => const ListEquality().hash([hasValidOvertime, timeZoneOffsetMinutes]);
 }
 
 OvertimeCheckStructStruct createOvertimeCheckStructStruct({

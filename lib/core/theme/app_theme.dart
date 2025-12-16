@@ -2,12 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
+/// Custom theme extensions for ColorScheme
+extension AppColorScheme on ColorScheme {
+  Color get primaryText => onSurface;
+  Color get secondaryText => onSurface.withOpacity(0.6);
+  Color get primaryBackground => surface;
+  Color get secondaryBackground => surfaceContainerHighest;
+  Color get accent1 => primary;
+  Color get accent2 => secondary;
+  Color get accent3 => tertiary;
+  Color get accent4 => surfaceContainerHigh;
+  Color get success => const Color(0xFF4CAF50);
+  Color get warning => const Color(0xFFFF9800);
+  Color get info => const Color(0xFF2196F3);
+}
+
+/// BuildContext extension for easy theme access
+extension ThemeExtension on BuildContext {
+  TextTheme get textTheme => Theme.of(this).textTheme;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+}
+
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      
+
       // Colors
       primaryColor: AppColors.primary,
       colorScheme: ColorScheme.light(
@@ -15,7 +36,7 @@ class AppTheme {
         secondary: AppColors.secondary,
         error: AppColors.error,
       ),
-      
+
       // Text Theme
       textTheme: TextTheme(
         displayLarge: GoogleFonts.readexPro(
@@ -37,7 +58,7 @@ class AppTheme {
           color: AppColors.primary,
         ),
       ),
-      
+
       // AppBar Theme
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primary,
@@ -45,7 +66,7 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
       ),
-      
+
       // Input Decoration
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -68,7 +89,7 @@ class AppTheme {
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
-      
+
       // Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -91,7 +112,7 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         error: AppColors.error,
-        background: AppColors.backgroundDark,
+        surface: AppColors.backgroundDark,
       ),
       appBarTheme: lightTheme.appBarTheme.copyWith(
         backgroundColor: AppColors.backgroundDark,

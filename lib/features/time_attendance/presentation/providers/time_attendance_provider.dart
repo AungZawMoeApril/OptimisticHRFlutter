@@ -82,16 +82,17 @@ class TimeAttendanceProvider extends ChangeNotifier {
     final endOfWeek = startOfWeek.add(const Duration(days: 6));
 
     return records.where((record) {
-      return record.date.isAfter(startOfWeek) && record.date.isBefore(endOfWeek.add(const Duration(days: 1)));
+      return record.date.isAfter(startOfWeek) &&
+          record.date.isBefore(endOfWeek.add(const Duration(days: 1)));
     }).toList();
   }
 
   List<TimeAttendanceRecord> filterDayRecords(List<TimeAttendanceRecord> records) {
     final now = DateTime.now();
     return records.where((record) {
-      return record.date.year == now.year && 
-             record.date.month == now.month && 
-             record.date.day == now.day;
+      return record.date.year == now.year &&
+          record.date.month == now.month &&
+          record.date.day == now.day;
     }).toList();
   }
 

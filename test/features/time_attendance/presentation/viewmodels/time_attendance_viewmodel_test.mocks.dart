@@ -7,6 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:h_r_optimistic_mobile/core/error/failures.dart' as _i5;
+import 'package:h_r_optimistic_mobile/features/time_attendance/domain/entities/attendance_record.dart'
+    as _i8;
 import 'package:h_r_optimistic_mobile/features/time_attendance/domain/entities/time_attendance_record.dart'
     as _i6;
 import 'package:h_r_optimistic_mobile/features/time_attendance/domain/repositories/time_attendance_repository.dart'
@@ -74,4 +76,140 @@ class MockTimeAttendanceRepository extends _i1.Mock
             )),
           ) as _i4
               .Future<_i2.Either<_i5.Failure, List<_i6.TimeAttendanceRecord>>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>> getTodayAttendance(
+          String? userId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTodayAttendance,
+          [userId],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #getTodayAttendance,
+            [userId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #getTodayAttendance,
+            [userId],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>> checkIn({
+    required String? userId,
+    required String? location,
+    required double? latitude,
+    required double? longitude,
+    String? checkInImage,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkIn,
+          [],
+          {
+            #userId: userId,
+            #location: location,
+            #latitude: latitude,
+            #longitude: longitude,
+            #checkInImage: checkInImage,
+          },
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #checkIn,
+            [],
+            {
+              #userId: userId,
+              #location: location,
+              #latitude: latitude,
+              #longitude: longitude,
+              #checkInImage: checkInImage,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #checkIn,
+            [],
+            {
+              #userId: userId,
+              #location: location,
+              #latitude: latitude,
+              #longitude: longitude,
+              #checkInImage: checkInImage,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>> checkOut({
+    required String? userId,
+    required String? location,
+    required double? latitude,
+    required double? longitude,
+    String? checkOutImage,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkOut,
+          [],
+          {
+            #userId: userId,
+            #location: location,
+            #latitude: latitude,
+            #longitude: longitude,
+            #checkOutImage: checkOutImage,
+          },
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #checkOut,
+            [],
+            {
+              #userId: userId,
+              #location: location,
+              #latitude: latitude,
+              #longitude: longitude,
+              #checkOutImage: checkOutImage,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>.value(
+                _FakeEither_0<_i5.Failure, _i8.AttendanceRecord>(
+          this,
+          Invocation.method(
+            #checkOut,
+            [],
+            {
+              #userId: userId,
+              #location: location,
+              #latitude: latitude,
+              #longitude: longitude,
+              #checkOutImage: checkOutImage,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i8.AttendanceRecord>>);
 }

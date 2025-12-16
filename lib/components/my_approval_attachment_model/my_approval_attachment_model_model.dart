@@ -1,13 +1,7 @@
-import '../core/utils/app_utils.dart';;
-import 'my_approval_attachment_model_widget.dart'
-    show MyApprovalAttachmentModelWidget;
 import 'package:flutter/material.dart';
 
-class MyApprovalAttachmentModelModel
-    extends FlutterFlowModel<MyApprovalAttachmentModelWidget> {
-  @override
+/// Stub model for MyApprovalAttachmentModel
+class MyApprovalAttachmentModelModel {
   void initState(BuildContext context) {}
-
-  @override
   void dispose() {}
 }

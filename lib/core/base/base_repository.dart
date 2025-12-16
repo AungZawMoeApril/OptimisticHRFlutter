@@ -17,7 +17,8 @@ abstract class BaseRepository {
       final result = await call();
       return Right(result);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      // Log error: e.toString()
+      return Left(ServerFailure());
     }
   }
 
@@ -26,7 +27,8 @@ abstract class BaseRepository {
       final result = await call();
       return Right(result);
     } catch (e) {
-      return Left(CacheFailure(e.toString()));
+      // Log error: e.toString()
+      return Left(CacheFailure());
     }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'providers/app_state_provider.dart';
@@ -34,8 +33,9 @@ Future<void> initializeDependencies() async {
     () => AuthRepositoryImpl(dio: apiClient.dio),
   );
 
-  // Update API client with auth repository
-  apiClient.setAuthRepository(sl<auth.AuthRepository>());
+  // TODO: Update API client with auth repository
+  // Type mismatch: AuthRepository (domain) vs IAuthRepository (core)
+  // apiClient.setAuthRepository(sl<auth.AuthRepository>());
 
   // Data sources
   sl.registerLazySingleton(() => ProfileLocalDataSource());
